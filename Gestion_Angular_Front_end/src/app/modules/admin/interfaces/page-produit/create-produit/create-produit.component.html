@@ -1,0 +1,119 @@
+<!--
+<div class="row h-100 justify-content-center align-items-center">
+  <div class="col-12">
+
+
+
+
+
+<div class="card">
+  <div class="card-header">
+    Creation de produit
+  </div>
+  <div class="card-body">
+  <form (ngSubmit) = "onSubmit()">
+      <div class="form-group m-1">
+          <label> Nom</label>
+          <input type="text" class ="form-control" id = "codeproduit"
+              [(ngModel)] = "produitDto.codeproduit" name = "codeproduit">
+      </div>
+
+      <div class="form-group m-1">
+          <label>Code</label>
+          <input type="text" class ="form-control" id = "nom"
+              [(ngModel)] = "produitDto.nom" name = "nom">
+      </div>
+
+      <div class="form-group m-1">
+          <label> Designation</label>
+          <input type="text" class ="form-control" id = "designation"
+              [(ngModel)] = "produitDto.designation" name = "designation">
+      </div>
+
+
+      <div class="form-group m-1">
+        <label> Quantite</label>
+        <input type="text" class ="form-control" id = "quantite"
+            [(ngModel)] = "produitDto.quantite" name = "quantite">
+    </div>
+
+
+    <div class="form-group m-1">
+      <label> Magasin</label>
+      <input type="text" class ="form-control" id = "magasin"
+          [(ngModel)] = "produitDto.magasinDto" name = "magasin">
+  </div>
+
+
+  <div class="form-group m-1">
+    <label class="form-label"> Categorie</label>
+    <select class="form-control" name="categorie" id="categorie" [(ngModel)] = "produitDto.categorieDto">
+      <option *ngFor="let categorie of categories" value="{{categorie.code}}">{{categorie.designation}}</option>
+    </select>
+</div>
+
+<div >
+      <button class = "btn btn-success" type ="submit">Submit</button>
+    </div>
+  </form>
+  </div>
+</div>
+
+
+</div>
+</div> -->
+
+
+<!--
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Création de Produit
+        </div>
+        <div class="card-body">
+          <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+              <label for="codeproduit">Nom</label>
+              <input type="text" class="form-control" id="codeproduit" formControlName="codeproduit" placeholder="Entrez le nom du produit" required>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="nom">Code</label>
+              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrez le code du produit" required>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="designation">Désignation</label>
+              <input type="text" class="form-control" id="designation" formControlName="designation" placeholder="Entrez la désignation du produit" required>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="quantite">Quantité</label>
+              <input type="number" min="1" class="form-control" id="quantite" formControlName="quantite" required>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="magasin">Magasin</label>
+              <input type="text" class="form-control" id="magasin" formControlName="magasinDto" placeholder="Entrez le nom du magasin" required>
+            </div>
+
+            <div class="form-group mb-3">
+              <label for="categorie">Catégorie</label>
+              <select class="form-control" id="categorie" formControlName="categorieDto" required>
+                <option value="">Sélectionnez une catégorie</option>
+                <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.nom }}</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary float-right">Créer Produit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+

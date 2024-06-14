@@ -1,0 +1,23 @@
+<h2> Categorie List</h2>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th> Code </th>
+            <th> Nom </th>
+            <th> Designation </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor = "let categorieDto of categorieDtos" >
+            <td> {{ categorieDto.code }} </td>
+            <td> {{ categorieDto.nom }} </td>
+            <td> {{ categorieDto.designation }} </td>
+            <td>
+                <button (click) = "updateCategorie(categorieDto.id)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteCategorie(categorieDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "CategorieDetails(categorieDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

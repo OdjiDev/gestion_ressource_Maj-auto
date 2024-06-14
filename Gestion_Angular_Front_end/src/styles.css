@@ -1,0 +1,24 @@
+
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+*/
+
+body{
+  background-color: #9badad !important;
+}
+
+  .background-grey{
+    background-color:  #d3dbdb !important;
+  }
+
+  .border-none{
+    border:none !important ;
+  }
+
+  .min-height-80{
+    min-height: 80px;
+
+  }
+
+

@@ -1,0 +1,27 @@
+
+<div class="col-md-6 offset-md-3">
+  <h3> Creer une  categorie </h3>
+  <form (ngSubmit) = "onSubmit()">
+
+      <div class="form-group">
+          <label> Nom</label>
+          <input type="text" class ="form-control" id = "nom"
+              [(ngModel)] = "categorieDto.nom" name = "nom">
+      </div>
+
+      <div class="form-group">
+          <label>Code</label>
+          <input type="text" class ="form-control" id = "code"
+              [(ngModel)] = "categorieDto.code" name = "code">
+      </div>
+
+      <div class="form-group">
+          <label> Designation</label>
+          <input type="text" class ="form-control" id = "designation"
+              [(ngModel)] = "categorieDto.designation" name = "designation">
+      </div>
+
+      <button class = "btn btn-success" type ="submit">Submit</button>
+
+  </form>
+  </div>
