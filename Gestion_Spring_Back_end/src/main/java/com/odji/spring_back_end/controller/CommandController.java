@@ -32,6 +32,7 @@ public class CommandController {
         int exitCode;
 
         try {
+            //essaie de mise a jour
             // Exécuter le script en utilisant ProcessBuilder avec Git Bash
             List<String> command = List.of("cmd", "/c", "C:\\Program Files\\Git\\bin\\bash.exe", "-c", SCRIPT_PATH);
             // Ajuster le chemin d'accès à l'installation de Git Bash si nécessaire
