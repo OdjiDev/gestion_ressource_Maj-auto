@@ -24,7 +24,7 @@ import java.util.Map;
 public class CommandController {
 
     //private static final String SCRIPT_PATH = "Z:/a rapport/Gestion/Gestion_Spring_Back_end/script.sh"; // Hardcoded script path
-     private static final String SCRIPT_PATH = "Z:/script.sh"; // Hardcoded script path
+     private static final String SCRIPT_PATH = "Z:/logiciel_MAJ/client/gestion-complet-all-files-included-/Gestion_Spring_Back_end/script.sh"; // Hardcoded script path
     //    /
     @GetMapping("/execute")
     public ResponseEntity<String> executeScript() throws JsonProcessingException {
@@ -62,6 +62,7 @@ public class CommandController {
         Map<String, Object> responseMap = new HashMap<>();
         responseMap.put("output", output);
         responseMap.put("exitCode", exitCode);
+
 
         return ResponseEntity.status(exitCode == 0 ? HttpStatus.OK : HttpStatus.BAD_REQUEST)
                 .body(new ObjectMapper().writeValueAsString(responseMap));
