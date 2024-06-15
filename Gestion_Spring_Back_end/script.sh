@@ -16,7 +16,7 @@ git status
 #echo "Répertoire d'exécution actuel : $(pwd)"
 git add *
   git commit -m "Sauvegarde de la version actuelle du local"
-
+git pull origin main
 
 # Afficher un message en fonction du statut du dépôt
 if [ $? -eq 0 ]; then
