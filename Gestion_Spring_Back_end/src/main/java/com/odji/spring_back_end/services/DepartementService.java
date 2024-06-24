@@ -1,7 +1,9 @@
 package com.odji.spring_back_end.services;
 
+import com.odji.spring_back_end.dto.CategorieDto;
 import com.odji.spring_back_end.dto.DemandeDto;
 import com.odji.spring_back_end.dto.DepartementDto;
+import com.odji.spring_back_end.model.Categorie;
 import com.odji.spring_back_end.model.Demande;
 import com.odji.spring_back_end.model.Departement;
 import lombok.RequiredArgsConstructor;
@@ -27,23 +29,26 @@ public class DepartementService {
         }
 
         DepartementDto departementDto = new DepartementDto();
-        departementDto.setId(departementDto.getId());
-        departementDto.setCode(departementDto.getCode());
-        departementDto.setCreatedAt(departementDto.getCreatedAt());
-        departementDto.setNom(departementDto.getNom());
+        departementDto.setId(departement.getId());
+        departementDto.setCode(departement.getCode());
+        departementDto.setCreatedAt(departement.getCreatedAt());
+        departementDto.setNom(departement.getNom());
         return departementDto;
     }
+
+
     public Departement dtoToDepartement (DepartementDto departementDto) {
         if (departementDto== null) {
             return null;
         }
 
         Departement departement= new Departement();
-        departementDto.setId(departementDto.getId());
-        departementDto.setCode(departementDto.getCode());
-        departementDto.setCreatedAt(departementDto.getCreatedAt());
-        departementDto.setNom(departementDto.getNom());
+        departement.setId(departementDto.getId());
+        departement.setCode(departementDto.getCode());
+        departement.setCreatedAt(departementDto.getCreatedAt());
+        departement.setNom(departementDto.getNom());
         return departement;
     }
+
 
 }

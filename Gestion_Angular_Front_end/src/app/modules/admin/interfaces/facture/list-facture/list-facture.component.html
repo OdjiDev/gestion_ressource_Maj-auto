@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h2>Liste des factures</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Date de creation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let factureDto of factureDtos">
+          <td>{{ factureDto.code }}</td>
+         <td>{{ factureDto.datecommande}}</td>
+
+          <td>
+            <button class="btn btn-info" (click)="updateFacture(factureDto.id)">
+              Update
+            </button>
+            <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteFacture(factureDto.id)">
+              Delete
+            </button>
+            <button class="btn btn-primary" style="margin-left: 10px" (click)="factureDetails(factureDto.id)">
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-md btn-primary" (click)="onCreateFacture()">
+      <i class="fa fa-user"></i> Nouveau Facture
+    </button>
+  </div>
+</div>

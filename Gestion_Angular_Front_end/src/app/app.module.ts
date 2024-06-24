@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap'; // Importez ici
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,6 +16,10 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { CommandComponent } from './command/command.component';
 import { CreateUsersComponent } from './pages/page-login/create-users/create-users.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { MiseAJourComponent } from './Mise-a-jour/mise-a-jour/mise-a-jour.component';
+import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/progress-bar.component';
+import { InscrireComponent } from './login/inscrire/inscrire.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +33,10 @@ import { RegisterComponent } from './register/register.component';
     CommandComponent,
     CreateUsersComponent,
     RegisterComponent,
-
-
+    LoginComponent,
+MiseAJourComponent,
+ProgressBarComponent,
+InscrireComponent
 
   ],
   imports: [
@@ -38,9 +45,12 @@ import { RegisterComponent } from './register/register.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbProgressbarModule,
+
 
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

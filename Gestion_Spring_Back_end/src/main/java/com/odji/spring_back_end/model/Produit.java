@@ -1,6 +1,6 @@
 package com.odji.spring_back_end.model;
 
-import com.odji.spring_back_end.dto.ProduitDto;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

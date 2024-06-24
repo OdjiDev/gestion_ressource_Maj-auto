@@ -6,6 +6,6 @@ export class DepartementDto {
     nom: string= "";
     createdAt: string="";
 
-    bureauDto: BureauDto[]=[];
+   
 
 }

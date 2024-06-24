@@ -32,6 +32,7 @@ public class DepartementController {
         List<Departement> departements = departementRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
         return departementService.departementDtoList(departementRepository.findAll()); // Convert products to DTOs
     }
+
     // create departements
     @PostMapping("departements")
     public ResponseEntity<DepartementDto> createDepartement(@RequestBody DepartementDto departementDto) {
@@ -39,6 +40,7 @@ public class DepartementController {
         Departement savedDepartement = departementRepository.save(departement);
         return ResponseEntity.ok(departementService.departementToDto(savedDepartement));
     }
+
     //get departement by id
     @GetMapping("departements/{id}")
     public ResponseEntity<Departement> getDepartementById(@PathVariable Integer id) {

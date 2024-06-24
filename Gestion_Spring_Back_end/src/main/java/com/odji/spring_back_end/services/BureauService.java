@@ -29,8 +29,8 @@ public class BureauService {
         }
 
         BureauDto bureauDto = new BureauDto();
-        bureauDto.setId(bureauDto.getId());
-        bureauDto.setNom(bureauDto.getNom());
+        bureauDto.setId(bureau.getId());
+        bureauDto.setNom(bureau.getNom());
         return bureauDto;
     }
     public Bureau dtoToBureau(BureauDto bureauDto) {
@@ -39,8 +39,8 @@ public class BureauService {
         }
 
         Bureau bureau= new Bureau();
-        bureauDto.setId(bureauDto.getId());
-        bureauDto.setNom(bureauDto.getNom());
+        bureau.setId(bureauDto.getId());
+        bureau.setNom(bureauDto.getNom());
 
         return bureau;
     }

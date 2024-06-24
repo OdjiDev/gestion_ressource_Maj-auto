@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-3">
-          <label>Prenom</label>
+          <label>email</label>
           <input
             type="text"
             class="form-control"
@@ -279,76 +279,113 @@
   <div class="card-header text-white bg-info">
     S'enregistrer
   </div>
-  <div class="card-body">
+ <div class="card-body">
     <form novalidate (ngSubmit)="saveData(registerForm)" #registerForm="ngForm">
 
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label>Nom</label>
+         <div class="form-row">
+           <div class="col-md-4 mb-3">
+
+                <label>Nom</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Nom"
+                    [(ngModel)]="user.lastName"
+                    name="lastName" required minlength="4" maxlength="30"
+                    required
+                    #lastNameVar="ngModel"
+                    [ngClass]="{'is-invalid': lastNameVar.touched && !lastNameVar.valid}"
+                  />
+
+                  <div class="invalid-feedback">
+                      <span *ngIf="lastNameVar.errors?.['required']">
+                      Entrez votre nom
+                      </span>
+                      <span *ngIf="lastNameVar.errors?.['minlength']">
+                        Minimum 4 caracteres
+                      </span>
+                      <span *ngIf="lastNameVar.errors?.['maxlength']">
+                        Maximum 30 caracteres
+                      </span>
+                  </div>
+
+            </div>
+          </div>
+
+       <div class="form-row">
+         <div class="col-md-4 mb-3">
+
+          <label>Prenom</label>
           <input
-            type="text"
-            class="form-control"
-            placeholder="Nom"
-            [(ngModel)]="user.lastName"
-            name="lastName"
-            required
-            #lastNameVar="ngModel"
-            [ngClass]="{'is-invalid': lastNameVar.touched && !lastNameVar.valid}"
-          />
-          <div class="invalid-feedback">
-            <span *ngIf="lastNameVar.errors">
-              Entrez votre nom
-            </span>
+              type="text"
+              class="form-control"
+              placeholder="Prenom"
+              [(ngModel)]="user.firstName"
+              name="firstName" required minlength="4" maxlength="30"
+              required
+              #firstNameVar="ngModel"
+              [ngClass]="{'is-invalid': firstNameVar.touched && !firstNameVar.valid}"
+            />
+
+            <div class="invalid-feedback">
+                <span *ngIf="firstNameVar.errors?.['required']">
+                Entrez votre prenom
+                </span>
+                <span *ngIf="firstNameVar.errors?.['minlength']">
+                  Minimum 4 caracteres
+                </span>
+                <span *ngIf="firstNameVar.errors?.['maxlength']">
+                  Maximum 30 caracteres
+                </span>
+            </div>
+
           </div>
         </div>
+
+
+       <div class="form-row">
         <div class="col-md-4 mb-3">
-          <label>Prénom</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Prénom"
-            [(ngModel)]="user.firstName"
-            name="firstName"
-            required
-            #firstNameVar="ngModel"
-            [ngClass]="{'is-invalid': firstNameVar.touched && !lastNameVar.valid}"
-          />
-          <div class="invalid-feedback">
-            <span *ngIf="firstNameVar.errors">
-              Entrez votre prénom
-            </span>
-          </div>
-        </div>
-      </div>
 
-      <div class="form-row">
-        <div class="col-md-4 mb-3">
-          <label>Email</label>
-          <input
-            type="email"
-            class="form-control"
-            placeholder="Email"
-            [(ngModel)]="user.email"
-            name="email"
-            required
-            #emailVar="ngModel"
-            [ngClass]="{'is-invalid': emailVar.errors}"
-          />
-          <div class="invalid-feedback">
-            <span *ngIf="emailVar.errors">
-              Entrez votre adresse email
-            </span>
-          </div>
-        </div>
-      </div>
+         <label>Email</label>
+         <input
+             type="text"
+             class="form-control"
+             placeholder="Email"
+             [(ngModel)]="user.email"
+             name="email" required minlength="10" maxlength="30"
+             #emailVar="ngModel"
+             [ngClass]="{'is-invalid': emailVar.touched && !emailVar.valid}"
+           />
 
-      <div class="text-right">
-        <button class="btn btn-info" type="submit">
-          Sauvegarder
-        </button>
-      </div>
+           <div class="invalid-feedback">
+               <span *ngIf="emailVar.errors?.['required']">
+               Entrez votre email
+               </span>
+               <span *ngIf="emailVar.errors?.['minlength']">
+                 Minimum 10 caracteres
+               </span>
+               <span *ngIf="firstNameVar.errors?.['maxlength']">
+                 Maximum 30 caracteres
+               </span>
+           </div>
 
+         </div>
+       </div>
+
+
+
+
+
+                <div class="text-right">
+                  <button class="btn btn-info" type="submit" [disabled]="!registerForm.valid">Sauvegarder</button>
+                </div>
+            <div class="form-row mb-3">
+              <div class="col-md-12"></div>
+            </div>
     </form>
   </div>
 </div>
 
+<!-- <hr>
+
+</hr> -->

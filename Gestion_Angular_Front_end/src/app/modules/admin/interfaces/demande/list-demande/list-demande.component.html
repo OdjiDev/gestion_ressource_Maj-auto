@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h2>Liste des Demandes</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Motif</th>
+          <th>identifiant du Bureau</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demandeDto of demandeDtos">
+          <td>{{ demandeDto.motif }}</td>
+          <td>{{ demandeDto.bureauDto }}</td>
+          <td>
+            <button class="btn btn-info" (click)="updateDemande(demandeDto.id)">
+              Update
+            </button>
+            <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteDemande(demandeDto.id)">
+              Delete
+            </button>
+            <button class="btn btn-primary" style="margin-left: 10px" (click)="demandeDetails(demandeDto.id)">
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-md btn-primary" (click)="onCreateDemande()">
+      <i class="fa fa-user"></i> Nouveau Demande
+    </button>
+  </div>
+</div>

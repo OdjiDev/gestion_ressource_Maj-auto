@@ -1,7 +1,7 @@
 export class CategorieDto {
-  id:number=0
+  id!: number;
   code: string="";
-  nom: string="";
+  nomcategorie: string="";
   designation: string="";
   // Add other properties as needed
 }

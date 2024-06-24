@@ -23,7 +23,7 @@ import java.util.Optional;
 @CrossOrigin(origins="http://localhost:4200/")
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/produits")
+@RequestMapping("api")
     public class ProduitController {
 
             private final ProduitRepository produitRepository;
@@ -35,17 +35,17 @@ import java.util.Optional;
 
 
     // build create produit REST API
-    @PostMapping
+    @PostMapping("/produits")
     public ProduitDto createProduit(@RequestBody ProduitDto produitDto) {
        Produit produit= produitService.dtoToProduit(produitDto);
-        Integer magasinId= produitDto.getMagasinDto().getId();
-        Optional<Magasin> existingMagasinOptional= magasinRepository.findById(magasinId);
+       // Integer magasinId= produitDto.getMagasinDto().getId();
+       // Optional<Magasin> existingMagasinOptional= magasinRepository.findById(magasinId);
 
         //Verification de l'existance du magasin
-        if(existingMagasinOptional.isPresent()){
-            // Si magasin est trouvé l'affecter  au produit
-           produit.setMagasin(existingMagasinOptional.get());
-        }
+//        if(existingMagasinOptional.isPresent()){
+//            // Si magasin est trouvé l'affecter  au produit
+//           produit.setMagasin(existingMagasinOptional.get());
+//        }
 
         Integer categorieId= produitDto.getCategorieDto().getId();
         Optional<Categorie> existingCategorieOptional= categorieRepository.findById(categorieId);
@@ -65,7 +65,7 @@ import java.util.Optional;
 
 // build get all product
 
-    @GetMapping("/list")
+    @GetMapping("/produits/list")
             // Replace placeholders with your actual logic for data access using DTOs
             public List<ProduitDto> getAllProduits() {
                 List<Produit> produits = produitRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
@@ -73,7 +73,7 @@ import java.util.Optional;
             }
 //           // build get product by id REST API
         //get product by id
-    @GetMapping("{id}")
+    @GetMapping("/produits/{id}")
     public ResponseEntity<ProduitDto> getDProduitById(@PathVariable  Integer id){
         Produit produit = produitRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Produit not exist with id:" + id));
@@ -81,7 +81,7 @@ import java.util.Optional;
     }
 
     // build update Produit REST API
-    @PutMapping("{id}")
+    @PutMapping("/produits/{id}")
     public ResponseEntity<ProduitDto> updateProduit(@PathVariable Integer id,@RequestBody ProduitDto produitDetailsDto) {
         Produit updateProduit = produitRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("produit not exist with id: " + id));

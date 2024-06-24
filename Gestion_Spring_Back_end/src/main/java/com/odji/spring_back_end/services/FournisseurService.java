@@ -2,7 +2,10 @@ package com.odji.spring_back_end.services;
 
 import com.odji.spring_back_end.dto.AvarieDto;
 import com.odji.spring_back_end.dto.FournisseurDto;
-import com.odji.spring_back_end.model.Avarie;
+import com.odji.spring_back_end.dto.FournisseurDto;
+import com.odji.spring_back_end.dto.FournisseurDto;
+import com.odji.spring_back_end.model.*;
+import com.odji.spring_back_end.model.Fournisseur;
 import com.odji.spring_back_end.model.Fournisseur;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,22 +24,27 @@ public class FournisseurService {
     }
 
 
-    public FournisseurDto fournisseurToDto(Fournisseur fournisseur) {
+    public FournisseurDto fournisseurToDto(Fournisseur fournisseur) {if (fournisseur == null) {
+            return null;
+        }
+
         FournisseurDto fournisseurDto = new FournisseurDto();
         fournisseurDto.setId(fournisseur.getId());
         fournisseurDto.setNom(fournisseur.getNom());
-        fournisseurDto.setPrenom(fournisseur.getPrenom()); // Assuming typo is corrected (prenom instead of prenom)
+        fournisseurDto.setPrenom(fournisseur.getPrenom());
         fournisseurDto.setAdresse(fournisseur.getAdresse());
-        fournisseurDto.setMail(fournisseur.getMail());
         fournisseurDto.setNumtel(fournisseur.getNumtel());
+        fournisseurDto.setMail(fournisseur.getMail());
 
-        return  fournisseurDto;
+
+        return fournisseurDto;
     }
 
-    public static Fournisseur dtoToFournisseur(FournisseurDto fournisseurDto) {
+    public Fournisseur dtoToFournisseur(FournisseurDto fournisseurDto) {
         if (fournisseurDto == null) {
             return null;
         }
+
         Fournisseur fournisseur = new Fournisseur();
         fournisseur.setId(fournisseurDto.getId());
         fournisseur.setNom(fournisseurDto.getNom());
@@ -45,8 +53,11 @@ public class FournisseurService {
         fournisseur.setMail(fournisseurDto.getMail());
         fournisseur.setNumtel(fournisseurDto.getNumtel());
 
+
         return fournisseur;
     }
-
-
 }
+
+
+
+

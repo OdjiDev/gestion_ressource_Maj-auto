@@ -19,7 +19,7 @@ public class FactureService {
                 .map(this::factureToDto) // Utilise la méthode de conversion individuelle
                 .collect(Collectors.toList());
     }
-    FactureDto factureToDto(Facture facture) {
+    public   FactureDto factureToDto(Facture facture) {
         if (facture == null) {
             return null;
         }

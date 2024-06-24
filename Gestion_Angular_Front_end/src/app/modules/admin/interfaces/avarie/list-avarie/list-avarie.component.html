@@ -1,0 +1,32 @@
+<h2> Avarie List</h2>
+<table class = "table table-striped">
+
+    <thead>
+        <tr>
+            <th> Code </th>
+            <th> Nom </th>
+            <th> Motif </th>
+            <th> Date </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor = "let avarieDto of avarieDtos" >
+            <td> {{ avarieDto.code}} </td>
+            <td> {{ avarieDto.nom }} </td>
+            <td> {{ avarieDto.motif }} </td>
+            <td> {{ avarieDto.date}} </td>
+            <td>
+                <button (click) = "updateAvarie(avarieDto.id)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteAvarie(avarieDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "avarieDetails(avarieDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-end">
+  <button class="btn btn-md btn-primary" (click)="onCreateAvarie()">
+    <i class="fa fa-user"></i> Nouveau Avarie
+  </button>
+</div>

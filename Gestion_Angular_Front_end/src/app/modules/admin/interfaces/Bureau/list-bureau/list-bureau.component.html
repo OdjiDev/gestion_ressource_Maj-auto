@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h2>Liste des Bureaux</h2>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bureauDto of bureauDtos">
+          <td>{{ bureauDto.nom }}</td>
+          <td>
+            <button class="btn btn-info" (click)="updateBureau(bureauDto.id)">
+              Update
+            </button>
+            <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteBureau(bureauDto.id)">
+              Delete
+            </button>
+            <button class="btn btn-primary" style="margin-left: 10px" (click)="bureauDetails(bureauDto.id)">
+              View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-md btn-primary" (click)="onCreateBureau()">
+      <i class="fa fa-user"></i> Nouveau Bureau
+    </button>
+  </div>
+</div>

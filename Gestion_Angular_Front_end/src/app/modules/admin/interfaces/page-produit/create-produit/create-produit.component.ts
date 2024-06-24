@@ -81,22 +81,24 @@ import { ProduitDto } from '../../../../../classes/produit-dto';
 import { CategorieDto } from '../../../../../classes/categorie-dto';
 import { MagasinDto } from '../../../../../classes/magasin-dto';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  standalone:true,
+  // standalone:true,
   selector: 'app-create-produit',
   templateUrl: './create-produit.component.html',
   styleUrls: ['./create-produit.component.css'],
-  imports: [FormsModule] // Import FormsModule for two-way data binding
+  //imports: [FormsModule] // Import FormsModule for two-way data binding
 })
 export class CreateProduitComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
     private produitService: ProduitService,
     private categorieService: CategorieService,
-    private magasinService: MagasinService
+    private magasinService: MagasinService,
+    private router:Router
   ) { }
 
   produitForm: FormGroup[]=[];
@@ -108,17 +110,9 @@ export class CreateProduitComponent implements OnInit {
   //constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-  //   this.produitForm = this.fb.group({
-  //     // Define form controls here
-  //     codeproduit: ['', Validators.required],
-  //     nom: ['', Validators.required],
-  //     designation: ['', Validators.required],
-  //     quantite: [1, Validators.min(1)], // Set minimum quantity to 1
-  //     magasinDto: ['', Validators.required],
-  //     categorieDto: ['', Validators.required]
-  //   });
-  //   this.getCategories();
-  //   this.getMagasins();
+ 
+   this.getCategories();
+    //this.getMagasins();
    }
 
 
@@ -147,14 +141,35 @@ export class CreateProduitComponent implements OnInit {
       });
   }
 
-  onSubmit() {
-    this.produitService.addProduit(this.produitDto)
-      .subscribe(response => {
-        console.log('Produit créé avec succès!');
-        // Optionally, clear the form or redirect to another page
-      },
-      error => {
-        console.error('Erreur lors de la création du produit:', error);
-      });
-  }
+  // onSubmit() {
+  //   this.produitService.addProduit(this.produitDto)
+  //     .subscribe(data => {
+  //       console.log('Produit créé avec succès!');
+  //       console.log(data);
+  //       this.goToProduitList();
+  //       // Optionally, clear the form or redirect to another page
+  //     },
+  //     error => {
+  //       console.error('Erreur lors de la création du produit:', error);
+  //     });
+  // }
+
+
+saveProduit(){
+  this.produitService.addProduit(this.produitDto).subscribe( data =>{
+    console.log(data);
+    console.log('Produit créé avec succès!');
+    this.goToproduitList();
+  },
+  error => console.log(error));
+}
+
+goToproduitList(){
+  this.router.navigate(['admin/listproduit']);
+}
+
+onSubmit(){
+  console.log(this.produitDto);
+  this.saveProduit();
+}
 }

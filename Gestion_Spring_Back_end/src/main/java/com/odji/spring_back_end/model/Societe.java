@@ -26,6 +26,9 @@ public class Societe {
     @Column(name = "adresse")
     private String adresse;
 
+    @Column(name = "numerofiscal")
+    private String numerofiscal;
+
     @OneToMany(mappedBy = "societe")
     private List<Contrat> contrat;
 

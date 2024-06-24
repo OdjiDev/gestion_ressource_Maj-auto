@@ -1,0 +1,32 @@
+<h2> Liste des Societe </h2>
+<table class = "table table-striped">
+
+    <thead>
+        <tr>
+
+            <th> Nom </th>
+            <th> Adresse</th>
+            <th> Numero fiscal</th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor = "let societeDto of societes" >
+            <td> {{ societeDto.nom}} </td>
+            <td> {{ societeDto.adresse }} </td>
+            <td> {{ societeDto.numerofiscal }} </td>
+
+            <td>
+                <button (click) = "updateSociete(societeDto.id)" class = "btn btn-info"> Update</button>
+                <button (click) = "deleteSociete(societeDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
+                <button (click) = "societeDetails(societeDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div class="d-flex justify-content-end">
+  <button class="btn btn-md btn-primary" (click)="onCreateSociete()">
+    <i class="fa fa-user"></i> Nouveau Societe
+  </button>
+</div>

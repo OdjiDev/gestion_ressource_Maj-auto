@@ -24,6 +24,9 @@ export class ListCategorieComponent implements OnInit {
       this.categorieDtos = data;
     });
   }
+  onCreateCategorie(){
+    this.router.navigate(['admin/addcategorie']);
+  }
 
   CategorieDetails(id: number){
     this.router.navigate(['detailscategorie', id]);
