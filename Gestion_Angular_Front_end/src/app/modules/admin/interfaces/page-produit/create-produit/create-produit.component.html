@@ -1,267 +1,108 @@
-
-
-
-<div class="card">
-  <div class="card-header text-white bg-info">
-    Creation de produit
+<div class="card col-md-4 offset-4">
+  <div class="card-header text-white bg-info d-flex justify-content-between">
+    <h4>Creation de produit</h4>
+    <button class="btn btn-danger" >
+      <i class="fa fa-arrow-left"></i>
+    </button>
   </div>
- <div class="card-body">
-    <!-- <form novalidate (ngSubmit)="saveData(registerForm)" #registerForm="ngForm"> -->
-      <form (ngSubmit) = "onSubmit()">
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()">
 
-         <div class="form-row">
-           <div class="col-md-4 mb-3">
+      <div class="form-row">
+        <div class="mb-3">
 
-                <label>Nom</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Nom"
-                    [(ngModel)]="produitDto.nom"
-                    name="nom" required minlength="4" maxlength="30"
-                    required
-                    #nomVar="ngModel"
-                    [ngClass]="{'is-invalid': nomVar.touched && !nomVar.valid}"
-                  />
+          <label>Nom</label>
+          <input type="text" class="form-control" placeholder="Nom" [(ngModel)]="produitDto.nom" name="nom" required
+            minlength="4" maxlength="30" required #nomVar="ngModel"
+            [ngClass]="{'is-invalid': nomVar.touched && !nomVar.valid}" />
 
-                  <div class="invalid-feedback">
-                      <span *ngIf="nomVar.errors?.['required']">
-                      Entrez le nom du produit
-                      </span>
-                      <span *ngIf="nomVar.errors?.['minlength']">
-                        Minimum 4 caracteres
-                      </span>
-                      <span *ngIf="nomVar.errors?.['maxlength']">
-                        Maximum 30 caracteres
-                      </span>
-                  </div>
-           </div>
+          <div class="invalid-feedback">
+            <span *ngIf="nomVar.errors?.['required']">
+              Entrez le nom du produit
+            </span>
+            <span *ngIf="nomVar.errors?.['minlength']">
+              Minimum 4 caracteres
+            </span>
+            <span *ngIf="nomVar.errors?.['maxlength']">
+              Maximum 30 caracteres
+            </span>
+          </div>
+        </div>
 
-                  <div class="col-md-4 mb-3">
-                    <label>quantite</label>
-                    <input
-                        type="number"
-                        class="form-control"
-                        placeholder="quantite du produit"
-                        [(ngModel)]="produitDto.quantite"
-                        name="quantite" required minlength="4" maxlength="30"
-                        required
-                        #quantiteVar="ngModel"
-                        [ngClass]="{'is-invalid': quantiteVar.touched && !quantiteVar.valid}"
-                      />
+        <div class="mb-3">
+          <label>quantite</label>
+          <input type="number" class="form-control" placeholder="quantite du produit" [(ngModel)]="produitDto.quantite"
+            name="quantite" required minlength="4" maxlength="30" required #quantiteVar="ngModel"
+            [ngClass]="{'is-invalid': quantiteVar.touched && !quantiteVar.valid}" />
 
-                      <div class="invalid-feedback">
-                          <span *ngIf="quantiteVar.errors?.['required']">
-                          Entrez le quantite du produit
-                          </span>
-                          <span *ngIf="quantiteVar.errors?.['minlength']">
-                            Minimum 4 caracteres
-                          </span>
-                          <span *ngIf="quantiteVar.errors?.['maxlength']">
-                            Maximum 30 caracteres
-                          </span>
-                      </div>
-                  </div>
+          <div class="invalid-feedback">
+            <span *ngIf="quantiteVar.errors?.['required']">
+              Entrez le quantite du produit
+            </span>
+            <span *ngIf="quantiteVar.errors?.['minlength']">
+              Minimum 4 caracteres
+            </span>
+            <span *ngIf="quantiteVar.errors?.['maxlength']">
+              Maximum 30 caracteres
+            </span>
+          </div>
+        </div>
 
-                  <div class="col-md-4 mb-3">
-                    <label>code</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        placeholder="code du produit"
-                        [(ngModel)]="produitDto.codeproduit"
-                        name="code" required minlength="4" maxlength="30"
-                        required
-                        #codeVar="ngModel"
-                        [ngClass]="{'is-invalid': codeVar.touched && !codeVar.valid}"
-                      />
+        <div class="mb-3">
+          <label>code</label>
+          <input type="text" class="form-control" placeholder="code du produit" [(ngModel)]="produitDto.codeproduit"
+            name="code" required minlength="4" maxlength="30" required #codeVar="ngModel"
+            [ngClass]="{'is-invalid': codeVar.touched && !codeVar.valid}" />
 
-                      <div class="invalid-feedback">
-                          <span *ngIf="codeVar.errors?.['required']">
-                          Entrez le code du produit
-                          </span>
-                          <span *ngIf="codeVar.errors?.['minlength']">
-                            Minimum 4 caracteres
-                          </span>
-                          <span *ngIf="codeVar.errors?.['maxlength']">
-                            Maximum 30 caracteres
-                          </span>
-                      </div>
-                  </div>
+          <div class="invalid-feedback">
+            <span *ngIf="codeVar.errors?.['required']">
+              Entrez le code du produit
+            </span>
+            <span *ngIf="codeVar.errors?.['minlength']">
+              Minimum 4 caracteres
+            </span>
+            <span *ngIf="codeVar.errors?.['maxlength']">
+              Maximum 30 caracteres
+            </span>
+          </div>
+        </div>
 
-                      <div class="col-md-4 mb-3">
-                        <label>designation</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            placeholder="designation du produit"
-                            [(ngModel)]="produitDto.designation"
-                            name="designation" required minlength="4" maxlength="30"
-                            required
-                            #designationVar="ngModel"
-                            [ngClass]="{'is-invalid': designationVar.touched && !designationVar.valid}"
-                          />
+        <div class="mb-3">
+          <label>designation</label>
+          <input type="text" class="form-control" placeholder="designation du produit"
+            [(ngModel)]="produitDto.designation" name="designation" required minlength="4" maxlength="30" required
+            #designationVar="ngModel" [ngClass]="{'is-invalid': designationVar.touched && !designationVar.valid}" />
 
-                          <div class="invalid-feedback">
-                              <span *ngIf="designationVar.errors?.['required']">
-                              Entrez la designation du produit
-                              </span>
-                              <span *ngIf="designationVar.errors?.['minlength']">
-                                Minimum 4 caracteres
-                              </span>
-                              <span *ngIf="designationVar.errors?.['maxlength']">
-                                Maximum 30 caracteres
-                              </span>
-                          </div>
-                      </div>
+          <div class="invalid-feedback">
+            <span *ngIf="designationVar.errors?.['required']">
+              Entrez la designation du produit
+            </span>
+            <span *ngIf="designationVar.errors?.['minlength']">
+              Minimum 4 caracteres
+            </span>
+            <span *ngIf="designationVar.errors?.['maxlength']">
+              Maximum 30 caracteres
+            </span>
+          </div>
+        </div>
 
-                      <!-- <div class="col-md-4 mb-3">
-                        <label class="form-label"> Categorie</label>
-                        <select class="form-control" name="categories" id="categories" [(ngModel)] = "produitDto.categorieDto.id">
-                          <option *ngFor="let categorie of categories" value="{{categorie.id}}">{{categorie.nomcategorie}}</option>
-                        </select>
-                    </div> -->
-
-                    <div class="col-md-4 mb-3">
-                      <label class="form-label">Catégorie</label>
-                      <select class="form-control" name="categories" id="categories" [(ngModel)]="produitDto.categorieDto.id" required>
-                        <option *ngIf="!categories?.length">Aucune catégorie disponible</option>
-                        <option *ngFor="let categorie of categories" value="{{categorie.id}}">{{categorie.nomcategorie}}</option>
-                      </select>
-                    </div>
+        <div class="mb-3">
+          <label class="form-label">Catégorie</label>
+          <select class="form-control" name="categories" id="categories" [(ngModel)]="produitDto.categorieDto.id"
+            required>
+            <option *ngIf="!categories?.length">Aucune catégorie disponible</option>
+            <option *ngFor="let categorie of categories" value="{{categorie.id}}">{{categorie.nomcategorie}}</option>
+          </select>
+        </div>
 
 
 
-                <div class="text-right">
-                  <button class="btn btn-info" type="submit">Sauvegarder</button>
-                </div>
+        <div class="text-right">
+          <button class="btn btn-info" type="submit">Sauvegarder</button>
+        </div>
 
-            </div>
+      </div>
     </form>
 
   </div>
 </div>
-
-
-
-
-<!--
-
-<div class="row h-100 justify-content-center align-items-center">
-  <div class="col-12">
-
-
-
-
-
-<div class="card">
-  <div class="card-header">
-    Creation de produit
-  </div>
-  <div class="card-body">
-  <form (ngSubmit) = "onSubmit()">
-      <div class="form-group mb-6  m-1">
-          <label> code</label>
-          <input type="text" class ="form-control" id = "codeproduit"
-              [(ngModel)] = "produitDto.codeproduit" name = "codeproduit">
-      </div>
-
-      <div class="form-group m-1">
-          <label>Code</label>
-          <input type="text" class ="form-control" id = "nom"
-              [(ngModel)] = "produitDto.nom" name = "nom">
-      </div>
-
-      <div class="form-group m-1">
-          <label> Designation</label>
-          <input type="text" class ="form-control" id = "designation"
-              [(ngModel)] = "produitDto.designation" name = "designation">
-      </div>
-
-
-      <div class="form-group m-1">
-        <label> Quantite</label>
-        <input type="text" class ="form-control" id = "quantite"
-            [(ngModel)] = "produitDto.quantite" name = "quantite">
-    </div>
-
-
-    <div class="form-group m-1">
-      <label> Magasin</label>
-      <input type="text" class ="form-control" id = "magasin"
-          [(ngModel)] = "produitDto.magasinDto" name = "magasin">
-  </div>
-
-
-  <div class="form-group m-1">
-    <label class="form-label"> Categorie</label>
-    <select class="form-control" name="categorie" id="categorie" [(ngModel)] = "produitDto.categorieDto">
-      <option *ngFor="let categorie of categories" value="{{categorie.code}}">{{categorie.designation}}</option>
-    </select>
-</div>
-
-<div >
-      <button class = "btn btn-success" type ="submit">Submit</button>
-    </div>
-  </form>
-  </div>
-</div>
-
-
-</div>
-</div> -->
-
-
-<!--
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">
-          Création de Produit
-        </div>
-        <div class="card-body">
-          <form [formGroup]="produitForm" (ngSubmit)="onSubmit()">
-            <div class="form-group mb-3">
-              <label for="codeproduit">Nom</label>
-              <input type="text" class="form-control" id="codeproduit" formControlName="codeproduit" placeholder="Entrez le nom du produit" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="nom">Code</label>
-              <input type="text" class="form-control" id="nom" formControlName="nom" placeholder="Entrez le code du produit" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="designation">Désignation</label>
-              <input type="text" class="form-control" id="designation" formControlName="designation" placeholder="Entrez la désignation du produit" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="quantite">Quantité</label>
-              <input type="number" min="1" class="form-control" id="quantite" formControlName="quantite" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="magasin">Magasin</label>
-              <input type="text" class="form-control" id="magasin" formControlName="magasinDto" placeholder="Entrez le nom du magasin" required>
-            </div>
-
-            <div class="form-group mb-3">
-              <label for="categorie">Catégorie</label>
-              <select class="form-control" id="categorie" formControlName="categorieDto" required>
-                <option value="">Sélectionnez une catégorie</option>
-                <option *ngFor="let categorie of categories" [value]="categorie.id">{{ categorie.nom }}</option>
-              </select>
-            </div>
-
-            <button type="submit" class="btn btn-primary float-right">Créer Produit</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
-
