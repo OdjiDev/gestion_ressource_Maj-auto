@@ -1,19 +1,31 @@
 <div class="card">
   <div class="card-header text-center">
     <h2>Liste des factures</h2>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-md btn-primary" (click)="onCreateFacture()">
+        <i class="fa fa-user"></i> Add facture
+      </button>
+    </div>
+    <app-headerfacture></app-headerfacture>
   </div>
   <div class="card-body">
     <table class="table table-striped">
       <thead>
         <tr>
+          <th>Numero</th>
           <th>Code</th>
-          <th>Date de creation</th>
+          <th>Produit</th>
+          <th>Quantite</th>
+          <th>Total</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let factureDto of factureDtos">
-          <td>{{ factureDto.code }}</td>
+          <td>{{ factureDto.code}}</td>
+          <td>{{ factureDto.code}}</td>
+          <td>{{ factureDto.code}}</td>
+          <td>{{ factureDto.code}}</td>
          <td>{{ factureDto.datecommande}}</td>
 
           <td>
@@ -31,9 +43,7 @@
       </tbody>
     </table>
   </div>
-  <div class="d-flex justify-content-end">
-    <button class="btn btn-md btn-primary" (click)="onCreateFacture()">
-      <i class="fa fa-user"></i> Nouveau Facture
-    </button>
-  </div>
+
 </div>
+
+

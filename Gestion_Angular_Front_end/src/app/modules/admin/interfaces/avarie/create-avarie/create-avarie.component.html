@@ -1,10 +1,17 @@
-<div class="card">
-  <div class="card-header text-white bg-info">
-    Ajouter un produit avarier </div>
+<div class="card col-md-4 offset-4">
+  <div class="card-header text-white bg-info d-flex justify-content-between">
+   <h4>Ajouter un produit avarier </h4>
+
+    <button class="btn btn-danger" >
+      <i class="fa fa-arrow-left"></i>
+    </button>
+  </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
+
       <div class="form-row">
-        <div class="col-md-4 mb-3"></div>
+        <div class="mb-3"></div>
+
           <label>Nom</label>
           <input
             type="text"
@@ -105,7 +112,7 @@
                 </div>
 
 
-      <div class="text-right">
+      <div class="d-flex justify-content-end mt-2">
         <button class="btn btn-info" type="submit">Sauvegarder</button>
       </div>
 

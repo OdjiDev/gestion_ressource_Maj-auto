@@ -20,12 +20,21 @@
             <td> {{ personelDto.email}} </td>
             <td> {{ personelDto.numero }} </td>
             <td> {{ personelDto.roleDto}} </td>
-            <td>
-                <button (click) = "updatePersonel(personelDto.id)" class = "btn btn-info"> Update</button>
-                <button (click) = "deletePersonel(personelDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "personelDetails(personelDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+
+
+            <td class="text-center">
+              <button class="btn btn-sm m-1 btn-info" (click)="deletePersonel(personelDto.id)">
+                <i class="fa fa-clipboard"></i>
+              </button>
+              <button class="btn btn-sm m-1 btn-warning" (click)="updatePersonel(personelDto.id)">
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button class="btn btn-sm m-1 btn-danger" (click)="deletePersonel(personelDto.id)">
+                <i class="fa fa-trash"></i>
+              </button>
             </td>
-        </tr>
+          </tr>
     </tbody>
 </table>
 <div class="d-flex justify-content-end">

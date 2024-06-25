@@ -51,6 +51,7 @@ import { CreatePersonelComponent } from './interfaces/personel/create-personel/c
 import { UpdatePersonelComponent } from './interfaces/personel/update-personel/update-personel.component';
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 import { DetailPersonelComponent } from './interfaces/personel/detail-personel/detail-personel.component';
+import { HeaderfactureComponent } from './interfaces/facture/headerfacture/headerfacture.component';
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -97,6 +98,7 @@ CreatePersonelComponent,
 UpdatePersonelComponent,
 ListPersonelComponent,
 DetailPersonelComponent,
+HeaderfactureComponent,
 ],
 
 

@@ -1,11 +1,13 @@
 
-<div class="card">
-  <div class="card-header text-white bg-info">
-   Creer un Bureau
+<div class="card col-md-4 offset-4">
+  <div class="card-header text-white bg-info d-flex justify-content-between">
+   <h4>Ajouter un Bureau</h4>
+   <button class="btn btn-danger" >
+    <i class="fa fa-arrow-left"></i>
+  </button>
   </div>
  <div class="card-body">
-    <!-- <form novalidate (ngSubmit)="saveData(registerForm)" #registerForm="ngForm"> -->
-      <form (ngSubmit) = "onSubmit()">
+     <form (ngSubmit) = "onSubmit()">
 
          <div class="form-row">
            <div class="col-md-4 mb-3">
@@ -45,7 +47,7 @@
             </div>
           </div>
 
-                <div class="text-right">
+                <div class="d-flex justify-content-end mt-2">
                   <button class="btn btn-info" type="submit">Sauvegarder</button>
                 </div>
             <div class="form-row mb-3">

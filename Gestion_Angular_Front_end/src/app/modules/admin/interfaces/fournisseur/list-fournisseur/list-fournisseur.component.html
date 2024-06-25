@@ -1,5 +1,15 @@
-<h2> Fournisseur List</h2>
-<table class = "table table-striped">
+<div class="">
+  <div class="row mt-0">
+    <div class="col-md-10">
+      <h2>Liste des  Fournisseurs </h2>
+    </div>
+<div class="col-md-2">
+  <button class="btn btn-md btn-outline-primary" (click)="onCreateFournisseur()">
+    <i class="fa fa-plus"></i> Ajouter
+  </button>
+</div>
+<hr class="fw-bold mt-0">
+<table class ="table table-bordered table-striped">
     <thead>
         <tr>
             <th> Prenom </th>
@@ -18,16 +28,20 @@
             <td> {{ fournisseurDto.adresse }} </td>
             <td> {{ fournisseurDto.mail}} </td>
             <td> {{ fournisseurDto.numtel }} </td>
-            <td>
-                <button (click) = "updateFournisseur(fournisseurDto.id)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteFournisseur(fournisseurDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "fournisseurDetails(fournisseurDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
+          
+              <td class="text-center">
+                <button class="btn btn-sm m-1 btn-info" (click)="fournisseurDetails(fournisseurDto.id)">
+                  <i class="fa fa-clipboard"></i>
+                </button>
+                <button class="btn btn-sm m-1 btn-warning" (click)="updateFournisseur(fournisseurDto.id)">
+                  <i class="fa fa-edit"></i>
+                </button>
+
+                <button class="btn btn-sm m-1 btn-danger" (click)="deleteFournisseur(fournisseurDto.id)">
+                  <i class="fa fa-trash"></i>
+                </button>
             </td>
         </tr>
     </tbody>
 </table>
-<div class="d-flex justify-content-end">
-  <button class="btn btn-md btn-primary" (click)="onCreateFournisseur()">
-    <i class="fa fa-user"></i> Nouveau Fournisseur
-  </button>
-</div>
+
