@@ -18,6 +18,7 @@ public class DepartementDto {
     private String nom;
 
     private String code;
+
     private  String createdAt;
 
     @JsonIgnore

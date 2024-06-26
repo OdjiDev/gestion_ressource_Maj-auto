@@ -22,11 +22,18 @@ avarieDtos:AvarieDto[] = [];
 
   ngOnInit(): void {
     this.getProduits();
+    this.getAvaries();
   }
 
   private getProduits(){
     this.produitService.getProduits().subscribe(data => {
       this.produitDtos = data;
+    });
+  }
+
+  private getAvaries(){
+    this.avarieService.getAvaries().subscribe(data => {
+      this.avarieDtos = data;
     });
   }
 onCreateAvarie()
@@ -44,7 +51,7 @@ onCreateAvarie()
   deleteAvarie(id: number){
     this.avarieService.deleteAvarie(id).subscribe( data => {
       console.log(data);
-      this.getProduits();
+      this.getAvaries();
     })
   }
 }

@@ -20,6 +20,7 @@ avarieDto: AvarieDto = new AvarieDto();
       private router: Router) { }
 
     ngOnInit(): void {
+      this.getProduits();
     }
 
     saveAvarie(){

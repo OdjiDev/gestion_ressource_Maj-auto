@@ -1,70 +1,51 @@
 <div class="card col-md-4 offset-4">
   <div class="card-header text-white bg-info d-flex justify-content-between">
    <h4>Ajouter un produit avarier </h4>
-   <button class="btn btn-danger" >
+   <button class="btn btn-danger" [routerLink]="['../listavarie']" >
     <i class="fa fa-arrow-left"></i>
   </button>
 </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
 
-      <div class="form-row">
-        <div class="mb-3"></div>
 
-          <label>Nom</label>
-          <input
-            type="text"
-            class="form-control"
-            placeholder="nom du avarie"  [(ngModel)]="avarieDto.nom"
-            name="nom"
-            required
-            minlength="4"
-            maxlength="30"
-            #nomVar="ngModel"
-            [ngClass]="{'is-invalid': nomVar.touched && !nomVar.valid}"
-          />
-
-          <div class="invalid-feedback">
-            <span *ngIf="nomVar.errors?.['required']">
-              Entrez  votre non
-            </span>
-            <span *ngIf="nomVar.errors?.['minlength']">
-              Minimum 4 caractères
-            </span>
-            <span *ngIf="nomVar.errors?.['maxlength']">
-              Maximum 30 caractères
-            </span>
-          </div>
+       <div class="mb-3">
+          <label class="form-label">Nom</label>
+          <select class="form-control"  placeh  name="produits" id="produits" [(ngModel)]="avarieDto.produitDto.id"
+            required>
+            <option *ngIf="!produits?.length">Aucunproduit disponible</option>
+            <option *ngFor="let produit of produits" value="{{produit.id}}">{{produit.nom}}</option>
+          </select>
         </div>
-        <div class="form-row">
-          <div class="col-md-4 mb-3"></div>
-            <label>code</label>
+
+          <div class="col-md-4 mb-3">
+            <label>Quantite</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
-              placeholder="code du avarie"  [(ngModel)]="avarieDto.code"
-              name="code"
+              placeholder="quantite"  [(ngModel)]="avarieDto.quantite"
+              name="quantite"
               required
-              minlength="3"
+              minlength="1"
               maxlength="30"
-              #codeVar="ngModel"
-              [ngClass]="{'is-invalid': codeVar.touched && !codeVar.valid}"
+              #quantiteVar="ngModel"
+              [ngClass]="{'is-invalid': quantiteVar.touched && !quantiteVar.valid}"
             />
 
             <div class="invalid-feedback">
-              <span *ngIf="codeVar.errors?.['required']">
-                Entrez le code
+              <span *ngIf="quantiteVar.errors?.['required']">
+                Entrez le quantite
               </span>
-              <span *ngIf="codeVar.errors?.['minlength']">
+              <span *ngIf="quantiteVar.errors?.['minlength']">
                 Minimum 4 caractères
               </span>
-              <span *ngIf="codeVar.errors?.['maxlength']">
+              <span *ngIf="quantiteVar.errors?.['maxlength']">
                 Maximum 30 caractères
               </span>
             </div>
           </div>
-          <div class="form-row">
-            <div class="col-md-4 mb-3"></div>
+
+            <div class="col-md-4 mb-3">
               <label>Motif</label>
               <input
                 type="text"

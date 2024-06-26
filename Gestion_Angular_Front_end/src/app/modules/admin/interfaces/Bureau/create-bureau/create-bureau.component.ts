@@ -19,6 +19,7 @@ bureauDto: BureauDto = new BureauDto();
       private router: Router) { }
 
     ngOnInit(): void {
+      this.getDepartemets();
     }
 
     saveBureau(){
