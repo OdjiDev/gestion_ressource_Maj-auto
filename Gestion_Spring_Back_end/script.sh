@@ -27,12 +27,9 @@ else
   # Ajouter tous les fichiers modifiés à la zone d'indexation Git
   git add .
 
-<<<<<<< HEAD
-=======
   # Ajouter tous les fichiers modifiés à la zone d'indexation Git
   git add .
 
->>>>>>> f916e57a6d6370cb3bc2ddf042bd179ebdd7b62a
   # Exécuter la commande git commit avec le message spécifié
   git commit -m "Sauvegarde de la version actuelle"
 
