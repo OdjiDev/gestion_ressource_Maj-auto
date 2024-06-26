@@ -2,6 +2,7 @@
 
 # Naviguer vers le répertoire du dépôt Git
 # cd /chemin/vers/votre/repo
+ npm install ngx-progressbar --save
 
 # Change the current working directory to the script's directory
 cd "$(dirname "$0")"
