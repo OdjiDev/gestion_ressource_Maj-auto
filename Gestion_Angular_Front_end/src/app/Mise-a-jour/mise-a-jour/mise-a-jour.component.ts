@@ -66,6 +66,7 @@ this.miseajourDto.etat='';
 
           if (result) {
             console.log('"mise a jour disponible" is present in the miseajourDto text.');
+            this.router.navigate(['admin/progressbar']);
             // Optionally, display a message on the HTML page using your framework's methods (e.g., Angular template binding)
           } else {
             console.log('"Vous ete deja a jour" is not present in the miseajourDto text.');
