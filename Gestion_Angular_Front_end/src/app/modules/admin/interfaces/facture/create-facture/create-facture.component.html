@@ -47,13 +47,44 @@
 
         <div class="mb-3">
           <label class="form-label">Produit</label>
-          <select class="form-control" name="produits" id="produits" [(ngModel)]="factureDto.produitDto.id"
+          <select class="form-control" name="produits" id="produits" [(ngModel)]="factureDto.lignefactureDto.produitDto.id"
             required>
             <option *ngIf="!produits?.length">Aucune Produit disponible</option>
             <option *ngFor="let produit of produits" value="{{produit.id}}">{{produit.nom}}</option>
           </select>
         </div>
-        <app-headerfacture></app-headerfacture>
+
+
+<form class="needs-validation" novalidate>
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom01">Quantite</label>
+      <input type="text" class="form-control" id="validationCustom01"   [(ngModel)]="factureDto.lignefactureDto.quantite" placeholder="quantite" value="" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Date</label>
+      <input type="text" class="form-control" id="validationCustom02" placeholder="date" value="data" required>
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustomUsername">Total</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <!-- <span class="input-group-text" id="inputGroupPrepend"></span> -->
+        </div>
+        <input type="text" class="form-control" id="validationCustomUsername" placeholder="total" aria-describedby="inputGroupPrepend" required>
+        <div class="invalid-feedback">
+          total
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
         <!-- <div class="col-md-4 mb-3">
           <label>Date de la commande</label>
           <input

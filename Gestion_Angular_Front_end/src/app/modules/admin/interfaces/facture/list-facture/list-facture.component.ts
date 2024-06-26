@@ -13,7 +13,7 @@ export class ListFactureComponent implements OnInit {
 
 
 factureDtos: FactureDto[] = [];
-produits:ProduitDto[] = [];
+factureDto: FactureDto = new FactureDto();
 constructor(private factureService: FactureService,
   private router: Router) { }
 
@@ -34,6 +34,12 @@ factureDetails(id: number){
   this.router.navigate(['detailsfacture', id]);
 }
 
+  /**
+   * Navigates to the update facture page for the specified facture ID.
+   *
+   * @param {number} id - The ID of the facture to update.
+   * @return {void} This function does not return anything.
+   */
 updateFacture(id: number){
   this.router.navigate(['updatefacture', id]);
 }

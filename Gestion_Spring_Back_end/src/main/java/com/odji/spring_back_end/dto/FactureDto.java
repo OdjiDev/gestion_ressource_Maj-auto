@@ -25,7 +25,7 @@ public class FactureDto {
 
     private Instant datecommande;
 
-    private FournisseurDto fournisseur;
+    private FournisseurDto fournisseurDto;
 
     @JsonIgnore
     private List<LigneFactureDto> lignefactures;

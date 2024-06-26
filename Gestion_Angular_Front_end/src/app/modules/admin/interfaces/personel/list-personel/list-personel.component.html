@@ -1,4 +1,13 @@
+<div class="">
+  <div class="row mt-0">
+    <div class="col-md-10">
 <h2> La liste des Personels </h2>
+</div>
+<div class="col-md-2">
+  <button class="btn btn-md btn-primary" (click)="onCreatePersonel()">
+    <i class="fa fa-plus"></i> Ajouter
+  </button>
+</div>
 <table class = "table table-striped">
     <thead>
         <tr>
@@ -37,8 +46,4 @@
           </tr>
     </tbody>
 </table>
-<div class="d-flex justify-content-end">
-  <button class="btn btn-md btn-primary" (click)="onCreatePersonel()">
-    <i class="fa fa-user"></i> Nouveau Personel
-  </button>
-</div>
+

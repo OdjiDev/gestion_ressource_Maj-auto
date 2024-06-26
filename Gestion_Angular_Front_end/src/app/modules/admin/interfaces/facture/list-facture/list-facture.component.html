@@ -22,11 +22,12 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let factureDto of factures">
+        <tr *ngFor="let factureDto of factureDtos">
           <td>{{ factureDto.code}}</td>
           <td>{{ factureDto.fournisseurDto.nom}}</td>
           <td>{{ factureDto.code}}</td>
-          <td>{{ factureDto.produitDto}}</td>
+          <td>{{ factureDto.lignefactureDto.quantite}}</td>
+          <td>{{ factureDto.lignefactureDto}}</td>
          <td>{{ factureDto.datecommande}}</td>
 
           <td>

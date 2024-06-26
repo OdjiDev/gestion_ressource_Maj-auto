@@ -21,7 +21,7 @@ public class LigneFactureService {
 
     private final LigneFactureRepository ligneFactureRepository; // Assuming a repository for persistence
 
-    public List<LigneFactureDto> LigneFactures(List< LigneFacture > ligneFactures) {
+    public List<LigneFactureDto> LigneFactureDtoList(List< LigneFacture > ligneFactures) {
         return ligneFactures.stream()
                 .map(this::ligneFactureToDto)
                 .collect(Collectors.toList());

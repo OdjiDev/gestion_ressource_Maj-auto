@@ -1,11 +1,17 @@
-<div class="card">
-  <div class="card-header text-white bg-info">
-    Créer une nom </div>
+<div class="card col-md-4 offset-4">
+  <div class="card-header text-white bg-info d-flex justify-content-between">
+   <h4>Crer un personel</h4>
+   <button class="btn btn-danger"  [routerLink]="['../listpersonel']">
+
+    <i class="fa fa-arrow-left"></i>
+  </button>
+</div>
+<hr class="fw-bold mt-0">
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
 
       <div class="form-row">
-        <div class="col-md-4 mb-3"></div>
+        <div class=" mb-3"></div>
           <label>Nom</label>
           <input
             type="text"
@@ -32,7 +38,7 @@
           </div>
         </div>
         <div class="form-row">
-          <div class="col-md-4 mb-3"></div>
+          <div class=" mb-3"></div>
             <label>Prenon</label>
             <input
               type="text"
@@ -59,7 +65,7 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="col-md-4 mb-3"></div>
+            <div class="mb-3"></div>
               <label>Sexe</label>
               <input
                 type="text"
@@ -86,7 +92,7 @@
               </div>
             </div>
             <div class="form-row">
-            <div class="col-md-4 mb-3"></div>
+            <div class=" mb-3"></div>
             <label>Date de naissance</label>
             <input
               type="date"
@@ -113,7 +119,7 @@
             </div>
           </div>
           <div class="form-row">
-            <div class="col-md-4 mb-3"></div>
+            <div class=" mb-3"></div>
               <label>Lieu de naissance</label>
               <input
                 type="text"
@@ -141,7 +147,7 @@
             </div>
 
             <div class="form-row">
-              <div class="col-md-4 mb-3"></div>
+              <div class="mb-3"></div>
                 <label>E-mail</label>
                 <input
                   type="email"
@@ -167,7 +173,7 @@
                 </div>
               </div>
               <div class="form-row">
-                <div class="col-md-4 mb-3"></div>
+                <div class="mb-3"></div>
                   <label>Numero de telephpone</label>
                   <input
                     type="text"
