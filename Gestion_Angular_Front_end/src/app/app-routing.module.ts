@@ -14,10 +14,11 @@ import { LoginComponent } from './login/login.component';
 import { MiseAJourComponent } from './Mise-a-jour/mise-a-jour/mise-a-jour.component';
 import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/progress-bar.component';
 import { InscrireComponent } from './login/inscrire/inscrire.component';
+import { AdminDashboardComponent } from './modules/admin/components/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
 
-  { path: '', component: HomeComponent },
+  { path: '', component: AdminDashboardComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   {
       path: 'admin',
@@ -32,6 +33,10 @@ const routes: Routes = [
    {
     path: 'login/inscrire',
      component: InscrireComponent
+   },
+   {
+    path: 'progressbar',
+     component: ProgressBarComponent
    },
 
   {
