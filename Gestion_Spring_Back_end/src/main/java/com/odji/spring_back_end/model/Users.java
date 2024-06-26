@@ -16,7 +16,7 @@ public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Integer id;
 
     @Column(name = "userId")
     private String userId;
@@ -25,8 +25,8 @@ public class Users {
     private String password;
 
         @ManyToOne
-        @JoinColumn(name = "idroles")
-        private Roles  roles;
+        @JoinColumn(name = "idrole")
+        private Option role;
 
 
     }

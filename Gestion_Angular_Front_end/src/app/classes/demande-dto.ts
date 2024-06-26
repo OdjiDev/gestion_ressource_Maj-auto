@@ -1,9 +1,9 @@
-import { BureauDto } from "./bureau-dto";
-
+import { BureauDto } from 'src/app/classes/bureau-dto';
 
 export class DemandeDto {
-  id: number= 0;
+  id: number= 0
   motif: string= "";
-  bureauDto: BureauDto[]=[];
+
+bureauDto: BureauDto= new BureauDto();
 
 }

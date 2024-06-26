@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class PersonelService {
 
+    private final OptionService optionService;
     public List<PersonelDto> personelDtoList(List<Personel> personels){
         return personels.stream()
                 .map(this::personelToDto) //utilise la methode de conversion individuel
@@ -31,7 +32,7 @@ public class PersonelService {
         personelDto.setNumero(personel.getNumero());
         personelDto.setEmail(personel.getEmail());
         personelDto.setSexe(personel.getSexe());
-        personelDto.setRole(personel.getLieuDeNaissance());
+        personelDto.setRole(optionService.OptionToDto(personel.getRole()));
         return personelDto;
     }
     public Personel dtoToPersonel (PersonelDto personelDto) {
@@ -44,7 +45,7 @@ public class PersonelService {
         personel.setNom(personelDto.getNom());
         personel.setPrenom(personelDto.getPrenom());
         personel.setLieuDeNaissance(personelDto.getDateDeNaissance());
-        personel.setRole(personelDto.getRole());
+        personel.setRole(optionService.dtoToOption(personelDto.getRole()));
         personel.setSexe(personelDto.getSexe());
         personel.setEmail(personelDto.getEmail());
         personel.setNumero(personelDto.getNumero());

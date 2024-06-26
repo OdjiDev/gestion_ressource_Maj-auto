@@ -1,0 +1,34 @@
+
+<div class="card">
+  <div class="card-header text-white bg-info">
+    Gestion de la mise a jour
+  </div>
+  <div>
+    <!-- <h2>Captured Console Output:</h2> -->
+    <!-- <p>{{ miseajourDto.etat }}</p> -->
+  </div>
+
+
+
+
+
+
+ <div class="card-body">
+    <!-- <form novalidate (ngSubmit)="saveData(registerForm)" #registerForm="ngForm"> -->
+      <form (ngSubmit) = "onSubmit()">
+
+         <div class="form-row">
+           <div class="col-md-4 mb-3">
+            <div *ngIf="miseajourDto.result">
+              <h2>Mise a jour disponible</h2>
+              <app-progress-bar></app-progress-bar>
+            </div>
+            <div *ngIf="!miseajourDto.result">
+              <h2>Vous ete deja a jour.</h2>
+            </div>
+
+
+<div class="text-right">
+  <button class="btn btn-info" type="submit">verifier la Mise a jour</button>
+</div>
+

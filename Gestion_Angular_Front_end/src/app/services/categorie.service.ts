@@ -17,6 +17,7 @@ export class CategorieService {
     return this.httpClient.get<CategorieDto[]>(`${this.baseURL}/list`);
   }
 
+  
   getCategorieById(id: number): Observable<CategorieDto>{
     return this.httpClient.get<CategorieDto>(`${this.baseURL}/${id}`);
   }

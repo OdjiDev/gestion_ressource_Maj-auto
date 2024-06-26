@@ -1,0 +1,44 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h2>Liste des Bureaus</h2>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-md btn-primary" (click)="onCreateBureau()">
+        <i class="fa fa-plus"></i> Ajouter
+      </button>
+    </div>
+
+  </div>
+  <hr class="fw-bold mt-0">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bureauDto of bureauDtos">
+          <td>{{ bureauDto.nom }}</td>
+
+
+          <td class="text-center">
+            <button class="btn btn-sm m-1 btn-info" (click)="bureauDetails(bureauDto.id)">
+              <i class="fa fa-clipboard"></i>
+            </button>
+            <button class="btn btn-sm m-1 btn-warning" (click)="updateBureau(bureauDto.id)">
+              <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-sm m-1 btn-danger" (click)="deleteBureau(bureauDto.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CreateDepartementComponent } from '../1/create-departement.component';
 
+import { CreateDepartementComponent } from './create-departement.component';
 
 describe('CreateDepartementComponent', () => {
   let component: CreateDepartementComponent;

@@ -1,3 +1,5 @@
+import { RoleDto } from "./role-dto";
+
 export class PersonelDto {
   formatDate(arg0: Date): Date {
     throw new Error("Method not implemented.");
@@ -8,11 +10,10 @@ export class PersonelDto {
     dateDeNaissance: string='';
     sexe: string= "";
     lieuDeNaissance: string= "";
-    namePhoto: any;
-    urlPhoto: any;
-    username: any;
+    //username: any;
     numero: number= 0;
     email: string= "";
     password: string= "";
-    roles: String[]= [];
+    roleDto:RoleDto= new RoleDto();
+
 }

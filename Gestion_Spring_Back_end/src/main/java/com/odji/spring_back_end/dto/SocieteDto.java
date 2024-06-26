@@ -14,10 +14,11 @@ public class SocieteDto {
 
     private Integer id;
 
-
     private String nom;
 
     private String adresse;
+
+    private String numerofiscal;
 
     @JsonIgnore
     private List<ContratDto> contrats;

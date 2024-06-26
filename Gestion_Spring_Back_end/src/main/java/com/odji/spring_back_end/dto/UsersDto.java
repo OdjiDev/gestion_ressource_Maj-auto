@@ -1,7 +1,5 @@
 package com.odji.spring_back_end.dto;
 
-import com.odji.spring_back_end.model.Users;
-import jakarta.persistence.Column;
 import lombok.*;
 
 @Data
@@ -11,11 +9,13 @@ import lombok.*;
 @AllArgsConstructor
 public class UsersDto {
 
-    private Long id;
+    private Integer id;
 
     private String userId;
 
     private String password;
+
+    private OptionDto roleDto;
 
 
 }

@@ -18,20 +18,10 @@ export class ProduitDto {
   /** Description détaillée du produit */
   designation: string = "";
 
-  /** Quantité du produit en stock */
-  quantite: number = 0;
+  prix: number = 0;
 
-  // Identifiant de la catégorie du produit (si applicable)
-   categorieId?: number;
-
-  // Objet DTO représentant la catégorie du produit (si applicable)
-   categorieDto?: CategorieDto;
-
-  // Identifiant du magasin du produit (si applicable)
-   magasinId?: number;
-
-  // Objet DTO représentant le magasin du produit (si applicable)
-   magasinDto?: MagasinDto;
+  categorieDto:CategorieDto= new CategorieDto();
+  //magasinDto:MagasinDto= new MagasinDto();
 
 }
 

@@ -1,27 +1,39 @@
 
-<div class="col-md-6 offset-md-3">
-  <h3> Creer une  categorie </h3>
-  <form (ngSubmit) = "onSubmit()">
+<div class="card col-md-4 offset-md-4">
+  <div class="card-header text-white bg-info d-flex justify-content-between">
+    <h4> Ajouter une  categorie </h4>
+  <button class="btn btn-danger" >
+    <i class="fa fa-arrow-left"></i>
+  </button>
+  </div>
 
-      <div class="form-group">
+  <div class="card-body">
+  <form (ngSubmit) = "onSubmit()">
+      <div class="form-row">
+        <div class="mb-3"> </div>
           <label> Nom</label>
-          <input type="text" class ="form-control" id = "nom"
-              [(ngModel)] = "categorieDto.nom" name = "nom">
+          <input type="text" class ="form-control" id = "nomcategorie"
+              [(ngModel)] = "categorieDto.nomcategorie" name = "nomcategorie">
       </div>
 
-      <div class="form-group">
+      <div class="form-row">
           <label>Code</label>
           <input type="text" class ="form-control" id = "code"
               [(ngModel)] = "categorieDto.code" name = "code">
       </div>
 
-      <div class="form-group">
+      <div class="form-row">
           <label> Designation</label>
           <input type="text" class ="form-control" id = "designation"
               [(ngModel)] = "categorieDto.designation" name = "designation">
       </div>
 
-      <button class = "btn btn-success" type ="submit">Submit</button>
+      <div class="d-flex justify-content-end mt-2">
+      <button class = "btn btn-success" type ="submit">Sauvegarder</button>
+    </div>
 
-  </form>
+
+    </form>
+
   </div>
+</div>

@@ -7,5 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PersonelRepository  extends JpaRepository<Personel, Integer> {
+    // all crud database methods
 //    List<Personel> findAllByPersonelId(Integer idPersonel);
 }

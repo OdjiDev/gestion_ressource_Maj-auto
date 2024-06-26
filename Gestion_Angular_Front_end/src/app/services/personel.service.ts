@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class PersonelsService {
+export class PersonelService {
 
  private baseURL= environment.baseURL+ "personels";
 
@@ -15,7 +15,7 @@ export class PersonelsService {
   getPersonels(): Observable<PersonelDto[]>{
     return this.httpClient.get<PersonelDto[]>(`${this.baseURL}/list`);
   }
-  
+
   getPersonelById(id: number): Observable<PersonelDto>{
     return this.httpClient.get<PersonelDto>(`${this.baseURL}/${id}`);
   }

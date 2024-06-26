@@ -42,12 +42,9 @@ public class Personel {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "role")
-    private String role;
-
     @ManyToOne
-    @JoinColumn(name = "idroles")
-    private Roles  roles;
+    @JoinColumn(name = "idrole")
+    private Option role;
 
 }
 

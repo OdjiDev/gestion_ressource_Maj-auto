@@ -28,12 +28,5 @@ public class PersonelDto {
 
     private String password;
 
-    private String role;
-
-
-    private RolesDto rolesDto;
-
-
-
-
+    private OptionDto role;
 }

@@ -22,7 +22,7 @@ public class LigneDemandeDto {
     private Date date;
 
 
-    private  ProduitDto produitDto;
+    private  ProduitDto produit;
 
     @JsonIgnore
     private List<DemandeDto> demandes;

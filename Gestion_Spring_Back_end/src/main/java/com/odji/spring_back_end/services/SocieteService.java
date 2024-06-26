@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class SocieteService {
 
 
-    public List<SocieteDto> societes(List<Societe> societes) {
+    public List<SocieteDto> societeDtoList(List<Societe> societes) {
         return societes.stream()
                 .map(this::societeToDto) // Utilise la méthode de conversion individuelle
                 .collect(Collectors.toList());
@@ -29,6 +29,7 @@ public class SocieteService {
         societeDto.setId(societe.getId());
         societeDto.setNom(societe.getNom());
         societeDto.setAdresse(societe.getAdresse());
+        societeDto.setNumerofiscal(societe.getNumerofiscal());
         return societeDto;
     }
 
@@ -41,6 +42,7 @@ public class SocieteService {
         societe.setId(societeDto.getId());
         societe.setNom(societeDto.getNom());
         societe.setAdresse(societeDto.getAdresse());
+        societe.setNumerofiscal(societeDto.getNumerofiscal());
 
         return societe;
     }

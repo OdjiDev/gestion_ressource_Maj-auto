@@ -1,8 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Router } from '@angular/router'; // Import Router
 import { ProduitDto } from 'src/app/classes/produit-dto';
 import { ProduitService } from 'src/app/services/produit.service';
@@ -14,19 +12,31 @@ import { ProduitService } from 'src/app/services/produit.service';
 export class ListProduitComponent implements OnInit {
 
 
-produits: ProduitDto[] = [];
+  produits: ProduitDto[] = [];
   produitDto: ProduitDto = new ProduitDto;
 
 
 constructor(private produitService: ProduitService, private router :Router) { }
 
 ngOnInit(): void {
-  this.getProducts();
+  this.getProduits();
+  this.getProduitsconsole() ;
+
 }
 
-getProducts(): void {
+getProduitsconsole() {
+  this.produitService.getProduits()
+    .subscribe(data => {
+      this.produits = data;
+      console.log("Toutes les produits: ", this.produits);
+    });
+  }
+getProduits(): void {
   this.produitService.getProduits()
     .subscribe(produits  => this.produits = produits);
+    // this.produitDto = data;
+    //  console.log("Toutes les produitDto: ", this.produits);
+
 }
 
 onCreateProduit() {

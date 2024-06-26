@@ -14,7 +14,7 @@ export class DepartementService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getDepartementList(): Observable<DepartementDto[]>{
+  getDepartements(): Observable<DepartementDto[]>{
     return this.httpClient.get<DepartementDto[]>(`${this.baseURL}/list`);
   }
 

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin("*")
+@CrossOrigin("http://localhost:4200/")
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
@@ -27,6 +27,8 @@ public class BureauController {
     private  final BureauService bureauService;
     private final DemandeService demandeService;
     private  final BureauRepository bureauRepository;
+
+    //Create Bureau
     @PostMapping("bureaus")
     public ResponseEntity<BureauDto> createBureau(@RequestBody BureauDto bureauDto) {
         Bureau bureau = bureauService.dtoToBureau(bureauDto);
@@ -39,6 +41,8 @@ public class BureauController {
         List<Bureau> bureaus = bureauRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
         return bureauService.bureausDtoList(bureauRepository.findAll()); // Convert products to DTOs
     }
+
+
     //get bureau by id
     @GetMapping("bureaus/{id}")
     public ResponseEntity<Bureau> getBureauById(@PathVariable Integer id) {

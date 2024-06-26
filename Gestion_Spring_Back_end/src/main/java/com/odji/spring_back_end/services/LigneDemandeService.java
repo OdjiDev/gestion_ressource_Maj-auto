@@ -29,7 +29,7 @@ public class LigneDemandeService {
         ligneDemandeDto.setId(ligneDemande.getId());
         ligneDemandeDto.setQuantite(ligneDemande.getQuantite());
         ligneDemandeDto.setDate(ligneDemande.getDate());
-        ligneDemandeDto.setProduitDto(produitService.produitToDto(ligneDemande.getProduit())); // Assuming a ProduitService
+        ligneDemandeDto.setProduit(produitService.produitToDto(ligneDemande.getProduit())); // Assuming a ProduitService
         return ligneDemandeDto;
     }
 
@@ -41,7 +41,7 @@ public class LigneDemandeService {
         ligneDemande.setId(ligneDemandeDto.getId()); // Set the ID
         ligneDemande.setQuantite(ligneDemandeDto.getQuantite());
         ligneDemande.setDate(ligneDemandeDto.getDate());
-        ligneDemande.setProduit(produitService.dtoToProduit(ligneDemandeDto.getProduitDto())); // Assuming a ProduitService
+        ligneDemande.setProduit(produitService.dtoToProduit(ligneDemandeDto.getProduit())); // Assuming a ProduitService
         return ligneDemande;
     }
 
