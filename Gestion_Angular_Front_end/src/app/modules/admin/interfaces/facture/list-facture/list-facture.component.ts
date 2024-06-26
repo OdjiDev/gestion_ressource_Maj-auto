@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FactureDto } from 'src/app/classes/facture-dto';
+import { ProduitDto } from 'src/app/classes/produit-dto';
 import { FactureService } from 'src/app/services/facture.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ListFactureComponent implements OnInit {
 
 
 factureDtos: FactureDto[] = [];
-
+produits:ProduitDto[] = [];
 constructor(private factureService: FactureService,
   private router: Router) { }
 

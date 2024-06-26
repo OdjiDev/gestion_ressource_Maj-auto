@@ -12,6 +12,7 @@
 <table class ="table table-bordered table-striped">
     <thead>
         <tr>
+            <th> Id </th>
             <th> Prenom </th>
             <th> Nom </th>
             <th> Adressee </th>
@@ -23,12 +24,13 @@
 
     <tbody>
         <tr *ngFor = "let fournisseurDto of fournisseurDtos" >
+            <td> {{ fournisseurDto.id}} </td>
             <td> {{ fournisseurDto.prenom}} </td>
             <td> {{ fournisseurDto.nom }} </td>
             <td> {{ fournisseurDto.adresse }} </td>
             <td> {{ fournisseurDto.mail}} </td>
             <td> {{ fournisseurDto.numtel }} </td>
-          
+
               <td class="text-center">
                 <button class="btn btn-sm m-1 btn-info" (click)="fournisseurDetails(fournisseurDto.id)">
                   <i class="fa fa-clipboard"></i>

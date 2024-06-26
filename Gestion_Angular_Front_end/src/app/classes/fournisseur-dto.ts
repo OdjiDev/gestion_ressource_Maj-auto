@@ -1,5 +1,5 @@
 export class FournisseurDto {
-  id: number= 0;
+  id!: number;
   prenom: string= "";
   nom: string= "";
   adresse: string= "";

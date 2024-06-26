@@ -13,6 +13,7 @@
       <thead>
         <tr>
           <th>Numero</th>
+          <th>Fournisseur</th>
           <th>Code</th>
           <th>Produit</th>
           <th>Quantite</th>
@@ -21,11 +22,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let factureDto of factureDtos">
+        <tr *ngFor="let factureDto of factures">
           <td>{{ factureDto.code}}</td>
+          <td>{{ factureDto.fournisseurDto.nom}}</td>
           <td>{{ factureDto.code}}</td>
-          <td>{{ factureDto.code}}</td>
-          <td>{{ factureDto.code}}</td>
+          <td>{{ factureDto.produitDto}}</td>
          <td>{{ factureDto.datecommande}}</td>
 
           <td>

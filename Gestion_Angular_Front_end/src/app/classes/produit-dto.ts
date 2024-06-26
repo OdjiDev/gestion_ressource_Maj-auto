@@ -18,8 +18,7 @@ export class ProduitDto {
   /** Description détaillée du produit */
   designation: string = "";
 
-  /** Quantité du produit en stock */
-  quantite: number = 0;
+  prix: number = 0;
 
   categorieDto:CategorieDto= new CategorieDto();
   //magasinDto:MagasinDto= new MagasinDto();

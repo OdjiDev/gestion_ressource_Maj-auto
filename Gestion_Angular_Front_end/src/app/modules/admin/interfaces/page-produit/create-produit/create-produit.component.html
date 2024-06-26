@@ -33,13 +33,13 @@
 
         <div class="mb-3">
           <label>quantite</label>
-          <input type="number" class="form-control" placeholder="quantite du produit" [(ngModel)]="produitDto.quantite"
+          <input type="number" class="form-control" placeholder="quantite du produit" [(ngModel)]="produitDto.prix"
             name="quantite" required minlength="4" maxlength="30" required #quantiteVar="ngModel"
             [ngClass]="{'is-invalid': quantiteVar.touched && !quantiteVar.valid}" />
 
           <div class="invalid-feedback">
             <span *ngIf="quantiteVar.errors?.['required']">
-              Entrez le quantite du produit
+              Entrez la quantite du produit
             </span>
             <span *ngIf="quantiteVar.errors?.['minlength']">
               Minimum 4 caracteres
