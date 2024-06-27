@@ -16,6 +16,7 @@ git status
 # Display the current working directory
 #echo "Répertoire d'exécution actuel : $(pwd)"
 git add *
+
   git commit -m "Sauvegarde de la version actuelle du local"
 git pull origin main
 
@@ -26,7 +27,7 @@ else
   echo "Votre dépôt Git n'est pas propre. Veuillez exécuter git add et git commit pour enregistrer vos modifications."
 
   # Ajouter tous les fichiers modifiés à la zone d'indexation Git
-  git add .
+  git add *
 
   # Exécuter la commande git commit avec le message spécifié
   git commit -m "Sauvegarde de la version actuelle"
