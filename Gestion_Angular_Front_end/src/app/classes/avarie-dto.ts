@@ -2,7 +2,7 @@ import { ProduitDto } from "./produit-dto";
 
 export class AvarieDto {
   id: number= 0;
-  code: string= "";
+ quantite: string= "";
   nom: string= "";
   date: string="";
   motif: string="";

@@ -38,6 +38,9 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 
 import { CreatePersonelComponent } from './interfaces/personel/create-personel/create-personel.component';
+import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
+import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
+import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 
 
 const routes: Routes = [
@@ -108,6 +111,13 @@ const routes: Routes = [
   { path: 'listpersonel',component: ListPersonelComponent  },
   { path: 'updatepersonel',component: UpdatePersonelComponent},
  // { path: 'searchpersonel',component: CreatePersonelComponent  },
+
+
+  //routes des affectation
+  { path: 'addaffectation',component: CreateAffectationComponent },
+  { path: 'listaffectation',component: ListAffectationComponent  },
+  { path: 'updateaffectation',component: UpdateAffectationComponent},
+ // { path: 'searchaffectation',component: CreateAffectationComponent  },
 
 
     ],
