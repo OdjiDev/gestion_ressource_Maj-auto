@@ -21,12 +21,16 @@ git add *
   git_push_output=$(git push )
 
 git pull origin main
-
+# Exécuter la commande git push et capturer la sortie
+git_push_output=$(git push origin main)
 # Afficher un message en fonction du statut du dépôt
 if [ $? -eq 0 ]; then
   echo "Votre dépôt Git est propre $git_push_output ."
 else
-  echo "Votre dépôt Git n'est pas propre. Veuillez exécuter git add et git commit pour enregistrer vos modifications."
+  # echo "Votre dépôt Git n'est pas propre. Veuillez exécuter git add et git commit pour enregistrer vos modifications."
+    echo"Vous n'etes pas a jour "
+  # Ajouter tous les fichiers modifiés à la zone d'indexation Git
+  git add .
 
   # Ajouter tous les fichiers modifiés à la zone d'indexation Git
   git add .

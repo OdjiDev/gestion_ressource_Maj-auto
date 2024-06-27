@@ -30,7 +30,11 @@ public class CommandController {
 
 
     //private static final String SCRIPT_PATH = "Z:/a rapport/Gestion/Gestion_Spring_Back_end/script.sh"; // Hardcoded script path
+
+   //  private static final String SCRIPT_PATH = "Z:/logiciel_MAJ/client/gestion-complet-all-files-included-/Gestion_Spring_Back_end/script.sh"; // Hardcoded script path
+
     private static final String SCRIPT_PATH = "Z:/logiciel_MAJ/client/gestion-complet-all-files-included-/Gestion_Spring_Back_end/script.sh"; // Hardcoded script path
+
     //    /
     @GetMapping("/miseajours/execute")
     public ResponseEntity<String> executeScript() throws JsonProcessingException {
