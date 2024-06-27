@@ -12,10 +12,14 @@ git status
 # Add modified files
 git add *
 
+<<<<<<< HEAD
 # Commit changes with message
 git commit -m "Sauvegarde de la version actuelle"
 
 # Pull updates from remote repository
+=======
+  git commit -m "Sauvegarde de la version actuelle du local"
+>>>>>>> 572df4de60b6e7a62ee4e4d3856a0526c9c29675
 git pull origin main
 
 # Check repository cleanliness
@@ -24,7 +28,11 @@ if [ $? -eq 0 ]; then
 else
   echo "Votre dépôt Git n'est pas propre. Veuillez exécuter git add et git commit pour enregistrer vos modifications."
 
+<<<<<<< HEAD
   # Add all modified files to Git staging area
+=======
+  # Ajouter tous les fichiers modifiés à la zone d'indexation Git
+>>>>>>> 572df4de60b6e7a62ee4e4d3856a0526c9c29675
   git add *
 
   # Commit changes with specified message
