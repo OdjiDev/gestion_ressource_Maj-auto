@@ -55,7 +55,7 @@ this.miseajourDto.etat='';
       return lowercaseString.includes(lowercaseWord);
     }
 
-    async onSubmit() {
+    onSubmit() {
       try {
         // ... (Existing code for calling getMiseajours and handling errors)
 
@@ -78,7 +78,9 @@ this.miseajourDto.etat='';
         console.error("Error fetching miseajours:", error);
         // Handle the error (e.g., display an error message to the user)
       }
+      this.getMiseajoursConsole() ;
     }
+
 
 
 
