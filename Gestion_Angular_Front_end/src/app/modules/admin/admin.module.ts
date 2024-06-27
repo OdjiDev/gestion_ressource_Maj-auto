@@ -52,6 +52,10 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 import { DetailPersonelComponent } from './interfaces/personel/detail-personel/detail-personel.component';
 import { HeaderfactureComponent } from './interfaces/facture/headerfacture/headerfacture.component';
+import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
+import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
+import { DetailAffectationComponent } from './interfaces/affectation/detail-affectation/detail-affectation.component';
+import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -99,6 +103,10 @@ UpdatePersonelComponent,
 ListPersonelComponent,
 DetailPersonelComponent,
 HeaderfactureComponent,
+CreateAffectationComponent,
+ListAffectationComponent,
+DetailAffectationComponent,
+UpdateAffectationComponent,
 ],
 
 

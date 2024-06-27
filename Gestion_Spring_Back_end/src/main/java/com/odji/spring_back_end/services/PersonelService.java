@@ -35,7 +35,7 @@ public class PersonelService {
         personelDto.setRole(optionService.OptionToDto(personel.getRole()));
         return personelDto;
     }
-    public Personel dtoToPersonel (PersonelDto personelDto) {
+    public  Personel dtoToPersonel(PersonelDto personelDto) {
         if (personelDto== null) {
             return null;
         }
