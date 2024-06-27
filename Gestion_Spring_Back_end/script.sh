@@ -11,7 +11,7 @@
 # git pull origin main
 
   # Check for keywords indicating updates
-  update_keywords=("behind" "diverged" "integrate" "pull")
+  update_keywords=("behind" "ahead" "diverged" "integrate" "pull")
 
   # Create a regular expression pattern (case-insensitive)
   pattern="/\b(${update_keywords[*]})\b/i"
