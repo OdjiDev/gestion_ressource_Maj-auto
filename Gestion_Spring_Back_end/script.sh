@@ -17,11 +17,14 @@ git status
 #echo "Répertoire d'exécution actuel : $(pwd)"
 git add *
   git commit -m "Sauvegarde de la version actuelle du local"
+  #git push 
+  git_push_output=$(git push )
+
 git pull origin main
 
 # Afficher un message en fonction du statut du dépôt
 if [ $? -eq 0 ]; then
-  echo "Votre dépôt Git est propre ."
+  echo "Votre dépôt Git est propre $git_push_output ."
 else
   echo "Votre dépôt Git n'est pas propre. Veuillez exécuter git add et git commit pour enregistrer vos modifications."
 
