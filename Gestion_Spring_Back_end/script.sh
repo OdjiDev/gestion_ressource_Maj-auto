@@ -1,65 +1,50 @@
 #!/bin/bash
 
-# Naviguer vers le répertoire du dépôt Git
-# cd /chemin/vers/votre/repo
- npm install ngx-progressbar --save
+# Install ngx-progressbar package
+npm install ngx-progressbar --save
 
-# Change the current working directory to the script's directory
+# Change directory to script's location
 cd "$(dirname "$0")"
 
-# Exécuter la commande git status
+# Check Git status
 git status
 
-#List modified files:
-# git status | grep 'modified:'
-
-# Display the current working directory
-#echo "Répertoire d'exécution actuel : $(pwd)"
+# Add modified files
 git add *
 
-  git commit -m "Sauvegarde de la version actuelle du local"
+# Commit changes with message
+git commit -m "Sauvegarde de la version actuelle"
+
+# Pull updates from remote repository
 git pull origin main
 
-# Afficher un message en fonction du statut du dépôt
+# Check repository cleanliness
 if [ $? -eq 0 ]; then
-  echo "Votre dépôt Git est propre ."
+  echo "Votre dépôt Git est propre."
 else
   echo "Votre dépôt Git n'est pas propre. Veuillez exécuter git add et git commit pour enregistrer vos modifications."
 
-  # Ajouter tous les fichiers modifiés à la zone d'indexation Git
+  # Add all modified files to Git staging 
   git add *
 
-  # Exécuter la commande git commit avec le message spécifié
+  # Commit changes with specified message
   git commit -m "Sauvegarde de la version actuelle"
-
-#git pull origin main
-
-#Display commit message:
-  git log -1 --pretty=format:"%s"
-
-#List modified files:
-git status | grep 'modified:'
-
-
-  # Afficher un message de confirmation
-  echo "Modifications sauvegardées avec succès !"
 fi
 
+# Display the most recent commit message
+git log -1 --pretty=format:"%s"
 
+# List modified files
+git status | grep 'modified:'
 
+# Confirm successful commit
+echo "Modifications sauvegardées avec succès !"
 
-
-
-# #!/usr/bin/env bash
-
+# # Optional Git update checking and pull functionality
 # # Function to check for Git updates
-
+# check_updates() {
 #   # Execute git status and capture output
 #   git_status_output=$(git status)
-
-#    git add *
-#    git commit -m "Sauvegarde de la version actuelle du local"
-# # git pull origin main
 
 #   # Check for keywords indicating updates
 #   update_keywords=("behind" "diverged" "integrate" "pull")
@@ -73,10 +58,18 @@ fi
 #   if [ $has_updates -eq 1 ]; then
 #     echo "**Une mise à jour est disponible !**"
 #     echo "**Voulez-vous lancer la mise à jour ?**"
+#     echo "**Tapez 'oui' pour confirmer ou 'non' pour annuler.**"
+#     read -p "Votre choix : " choice
+
+#     if [ "$choice" = "oui" ]; then
+#       perform_git_pull
+#     else
+#       echo "**Mise à jour annulée.**"
+#     fi
 #   else
 #     echo "**Aucune mise à jour n'est disponible.**"
 #   fi
-
+# }
 
 # # Function to perform Git pull
 # perform_git_pull() {
@@ -106,6 +99,6 @@ fi
 #   perform_git_pull
 # else
 #   echo "**Utilisation :**"
-#   echo "script.sh check  - Vérifier les mises à jour"
-#   echo "script.sh pull    - Effectuer la mise à jour"
+#   echo "script.sh check  - Vérifier les mises à jour"
+#   echo "script.sh pull    - Effectuer la mise à jour"
 # fi
