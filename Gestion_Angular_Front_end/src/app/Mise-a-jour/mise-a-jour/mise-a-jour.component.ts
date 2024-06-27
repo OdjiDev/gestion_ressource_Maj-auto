@@ -23,7 +23,7 @@ export class MiseAJourComponent implements OnInit {
     ngOnInit(): void {
 
       //this.getMiseajours();
-      this.getMiseajoursConsole() ;
+   //   this.getMiseajoursConsole() ;
 
     }
 
