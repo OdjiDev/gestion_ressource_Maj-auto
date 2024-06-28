@@ -18,12 +18,11 @@ bureaus: BureauDto[] = [];
 personels:PersonelDto[]=[];
 demandeDto: DemandeDto = new DemandeDto();
     constructor(private demandeService:DemandeService,
-      private personelService:PersonelService,
       private bureauService:BureauService,
+      private personelService:PersonelService,
       private router: Router) { }
 
     ngOnInit(): void {
-
       this.getBureaus();
       this.getPersonels();
     }
@@ -61,3 +60,4 @@ demandeDto: DemandeDto = new DemandeDto();
         });
     }
 }
+

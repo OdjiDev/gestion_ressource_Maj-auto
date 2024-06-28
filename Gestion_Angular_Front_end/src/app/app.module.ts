@@ -20,6 +20,7 @@ import { LoginComponent } from './login/login.component';
 import { MiseAJourComponent } from './Mise-a-jour/mise-a-jour/mise-a-jour.component';
 import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/progress-bar.component';
 import { InscrireComponent } from './login/inscrire/inscrire.component';
+//import { PersonelDashboardComponent } from './modules/personnel/components/personel-dashboard/personel-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { InscrireComponent } from './login/inscrire/inscrire.component';
     LoginComponent,
 MiseAJourComponent,
 ProgressBarComponent,
-InscrireComponent
+InscrireComponent,
+
 
   ],
   imports: [

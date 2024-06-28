@@ -15,16 +15,44 @@ import { MiseAJourComponent } from './Mise-a-jour/mise-a-jour/mise-a-jour.compon
 import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/progress-bar.component';
 import { InscrireComponent } from './login/inscrire/inscrire.component';
 import { AdminDashboardComponent } from './modules/admin/components/admin-dashboard/admin-dashboard.component';
+import { PersonelDashboardComponent } from './modules/personnel/components/personel-dashboard/personel-dashboard.component';
+
+
 
 const routes: Routes = [
-
-  { path: '', component: AdminDashboardComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: LoginComponent }, // Default route displays LoginComponent
   {
-      path: 'admin',
-      loadChildren: () =>
-            import('./modules/admin/admin.module').then((a) => a.AdminModule),
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((a) => a.AdminModule),
   },
+  {
+    path: 'personel',
+    loadChildren: () =>
+      import('./modules/personnel/personel.module').then((per) => per.PersonelModule),
+  },
+
+
+// const routes: Routes = [
+
+//   { path: '', component:LoginComponent },
+//   { path: '', redirectTo: '/login', pathMatch: 'full' },
+//   {
+//       path: 'admin',
+//       loadChildren: () =>
+//             import('./modules/admin/admin.module').then((a) => a.AdminModule),
+//   },
+
+
+//     {
+//         path: 'personel',
+//         loadChildren: () =>
+//               import('./modules/personnel/personel.module').then((et) => et.PersonelModule),
+//     },
+
+
+     //{ path: '**', component: NotFoundComponent },
+
 
   {
     path: 'login',
@@ -70,41 +98,6 @@ const routes: Routes = [
       path: 'prog',
        component: ProgressBarComponent
      },
-
-
-
-        // {
-        //   //path: 'updatecategorie/:id',
-        //   //component: UpdateCategorieComponent
-        //   },
-
-
-
-          {
-            path: 'command',
-            component: CommandComponent
-            },
-            {
-                path: 'stat',
-                 component: PageStatistiquesComponent
-               },
-
-
-
-    //      children: [
-    //       {
-    //   path: 'statistiques',
-    //    component: PageStatistiquesComponent
-    //  },
-
-
-    // //  {
-    // //  path: 'menu',
-    // //    component:MenuComponent
-    // //  }
-    //      ]
-
-
 ]
 
 @NgModule({

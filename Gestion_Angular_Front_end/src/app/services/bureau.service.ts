@@ -21,7 +21,7 @@ export class BureauService {
   getBureauById(id: number): Observable<BureauDto>{
     return this.httpClient.get<BureauDto>(`${this.baseURL}/${id}`);
   }
- 
+
 
   addBureau(bureauDto: BureauDto): Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`, bureauDto);
