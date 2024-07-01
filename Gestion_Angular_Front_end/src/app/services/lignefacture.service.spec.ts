@@ -1,13 +1,16 @@
 import { TestBed } from '@angular/core/testing';
+import { LigneFactureService } from './ligneFacture.service';
 
-import { LignefactureService } from './lignefacture.service';
+
+
+
 
 describe('LignefactureService', () => {
-  let service: LignefactureService;
+  let service: LigneFactureService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LignefactureService);
+    service = TestBed.inject(LigneFactureService);
   });
 
   it('should be created', () => {

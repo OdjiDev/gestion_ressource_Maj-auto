@@ -8,5 +8,6 @@ export class AffectationDto {
    motif: string="";
    produitDto: ProduitDto= new ProduitDto();
    personelDto: PersonelDto= new PersonelDto();
+   
 }
 

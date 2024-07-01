@@ -14,8 +14,8 @@
     <thead>
         <tr>
             <th> Id </th>
-            <th> id produit</th>
-            <th> Nom du personel</th>
+            <!-- <th> id produit</th> -->
+            <!-- <th> Nom du personel</th> -->
             <th> Motif </th>
             <th> Quantite</th>
             <th> Date </th>
@@ -26,16 +26,24 @@
     <tbody>
         <tr *ngFor = "let affectationDto of affectationDtos" >
             <td> {{ affectationDto.id}} </td>
-            <td> {{ affectationDto.produitDto.id}} </td>
-            <td> {{ affectationDto.personelDto.nom}} </td>
+            <!-- <td> {{ affectationDto.produitDto.id}} </td>
+            <td> {{ affectationDto.personelDto.nom}} </td> -->
             <td> {{ affectationDto.motif }} </td>
             <td> {{ affectationDto.quantite }} </td>
             <td> {{ affectationDto.date}} </td>
             <td>
-                <button (click) = "updateAffectation(affectationDto.id)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteAffectation(affectationDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "affectationDetails(affectationDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
-            </td>
+
+              <button class="btn btn-sm m-1 btn-info" (click)="deleteAffectation(affectationDto.id)">
+                <i class="fa fa-clipboard"></i>
+              </button>
+              <button class="btn btn-sm m-1 btn-warning" (click)="updateAffectation(affectationDto.id)">
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button class="btn btn-sm m-1 btn-danger" (click)="affectationDetails(affectationDto.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+             </td>
         </tr>
     </tbody>
 </table>

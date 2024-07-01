@@ -1,6 +1,6 @@
 export class Users {
-  userId!: string;
-  password!:string;
- repeatpassord?: string;
- roles? : string;
+  userId?: string;
+  password?:string;
+  repeatpassord?: string;
+  role? : string;
 }

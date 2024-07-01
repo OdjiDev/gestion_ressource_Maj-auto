@@ -13,9 +13,9 @@
         <tr>
             <th> Nom </th>
             <th> Prenom </th>
-            <th> Sexe</th>
+            <th>E-mail</th>
             <th>Role </th>
-            <th> E-mail </th>
+            <th> Sexe </th>
             <th> Telephone </th>
             <th> Actions </th>
         </tr>
@@ -25,10 +25,11 @@
         <tr *ngFor = "let personelDto of personelDtos" >
             <td> {{ personelDto.nom }} </td>
             <td> {{ personelDto.prenom}} </td>
-            <td> {{ personelDto.sexe}} </td>
             <td> {{ personelDto.email}} </td>
-            <td> {{ personelDto.numero }} </td>
             <td> {{ personelDto.roleDto}} </td>
+            <td> {{ personelDto.sexe}} </td>
+            <td> {{ personelDto.numero }} </td>
+
 
 
             <td class="text-center">

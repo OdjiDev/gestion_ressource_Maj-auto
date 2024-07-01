@@ -17,7 +17,7 @@ import java.util.Date;
 @Table(name = "lignefacture")
 @AllArgsConstructor
 @NoArgsConstructor
-public class LigneFacture {
+public class                                                                                                              LigneFacture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -34,7 +34,7 @@ public class LigneFacture {
     private BigDecimal quantite;
 
     @Column(name = "date")
-    private Date date;
+    private String date;
 
 
 }

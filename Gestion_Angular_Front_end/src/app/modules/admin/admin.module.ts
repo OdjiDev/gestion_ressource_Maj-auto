@@ -56,6 +56,8 @@ import { CreateAffectationComponent } from './interfaces/affectation/create-affe
 import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
 import { DetailAffectationComponent } from './interfaces/affectation/detail-affectation/detail-affectation.component';
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
+import { FieldErrorDisplayComponent } from 'src/app/field-error-display/field-error-display.component';
+import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -107,6 +109,8 @@ CreateAffectationComponent,
 ListAffectationComponent,
 DetailAffectationComponent,
 UpdateAffectationComponent,
+FieldErrorDisplayComponent,
+DetailDepartementComponent,
 ],
 
 

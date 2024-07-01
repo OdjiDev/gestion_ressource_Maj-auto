@@ -20,6 +20,9 @@ import { LoginComponent } from './login/login.component';
 import { MiseAJourComponent } from './Mise-a-jour/mise-a-jour/mise-a-jour.component';
 import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/progress-bar.component';
 import { InscrireComponent } from './login/inscrire/inscrire.component';
+import { ComptableDashboardComponent } from './modules/comptable/components/comptable-dashboard/comptable-dashboard.component';
+import { TestComponent } from './test/test/test.component';
+import { FieldErrorDisplayComponent } from './field-error-display/field-error-display.component';
 //import { PersonelDashboardComponent } from './modules/personnel/components/personel-dashboard/personel-dashboard.component';
 
 @NgModule({
@@ -35,9 +38,12 @@ import { InscrireComponent } from './login/inscrire/inscrire.component';
     CreateUsersComponent,
     RegisterComponent,
     LoginComponent,
-MiseAJourComponent,
-ProgressBarComponent,
-InscrireComponent,
+    MiseAJourComponent,
+    ProgressBarComponent,
+    InscrireComponent,
+    TestComponent,
+    // FieldErrorDisplayComponent,
+
 
 
   ],

@@ -22,7 +22,10 @@ public class Option {
 
     @Column(name="nom")
     private String nom;
+//
+//    @OneToMany(mappedBy = "role")
+//    private List<User> users;
 
     @OneToMany(mappedBy = "role")
-    private List<Users> users;
+    private List<Personel> personels;
 }

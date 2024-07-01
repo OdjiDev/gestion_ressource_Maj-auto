@@ -28,7 +28,7 @@ export class AffectationService {
   }
 
   updateAffectation(id: number, affectationDto: AffectationDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, AffectationDto);
+    return this.httpClient.put(`${this.baseURL}/update/${id}`, AffectationDto);
   }
 
   deleteAffectation(id: number): Observable<Object>{

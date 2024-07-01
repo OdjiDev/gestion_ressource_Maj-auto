@@ -16,6 +16,7 @@ import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/pro
 import { InscrireComponent } from './login/inscrire/inscrire.component';
 import { AdminDashboardComponent } from './modules/admin/components/admin-dashboard/admin-dashboard.component';
 import { PersonelDashboardComponent } from './modules/personnel/components/personel-dashboard/personel-dashboard.component';
+import { TestComponent } from './test/test/test.component';
 
 
 
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'personel',
     loadChildren: () =>
       import('./modules/personnel/personel.module').then((per) => per.PersonelModule),
+  },
+  {
+    path: 'comptable',
+    loadChildren: () =>
+      import('./modules/comptable/comptable.module').then((com) => com.ComptableModule),
   },
 
 
@@ -98,6 +104,11 @@ const routes: Routes = [
       path: 'prog',
        component: ProgressBarComponent
      },
+     {
+      path: 'test',
+       component: TestComponent
+     },
+    //
 ]
 
 @NgModule({

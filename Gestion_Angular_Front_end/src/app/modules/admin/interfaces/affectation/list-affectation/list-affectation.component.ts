@@ -1,3 +1,4 @@
+import { PersonelService } from 'src/app/services/personel.service';
 import { PersonelDto } from 'src/app/classes/personel-dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -15,18 +16,26 @@ export class ListAffectationComponent implements OnInit {
 
 
   produitDtos:ProduitDto[] = [];
-  personelDto:PersonelDto[]=[];
+  personelDtos:PersonelDto[]=[];
   affectationDtos:AffectationDto[] = [];
 
-    constructor(private affectationService: AffectationService,private produitService: ProduitService,
+    constructor(private affectationService: AffectationService,
+      private produitService: ProduitService,
+      private personelService:PersonelService,
       private router: Router) { }
 
     ngOnInit(): void {
       this.getProduits();
       this.getAffectations();
+      this.getPersonels();
     }
 
-    private getProduits(){
+    getPersonels(){
+      this.personelService.getPersonels().subscribe(data => {
+        this.personelDtos = data;
+      });
+    }
+     getProduits(){
       this.produitService.getProduits().subscribe(data => {
         this.produitDtos = data;
       });
@@ -46,7 +55,7 @@ export class ListAffectationComponent implements OnInit {
     }
 
     updateAffectation(id: number){
-      this.router.navigate(['updateaffectation', id]);
+      this.router.navigate(['admin/updateaffectation', id]);
     }
 
     deleteAffectation(id: number){

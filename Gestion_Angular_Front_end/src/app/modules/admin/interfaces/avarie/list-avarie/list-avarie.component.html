@@ -30,10 +30,21 @@
             <td> {{ avarieDto.quantite }} </td>
             <td> {{ avarieDto.date}} </td>
             <td>
-                <button (click) = "updateAvarie(avarieDto.id)" class = "btn btn-info"> Update</button>
-                <button (click) = "deleteAvarie(avarieDto.id)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                <button (click) = "avarieDetails(avarieDto.id)" class = "btn btn-info" style="margin-left: 10px"> View</button>
-            </td>
+              <div class="text-center">
+                <button class="btn btn-sm m-1 btn-info" (click)="deleteAvarie(avarieDto.id)">
+                  <i class="fa fa-clipboard"></i>
+                </button>
+
+            <button class="btn btn-sm m-1 btn-warning" (click)="updateAvarie(avarieDto.id)">
+              <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-sm m-1 btn-danger" (click)="avarieDetails(avarieDto.id)                                                                                         ">
+            <i class="fa fa-trash"></i>
+          </button>
+              </div>
+
+        </td>
         </tr>
     </tbody>
 </table>

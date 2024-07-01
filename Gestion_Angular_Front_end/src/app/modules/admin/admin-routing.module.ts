@@ -1,3 +1,4 @@
+import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
 
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
@@ -73,7 +74,8 @@ const routes: Routes = [
       //routes de departement
       { path: 'adddepartement',component: CreateDepartementComponent },
       { path: 'listdepartement',component: ListDepartementComponent  },
-      { path: 'updatedepartement',component: UpdateDepartementComponent},
+      { path: 'updatedepartement/:id',component: UpdateDepartementComponent},
+       {path:'detailsdepartement/:id',component:DetailDepartementComponent},
      // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
     //routes de departement
@@ -91,6 +93,7 @@ const routes: Routes = [
      { path: 'listfournisseur',component: ListFournisseurComponent  },
      { path: 'updatefournisseur',component: UpdateFournisseurComponent},
     // { path: 'searchfournisseur',component: CreateFournisseurComponent  },
+
      //routes des avaries
      { path: 'addavarie',component: CreateAvarieComponent },
      { path: 'listavarie',component: ListAvarieComponent  },
@@ -116,7 +119,7 @@ const routes: Routes = [
   //routes des affectation
   { path: 'addaffectation',component: CreateAffectationComponent },
   { path: 'listaffectation',component: ListAffectationComponent  },
-  { path: 'updateaffectation',component: UpdateAffectationComponent},
+  { path: 'updateaffectation/:id',component: UpdateAffectationComponent},
  // { path: 'searchaffectation',component: CreateAffectationComponent  },
 
 

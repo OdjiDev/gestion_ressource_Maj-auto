@@ -27,9 +27,16 @@ export class DepartementService {
   }
 
 
-  updateDepartement(id: number, departementDto: DepartementDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, DepartementDto);
+  // updateDepartement(id: number, departementDto: DepartementDto): Observable<Object>{
+  //   return this.httpClient.put(`${this.baseURL}/${id}`, DepartementDto);
+  // }
+
+
+
+  updateDepartement(id: number, departement: DepartementDto): Observable<DepartementDto> {
+    return this.httpClient.put<DepartementDto>(`${this.baseURL}/${id}`, departement);
   }
+
 
   deleteDepartement(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);

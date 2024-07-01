@@ -21,14 +21,22 @@
 
        <div class="mb-3">
         <label class="form-label">Nom du personel</label>
-        <select class="form-control"  placeh  name="personels" id="personels" [(ngModel)]="affectationDto.personelDto.id"
+        <select class="form-control"  placeholder="nom"  name="personels" id="personels" [(ngModel)]="affectationDto.personelDto.id"
           required>
           <option *ngIf="!personels?.length">Aucun personel disponible</option>
           <option *ngFor="let personel of personels" value="{{personel.id}}">{{personel.nom}}</option>
         </select>
       </div>
+      <div class="mb-3">
+        <label class="form-label">Prenom du personel</label>
+        <select class="form-control"  placeholder="prenom"  name="personels" id="personels" [(ngModel)]="affectationDto.personelDto.id"
+          required>
+          <option *ngIf="!personels?.length">Aucun prenom du personel disponible</option>
+          <option *ngFor="let personel of personels" value="{{personel.id}}">{{personel.prenom}}</option>
+        </select>
+      </div>
 
-          <div class="col-md-4 mb-3">
+          <div class=" mb-3">
             <label>Quantite</label>
             <input
               type="number"
@@ -55,7 +63,7 @@
             </div>
           </div>
 
-            <div class="col-md-4 mb-3">
+            <div class=" mb-3">
               <label>Motif</label>
               <input
                 type="text"
@@ -82,7 +90,7 @@
               </div>
             </div>
 
-              <div class="col-md-4 mb-3">
+              <div class="mb-3">
                 <label>Date </label>
                 <input
                   type="date"  class="form-control"

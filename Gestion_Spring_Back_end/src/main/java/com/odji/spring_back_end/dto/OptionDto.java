@@ -1,7 +1,7 @@
 package com.odji.spring_back_end.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Users;
+import com.odji.spring_back_end.model.User;
 import lombok.*;
 
 import java.util.List;
@@ -17,6 +17,6 @@ public class OptionDto {
 
     private String nom;
 
-    @JsonIgnore
-    private List<Users> users;
+//    @JsonIgnore
+//    private List<User> users;
 }

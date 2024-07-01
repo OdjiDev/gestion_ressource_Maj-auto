@@ -32,6 +32,9 @@ export class DemandeService {
     return this.httpClient.put(`${this.baseURL}/${id}`, DemandeDto);
   }
 
+
+
+
   deleteDemande(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }

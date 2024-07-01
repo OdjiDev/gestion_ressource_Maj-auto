@@ -24,7 +24,7 @@ public class Affectation {
     private BigDecimal quantite;
 
     @Column(name = "date")
-    private Date date;
+    private String date;
 
     @Column(name = "motif")
     private String motif;

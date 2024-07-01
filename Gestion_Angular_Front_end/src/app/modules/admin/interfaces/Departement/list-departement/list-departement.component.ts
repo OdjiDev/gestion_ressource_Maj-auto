@@ -29,11 +29,11 @@ onCreateDepartement()
   this.router.navigate(['admin/adddepartement']);
 }
   departementDetails(id: number){
-    this.router.navigate(['detailsdepartement', id]);
+    this.router.navigate(['admin/detailsdepartement', id]);
   }
 
   updateDepartement(id: number){
-    this.router.navigate(['updatedepartement', id]);
+    this.router.navigate(['admin/updatedepartement', id]);
   }
 
   deleteDepartement(id: number){
