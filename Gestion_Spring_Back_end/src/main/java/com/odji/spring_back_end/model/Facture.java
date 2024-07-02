@@ -22,12 +22,18 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "numero")
+    private Integer numero;
+
     @Column(name = "code")
     private String code;
 
 
     @Column(name = "datecommande")
     private Instant datecommande;
+
+    @Column(name = "total")
+    private String total;
 
     @ManyToOne
     @JoinColumn(name = "idfournisseur")

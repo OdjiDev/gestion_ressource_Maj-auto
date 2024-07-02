@@ -43,6 +43,7 @@ import java.util.stream.Collectors;
             produitDto.setNom(produit.getNom());
             produitDto.setDesignation(produit.getDesignation());
             produitDto.setQuantite(produit.getQuantite());
+            produitDto.setPrixAchat(produit.getPrixAchat());
             produitDto.setCategorieDto(categorieService.categorieToDto(produit.getCategorie()));
             produitDto.setMagasinDto(magasinService.magasinToDto(produit.getMagasin()));
 
@@ -60,6 +61,7 @@ import java.util.stream.Collectors;
             produit.setNom(produitDto.getNom());
             produit.setDesignation(produitDto.getDesignation());
             produit.setQuantite(produitDto.getQuantite());
+            produit.setPrixAchat(produitDto.getPrixAchat());
             produit.setCategorie(categorieService.dtoToCategorie(produitDto.getCategorieDto()));
             produit.setMagasin(magasinService.dtoToMagasin(produitDto.getMagasinDto())); // Assuming magasinService exists
             // Similar logic for other properties (avarie, lignefacture, etc.)

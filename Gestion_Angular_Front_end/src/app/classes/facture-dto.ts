@@ -10,6 +10,6 @@ export class FactureDto {
  total: number= 0;
   datecommande: string= " ";
  fournisseurDto: FournisseurDto= new FournisseurDto();
-//  lignefactureDtos:LigneFactureDto= new LigneFactureDto();
+ lignefactureDtos:LigneFactureDto= new LigneFactureDto();
 
 }
