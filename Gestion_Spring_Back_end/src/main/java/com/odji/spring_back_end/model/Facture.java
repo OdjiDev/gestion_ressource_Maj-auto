@@ -21,7 +21,6 @@ public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     @Column(name = "code")
     private String code;
 
