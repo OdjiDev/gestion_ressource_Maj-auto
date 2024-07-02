@@ -23,8 +23,8 @@ export class AffectationService {
   }
 
 
-  addAffectation(affectationDto: AffectationDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, affectationDto);
+  addAffectation(affectationDto: AffectationDto): Observable<AffectationDto>{
+    return this.httpClient.post<AffectationDto>(`${this.baseURL}`, affectationDto);
   }
 
   // updateAffectation(id: number, affectationDto: AffectationDto): Observable<Object>{

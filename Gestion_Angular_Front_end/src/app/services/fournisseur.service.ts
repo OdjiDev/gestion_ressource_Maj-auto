@@ -13,22 +13,21 @@ export class FournisseurService {
  private baseURL= environment.baseURL+ "fournisseurs";
 
   constructor(private httpClient: HttpClient) { }
-
+  // Methode pour le chargement de tous les fournisseurs depuis la base de données
   getFournisseurs(): Observable<FournisseurDto[]>{
     return this.httpClient.get<FournisseurDto[]>(`${this.baseURL}/list`);
   }
-
+  // Methode pour le chargement d'un fournisseur depuis la base de données avec son id
   getFournisseurById(id: number): Observable<FournisseurDto>{
     return this.httpClient.get<FournisseurDto>(`${this.baseURL}/${id}`);
   }
-
-  addFournisseur(fournisseurDto: FournisseurDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, fournisseurDto);
+  // Methode pour l'ajout d'un nouveau fournisseur dans la base de données
+  addFournisseur(fournisseur: FournisseurDto): Observable<FournisseurDto> {
+    return this.httpClient.post<FournisseurDto>(`${this.baseURL}`, fournisseur);
   }
 
-
   updateFournisseur(id: number, fournisseurDto: FournisseurDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, FournisseurDto);
+    return this.httpClient.put(`${this.baseURL}/${id}`, fournisseurDto);
   }
 
   deleteFournisseur(id: number): Observable<Object>{

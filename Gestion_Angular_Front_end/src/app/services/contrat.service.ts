@@ -22,16 +22,16 @@ export class ContratService {
     return this.httpClient.get<ContratDto>(`${this.baseURL}/${id}`);
   }
 
-  addContrat(contratDto: ContratDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, contratDto);
+  addContrat(contratDto: ContratDto): Observable<ContratDto>{
+    return this.httpClient.post<ContratDto>(`${this.baseURL}`, contratDto);
   }
 
-  updateContrat(id: number, contratDto: ContratDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, ContratDto);
+  updateContrat(id: number, contratDto: ContratDto): Observable<ContratDto>{
+    return this.httpClient.put<ContratDto>(`${this.baseURL}/${id}`, ContratDto);
   }
 
-  deleteContrat(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteContrat(id: number): Observable<ContratDto>{
+    return this.httpClient.delete<ContratDto>(`${this.baseURL}/${id}`);
   }
 
 
