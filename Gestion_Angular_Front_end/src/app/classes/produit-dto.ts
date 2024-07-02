@@ -22,8 +22,8 @@ export class ProduitDto {
 
   prixAchat: number = 0;
 
-  categorieDto:CategorieDto= new CategorieDto();
- ligneFactureDto:LigneFactureDto= new LigneFactureDto();
+   categorieDto:CategorieDto= new CategorieDto();
+//  ligneFactureDto:LigneFactureDto= new LigneFactureDto();
 
 
 }
