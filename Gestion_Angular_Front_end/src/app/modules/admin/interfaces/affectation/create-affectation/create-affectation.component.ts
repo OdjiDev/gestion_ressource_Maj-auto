@@ -1,3 +1,6 @@
+import { BureauDto } from './../../../../../classes/bureau-dto';
+import { BureauService } from './../../../../../services/bureau.service';
+
 import { PersonelService } from 'src/app/services/personel.service';
 import { PersonelDto } from 'src/app/classes/personel-dto';
 import { Component, OnInit } from '@angular/core';
@@ -16,16 +19,19 @@ export class CreateAffectationComponent implements OnInit {
 
 
 produits: ProduitDto[]=[];
+bureaus:BureauDto[]=[];
 personels:PersonelDto[]=[];
 affectationDto: AffectationDto = new AffectationDto();
     constructor(private affectationService:AffectationService,
       private produitService:ProduitService,
       private personelService:PersonelService,
+      private bureauService:BureauService,
       private router: Router) { }
 
     ngOnInit(): void {
       this.getProduits();
       this.getPersonels();
+      this.getBureaus();
     }
 
     saveaffectation(){
@@ -64,6 +70,14 @@ affectationDto: AffectationDto = new AffectationDto();
         .subscribe(data => {
           this.personels = data;
           console.log("Toutes les personels : ", this.personels);
+        });
+    }
+
+    getBureaus() {
+      this.bureauService.getBureaus()
+        .subscribe(data => {
+          this.bureaus = data;
+          console.log("Toutes les bureaus : ", this.bureaus);
         });
     }
 

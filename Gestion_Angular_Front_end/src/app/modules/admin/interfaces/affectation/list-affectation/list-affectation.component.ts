@@ -15,8 +15,9 @@ import { ProduitService } from 'src/app/services/produit.service';
 export class ListAffectationComponent implements OnInit {
 
 
-  produitDtos:ProduitDto[] = [];
-  personelDtos:PersonelDto[]=[];
+  // produitDtos:ProduitDto[] = [];
+  // personelDtos:PersonelDto[]=[];
+  afectationDto:AffectationDto= new AffectationDto();
   affectationDtos:AffectationDto[] = [];
 
     constructor(private affectationService: AffectationService,
@@ -25,21 +26,21 @@ export class ListAffectationComponent implements OnInit {
       private router: Router) { }
 
     ngOnInit(): void {
-      this.getProduits();
-      this.getAffectations();
-      this.getPersonels();
+      // this.getProduits();
+       this.getAffectations();
+      // this.getPersonels();
     }
 
-    getPersonels(){
-      this.personelService.getPersonels().subscribe(data => {
-        this.personelDtos = data;
-      });
-    }
-     getProduits(){
-      this.produitService.getProduits().subscribe(data => {
-        this.produitDtos = data;
-      });
-    }
+    // getPersonels(){
+    //   this.personelService.getPersonels().subscribe(data => {
+    //     this.personelDtos = data;
+    //   });
+    // }
+    //  getProduits(){
+    //   this.produitService.getProduits().subscribe(data => {
+    //     this.produitDtos = data;
+    //   });
+    // }
 
     private getAffectations(){
       this.affectationService.getAffectations().subscribe(data => {

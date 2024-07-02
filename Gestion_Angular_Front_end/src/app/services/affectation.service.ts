@@ -27,8 +27,13 @@ export class AffectationService {
     return this.httpClient.post(`${this.baseURL}`, affectationDto);
   }
 
-  updateAffectation(id: number, affectationDto: AffectationDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/update/${id}`, AffectationDto);
+  // updateAffectation(id: number, affectationDto: AffectationDto): Observable<Object>{
+  //   return this.httpClient.put(`${this.baseURL}/update/${id}`, AffectationDto);
+  // }
+
+
+  updateAffectation(id: number, affectation: AffectationDto): Observable<AffectationDto> {
+    return this.httpClient.put<AffectationDto>(`${this.baseURL}/${id}`, affectation);
   }
 
   deleteAffectation(id: number): Observable<Object>{

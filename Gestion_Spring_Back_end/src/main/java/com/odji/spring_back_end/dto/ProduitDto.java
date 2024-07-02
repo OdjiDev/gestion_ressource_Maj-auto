@@ -3,6 +3,7 @@ package com.odji.spring_back_end.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.Affectation;
 import com.odji.spring_back_end.model.Produit;
 import lombok.*;
 
@@ -37,10 +38,15 @@ public class ProduitDto {
 
     @JsonIgnore
     private List<LigneFactureReparerDto> lignefacturereparers;
+
     @JsonIgnore
     private List<LigneReparationDto> lignereparations;
+
     @JsonIgnore
     private List<LigneDemandeDto> lignedemandes;
+
+    @JsonIgnore
+    private List<Affectation> affectation;
 
 
 }

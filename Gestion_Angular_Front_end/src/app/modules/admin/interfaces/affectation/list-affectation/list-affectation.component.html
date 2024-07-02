@@ -17,7 +17,7 @@
             <!-- <th> id produit</th> -->
             <!-- <th> Nom du personel</th> -->
             <th> Motif </th>
-            <th> Quantite</th>
+            <th>Id du bureau</th>
             <th> Date </th>
             <th> Actions </th>
         </tr>
@@ -29,18 +29,18 @@
             <!-- <td> {{ affectationDto.produitDto.id}} </td>
             <td> {{ affectationDto.personelDto.nom}} </td> -->
             <td> {{ affectationDto.motif }} </td>
-            <td> {{ affectationDto.quantite }} </td>
+            <td> {{ affectationDto.bureauDto }} </td>
             <td> {{ affectationDto.date}} </td>
             <td>
 
-              <button class="btn btn-sm m-1 btn-info" (click)="deleteAffectation(affectationDto.id)">
+              <button class="btn btn-sm m-1 btn-info" (click)="affectationDetails(affectationDto.id)">
                 <i class="fa fa-clipboard"></i>
               </button>
               <button class="btn btn-sm m-1 btn-warning" (click)="updateAffectation(affectationDto.id)">
                 <i class="fa fa-edit"></i>
               </button>
 
-              <button class="btn btn-sm m-1 btn-danger" (click)="affectationDetails(affectationDto.id)">
+              <button class="btn btn-sm m-1 btn-danger" (click)="deleteAffectation(affectationDto.id)">
                 <i class="fa fa-trash"></i>
               </button>
              </td>

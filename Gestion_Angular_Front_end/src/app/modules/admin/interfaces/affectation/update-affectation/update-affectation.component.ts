@@ -7,6 +7,7 @@ import { PersonelDto } from 'src/app/classes/personel-dto';
 import { ProduitDto } from 'src/app/classes/produit-dto';
 import { AffectationService } from 'src/app/services/affectation.service';
 import { HttpHeaders } from '@angular/common/http';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-update-affectation',
@@ -14,57 +15,128 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./update-affectation.component.css']
 })
 export class UpdateAffectationComponent implements OnInit {
+
+
+
+  formAffectation: any;
+  affectationDto: AffectationDto= new AffectationDto();
+  idAffectation: number=0;
+  affectationDtos:AffectationDto[]=[];
+  message: any;
+  style: any;
+  formSubmitAttempt: boolean= false;
+
+
+  constructor(private formBuilder: FormBuilder,
+              private affectationService: AffectationService,
+                           private router: ActivatedRoute,
+              private route: Router
+              ){
+                this.formAffectation= this.formBuilder.group({
+                   id: [null, Validators.required],
+                  nom: [null, Validators.required],
+                  motif: [null, Validators.required],
+                  date: [null, Validators.required],
+                  // affectationDto: [null, Validators.required],
+                  });
+      this.idAffectation= this.router.snapshot.params['id'];
+      this.getAffectation(this.idAffectation);
+      // this.affectationDto.affectationDto.id=1;
+      this.getAllAffectations();
+  }
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
-
-//   id:number=0;
-//   affectation: AffectationDto=new AffectationDto;
-//   produits: ProduitDto[]=[];
-//   personels: PersonelDto[]=[];
-
-//   constructor(private affectationService: AffectationService,
-//               private produitService: ProduitService,
-//               private personelService:PersonelService,
-//               private router:Router,
-//               private route: ActivatedRoute,
-//   ) { }
-
-//   ngOnInit(): void {
-//     this.id = this.route.snapshot.params['id'];
-//     this.affectationService.getAffectationById(this.id).subscribe(data => {
-//       this.affectation = data;
-//     }, error => console.log(error));
+  //Envoi de données vers le serveur
+  submitForm(){
+    this.formSubmitAttempt= true;
+      this.updateAffectation(this.affectationDto);
+      // this.getAllAffectations();
+  }
 
 
-//     this.produitService.getProduits().subscribe(produits => this.produits = produits);
-//     this.personelService.getPersonels().subscribe(personels => this.personels = personels);
-//   }
+  //envoi des données de differentes interfaces à la base de données
+  updateAffectation(et: AffectationDto){
+    if (this.formAffectation.valid) {
+    this.affectationService.updateAffectation(et.id, et).subscribe(
+      (data: AffectationDto) => {
+        this.affectationDto= data;
+        this.showSuccessMessage('Affectation enrégistré avec succès');
+        this.formAffectation.reset();
+        this.formSubmitAttempt= false;
+        return;
+      },
+      (error) => {
+        // Handle error scenario (e.g., display error message)
+        console.error("Error updating affectation:", error);
+      }
+    );
+  }else{
+    this.showErrorMessage('Verifiez vos données et renseignez les champs obligatoire avec un *')
+  }
+  }
 
 
 
 
-//   updateAffectation(): void {
-//     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-//     this.affectationService.updateAffectation(this.affectation.id, this.affectation)
-//       .subscribe(() => {
-//         alert('Affectation mise à jour avec succès!');
-//       }, error => {
-//         console.error(error);
-//         alert('Échec de la mise à jour de l\'affectation');
-//       });
-//   }
 
+  getAffectation(id: number){
+    this.affectationService.getAffectationById(id).subscribe(
+      (data: AffectationDto) => {
+        this.affectationDto= data;
+      }
+    );
+  }
 
-// onSubmit(){
-//   this.affectationService.updateAffectation(this.id, this.affectation).subscribe( data =>{
-//     this.goToAffectationList();
-//   }
-//   , error => console.log(error));
-// }
+  showSuccessMessage(id: any) {
+    this.message = 'Opération réussie !\n '+id;
+    this.style= "alert alert-success";
+    setTimeout(() => {
+      this.message = '';
+    }, 5000);
+    this.route.navigate(['/admin/listaffectation']);
+  }
 
-// goToAffectationList(){
-//   this.router.navigate(['../listaffectation']);
-// }
-// }
+  showErrorMessage(id: any) {
+    this.message = 'Oops un probleme est survenu. Opération échouée !\n '+id;
+    this.style= "alert alert-danger";
+    setTimeout(() => {
+      this.message = '';
+    }, 5000);
+  }
+
+  //load affectations form the forms
+  getAllAffectations(){
+    this.affectationService.getAffectations().subscribe(
+      (data: AffectationDto[]) => {
+        this.affectationDtos= data;
+      }
+    );
+  }
+  // verify if the formAffectation's fields are validated
+  isFieldValid(field: string) {
+    return (!this.formAffectation.get(field).valid && this.formAffectation.get(field).touched) ||
+    (this.formAffectation.get(field).untouched && this.formSubmitAttempt);
+  }
+
+  // display css style for the the fields that aren't validate
+  displayFieldCss(field: string) {
+    return {
+      'has-error': this.isFieldValid(field),
+      'has-feedback': this.isFieldValid(field)
+    };
+  }
+
+  // loops fields in ordeer to verify if all are ok
+  validateAllFormFields(formGroup: FormGroup) {         //{1}
+    Object.keys(formGroup.controls).forEach(field => {  //{2}
+      const control = formGroup.get(field);             //{3}
+      if (control instanceof FormControl) {             //{4}
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {        //{5}
+        this.validateAllFormFields(control);            //{6}
+      }
+    });
+  }
 }
+

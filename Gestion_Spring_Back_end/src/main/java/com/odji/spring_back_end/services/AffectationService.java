@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class AffectationService {
     private  final ProduitService produitService;
     private  final  PersonelService personelService;
+    private  final  BureauService bureauService;
 
     public List<AffectationDto> affectationsDtoList(List<Affectation> affectations){
         return affectations.stream()
@@ -32,6 +33,7 @@ public class AffectationService {
         affectationDto.setMotif(affectation.getMotif());
         affectationDto.setProduitDto(produitService.produitToDto(affectation.getProduit()));
         affectationDto.setPersonelDto(personelService.personelToDto(affectation.getPersonel()));
+        affectationDto.setBureauDto(bureauService.BureauToDto(affectation.getBureau()));
         return affectationDto;
 
     }
@@ -45,8 +47,10 @@ public class AffectationService {
         affectation.setQuantite(affectationDto.getQuantite());
         affectation.setDate(affectationDto.getDate());
         affectation.setMotif(affectationDto.getMotif());
+
         affectation.setProduit(produitService.dtoToProduit(affectationDto.getProduitDto()));
         affectation.setPersonel(personelService.dtoToPersonel(affectationDto.getPersonelDto()));
+        affectation.setBureau(bureauService.dtoToBureau(affectationDto.getBureauDto()));
         return affectation;
     }
     

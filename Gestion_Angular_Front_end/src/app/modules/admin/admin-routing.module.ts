@@ -66,16 +66,16 @@ const routes: Routes = [
 
 
        //routes de bureau
-       { path: 'addbureau',component: CreateBureauComponent },
-       { path: 'listbureau',component: ListBureauComponent  },
-       { path: 'updatebureau',component: UpdateBureauComponent},
-      // { path: 'searchcategorie',component: CreateDepartementComponent  },
+       { path: 'add-bureau',component: CreateBureauComponent },
+       { path: 'list-bureau',component: ListBureauComponent  },
+       { path: 'update-bureau/:id',component: UpdateBureauComponent},
+       { path: 'detail-bureau/:id',component: DetailDepartementComponent  },
 
       //routes de departement
       { path: 'adddepartement',component: CreateDepartementComponent },
       { path: 'listdepartement',component: ListDepartementComponent  },
       { path: 'updatedepartement/:id',component: UpdateDepartementComponent},
-       {path:'detailsdepartement/:id',component:DetailDepartementComponent},
+       {path:'detailsdepartement',component:DetailDepartementComponent},
      // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
     //routes de departement

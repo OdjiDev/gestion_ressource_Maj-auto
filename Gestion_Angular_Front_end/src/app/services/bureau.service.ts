@@ -27,10 +27,14 @@ export class BureauService {
     return this.httpClient.post(`${this.baseURL}`, bureauDto);
   }
 
-  updateBureau(id: number, bureauDto: BureauDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, BureauDto);
-  }
+  // updateBureau(id: number, bureauDto: BureauDto): Observable<Object>{
+  //   return this.httpClient.put(`${this.baseURL}/${id}`, BureauDto);
+  // }
 
+
+  updateBureau(id: number, bureau: BureauDto): Observable<BureauDto> {
+    return this.httpClient.put<BureauDto>(`${this.baseURL}/${id}`, bureau);
+  }
   deleteBureau(id: number): Observable<Object>{
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }

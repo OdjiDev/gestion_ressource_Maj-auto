@@ -31,7 +31,7 @@ export class UpdateDepartementComponent implements OnInit {
               ){
                 this.formDepartement= this.formBuilder.group({
                   code: [null, Validators.required],
-                  libelle: [null, Validators.required],
+                  nom: [null, Validators.required],
                   // bureauDto: [null, Validators.required],
                   });
       this.idDepartement= this.router.snapshot.params['id'];
@@ -49,49 +49,30 @@ export class UpdateDepartementComponent implements OnInit {
       // this.getAllBureaus();
   }
 
+
   //envoi des données de differentes interfaces à la base de données
-  // updateDepartement(et: DepartementDto){
-  //   if (this.formDepartement.valid) {
-  //   this.departementService.updateDepartement(et.id, et).subscribe(
-  //     (data: DepartementDto) => {
-  //       this.departementDto= data;
-  //       this.showSuccessMessage('Departement enrégistré avec succès');
-  //       this.formDepartement.reset();
-  //       this.formSubmitAttempt= false;
-  //       return;
-  //     },
-  //     (error) => {
-  //       // Handle error scenario (e.g., display error message)
-  //       console.error("Error updating departement:", error);
-  //     }
-  //   );
-  // }else{
-  //   this.showErrorMessage('Verifiez vos données et renseignez les champs obligatoire avec un *')
-  // }
-  // }\
-
-
-
-  updateDepartement(et: DepartementDto) {
+  updateDepartement(et: DepartementDto){
     if (this.formDepartement.valid) {
-      this.departementService.updateDepartement(et.id, et).subscribe(
-        (data: DepartementDto) => {
-          // Handle successful update (data is DepartementDto)
-          this.departementDto = data;
-          this.showSuccessMessage('Departement enrégistré avec succès');
-          this.formDepartement.reset();
-          this.formSubmitAttempt = false;
-          return;
-        },
-        (error) => {
-          // Handle error scenario (e.g., display error message)
-          console.error("Error updating departement:", error);
-        }
-      );
-    } else {
-      this.showErrorMessage('Verifiez vos données et renseignez les champs obligatoire avec un *');
-    }
+    this.departementService.updateDepartement(et.id, et).subscribe(
+      (data: DepartementDto) => {
+        this.departementDto= data;
+        this.showSuccessMessage('Departement enrégistré avec succès');
+        this.formDepartement.reset();
+        this.formSubmitAttempt= false;
+        return;
+      },
+      (error) => {
+        // Handle error scenario (e.g., display error message)
+        console.error("Error updating departement:", error);
+      }
+    );
+  }else{
+    this.showErrorMessage('Verifiez vos données et renseignez les champs obligatoire avec un *')
   }
+  }
+
+
+
 
 
   getDepartement(id: number){
@@ -108,7 +89,7 @@ export class UpdateDepartementComponent implements OnInit {
     setTimeout(() => {
       this.message = '';
     }, 5000);
-    this.route.navigate(['/admin/departement-liste']);
+    this.route.navigate(['/admin/listdepartement']);
   }
 
   showErrorMessage(id: any) {

@@ -4,7 +4,6 @@ export class UsersDto {
   userIdDto: string="";
   passwordDto:string="";
   repeatpasswordDto :string="";
-
   roleDto:string="";
 
 }

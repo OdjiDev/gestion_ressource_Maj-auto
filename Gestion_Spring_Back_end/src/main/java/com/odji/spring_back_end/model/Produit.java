@@ -58,5 +58,8 @@ public class Produit {
     @OneToMany(mappedBy = "produit")
     private List<LigneDemande> lignedemande;
 
+    @OneToMany(mappedBy = "produit")
+    private List<Affectation> affectation;
+
 
 }

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data@Builder
 @Entity
 @Table(name = "personel")
@@ -46,5 +48,7 @@ public class Personel {
     @JoinColumn(name = "idrole")
     private Option role;
 
+    @OneToMany(mappedBy = "personel")
+    private List<Affectation> affectation;
 }
 

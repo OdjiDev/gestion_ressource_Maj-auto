@@ -2,7 +2,7 @@
   <form [formGroup]="formDepartement" (ngSubmit)="submitForm()">
       <div class="text-center {{style}}" *ngIf="message">{{message}}</div>
       <div class="card col-6 p-2">
-          <h5 class="card-header text-center p-2 bg-info">Formulaire de creation de departements</h5>
+          <h5 class="card-header text-center p-2 bg-info">Formulaire de modification de departements</h5>
           <div class="card-content">
               <div class="form-group">
                   <label for="code">Code</label>
@@ -13,7 +13,7 @@
                   </app-field-error-display>
               </div>
               <div class="form-group">
-                  <label for="nom">Libelle</label>
+                  <label for="nom">nom</label>
                   <input type="text" class="form-control" id="nom" [(ngModel)]="departementDto.nom"
                       formControlName="nom">
                   <app-field-error-display [displayError]="isFieldValid('nom')"
@@ -21,7 +21,7 @@
                   </app-field-error-display>
                   <!-- </div>
               <div class="form-group">
-                  <label for="enseignantDto">Chef de DER</label>
+                  <label for="enseignantDto"> </label>
                   <select id="enseignantDto" [(ngModel)]="departementDto.enseignantDto.id" class="form-control"
                       formControlName="enseignantDto">
                       <option>Selectionner</option>
@@ -39,7 +39,7 @@
                   <i class="fa fa-edit"></i>
                   Modifier
               </button>
-              <button routerLink="/admin/departement-liste" class="btn btn-danger col-4 mx-auto">
+              <button routerLink="/admin/listdepartement" class="btn btn-danger col-4 mx-auto">
                   <i class="fa fa-arrow-left"></i>
                   Annuler
               </button>

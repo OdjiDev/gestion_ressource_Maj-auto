@@ -58,6 +58,7 @@ import { DetailAffectationComponent } from './interfaces/affectation/detail-affe
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 import { FieldErrorDisplayComponent } from 'src/app/field-error-display/field-error-display.component';
 import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
+import { DetailBureauComponent } from './interfaces/bureau/detail-bureau/detail-bureau.component';
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -111,6 +112,7 @@ DetailAffectationComponent,
 UpdateAffectationComponent,
 FieldErrorDisplayComponent,
 DetailDepartementComponent,
+DetailBureauComponent,
 ],
 
 

@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './field-error-display.component.html',
   styleUrls: ['./field-error-display.component.css']
 })
-export class FieldErrorDisplayComponent implements OnInit {
+export class  FieldErrorDisplayComponent implements OnInit {
   ngOnInit(): void {
     throw new Error('Method not implemented.');
   }
