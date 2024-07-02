@@ -23,6 +23,20 @@
           <app-field-error-display [displayError]="isFieldFactureValid('fournisseurDto')"
               errorMsg="Veuillez renseigner la fournisseurDto du produit">
           </app-field-error-display>
+
+
+          <div class="mb-3">
+            <label class="form-label">Nom du fournisseur</label>
+            <select class="form-control"   name="fournisseurDtos" id="fournisseurDtos" [(ngModel)]="fournisseurDto.id"
+              required>
+              <option *ngIf="!fournisseurDtos?.length">Aucun fournisseur disponible</option>
+              <option *ngFor="let fournisseur of fournisseurDtos" value="{{fournisseur.id}}">  {{fournisseur.nom}} </option>
+            </select>
+          </div>
+
+
+
+
       </div>
       <div class="col-6 d-flex justify-content-center align-items-centers" *ngIf="ligneFactureDtos.length>0">
           <div class=" col-3">

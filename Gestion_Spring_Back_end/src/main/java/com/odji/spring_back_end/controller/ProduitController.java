@@ -97,7 +97,7 @@ import java.util.Optional;
 
 
     // build delete demande REST API
-    @DeleteMapping("{id}")
+    @DeleteMapping("/produits/id")
     public ResponseEntity<HttpStatus> deleteProduit(@PathVariable Integer id){
 
         Produit produit = produitRepository.findById(id)

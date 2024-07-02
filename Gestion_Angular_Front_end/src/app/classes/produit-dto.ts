@@ -19,7 +19,7 @@ export class ProduitDto {
 
   /** Description détaillée du produit */
   designation: string = "";
-
+quantite: string = "";
   prixAchat: number = 0;
 
    categorieDto:CategorieDto= new CategorieDto();

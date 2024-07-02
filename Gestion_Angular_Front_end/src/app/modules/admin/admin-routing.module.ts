@@ -59,9 +59,9 @@ const routes: Routes = [
        // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
        //routes de produit
-       { path: 'addproduit',component: CreateProduitComponent  },
-       { path: 'listproduit',component: ListProduitComponent  },
-       { path: 'updateproduit',component: UpdateProduitComponent},
+       { path: 'add-produit',component: CreateProduitComponent  },
+       { path: 'list-produit',component: ListProduitComponent  },
+       { path: 'update-produit',component: UpdateProduitComponent},
       // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
 

@@ -9,15 +9,7 @@
     <form (ngSubmit)="onSubmit()">
 
 
-       <div class="mb-3">
-          <label class="form-label">Id du materiel</label>
-          <select class="form-control"   name="produits" id="produits" [(ngModel)]="affectationDto.produitDto.id"
-            required>
-            <option *ngIf="!produits?.length">Aucunproduit disponible</option>
-            <option *ngFor="let produit of produits" value="{{produit.id}}">id:{{produit.id}}=>{{produit.nom}}</option>
-          </select>
-        </div>
-
+        
 
        <div class="mb-3">
         <label class="form-label">Nom du personel</label>
