@@ -1,7 +1,7 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { PersonelService } from 'src/app/services/personel.service';
 import { ProduitService } from 'src/app/services/produit.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AffectationDto } from 'src/app/classes/affectation-dto';
 import { PersonelDto } from 'src/app/classes/personel-dto';
 import { ProduitDto } from 'src/app/classes/produit-dto';
@@ -15,8 +15,6 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
   styleUrls: ['./update-affectation.component.css']
 })
 export class UpdateAffectationComponent implements OnInit {
-
-
 
   formAffectation: any;
   affectationDto: AffectationDto= new AffectationDto();

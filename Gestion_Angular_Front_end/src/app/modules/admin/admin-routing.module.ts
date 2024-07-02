@@ -117,9 +117,9 @@ const routes: Routes = [
 
 
   //routes des affectation
-  { path: 'addaffectation',component: CreateAffectationComponent },
-  { path: 'listaffectation',component: ListAffectationComponent  },
-  { path: 'updateaffectation/:id',component: UpdateAffectationComponent},
+  { path: 'add-affectation',component: CreateAffectationComponent },
+  { path: 'list-affectation',component: ListAffectationComponent  },
+  { path: 'update-affectation/:id',component: UpdateAffectationComponent},
  // { path: 'searchaffectation',component: CreateAffectationComponent  },
 
 

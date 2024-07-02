@@ -1,5 +1,5 @@
+import { FournisseurDto } from 'src/app/classes/fournisseur-dto';
 import { LignedemandeDto } from './lignedemande-dto';
-import { FournisseurDto } from './fournisseur-dto';
 import { LigneFactureDto } from './lignefacture-dto';
 import { ProduitDto } from './produit-dto';
 export class FactureDto {
@@ -9,7 +9,7 @@ export class FactureDto {
  code:   string =  " ";
  total: number= 0;
   datecommande: string= " ";
- fournisseurDto: FournisseurDto= new FournisseurDto();
- lignefactureDtos:LigneFactureDto= new LigneFactureDto();
+ lignefactureDtos:LigneFactureDto[]=[];
+ fournisseurDto:FournisseurDto=new FournisseurDto();
 
 }
