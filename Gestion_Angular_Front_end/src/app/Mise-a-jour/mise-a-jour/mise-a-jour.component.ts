@@ -27,8 +27,7 @@ export class MiseAJourComponent implements OnInit {
 
     }
 
-
-    getMiseajoursConsole() {
+   getMiseajoursConsole() {
 
 this.miseajourDto.etat='';
       this.miseajourService.getMiseajours()
@@ -55,7 +54,8 @@ this.miseajourDto.etat='';
       return lowercaseString.includes(lowercaseWord);
     }
 
-    async onSubmit() {
+    onSubmit() {
+      console.log(this.miseajourDto);  //change
       try {
         // ... (Existing code for calling getMiseajours and handling errors)
 
@@ -66,6 +66,7 @@ this.miseajourDto.etat='';
 
           if (result) {
             console.log('"mise a jour disponible" is present in the miseajourDto text.');
+           // this.router.navigate(['/progressbar']);
             // Optionally, display a message on the HTML page using your framework's methods (e.g., Angular template binding)
           } else {
             console.log('"Vous ete deja a jour" is not present in the miseajourDto text.');
@@ -77,7 +78,9 @@ this.miseajourDto.etat='';
         console.error("Error fetching miseajours:", error);
         // Handle the error (e.g., display an error message to the user)
       }
+      //this.getMiseajoursConsole() ;
     }
+
 
 
 

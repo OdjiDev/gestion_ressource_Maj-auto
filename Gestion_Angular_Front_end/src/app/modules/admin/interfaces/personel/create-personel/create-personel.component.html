@@ -97,7 +97,7 @@
             <input
               type="date"
               class="form-control"
-              placeholder="dateDeNaissance du personel"  [(ngModel)]="personelDto.dateDeNaissance"
+              placeholder="JJ/MM/AAAA"  [(ngModel)]="personelDto.dateDeNaissance"
               name="dateDeNaissance"
               required
               minlength="4"
@@ -124,7 +124,7 @@
               <input
                 type="text"
                 class="form-control"
-                placeholder="lieuDeNaissance du personel"  [(ngModel)]="personelDto.lieuDeNaissance"
+                placeholder="lieu De Naissance du personel"  [(ngModel)]="personelDto.lieuDeNaissance"
                 name="lieuDeNaissance"
                 required
                 minlength="3"
@@ -152,7 +152,7 @@
                 <input
                   type="email"
                   class="form-control"
-                  placeholder="email du personel"  [(ngModel)]="personelDto.email"
+                  placeholder="exemple@gmail.com"  [(ngModel)]="personelDto.email"
                   name="email"
                   required
                   minlength="4"
@@ -178,7 +178,7 @@
                   <input
                     type="text"
                     class="form-control"
-                    placeholder="numero du personel"  [(ngModel)]="personelDto.numero"
+                    placeholder="77665398"  [(ngModel)]="personelDto.numero"
                     name="numero"
                     required
                     minlength="4"
@@ -199,9 +199,9 @@
                     </span>
                   </div>
                 </div>
-                      <div class="col-md-4 mb-3">
+                      <div class="mb-3">
                         <label class="form-label"> Role</label>
-                        <select class="form-control" name="roles" id="roles" [(ngModel)] = "personelDto.roleDto.id">
+                        <select class="form-control" name="roles" id="roles"    placeholder="selectionner" [(ngModel)] = "personelDto.roleDto.id">
                           <option *ngFor="let role of roles" value="{{role.id}}">{{role.nom}}</option>
                         </select>
                     </div>

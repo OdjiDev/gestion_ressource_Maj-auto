@@ -34,7 +34,7 @@ onCreateDemande()
   }
 
   updateDemande(id: number){
-    this.router.navigate(['updatedemande', id]);
+    this.router.navigate(['admin/updatedemande', id]);
   }
 
   deleteDemande(id: number){

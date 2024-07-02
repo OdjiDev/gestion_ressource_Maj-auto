@@ -1,6 +1,11 @@
-<div class="card">
-  <div class="card-header text-white bg-info">
-    Créer une nom </div>
+<div class="card col-md-4 offset-4">
+  <div class="card-header text-white bg-info d-flex justify-content-between">
+        <h4> Créer une fournisseur </h4>
+
+        <button class="btn btn-danger"  [routerLink]="['../listfournisseur']" >
+          <i class="fa fa-arrow-left"></i>
+        </button>
+       </div>
   <div class="card-body">
     <form (ngSubmit)="onSubmit()">
 

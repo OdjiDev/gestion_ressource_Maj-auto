@@ -16,7 +16,7 @@ public class AvarieDto {
 
     private BigDecimal quantite;
 
-    private Date date;
+    private String date;
 
     private String motif;
 

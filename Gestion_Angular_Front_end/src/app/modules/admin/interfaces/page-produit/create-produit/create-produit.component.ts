@@ -26,13 +26,6 @@ export class CreateProduitComponent implements OnInit {
     private router:Router
   ) { }
 
-  produitForm: FormGroup[]=[];
-
-
-
-
-
-  //constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
 
@@ -44,12 +37,7 @@ export class CreateProduitComponent implements OnInit {
   produitDto: ProduitDto = new ProduitDto();
   categories: CategorieDto[] = [];
   magasins: MagasinDto[] = [];
-
-
-
-
-
-
+  
   getCategories() {
     this.categorieService.getCategories()
       .subscribe(data => {
@@ -65,19 +53,6 @@ export class CreateProduitComponent implements OnInit {
         console.log("Toutes les magasins: ", this.magasins);
       });
   }
-
-  // onSubmit() {
-  //   this.produitService.addProduit(this.produitDto)
-  //     .subscribe(data => {
-  //       console.log('Produit créé avec succès!');
-  //       console.log(data);
-  //       this.goToProduitList();
-  //       // Optionally, clear the form or redirect to another page
-  //     },
-  //     error => {
-  //       console.error('Erreur lors de la création du produit:', error);
-  //     });
-  // }
 
 
 saveProduit(){

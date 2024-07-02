@@ -13,7 +13,7 @@ export class CreateUsersComponent implements OnInit {
   users: Users = {
     userId: '', password: '',
     repeatpassord: '',
-    roles: ''
+    role: ''
   };
 
   constructor(private loginuserService: LoginuserService, private router: Router){}

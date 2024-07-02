@@ -1,3 +1,4 @@
+import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
 
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
@@ -33,6 +34,9 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 
 import { CreatePersonelComponent } from './interfaces/personel/create-personel/create-personel.component';
+import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
+import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
+import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 
 
 const routes: Routes = [
@@ -57,11 +61,21 @@ const routes: Routes = [
 
 
        //routes de bureau
-       { path: 'addbureau',component: CreateBureauComponent },
-       { path: 'listbureau',component: ListBureauComponent  },
-       { path: 'updatebureau',component: UpdateBureauComponent},
-      // { path: 'searchcategorie',component: CreateDepartementComponent  },
+       { path: 'add-bureau',component: CreateBureauComponent },
+       { path: 'list-bureau',component: ListBureauComponent  },
+       { path: 'update-bureau/:id',component: UpdateBureauComponent},
+       { path: 'detail-bureau/:id',component: DetailDepartementComponent  },
 
+<<<<<<< HEAD
+=======
+      //routes de departement
+      { path: 'adddepartement',component: CreateDepartementComponent },
+      { path: 'listdepartement',component: ListDepartementComponent  },
+      { path: 'updatedepartement/:id',component: UpdateDepartementComponent},
+       {path:'detailsdepartement',component:DetailDepartementComponent},
+     // { path: 'searchcategorie',component: CreateDepartementComponent  },
+
+>>>>>>> bc417733688935569d4905aaa6d89003519c4272
     //routes de departement
       { path: 'adddemande',component: CreateDemandeComponent },
       { path: 'listdemande',component: ListDemandeComponent  },
@@ -77,6 +91,7 @@ const routes: Routes = [
      { path: 'listfournisseur',component: ListFournisseurComponent  },
      { path: 'updatefournisseur',component: UpdateFournisseurComponent},
     // { path: 'searchfournisseur',component: CreateFournisseurComponent  },
+
      //routes des avaries
      { path: 'addavarie',component: CreateAvarieComponent },
      { path: 'listavarie',component: ListAvarieComponent  },
@@ -97,6 +112,13 @@ const routes: Routes = [
   { path: 'listpersonel',component: ListPersonelComponent  },
   { path: 'updatepersonel',component: UpdatePersonelComponent},
  // { path: 'searchpersonel',component: CreatePersonelComponent  },
+
+
+  //routes des affectation
+  { path: 'addaffectation',component: CreateAffectationComponent },
+  { path: 'listaffectation',component: ListAffectationComponent  },
+  { path: 'updateaffectation/:id',component: UpdateAffectationComponent},
+ // { path: 'searchaffectation',component: CreateAffectationComponent  },
 
 
     ],

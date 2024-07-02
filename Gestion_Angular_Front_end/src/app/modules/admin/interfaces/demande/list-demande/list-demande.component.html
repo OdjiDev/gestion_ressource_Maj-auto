@@ -15,24 +15,28 @@
       <thead>
         <tr>
           <th>Motif</th>
-          <th>identifiant du Bureau</th>
+          <th>Nom du Bureau</th>
+          <th>Nom du personel</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let demandeDto of demandeDtos">
           <td>{{ demandeDto.motif }}</td>
-          <td>{{ demandeDto.bureauDto }}</td>
+          <td>{{ demandeDto.bureauDto.nom }}</td>
+          <td>{{ demandeDto.personelDto.nom }}</td>
           <td>
-            <button class="btn btn-info" (click)="updateDemande(demandeDto.id)">
-              Update
+            <button class="btn btn-sm m-1 btn-info" (click)="demandeDetails(demandeDto.id)">
+              <i class="fa fa-clipboard"></i>
             </button>
-            <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteDemande(demandeDto.id)">
-              Delete
+            <button class="btn btn-sm m-1 btn-warning" (click)="updateDemande(demandeDto.id)">
+              <i class="fa fa-edit"></i>
             </button>
-            <button class="btn btn-primary" style="margin-left: 10px" (click)="demandeDetails(demandeDto.id)">
-              View
+
+            <button class="btn btn-sm m-1 btn-danger" (click)="deleteDemande(demandeDto.id)">
+              <i class="fa fa-trash"></i>
             </button>
+
           </td>
         </tr>
       </tbody>

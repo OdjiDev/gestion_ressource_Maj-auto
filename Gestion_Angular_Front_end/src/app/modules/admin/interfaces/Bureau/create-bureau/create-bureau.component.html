@@ -2,7 +2,7 @@
 <div class="card col-md-4 offset-4">
   <div class="card-header text-white bg-info d-flex justify-content-between">
    <h4>Ajouter un Bureau</h4>
-   <button class="btn btn-danger" >
+   <button class="btn btn-danger"  [routerLink]="['../listbureau'] ">
     <i class="fa fa-arrow-left"></i>
   </button>
   </div>
@@ -36,13 +36,17 @@
                       </span>
                   </div>
 
-                  <div class="form-row">
-                    <label for="bureau">Departement</label>
-                    <select class="form-control" id="bureau"  class="form-control" required>
-                      <option value="">Sélectionnez un departement</option>
-                      <option *ngFor="let departements departements" [value]="departements.id">{{departements.nom }}</option>
+                  <div class="mb-3">
+                    <label class="form-label">Departement</label>
+                    <select class="form-control" name="departements" id="departements" [(ngModel)]="bureauDto.departementDto.id"
+                      required>
+                      <option *ngIf="!departements?.length">Aucune catégorie disponible</option>
+                      <option *ngFor="let departement of departements" value="{{departement.id}}">{{departement.nom}}</option>
                     </select>
                   </div>
+
+
+
 
             </div>
           </div>

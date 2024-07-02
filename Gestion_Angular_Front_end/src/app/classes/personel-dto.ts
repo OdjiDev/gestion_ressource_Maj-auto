@@ -15,5 +15,6 @@ export class PersonelDto {
     email: string= "";
     password: string= "";
     roleDto:RoleDto= new RoleDto();
+    
 
 }

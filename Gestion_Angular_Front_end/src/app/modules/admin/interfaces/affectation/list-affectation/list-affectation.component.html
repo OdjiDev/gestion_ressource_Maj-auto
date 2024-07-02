@@ -1,0 +1,51 @@
+<div class="">
+  <div class="row mt-0">
+    <div class="col-md-10">
+  <h2> Liste des Affectations </h2>
+</div>
+<div class="col-md-2">
+  <button class="btn btn-md btn-outline-primary" (click)="onCreateAffectation()">
+    <i class="fa fa-plus"></i> Ajouter
+  </button>
+</div>
+<hr class="fw-bold mt-0">
+<table class = "table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th> Id </th>
+            <!-- <th> id produit</th> -->
+            <!-- <th> Nom du personel</th> -->
+            <th> Motif </th>
+            <th>Id du bureau</th>
+            <th> Date </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor = "let affectationDto of affectationDtos" >
+            <td> {{ affectationDto.id}} </td>
+            <!-- <td> {{ affectationDto.produitDto.id}} </td>
+            <td> {{ affectationDto.personelDto.nom}} </td> -->
+            <td> {{ affectationDto.motif }} </td>
+            <td> {{ affectationDto.bureauDto }} </td>
+            <td> {{ affectationDto.date}} </td>
+            <td>
+
+              <button class="btn btn-sm m-1 btn-info" (click)="affectationDetails(affectationDto.id)">
+                <i class="fa fa-clipboard"></i>
+              </button>
+              <button class="btn btn-sm m-1 btn-warning" (click)="updateAffectation(affectationDto.id)">
+                <i class="fa fa-edit"></i>
+              </button>
+
+              <button class="btn btn-sm m-1 btn-danger" (click)="deleteAffectation(affectationDto.id)">
+                <i class="fa fa-trash"></i>
+              </button>
+             </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>

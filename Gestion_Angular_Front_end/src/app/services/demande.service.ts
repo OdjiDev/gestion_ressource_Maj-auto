@@ -24,16 +24,19 @@ export class DemandeService {
     return this.httpClient.get<DemandeDto>(`${this.baseURL}/${id}`);
   }
 
-  addDemande(demandeDto: DemandeDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, demandeDto);
+  addDemande(demandeDto: DemandeDto): Observable<DemandeDto>{
+    return this.httpClient.post<DemandeDto>(`${this.baseURL}`, demandeDto);
   }
 
-  updateDemande(id: number, demandeDto: DemandeDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, DemandeDto);
+  updateDemande(id: number, demandeDto: DemandeDto): Observable<DemandeDto>{
+    return this.httpClient.put<DemandeDto>(`${this.baseURL}/${id}`, demandeDto);
   }
 
-  deleteDemande(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+
+
+
+  deleteDemande(id: number): Observable<DemandeDto>{
+    return this.httpClient.delete<DemandeDto>(`${this.baseURL}/${id}`);
   }
 
 

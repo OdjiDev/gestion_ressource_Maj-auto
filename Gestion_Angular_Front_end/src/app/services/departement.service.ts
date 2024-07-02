@@ -22,17 +22,24 @@ export class DepartementService {
     return this.httpClient.get<DepartementDto>(`${this.baseURL}/${id}`);
   }
 
-  addDepartement(departementDto: DepartementDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, departementDto);
+  addDepartement(departementDto: DepartementDto): Observable<DepartementDto>{
+    return this.httpClient.post<DepartementDto>(`${this.baseURL}`, departementDto);
   }
 
 
-  updateDepartement(id: number, departementDto: DepartementDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, DepartementDto);
+  // updateDepartement(id: number, departementDto: DepartementDto): Observable<DepartementDto>{
+  //   return this.httpClient.put<DepartementDto>(`${this.baseURL}/${id}`, DepartementDto);
+  // }
+
+
+
+  updateDepartement(id: number, departement: DepartementDto): Observable<DepartementDto> {
+    return this.httpClient.put<DepartementDto>(`${this.baseURL}/${id}`, departement);
   }
 
-  deleteDepartement(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+
+  deleteDepartement(id: number): Observable<DepartementDto>{
+    return this.httpClient.delete<DepartementDto>(`${this.baseURL}/${id}`);
   }
 
 

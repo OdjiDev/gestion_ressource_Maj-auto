@@ -28,12 +28,12 @@ export class FactureService {
     return this.httpClient.post<FactureDto>(`${this.baseURL}`, factureDto);
   }
 
-  updateFacture(id: number, factureDto: FactureDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, FactureDto);
+  updateFacture(id: number, factureDto: FactureDto): Observable<FactureDto>{
+    return this.httpClient.put<FactureDto>(`${this.baseURL}/${id}`, factureDto);
   }
 
-  deleteFacture(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteFacture(id: number): Observable<FactureDto>{
+    return this.httpClient.delete<FactureDto>(`${this.baseURL}/${id}`);
   }
 
 

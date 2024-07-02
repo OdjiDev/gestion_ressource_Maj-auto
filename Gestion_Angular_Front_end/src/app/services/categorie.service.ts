@@ -22,12 +22,12 @@ export class CategorieService {
     return this.httpClient.get<CategorieDto>(`${this.baseURL}/${id}`);
   }
 
-  addCategorie(categorieDto: CategorieDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, categorieDto);
+  addCategorie(categorieDto: CategorieDto): Observable<CategorieDto>{
+    return this.httpClient.post<CategorieDto>(`${this.baseURL}`, categorieDto);
   }
 
   updateCategorie(id: number, categorieDto: CategorieDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, CategorieDto);
+    return this.httpClient.put(`${this.baseURL}/${id}`, categorieDto);
   }
 
   deleteCategorie(id: number): Observable<Object>{

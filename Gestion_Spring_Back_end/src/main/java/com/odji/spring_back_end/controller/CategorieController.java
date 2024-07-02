@@ -17,8 +17,8 @@ import java.util.Optional;
     @ RequestMapping("/api")
     public class CategorieController {
 
-        private final CategorieRepository categorieRepository;
-        private final CategorieService categorieService;
+    private final CategorieRepository categorieRepository;
+    private final CategorieService categorieService;
 
     // get all categorie
     @GetMapping("/categories/list")
@@ -26,6 +26,7 @@ import java.util.Optional;
         List<Categorie> categories = categorieRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
         return categorieService.categoriesDtoList(categorieRepository.findAll()); // Convert products to DTOs
     }
+
     // create categories
     @PostMapping("categories")
     public ResponseEntity<CategorieDto> createCategorie(@RequestBody CategorieDto categorieDto) {
@@ -33,7 +34,8 @@ import java.util.Optional;
         Categorie savedCategorie = categorieRepository.save(categorie);
         return ResponseEntity.ok(categorieService.categorieToDto(savedCategorie));
     }
-        //get categorie by id
+
+    //get categorie by id
     @GetMapping("categories/{id}")
     public ResponseEntity<Categorie> getCategorieById(@PathVariable Integer id) {
         Optional<Categorie> optionalCategorie = categorieRepository.findById(id);
@@ -44,6 +46,7 @@ import java.util.Optional;
 
         return ResponseEntity.ok(optionalCategorie.get());
     }
+
     //
     // Update a category
     @PutMapping("categories/{id}")
@@ -52,60 +55,25 @@ import java.util.Optional;
                 .orElseThrow(() -> new ResourceNotFoundException("Categorie not found with id: " + id));
         Categorie updateCategorie;
 
-         updateCategorie = categorieService.dtoToCategorie(categorieDetailsDto);
-         updateCategorie.setId(id);
-         categorieDetailsDto=categorieService.categorieToDto(categorieRepository.save(updateCategorie));
-        return ResponseEntity.ok( categorieDetailsDto);
+        updateCategorie = categorieService.dtoToCategorie(categorieDetailsDto);
+        updateCategorie.setId(id);
+        categorieDetailsDto = categorieService.categorieToDto(categorieRepository.save(updateCategorie));
+        return ResponseEntity.ok(categorieDetailsDto);
     }
 
     // build delete inscription REST API
     @DeleteMapping("categories/{id}")
-    public ResponseEntity<HttpStatus> deleteCategorie(@PathVariable Integer id){
+    public ResponseEntity<HttpStatus> deleteCategorie(@PathVariable Integer id) {
 
         Categorie categorie = categorieRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("categorie  not exist with id: " + id));
 
-       categorieRepository.delete(categorie);
+        categorieRepository.delete(categorie);
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
-//
-        // Get a category by ID
-//        @GetMapping("/{id}")
-//        public ResponseEntity<CategorieDto> getCategorieById(@PathVariable Integer id) {
-//            Categorie categorie = categorieRepository.findById(id)
-//                    .orElseThrow(() -> new ResourceNotFoundException("Categorie not found with id: " + id));
-//            return ResponseEntity.ok(new CategorieDto);
-//        }
-
-
-
-    // get employee by id rest api
-//    @GetMapping("/{id}")
-//    public ResponseEntity<CategorieDto> getCategorieById(@PathVariable Integer id) {
-//        Optional<Categorie> optionalCategorie = categorieRepository.findById(id);
-//
-//        if (optionalCategorie.isEmpty()) {
-//            return ResponseEntity.notFound().build(); // Return 404 Not Found
-//        }
-//
-//        Categorie categorie = optionalCategorie.get();
-//        CategorieDto categorieDto = new CategorieDto(categorie); // Map entity to DTO
-//        return ResponseEntity.ok(categorieDto); // Return 200 OK with DTO
-//    }
-
-
-    }
-
-
-    // Delete a category
-//        @DeleteMapping("/{id}")
-//        public ResponseEntity<HttpStatus> deleteCategorie(@PathVariable Integer id) {
-//            categorieRepository.deleteById(id);
-//            return new ResponseEntity<>(HttpStatus.NO_content);
-//        }
-//    }
+}
 
 

@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { DemandeDto } from 'src/app/classes/demande-dto';
 import { DemandeService } from 'src/app/services/demande.service';
 import { Router } from '@angular/router';
+import { PersonelService } from 'src/app/services/personel.service';
+import { PersonelDto } from 'src/app/classes/personel-dto';
 
 @Component({
   selector: 'app-create-demande',
@@ -12,20 +14,26 @@ import { Router } from '@angular/router';
 })
 export class CreateDemandeComponent implements OnInit {
 
-bureau: BureauDto[] = [];
+bureaus: BureauDto[] = [];
+personels:PersonelDto[]=[];
 demandeDto: DemandeDto = new DemandeDto();
-    constructor(private demandeService:DemandeService,private bureauService:BureauService,
+    constructor(private demandeService:DemandeService,
+      private personelService:PersonelService,
+      private bureauService:BureauService,
       private router: Router) { }
 
     ngOnInit(): void {
+
+      this.getBureaus();
+      this.getPersonels();
     }
 
 
   getBureaus() {
     this.bureauService.getBureaus()
       .subscribe(data => {
-        this.bureau = data;
-        console.log("Toutes les bureaus: ", this.bureau);
+        this.bureaus = data;
+        console.log("Toutes les bureaus: ", this.bureaus);
       });
   }
 
@@ -44,5 +52,12 @@ demandeDto: DemandeDto = new DemandeDto();
     onSubmit(){
       console.log(this.demandeDto);
       this.saveDemande();
+    }
+    getPersonels() {
+      this.personelService.getPersonels()
+        .subscribe(data => {
+          this.personels = data;
+          console.log("Toutes les personels: ", this.personels);
+        });
     }
 }

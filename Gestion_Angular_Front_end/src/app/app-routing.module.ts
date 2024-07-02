@@ -14,16 +14,51 @@ import { LoginComponent } from './login/login.component';
 import { MiseAJourComponent } from './Mise-a-jour/mise-a-jour/mise-a-jour.component';
 import { ProgressBarComponent } from './Mise-a-jour/mise-a-jour/progress-bar/progress-bar.component';
 import { InscrireComponent } from './login/inscrire/inscrire.component';
+import { AdminDashboardComponent } from './modules/admin/components/admin-dashboard/admin-dashboard.component';
+import { PersonelDashboardComponent } from './modules/personnel/components/personel-dashboard/personel-dashboard.component';
+import { TestComponent } from './test/test/test.component';
+
+
 
 const routes: Routes = [
-
-  { path: '', component: HomeComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: LoginComponent }, // Default route displays LoginComponent
   {
-      path: 'admin',
-      loadChildren: () =>
-            import('./modules/admin/admin.module').then((a) => a.AdminModule),
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((a) => a.AdminModule),
   },
+  {
+    path: 'personel',
+    loadChildren: () =>
+      import('./modules/personnel/personel.module').then((per) => per.PersonelModule),
+  },
+  {
+    path: 'comptable',
+    loadChildren: () =>
+      import('./modules/comptable/comptable.module').then((com) => com.ComptableModule),
+  },
+
+
+// const routes: Routes = [
+
+//   { path: '', component:LoginComponent },
+//   { path: '', redirectTo: '/login', pathMatch: 'full' },
+//   {
+//       path: 'admin',
+//       loadChildren: () =>
+//             import('./modules/admin/admin.module').then((a) => a.AdminModule),
+//   },
+
+
+//     {
+//         path: 'personel',
+//         loadChildren: () =>
+//               import('./modules/personnel/personel.module').then((et) => et.PersonelModule),
+//     },
+
+
+     //{ path: '**', component: NotFoundComponent },
+
 
   {
     path: 'login',
@@ -32,6 +67,10 @@ const routes: Routes = [
    {
     path: 'login/inscrire',
      component: InscrireComponent
+   },
+   {
+    path: 'progressbar',
+     component: ProgressBarComponent
    },
 
   {
@@ -65,41 +104,11 @@ const routes: Routes = [
       path: 'prog',
        component: ProgressBarComponent
      },
-
-
-
-        // {
-        //   //path: 'updatecategorie/:id',
-        //   //component: UpdateCategorieComponent
-        //   },
-
-
-
-          {
-            path: 'command',
-            component: CommandComponent
-            },
-            {
-                path: 'stat',
-                 component: PageStatistiquesComponent
-               },
-
-
-
-    //      children: [
-    //       {
-    //   path: 'statistiques',
-    //    component: PageStatistiquesComponent
-    //  },
-
-
-    // //  {
-    // //  path: 'menu',
-    // //    component:MenuComponent
-    // //  }
-    //      ]
-
-
+     {
+      path: 'test',
+       component: TestComponent
+     },
+    //
 ]
 
 @NgModule({

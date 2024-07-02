@@ -1,7 +1,7 @@
 <div class="card col-md-4 offset-4">
   <div class="card-header text-white bg-info d-flex justify-content-between">
     <h4>Créer un département </h4>
-    <button class="btn btn-danger" >
+    <button class="btn btn-danger"  [routerLink]="['../listdepartement']" >
       <i class="fa fa-arrow-left"></i>
     </button>
    </div>
@@ -37,7 +37,7 @@
           </div>
         </div>
 
-        <div class="col-md-4 mb-3">
+        <div class=" mb-3">
           <label>Code</label> <input
             type="text"
             class="form-control"
@@ -63,7 +63,7 @@
           </div>
         </div>
 
-        <div class="col-md-4 mb-3">
+        <div class="mb-3">
           <label>Date de création</label>
           <input
             type="date"  class="form-control"

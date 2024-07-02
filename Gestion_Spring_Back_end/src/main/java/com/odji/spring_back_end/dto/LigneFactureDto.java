@@ -25,7 +25,7 @@ public class LigneFactureDto {
 
     private BigDecimal quantite;
 
-    private Date date;
+    private String date;
 
 }
 

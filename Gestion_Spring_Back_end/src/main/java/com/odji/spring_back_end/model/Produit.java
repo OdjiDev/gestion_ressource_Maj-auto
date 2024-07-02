@@ -32,8 +32,13 @@ public class Produit {
     @Column(name = "designation")
     private String designation;
 
+    @Column(name = "prixAchat")
+    private BigDecimal prixAchat;
+
     @Column(name = "quantite")
     private BigDecimal quantite;
+
+
 
     @ManyToOne
     @JoinColumn(name = "idcategorie")
@@ -57,6 +62,9 @@ public class Produit {
 
     @OneToMany(mappedBy = "produit")
     private List<LigneDemande> lignedemande;
+
+    @OneToMany(mappedBy = "produit")
+    private List<Affectation> affectation;
 
 
 }
