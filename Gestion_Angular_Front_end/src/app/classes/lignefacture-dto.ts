@@ -10,6 +10,7 @@ export class LigneFactureDto {
   //date: string= "";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   total: number=0;
  produitDto: ProduitDto= new ProduitDto();
  factureDtoDto: FactureDto= new FactureDto();
@@ -18,8 +19,11 @@ export class LigneFactureDto {
 =======
 
 >>>>>>> 168005821cc391e28657d7800cffaef4b24f9923
+=======
+ 
+>>>>>>> parent of 1680058 (ajout de la 1ere facture non fonctionnel mais complet)
   produitDto: ProduitDto= new ProduitDto();
- factureDto: FactureDto= new FactureDto();
+  factureDto: FactureDto= new FactureDto();
 
 >>>>>>> bc417733688935569d4905aaa6d89003519c4272
 

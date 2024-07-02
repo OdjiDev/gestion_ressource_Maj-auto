@@ -16,8 +16,7 @@ import { ProduitService } from 'src/app/services/produit.service';
   styleUrls: ['./list-facture.component.css']
 })
 export class ListFactureComponent implements OnInit{
-
-// Declaration des variables
+  // Declaration des variables
 produitDtos: ProduitDto[] = [];
 ligneFactureDtos: LigneFactureDto[] = [];
 fournisseurDtos: FournisseurDto[] = [];
@@ -33,13 +32,6 @@ message: string = '';
 filterBy: string = '';
 montant: number = 0;
 
-
-
-
-
-
-
-
 constructor(private produitService: ProduitService,
   private factureService: FactureService,
   private ligneFactureService: LigneFactureService,
@@ -47,10 +39,10 @@ constructor(private produitService: ProduitService,
   private formBuilder: FormBuilder) { }
 // Chargement des données et Calcul du libellebre total d'items
 ngOnInit(): void {
-  // this.loadProduits();
-  // this.loadFournisseurs();
-  // this.buildLigneFactureForm();
-  // this.buildFactureForm();
+  this.loadProduits();
+  this.loadFournisseurs();
+  this.buildLigneFactureForm();
+  this.buildFactureForm();
 }
 // Soumission du formulaire
 submitForm() {
@@ -58,34 +50,32 @@ submitForm() {
   // Verifier si la facture contient au moins une ligne
   if (this.ligneFactureDtos.length == 0) {
     this.style = 'alert alert-danger';
- //   this.showSuccessMessage('Veuillez ajouter au moins une ligne à la facture');
+    this.showSuccessMessage('Veuillez ajouter au moins une ligne à la facture');
     return;
   }
-
-
   // Verifier si le fournisseur est renseigner
   if (this.fournisseurDto.id == null || this.fournisseurDto.id == 0) {
     if (this.fournisseurDto.nom == null || this.fournisseurDto.nom == "") {
       this.style = 'alert alert-danger';
-     this.showSuccessMessage('Veuillez renseigner le nom du fournisseur');
+      this.showSuccessMessage('Veuillez renseigner le nom du fournisseur');
       return;
     }
   }
-//   // Affectation du fournisseur a la facture
+  // Affectation du fournisseur a la facture
   this.factureDto.fournisseurDto = this.fournisseurDto;
   // Enregistrement de la facture
   this.addFacture();
 }
- async addFacture() {
-   try {
-  // Enregistrement de la facture dans la base de donnée et attendre la fin de l'enregistrement pour avoir une id
-   const data = await this.factureService.addFacture(this.factureDto).toPromise() as FactureDto;
+async addFacture() {
+  try {
+  //   // Enregistrement de la facture dans la base de donnée et attendre la fin de l'enregistrement pour avoir une id
+  const data = await this.factureService.addFacture(this.factureDto).toPromise() as FactureDto;
 
     console.log("factureDto avant recursive: ", data);
     // verifier si l'enregistrement a echoué
     if (data == null || data.id == 0) {
       this.style = 'alert alert-danger';
-       this.showSuccessMessage('Veuillez renseigner le nom du fournisseur');
+      this.showSuccessMessage('Veuillez renseigner le nom du fournisseur');
       return;
     }
     // Enregistrement des lignes de facture dans la base de donnée
@@ -99,7 +89,7 @@ submitForm() {
   } catch (error) {
     console.error(error);
   }
- }
+}
 // La methode qui gere l'enregistrement des lignes de facture
 registerLigneFactureRecursively(factureDto: FactureDto, ligneFactureDtos: LigneFactureDto[], index: number): any {
   if (index < ligneFactureDtos.length) {
@@ -210,16 +200,14 @@ async loadFournisseurs() {
     console.error(error);
   }
 }
-//Afficher le message d'erreur
+// Afficher le message d'erreur
 showSuccessMessage(message: string) {
   this.message = message;
   this.style = "alert alert-danger";
   setTimeout(() => {
     this.message = '';
   }, 5000);
- }
-
-
+}
 // verify if the formLigneFacture's fields are validated
 isFieldValid(field: string) {
   return (!this.formLigneFacture.get(field).valid && this.formLigneFacture.get(field).touched) ||
@@ -259,6 +247,7 @@ validateAllFormFields(formGroup: FormGroup) {         //{1}
   });
 }
 
+ }
 
 
 
@@ -355,4 +344,3 @@ validateAllFormFields(formGroup: FormGroup) {         //{1}
 //     }
 
 
-}
