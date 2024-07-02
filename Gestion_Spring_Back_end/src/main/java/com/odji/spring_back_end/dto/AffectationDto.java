@@ -22,16 +22,9 @@ public class AffectationDto {
     private String date;
 
     private String motif;
-
     @JsonIgnore
     private ProduitDto produitDto;
-
     @JsonIgnore
     private PersonelDto personelDto;
-
-    @JsonIgnore
-    private BureauDto bureauDto;
-
-
 
 }

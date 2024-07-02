@@ -30,8 +30,5 @@ public class Bureau {
     @JoinColumn(name = "iddepartement")
     private Departement departement;
 
-    @OneToMany(mappedBy = "bureau")
-    private List<Affectation> affectation;
-
 
 }

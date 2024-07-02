@@ -1,10 +1,6 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Affectation;
 import lombok.*;
-
-import java.util.List;
 
 @Data
 @Setter
@@ -33,7 +29,4 @@ public class PersonelDto {
     private String password;
 
     private OptionDto role;
-
-    @JsonIgnore
-    private List<Affectation> affectation;
 }

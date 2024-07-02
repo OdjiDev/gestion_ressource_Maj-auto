@@ -2,7 +2,6 @@ package com.odji.spring_back_end.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Affectation;
 import com.odji.spring_back_end.model.Bureau;
 import lombok.*;
 
@@ -22,9 +21,5 @@ public class BureauDto {
 
     private DepartementDto departementDto;
 
-    @JsonIgnore
-    private List<Affectation> affectations;
 
-    @JsonIgnore
-    private List<Affectation> affectation;
 }

@@ -2,13 +2,11 @@ package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.AffectationDto;
 import com.odji.spring_back_end.dto.AffectationDto;
-import com.odji.spring_back_end.dto.AffectationDto;
 import com.odji.spring_back_end.exeption.ResourceNotFoundException;
-import com.odji.spring_back_end.model.*;
 import com.odji.spring_back_end.model.Affectation;
 import com.odji.spring_back_end.model.Affectation;
-import com.odji.spring_back_end.repository.*;
 import com.odji.spring_back_end.repository.AffectationRepository;
+import com.odji.spring_back_end.repository.ProduitRepository;
 import com.odji.spring_back_end.services.AffectationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -27,58 +25,20 @@ public class AffectationController {
     private final AffectationService affectationService;
 
     private final AffectationRepository affectationRepository;
-       private final ProduitRepository produitRepository;
-    private  final PersonelRepository personelRepository;
-    private  final BureauRepository bureauRepository;
+    private final ProduitRepository produitRepository;
 
 
-     //create affectation
+    // create AVARIE
     @PostMapping("/affectations")
     public ResponseEntity<AffectationDto> createAffectation(@RequestBody AffectationDto affectationDto) {
         Affectation affectation = affectationService.dtoToAffectation(affectationDto);
         Affectation savedAffectation= affectationRepository.save(affectation);
         return ResponseEntity.ok(affectationService.affectationToDto(savedAffectation));
     }
-
-    // create affectation
-//    @PostMapping("/affectations")
-//    public AffectationDto createAffectation(@RequestBody AffectationDto affectationDto) {
-//        Affectation affectation= affectationService.dtoToAffectation(affectationDto);
-////         Integer personelId= affectationDto.getPersonelDto().getId();
-////         Optional<Personel> existingPersonelOptional= personelRepository.findById(personelId);
-////
-////       // Verification de l'existance du personel
-////        if(existingPersonelOptional.isPresent()){
-////            // Si personel est trouvé l'affecter  au affectation
-////           affectation.setPersonel(existingPersonelOptional.get());
-//////        }
-//
-//        Integer produitId= affectationDto.getProduitDto().getId();
-//        Optional<Produit> existingProduitOptional= produitRepository.findById(produitId);
-//
-//        //Verification de l'existance de la produit
-//        if(existingProduitOptional.isPresent()){
-//            // Si  la produit est trouvé l'affecter  au affectation
-//            affectation.setProduit(existingProduitOptional.get());
-//        }
-//        Integer bureauId= affectationDto.getBureauDto().getId();
-//        Optional<Bureau> existingBureauOptional= bureauRepository.findById(bureauId);
-//
-//        //Verification de l'existance du bureau
-//        if(existingBureauOptional.isPresent()){
-//            // Si  la bureau est trouvé l'affecter  au affectation
-//            affectation.setBureau(existingBureauOptional.get());
-//        }
-//
-//        // enrégistrement du affectation dans la base de donnée
-//        affectationDto= affectationService.affectationToDto(affectationRepository.save(affectation));
-//        return affectationDto;
-//    }
-    
     // get all Affectation
     @GetMapping("/affectations/list")
     public List<AffectationDto> getAllAffectation() {
-        List<Affectation> affectations = affectationRepository.findAll(); // Assuming you have a JPA repository named 'affectationRepository'
+        List<Affectation> affectations = affectationRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
         return affectationService.affectationsDtoList(affectationRepository.findAll()); // Convert products to DTOs
     }
 

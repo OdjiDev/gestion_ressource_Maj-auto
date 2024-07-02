@@ -1,4 +1,3 @@
-import { BureauDto } from 'src/app/classes/bureau-dto';
 import { PersonelDto } from 'src/app/classes/personel-dto';
 import { ProduitDto } from "./produit-dto";
 
@@ -9,6 +8,6 @@ export class AffectationDto {
    motif: string="";
    produitDto: ProduitDto= new ProduitDto();
    personelDto: PersonelDto= new PersonelDto();
-   bureauDto:BureauDto=new BureauDto();
+   
 }
 

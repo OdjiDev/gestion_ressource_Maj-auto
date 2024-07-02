@@ -77,7 +77,7 @@ usersLogin() {
   this.loginuserService.loginUsers(this.users)
     .subscribe(data => {
       alert("Login successfully");
-      this.router.navigate(['/admin']);
+      this.router.navigate(['']);
     }, error => {
       alert("Sorry please enter correct username or password");
     });

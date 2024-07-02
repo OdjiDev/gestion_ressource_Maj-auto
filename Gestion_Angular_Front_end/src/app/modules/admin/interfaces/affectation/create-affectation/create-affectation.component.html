@@ -1,6 +1,6 @@
 <div class="card col-md-4 offset-4">
   <div class="card-header text-white bg-info d-flex justify-content-between">
-   <h4>Ajouter une affectation </h4>
+   <h4>Ajouter un produit affectationr </h4>
    <button class="btn btn-danger" [routerLink]="['../listaffectation']" >
     <i class="fa fa-arrow-left"></i>
   </button>
@@ -10,11 +10,11 @@
 
 
        <div class="mb-3">
-          <label class="form-label">Id du materiel</label>
-          <select class="form-control"   name="produits" id="produits" [(ngModel)]="affectationDto.produitDto.id"
+          <label class="form-label">Nom</label>
+          <select class="form-control"  placeh  name="produits" id="produits" [(ngModel)]="affectationDto.produitDto.id"
             required>
             <option *ngIf="!produits?.length">Aucunproduit disponible</option>
-            <option *ngFor="let produit of produits" value="{{produit.id}}">id:{{produit.id}}=>{{produit.nom}}</option>
+            <option *ngFor="let produit of produits" value="{{produit.id}}">{{produit.nom}}</option>
           </select>
         </div>
 
@@ -24,29 +24,19 @@
         <select class="form-control"  placeholder="nom"  name="personels" id="personels" [(ngModel)]="affectationDto.personelDto.id"
           required>
           <option *ngIf="!personels?.length">Aucun personel disponible</option>
-          <option *ngFor="let personel of personels" value="{{personel.id}}"> {{personel.prenom}} {{personel.nom}} </option>
+          <option *ngFor="let personel of personels" value="{{personel.id}}">{{personel.nom}}</option>
         </select>
       </div>
-
-
       <div class="mb-3">
-        <label class="form-label">Bureau</label>
-        <select class="form-control"  placeholder="nom"  name="bureaus" id="bureaus" [(ngModel)]="affectationDto.bureauDto.id"
-          required>
-          <option *ngIf="!bureaus?.length">Aucun bureau disponible</option>
-          <option *ngFor="let bureau of bureaus" value="{{bureau.id}}"> {{bureau.id}}:=> {{bureau.nom}} </option>
-        </select>
-      </div>
-      <!-- <div class="mb-3">
         <label class="form-label">Prenom du personel</label>
         <select class="form-control"  placeholder="prenom"  name="personels" id="personels" [(ngModel)]="affectationDto.personelDto.id"
           required>
           <option *ngIf="!personels?.length">Aucun prenom du personel disponible</option>
           <option *ngFor="let personel of personels" value="{{personel.id}}">{{personel.prenom}}</option>
         </select>
-      </div> -->
+      </div>
 
-          <!-- <div class=" mb-3">
+          <div class=" mb-3">
             <label>Quantite</label>
             <input
               type="number"
@@ -71,7 +61,7 @@
                 Maximum 30 caractères
               </span>
             </div>
-          </div> -->
+          </div>
 
             <div class=" mb-3">
               <label>Motif</label>

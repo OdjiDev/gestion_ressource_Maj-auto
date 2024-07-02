@@ -32,12 +32,7 @@ public class Affectation {
     @ManyToOne
     @JoinColumn(name = "idproduit")
     private Produit produit ;
-
     @ManyToOne
     @JoinColumn(name = "idpersonel")
     private Personel personel ;
-
-    @ManyToOne
-    @JoinColumn(name = "idbureau")
-    private Bureau bureau ;
 }
