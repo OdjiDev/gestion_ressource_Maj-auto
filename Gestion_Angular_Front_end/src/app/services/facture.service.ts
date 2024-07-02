@@ -24,8 +24,8 @@ export class FactureService {
   }
 
 
-  addFacture(factureDto: FactureDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, factureDto);
+  addFacture(factureDto: FactureDto): Observable<FactureDto>{
+    return this.httpClient.post<FactureDto>(`${this.baseURL}`, factureDto);
   }
 
   updateFacture(id: number, factureDto: FactureDto): Observable<Object>{

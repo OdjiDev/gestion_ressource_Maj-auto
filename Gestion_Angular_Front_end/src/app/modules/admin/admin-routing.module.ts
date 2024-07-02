@@ -3,8 +3,6 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
 import { CreateCategorieComponent } from './interfaces/categorie/create-categorie/create-categorie.component';
 import { ListCategorieComponent } from './interfaces/categorie/list-categorie/list-categorie.component';
 import { CreateProduitComponent } from './interfaces/page-produit/create-produit/create-produit.component';
@@ -13,9 +11,6 @@ import { ListProduitComponent } from './interfaces/page-produit/list-produit/lis
 import { ListBureauComponent } from './interfaces/Bureau/list-bureau/list-bureau.component';
 import { CreateBureauComponent } from './interfaces/Bureau/create-bureau/create-bureau.component';
 import { UpdateBureauComponent } from './interfaces/Bureau/update-bureau/update-bureau.component';
-import { CreateDepartementComponent } from './interfaces/departement/create-departement/create-departement.component';
-import { ListDepartementComponent } from './interfaces/departement/list-departement/list-departement.component';
-import { UpdateDepartementComponent } from './interfaces/departement/update-departement/update-departement.component';
 import { UpdateDemandeComponent } from './interfaces/demande/update-demande/update-demande.component';
 import { ListDemandeComponent } from './interfaces/demande/list-demande/list-demande.component';
 import { CreateDemandeComponent } from './interfaces/demande/create-demande/create-demande.component';
@@ -66,12 +61,6 @@ const routes: Routes = [
        { path: 'listbureau',component: ListBureauComponent  },
        { path: 'updatebureau',component: UpdateBureauComponent},
       // { path: 'searchcategorie',component: CreateDepartementComponent  },
-
-      //routes de departement
-      { path: 'adddepartement',component: CreateDepartementComponent },
-      { path: 'listdepartement',component: ListDepartementComponent  },
-      { path: 'updatedepartement',component: UpdateDepartementComponent},
-     // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
     //routes de departement
       { path: 'adddemande',component: CreateDemandeComponent },

@@ -52,6 +52,7 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 import { DetailPersonelComponent } from './interfaces/personel/detail-personel/detail-personel.component';
 import { HeaderfactureComponent } from './interfaces/facture/headerfacture/headerfacture.component';
+import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -99,6 +100,7 @@ UpdatePersonelComponent,
 ListPersonelComponent,
 DetailPersonelComponent,
 HeaderfactureComponent,
+FieldErrorDisplayComponent,
 ],
 
 
