@@ -9,7 +9,7 @@ export class LigneFactureDto {
   quantite: number= 0;
   //date: string= "";
   total: number=0;
-  // produitDto: ProduitDto= new ProduitDto();
+  produitDto: ProduitDto= new ProduitDto();
   factureDto: FactureDto= new FactureDto();
 
 
