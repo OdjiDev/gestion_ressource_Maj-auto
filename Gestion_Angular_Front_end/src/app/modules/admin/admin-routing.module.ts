@@ -66,7 +66,7 @@ const routes: Routes = [
        { path: 'update-bureau/:id',component: UpdateBureauComponent},
        { path: 'detail-bureau/:id',component: DetailDepartementComponent  },
 
-<<<<<<< HEAD
+ HEAD
 =======
       //routes de departement
       { path: 'adddepartement',component: CreateDepartementComponent },
@@ -75,7 +75,7 @@ const routes: Routes = [
        {path:'detailsdepartement',component:DetailDepartementComponent},
      // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
+
     //routes de departement
       { path: 'adddemande',component: CreateDemandeComponent },
       { path: 'listdemande',component: ListDemandeComponent  },

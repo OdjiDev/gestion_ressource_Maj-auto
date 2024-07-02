@@ -52,7 +52,7 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 import { DetailPersonelComponent } from './interfaces/personel/detail-personel/detail-personel.component';
 import { HeaderfactureComponent } from './interfaces/facture/headerfacture/headerfacture.component';
-<<<<<<< HEAD
+ HEAD
 import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
 =======
 import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
@@ -62,7 +62,7 @@ import { UpdateAffectationComponent } from './interfaces/affectation/update-affe
 import { FieldErrorDisplayComponent } from 'src/app/field-error-display/field-error-display.component';
 import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
 import { DetailBureauComponent } from './interfaces/bureau/detail-bureau/detail-bureau.component';
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
+
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -110,7 +110,7 @@ UpdatePersonelComponent,
 ListPersonelComponent,
 DetailPersonelComponent,
 HeaderfactureComponent,
-<<<<<<< HEAD
+ HEAD
 FieldErrorDisplayComponent,
 =======
 CreateAffectationComponent,
@@ -120,7 +120,7 @@ UpdateAffectationComponent,
 FieldErrorDisplayComponent,
 DetailDepartementComponent,
 DetailBureauComponent,
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
+
 ],
 
 

@@ -24,13 +24,8 @@ export class LigneFactureService {
     return this.httpClient.get<LigneFactureDto>(`${this.baseURL}/${id}`);
   }
 
-<<<<<<< HEAD
-  addLignefacture(lignefactureDto: LignefactureDto): Observable<LignefactureDto>{
-    return this.httpClient.post<LignefactureDto>(`${this.baseURL}`, lignefactureDto);
-=======
-  addLignefacture(lignefactureDto: LigneFactureDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, lignefactureDto);
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
+  addLignefacture(lignefactureDto: LigneFactureDto): Observable<LigneFactureDto>{
+    return this.httpClient.post<LigneFactureDto>(`${this.baseURL}`, lignefactureDto);
   }
 
 

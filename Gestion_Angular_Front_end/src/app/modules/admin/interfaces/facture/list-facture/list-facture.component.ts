@@ -16,6 +16,18 @@ import { ProduitService } from 'src/app/services/produit.service';
   styleUrls: ['./list-facture.component.css']
 })
 export class ListFactureComponent implements OnInit{
+updateFacture(arg0: any) {
+throw new Error('Method not implemented.');
+}
+deleteFacture(arg0: any) {
+throw new Error('Method not implemented.');
+}
+factureDetails(arg0: any) {
+throw new Error('Method not implemented.');
+}
+onCreateFacture() {
+throw new Error('Method not implemented.');
+}
   // Declaration des variables
 produitDtos: ProduitDto[] = [];
 ligneFactureDtos: LigneFactureDto[] = [];
