@@ -1,4 +1,4 @@
-import { LignefactureDto } from './../../../../../classes/lignefacture-dto';
+
 import { ProduitDto } from './../../../../../classes/produit-dto';
 import { FournisseurService } from 'src/app/services/fournisseur.service';
 import { Component, OnInit } from '@angular/core';
@@ -11,6 +11,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { FournisseurDto } from 'src/app/classes/fournisseur-dto';
+import { Router } from '@angular/router';
+import { ProduitService } from 'src/app/services/produit.service';
+import { LigneFactureDto } from 'src/app/classes/lignefacture-dto';
 
 @Component({
   selector: 'app-create-facture',
@@ -21,7 +24,7 @@ export class CreateFactureComponent implements OnInit {
 
 
 produits: ProduitDto[]=[];
-lignefactureDto: LignefactureDto = new LignefactureDto()
+lignefactureDto: LigneFactureDto = new LigneFactureDto()
 fournisseurs: FournisseurDto[]=[];
 
 factureDto: FactureDto = new FactureDto();
@@ -36,14 +39,12 @@ factureDto: FactureDto = new FactureDto();
       this.getFournisseurs();
     }
     addLineItem(produitDto: ProduitDto, quantite: number): void {
-      const ligneItem: LignefactureDto = {
+      const ligneItem: LigneFactureDto = {
         produitDto: produitDto,
         quantite: quantite,
         total: produitDto.prix * quantite,
         id: 0,
-        push: function (ligneItem: LignefactureDto): void {
-          throw new Error('Function not implemented.');
-        }
+       
       };
       this.factureDto.lignefactureDto.push(ligneItem);
       //this.updateTotal();

@@ -1,5 +1,5 @@
-//package com.odji.spring_back_end;
-//
+package com.odji.spring_back_end;
+
 //import org.junit.jupiter.api.Test;
 //import org.springframework.boot.test.context.SpringBootTest;
 //
