@@ -4,16 +4,15 @@
         <h5 class="card-header text-center p-2 bg-light">Formulaire de creation de facture</h5>
         <div class="form-group col-3">
             <label for="numero">Numero facture</label>
-            <input type="text" min="1" class="form-control" id="numero" [(ngModel)]="factureDto.numero"
+            <input type="text" minlength="2" class="form-control" id="numero" [(ngModel)]="factureDto.numero"
                 formControlName="numero">
             <app-field-error-display [displayError]="isFieldFactureValid('numero')"
                 errorMsg="Veuillez renseigner la numero du produit">
             </app-field-error-display>
         </div>
-        {{fournisseurDto}}
         <div class="form-group col-3">
             <label for="fournisseur">Selectionner fournisseur</label>
-            <select [(ngModel)]="fournisseurDto" id="fournisseur" class="form-control" formControlName="fournisseurDto">
+            <select [(ngModel)]="fournisseurDto.id" id="fournisseur" class="form-control" formControlName="fournisseurDto">
                 <option value="" selected>Selectionnez un fournisseur</option>
                 <option *ngFor="let fournisseur of fournisseurDtos" [value]="fournisseur.id">{{ fournisseur.nom }}</option>
             </select>

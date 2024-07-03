@@ -25,11 +25,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("api")
     public class ProduitController {
-
             private final ProduitRepository produitRepository;
-            @Autowired
             private  final ProduitService produitService;
-            private final MagasinRepository magasinRepository;
             private  final CategorieRepository categorieRepository;
 
 
@@ -38,14 +35,6 @@ import java.util.Optional;
     @PostMapping("/produits")
     public ProduitDto createProduit(@RequestBody ProduitDto produitDto) {
        Produit produit= produitService.dtoToProduit(produitDto);
-       // Integer magasinId= produitDto.getMagasinDto().getId();
-       // Optional<Magasin> existingMagasinOptional= magasinRepository.findById(magasinId);
-
-        //Verification de l'existance du magasin
-//        if(existingMagasinOptional.isPresent()){
-//            // Si magasin est trouvé l'affecter  au produit
-//           produit.setMagasin(existingMagasinOptional.get());
-//        }
 
         Integer categorieId= produitDto.getCategorieDto().getId();
         Optional<Categorie> existingCategorieOptional= categorieRepository.findById(categorieId);
@@ -87,7 +76,6 @@ import java.util.Optional;
                 .orElseThrow(() -> new ResourceNotFoundException("produit not exist with id: " + id));
         updateProduit = produitService.dtoToProduit(produitDetailsDto);
         updateProduit.setId(id);
-        produitDetailsDto.setId(id);
 
         produitDetailsDto= produitService.produitToDto(produitRepository.save(updateProduit));
 

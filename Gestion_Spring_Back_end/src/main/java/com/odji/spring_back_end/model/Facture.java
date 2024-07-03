@@ -21,13 +21,10 @@ public class Facture {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-<<<<<<< HEAD
-=======
 
-    @Column(name = "numero")
-    private Integer numero;
+    @Column(name = "numero", unique = true)
+    private String numero;
 
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
     @Column(name = "code")
     private String code;
 

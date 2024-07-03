@@ -53,8 +53,11 @@ export class CreateFactureComponent {
   // Soumission du formulaire
   submitForm() {
     console.log(this.fournisseurDto);
-    return;
+    this.factureDto.fournisseurDto = this.fournisseurDto;
+    console.log(this.factureDto);
+    console.log(this.ligneFactureDtos);
     this.formLigneFactureSubmitAttempt = true;
+    this.formFactureSubmitAttempt = true;
     // Verifier si la facture contient au moins une ligne
     if (this.ligneFactureDtos.length == 0) {
       this.style = 'alert alert-danger';
@@ -163,14 +166,19 @@ export class CreateFactureComponent {
       this.showSuccessMessage('Ce produit existe déja dans la facture');
       return;
     }
+    if(this.ligneFactureDto.quantite == null || this.ligneFactureDto.quantite == 0){
+      this.style = 'alert alert-danger';
+      this.showSuccessMessage('Veuillez renseigner la quantite');
+      return;
+    }
     // Calcul du montant de la ligneFacture et affectation des prix de vente et d'achat
     this.ligneFactureDtos.push(this.ligneFactureDto);
     this.montant +=
       this.ligneFactureDto.produitDto.prixAchat * this.ligneFactureDto.quantite;
-    
+
+    this.ligneFactureDto = new LigneFactureDto();
     this.formLigneFactureSubmitAttempt = false;
     this.formLigneFacture.reset();
-    this.ligneFactureDto = new LigneFactureDto();
   }
   // Modification d'une ligneFacture
   modifyLigneFacture(ligneFacture: LigneFactureDto) {
@@ -248,7 +256,8 @@ export class CreateFactureComponent {
     return (
       (!this.formLigneFacture.get(field).valid &&
         this.formLigneFacture.get(field).touched) ||
-      (this.formLigneFacture.get(field).untouched && this.formLigneFactureSubmitAttempt)
+      (this.formLigneFacture.get(field).untouched &&
+        this.formLigneFactureSubmitAttempt)
     );
   }
 

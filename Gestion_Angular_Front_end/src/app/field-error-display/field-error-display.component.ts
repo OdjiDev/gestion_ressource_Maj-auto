@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class  FieldErrorDisplayComponent implements OnInit {
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // throw new Error('Method not implemented.');
   }
   @Input() errorMsg: string='';
   @Input() displayError: boolean= false;

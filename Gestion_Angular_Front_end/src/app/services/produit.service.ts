@@ -22,16 +22,16 @@ export class ProduitService {
     return this.httpClient.get<ProduitDto>(`${this.baseURL}/${id}`);
   }
 
-  addProduit(produitDto: ProduitDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, produitDto);
+  addProduit(produitDto: ProduitDto): Observable<ProduitDto>{
+    return this.httpClient.post<ProduitDto>(`${this.baseURL}`, produitDto);
   }
 
-  updateProduit(id: number, produitDto: ProduitDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, ProduitDto);
+  updateProduit(id: number, produitDto: ProduitDto): Observable<ProduitDto>{
+    return this.httpClient.put<ProduitDto>(`${this.baseURL}/${id}`, produitDto);
   }
 
-  deleteProduit(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteProduit(id: number): Observable<ProduitDto>{
+    return this.httpClient.delete<ProduitDto>(`${this.baseURL}/${id}`);
   }
 
 

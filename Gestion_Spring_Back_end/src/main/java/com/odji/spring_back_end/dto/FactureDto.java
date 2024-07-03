@@ -21,7 +21,7 @@ public class FactureDto {
 
     private Integer id;
 
-    private Integer numero;
+    private String numero;
 
     private String code;
 
