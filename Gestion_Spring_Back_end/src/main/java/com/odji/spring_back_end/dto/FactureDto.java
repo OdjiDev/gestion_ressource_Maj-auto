@@ -1,16 +1,9 @@
 package com.odji.spring_back_end.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Facture;
-import com.odji.spring_back_end.model.Fournisseur;
-import com.odji.spring_back_end.model.LigneFacture;
-import jakarta.persistence.Column;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import lombok.*;
 
-import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 @Data
 @Setter
@@ -27,7 +20,7 @@ public class FactureDto {
 
     private String total;
 
-    private Instant datecommande;
+    private Date datecommande;
 
     private FournisseurDto fournisseurDto;
 
