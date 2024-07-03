@@ -1,161 +1,166 @@
-<!--
-  </div>
-  <div class="card-body">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Numero</th>
-          <th>Fournisseur</th>
-          <th>Code</th>
-          <th>Produit</th>
-          <th>Quantite</th>
-          <th>Total</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let facture of factureDto">
-          <td>{{ factureDto.code}}</td>
-          <td>{{ factureDto.fournisseurDto.nom}}</td>
-          <td>{{ factureDto.code}}</td>
-          <td>{{ factureDto.lignefactureDto.quantite}}</td>
-         <td>{{ factureDto.datecommande}}</td>
-
-          <td>
-            <button class="btn btn-info" (click)="updateFacture(factureDto.id)">
-              Update
-            </button>
-            <button class="btn btn-danger" style="margin-left: 10px" (click)="deleteFacture(factureDto.id)">
-              Delete
-            </button>
-            <button class="btn btn-primary" style="margin-left: 10px" (click)="factureDetails(factureDto.id)">
-              View
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
+<!-- show message in alert -->
+<div class="col-12 text-center">
+  <h5 [class]="style" role="alert" *ngIf="message">
+    {{ message }}
+  </h5>
 </div>
-    <form [formGroup]="formFacture" (ngSubmit)="submitForm()">
-      <div class="row">
-          <h5 class="card-header text-center p-2 bg-light">Formulaire de creation de facture</h5>
-      <div class="form-group col-3">
-          <label for="numero">Numero Facture</label>
-          <input type="text" min="1" class="form-control" id="numero" [(ngModel)]="factureDto.numero"
-              formControlName="numero">
-          <app-field-error-display [displayError]="isFieldFactureValid('numero')"
-              errorMsg="Veuillez renseigner la numero du produit">
-          </app-field-error-display>
-      </div>
-      <div class="form-group col-3">
-          <label for="fournisseur">Selectionner fournisseur</label>
-          <select [(ngModel)]="fournisseurDtos" id="fournisseur" class="form-control" formControlName="fournisseurDto">
-              <option *ngFor="let fournisseur of fournisseurDtos" [value]="fournisseur">{{ fournisseur.nom }}</option>
-          </select>
-          <app-field-error-display [displayError]="isFieldFactureValid('fournisseurDto')"
-              errorMsg="Veuillez renseigner la fournisseurDto du produit">
-          </app-field-error-display>
-      </div>
-      <div class="col-6 d-flex justify-content-center align-items-centers" *ngIf="ligneFactureDtos.length>0">
-          <div class=" col-3">
-              <h4 class="text-center text-success">
-                  Total: {{(montant==0)?'':(montant).toLocaleString('fr-FR')}} FCFA
-              </h4>
-          </div>
-          <button class="btn btn-warning col-3" [disabled]="!formFacture.valid">
-              <i class="fa fa-save">
-                  Enregistrer la facture
-              </i>
-          </button>
-      </div>
-      </div>
-  </form>
-  <form [formGroup]="formLigneFacture" (ngSubmit)="ajouterLigneFacture()">
-      <div class="row mt-2">
-          <div class="col-8">
-              <table class="table">
-                  <thead>
-                      <tr>
-                          <th>#</th>
-                          <th>Libelle</th>
-                          <th>Qte</th>
-                          <th>Prix Unitaire</th>
-                          <th>Montant</th>
-                          <th>Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr *ngFor="let ligne of ligneFactureDtos; let i = index">
-                          <td class="text-center">{{ i+1 }}</td>
-                          <td>{{ ligne.produitDto.nom }}</td>
-                          <td class="text-center">{{ ligne.quantite }}</td>
-                          <td class="text-center">{{ ligne.produitDto.prixAchat }}</td>
-                          <td class="text-center">{{ ligne.produitDto.prixAchat*ligne.quantite }}</td>
-                          <td class="text-center">
-                              <a class="btn" (click)="modifyLigneFacture(ligne)">
-                                  <i class="fa fa-edit  text-secondary"></i>
-                              </a>
-                              <a class="btn" (click)="deleteLigneFacture(ligne)">
-                                  <i class="fa fa-trash  text-danger"></i>
-                              </a>
-                          </td>
-                      </tr>
-                  </tbody>
-              </table>
-          </div>
-          <div class="col-4">
+<div class="row text-center my-2 flex justify-content-between">
+  <div class="col-2">
+    <button class="btn btn-success" (click)="generatePDF()">
+      <i class="fa fa-print"></i>
+      Imprimer
+    </button>
+  </div>
+  <div class="col-4">
+    <h4 class="text-center">Liste des factures</h4>
+  </div>
+  <div class="col-2">
+    <a routerLink="/admin/add-facture" class="btn btn-primary">
+      <i class="fa fa-plus"></i>
+      Ajouter
+    </a>
+  </div>
+</div>
+<hr>
+<div class="content mt-2">
+  <div class="row d-flex justify-content-between">
+    <div class="col-3 form-group">
+      <label for="itemsPerPage" class="form-label d-inline">
+        <i class="fa fa-list mx-2"></i>
+        Afficher
+      </label>
+      <input type="number" name="itemsPerPage" [(ngModel)]="itemsPerPage" class="form-control w-25 fw-bold d-inline"
+        (change)="itemsPerPageChanged()" id="itemsPerPage" min="1" max="100">
+      par page
+    </div>
+    <div class="col-4 form-group d-flex align-items-center">
+      <label class="form-label">
+        <!-- Filtrer par -->
+        <i class="fa fa-filter"></i>
+      </label>
+      <select class="form-select mx-2" name="filterBy" [(ngModel)]="filterBy" (change)="filterByChanged()">
+        <option selected>Filtrer par</option>
+        <option value="nom">Nom</option>
+        <option value="datecommande">Date</option>
+        <option value="quantite">Quantite</option>
+        <option value="motif">Motif</option>
+      </select>
+    </div>
+    <div class="form-group d-flex align-items-center col-3">
+      <label for="searchText" class="form-label">
+        <i class="fa fa-search"></i>
+      </label>
+      <input type="text" class="form-control mx-2" placeholder="Rechercher..." [(ngModel)]="searchText"
+        (keyup)="filterFactureLists()">
+    </div>
+  </div>
+  <!-- Tableau -->
+  <table class="table" #content>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nom</th>
+        <th>Quantite</th>
+        <th>Motif</th>
+        <th>Date</th>
+        <!-- ... Ajoutez d'autres colonnes ici ... -->
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Utilisez une boucle *ngFor pour afficher chaque étudiant -->
+      <tr *ngFor="let facture of filteredFactures, let i=index">
+        <td>{{ i+1 }}</td>
+        <!-- <td>{{ facture.produitDto.nom }}</td> -->
+        <td>{{ facture.datecommande}}</td>
+        <td>{{ facture.fournisseurDto }}</td>
+        <td>{{ facture.datecommande}}</td>
+        <!-- <td>{{ facture.enseignantDto.motif }} {{facture.enseignantDto.premotif}}</td> -->
+        <!-- ... Affichez d'autres données de la facture ... -->
+        <td>
+          <!-- Bouton Dropdown avec actions -->
+          <a class="btn btn-secondary" routerLink="/admin/update-facture/{{facture.id}}">
+            <i class="fa fa-edit"></i>
+            Modifier
+          </a>
+          <a class="btn btn-danger" (click)="deleteFacture(facture.id)" data-bs-toggle="modal"
+          data-bs-target="#deleteModal">
+            <i class="fa fa-trash"></i>
+            Supprimer
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-              <h5 class="card-header text-center p-2">Produit selectionner</h5>
-              <ul class="list-group">
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Libelle :
-                      <span class="">{{ ligneFactureDto.produitDto.nom }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Prix unitaire :
-                      <span class="">{{
-                          (ligneFactureDto.produitDto.prixAchat==0)?'':(ligneFactureDto.produitDto.prixAchat) }}</span>
-                  </li>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                      Quantite en stock :
-                      <span class="">{{
-                          (ligneFactureDto.quantite==0)?'':(ligneFactureDto.quantite)
-                          }}</span>
-                  </li>
-              </ul>
-              <div class="form-group">
-                  <label for="quantite">Quantite</label>
-                  <input type="number" min="1" class="form-control" id="quantite" [(ngModel)]="ligneFactureDto.quantite"
-                      formControlName="quantite">
-                  <app-field-error-display [displayError]="isFieldValid('quantite')"
-                      errorMsg="Veuillez renseigner la quantite du produit">
-                  </app-field-error-display>
-              </div>
-              <div class="d-flex justify-content-center mt-3">
-                  <button type="submit" class="btn btn-primary col-4 mx-auto" [disabled]="!formLigneFacture.valid">
-                      <i class="fa fa-plus"></i>
-                      Ajouter
-                  </button>
-              </div>
-          </div>
-          <div class="text-center {{style}}" *ngIf="message">{{message}}</div>
+  <div class="col-12 text-center">
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link btn" (click)="goToPage(1)" aria-label="Première page">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link btn" (click)="goToPage(currentPage - 1)" aria-label="Page précédente">
+            <span aria-hidden="true">&lsaquo;</span>
+          </a>
+        </li>
+        <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+          <a class="page-link btn" (click)="goToPage(page)">{{ page }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link btn" (click)="goToPage(currentPage + 1)" aria-label="Page suivante">
+            <span aria-hidden="true">&rsaquo;</span>
+          </a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link btn" (click)="goToPage(totalPages)" aria-label="Dernière page">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade modal-dialog-scrollable" id="deleteModal" tabindex="-1" aria-labelledby="createModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info card-danger">
+        <h1 class="modal-title fs-5" id="createModalLabel">
+          Suppression
+        </h1>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">
+          <i class="fa fa-times"></i>
+        </button>
       </div>
-  </form>
-  <hr>
-  <div class="mt-2">
-      <table class="table mt-2 except" #content>
-          <thead>
-              <tr>
-                  <th>#</th>
-                  <th>Libelle</th>
-                  <th>Description</th>
-                  <th>Qte</th>
-                  <th>P.Vente</th>
-                  <th>Actions</th>
-              </tr>
-          </thead>
+      <div class="modal-body">
+        Etes-vous sur de vouloir supprimer cette facture ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fa fa-backward"></i>
+          Annuler
+        </button>
+        <button type="button" class="btn btn-danger" (click)="delete()"  data-bs-toggle="modal"
+            data-bs-target="#deleteModal">
+          <i class="fa fa-trash"></i>
+          Supprimer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
- -->
+
+
+
+
+
+
+
+

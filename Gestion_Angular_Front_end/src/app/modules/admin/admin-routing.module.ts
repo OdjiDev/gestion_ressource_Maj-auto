@@ -81,9 +81,9 @@ const routes: Routes = [
       { path: 'updatedemande',component: UpdateDemandeComponent},
      // { path: 'searchdemande',component: CreateDemandeComponent  },
       //routes de facture
-      { path: 'addfacture',component: CreateFactureComponent },
-      { path: 'listfacture',component: ListFactureComponent  },
-      { path: 'updatefacture',component: UpdateFactureComponent},
+      { path: 'add-facture',component: CreateFactureComponent },
+      { path: 'list-facture',component: ListFactureComponent  },
+      { path: 'update-facture',component: UpdateFactureComponent},
      // { path: 'searchfacture',component: CreateFactureComponent  },
      //routes de fournisseur
      { path: 'addfournisseur',component: CreateFournisseurComponent },
@@ -92,9 +92,9 @@ const routes: Routes = [
     // { path: 'searchfournisseur',component: CreateFournisseurComponent  },
 
      //routes des avaries
-     { path: 'addavarie',component: CreateAvarieComponent },
-     { path: 'listavarie',component: ListAvarieComponent  },
-     { path: 'updateavarie',component: UpdateAvarieComponent},
+     { path: 'add-avarie',component: CreateAvarieComponent },
+     { path: 'list-avarie',component: ListAvarieComponent  },
+     { path: 'update-avarie',component: UpdateAvarieComponent},
     // { path: 'searchavarie',component: CreateAvarieComponent  },
   //routes des avaries
   { path: 'addsociete',component: CreateSocieteComponent },

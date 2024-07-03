@@ -31,7 +31,7 @@ public class ProduitDto {
 
     private CategorieDto categorieDto;
 
-    private MagasinDto magasinDto;
+    //private MagasinDto magasinDto;
 
     @JsonIgnore
     private List<AvarieDto> avaries;

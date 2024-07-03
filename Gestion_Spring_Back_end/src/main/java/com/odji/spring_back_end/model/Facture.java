@@ -24,18 +24,18 @@ public class Facture {
     private Integer id;
 
     @Column(name = "numero", unique = true)
-    private String numero;
+    private Integer numero;
 
     @Column(name = "code")
     private String code;
 
     @Column(name = "datecommande")
-    @Temporal(TemporalType.DATE)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    private Date datecommande;
+//    @Temporal(TemporalType.DATE)
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    private String datecommande;
 
     @Column(name = "total")
-    private String total;
+    private Number total;
 
     @ManyToOne
     @JoinColumn(name = "idfournisseur")

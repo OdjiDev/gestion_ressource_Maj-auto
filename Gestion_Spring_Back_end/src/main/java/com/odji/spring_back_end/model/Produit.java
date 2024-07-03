@@ -44,9 +44,9 @@ public class Produit {
     @JoinColumn(name = "idcategorie")
     private Categorie categorie;
 
-    @ManyToOne
-    @JoinColumn(name = "idmagasin")
-    private Magasin magasin;
+//    @ManyToOne
+//    @JoinColumn(name = "idmagasin")
+//    private Magasin magasin;
 
     @OneToMany(mappedBy = "produit")
     private List<Avarie> avarie;

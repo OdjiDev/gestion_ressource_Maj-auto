@@ -43,7 +43,7 @@ affectationDto: AffectationDto = new AffectationDto();
     }
 
     goToaffectationList(){
-      this.router.navigate(['admin/listaffectation']);
+      this.router.navigate(['admin/list-affectation']);
     }
 
     onSubmit(){

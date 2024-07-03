@@ -14,13 +14,13 @@ public class FactureDto {
 
     private Integer id;
 
-    private String numero;
+    private Integer numero;
 
     private String code;
 
-    private String total;
+    private Number total;
 
-    private Date datecommande;
+    private String datecommande;
 
     private FournisseurDto fournisseurDto;
 
