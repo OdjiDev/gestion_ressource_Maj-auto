@@ -67,8 +67,6 @@ const routes: Routes = [
        { path: 'updatebureau',component: UpdateBureauComponent},
       // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
-
-
       //routes de departement
       { path: 'adddepartement',component: CreateDepartementComponent },
       { path: 'listdepartement',component: ListDepartementComponent  },

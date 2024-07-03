@@ -57,14 +57,10 @@ import { ListAffectationComponent } from './interfaces/affectation/list-affectat
 import { DetailAffectationComponent } from './interfaces/affectation/detail-affectation/detail-affectation.component';
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 import { FieldErrorDisplayComponent } from 'src/app/field-error-display/field-error-display.component';
-import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
-import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
 import { CreateDepartementComponent } from './interfaces/Departement/create-departement/create-departement.component';
 import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
-
-
-
-
+import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
+import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
 
 @NgModule({
   declarations: [ AdminDashboardComponent,HeaderComponent,SideBarComponent,
@@ -119,12 +115,6 @@ DetailAffectationComponent,
 UpdateAffectationComponent,
 FieldErrorDisplayComponent,
 DetailDepartementComponent,
-
-
-
-
-
-
 ],
 
 
