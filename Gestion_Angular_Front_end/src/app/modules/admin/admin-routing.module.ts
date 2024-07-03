@@ -1,5 +1,3 @@
-import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
-
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -37,6 +35,10 @@ import { CreatePersonelComponent } from './interfaces/personel/create-personel/c
 import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
 import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
+import { CreateDepartementComponent } from './interfaces/Departement/create-departement/create-departement.component';
+import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
+import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
+import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
 
 
 const routes: Routes = [
@@ -66,8 +68,6 @@ const routes: Routes = [
        { path: 'update-bureau/:id',component: UpdateBureauComponent},
        { path: 'detail-bureau/:id',component: DetailDepartementComponent  },
 
-<<<<<<< HEAD
-=======
       //routes de departement
       { path: 'adddepartement',component: CreateDepartementComponent },
       { path: 'listdepartement',component: ListDepartementComponent  },
@@ -75,7 +75,6 @@ const routes: Routes = [
        {path:'detailsdepartement',component:DetailDepartementComponent},
      // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
     //routes de departement
       { path: 'adddemande',component: CreateDemandeComponent },
       { path: 'listdemande',component: ListDemandeComponent  },

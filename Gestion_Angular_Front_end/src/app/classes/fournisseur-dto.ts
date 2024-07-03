@@ -1,6 +1,6 @@
-import { FactureDto } from 'src/app/classes/facture-dto';
+
 export class FournisseurDto {
-  id!: number;
+  id: number= 0;
   prenom: string= "";
   nom: string= "";
   adresse: string= "";

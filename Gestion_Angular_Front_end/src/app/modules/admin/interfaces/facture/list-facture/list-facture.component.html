@@ -1,13 +1,4 @@
-<<<<<<< HEAD
-<div class="card">
-  <div class="card-header text-center">
-    <h2>Liste des factures</h2>
-    <div class="d-flex justify-content-end">
-      <button class="btn btn-md btn-primary" (click)="onCreateFacture()">
-        <i class="fa fa-user"></i> Add facture
-      </button>
-    </div>
-    <!-- <app-headerfacture></app-headerfacture> -->
+<!-- 
   </div>
   <div class="card-body">
     <table class="table table-striped">
@@ -28,7 +19,6 @@
           <td>{{ factureDto.fournisseurDto.nom}}</td>
           <td>{{ factureDto.code}}</td>
           <td>{{ factureDto.lignefactureDto.quantite}}</td>
-          <!-- <td>{{ factureDto.lignefactureDto}}</td> -->
          <td>{{ factureDto.datecommande}}</td>
 
           <td>
@@ -48,13 +38,6 @@
   </div>
 
 </div>
-=======
-
-
-
-
-
-    <!-- formulaire -->
     <form [formGroup]="formFacture" (ngSubmit)="submitForm()">
       <div class="row">
           <h5 class="card-header text-center p-2 bg-light">Formulaire de creation de facture</h5>
@@ -78,7 +61,6 @@
       <div class="col-6 d-flex justify-content-center align-items-centers" *ngIf="ligneFactureDtos.length>0">
           <div class=" col-3">
               <h4 class="text-center text-success">
-                  <!-- delimiteur de millier -->
                   Total: {{(montant==0)?'':(montant).toLocaleString('fr-FR')}} FCFA
               </h4>
           </div>
@@ -90,7 +72,6 @@
       </div>
       </div>
   </form>
-      <!-- formulaire -->
   <form [formGroup]="formLigneFacture" (ngSubmit)="ajouterLigneFacture()">
       <div class="row mt-2">
           <div class="col-8">
@@ -126,7 +107,6 @@
           </div>
           <div class="col-4">
 
-              <!-- Affichage du produit selectionner -->
               <h5 class="card-header text-center p-2">Produit selectionner</h5>
               <ul class="list-group">
                   <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -163,10 +143,8 @@
           <div class="text-center {{style}}" *ngIf="message">{{message}}</div>
       </div>
   </form>
-  <!-- Fin du formulaire -->
   <hr>
   <div class="mt-2">
-      <!-- Tableau -->
       <table class="table mt-2 except" #content>
           <thead>
               <tr>
@@ -180,6 +158,4 @@
           </thead>
 
 
->>>>>>> bc417733688935569d4905aaa6d89003519c4272
-
-
+ -->
