@@ -1,3 +1,4 @@
+//import { ListfactureComponent } from './interfaces/facture/list-facture/list-facture.component';
 import { CreateProduitComponent } from './interfaces/page-produit/create-produit/create-produit.component';
 
 import { NgModule } from '@angular/core';
@@ -18,12 +19,6 @@ import { ListProduitComponent } from './interfaces/page-produit/list-produit/lis
 import { CreateBureauComponent } from './interfaces/Bureau/create-bureau/create-bureau.component';
 import { ListBureauComponent } from './interfaces/Bureau/list-bureau/list-bureau.component';
 import { UpdateBureauComponent } from './interfaces/Bureau/update-bureau/update-bureau.component';
-<<<<<<< HEAD
-// import { CreateDepartementComponent } from './interfaces/departement/create-departement/create-departement.component';
-// import { ListDepartementComponent } from './interfaces/departement/list-departement/list-departement.component';
-// import { UpdateDepartementComponent } from './interfaces/departement/update-departement/update-departement.component';
-=======
->>>>>>> 7436a0253caf3d0ac9a608e92cad1da31f5f0547
 import { CreateDemandeComponent } from './interfaces/demande/create-demande/create-demande.component';
 import { ListDemandeComponent } from './interfaces/demande/list-demande/list-demande.component';
 import { UpdateDemandeComponent } from './interfaces/demande/update-demande/update-demande.component';
@@ -51,29 +46,17 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 import { DetailPersonelComponent } from './interfaces/personel/detail-personel/detail-personel.component';
 import { HeaderfactureComponent } from './interfaces/facture/headerfacture/headerfacture.component';
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 7436a0253caf3d0ac9a608e92cad1da31f5f0547
 import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
 import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
 import { DetailAffectationComponent } from './interfaces/affectation/detail-affectation/detail-affectation.component';
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 import { FieldErrorDisplayComponent } from 'src/app/field-error-display/field-error-display.component';
-<<<<<<< HEAD
-import { CreateDepartementComponent } from './interfaces/Departement/create-departement/create-departement.component';
-import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
-import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
 import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
-=======
-import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
-import { DetailBureauComponent } from './interfaces/Bureau/detail-bureau/detail-bureau.component';
+//import { DetailBureauComponent } from './interfaces/Bureau/detail-bureau/detail-bureau.component';
 import { CreateDepartementComponent } from './interfaces/Departement/create-departement/create-departement.component';
 import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
 import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
 import { CreateFactureComponent } from './interfaces/facture/create-facture/create-facture.component';
->>>>>>> 7436a0253caf3d0ac9a608e92cad1da31f5f0547
 
 @NgModule({
   declarations: [
@@ -106,7 +89,7 @@ import { CreateFactureComponent } from './interfaces/facture/create-facture/crea
     DetailFournisseurComponent,
     SearchFournisseurComponent,
     CreateFactureComponent,
-    ListFactureComponent,
+    ListBureauComponent,
     CreateAvarieComponent,
     UpdateAvarieComponent,
     ListAvarieComponent,
@@ -133,7 +116,9 @@ import { CreateFactureComponent } from './interfaces/facture/create-facture/crea
     UpdateAffectationComponent,
     FieldErrorDisplayComponent,
     DetailDepartementComponent,
-   
+    CreateFactureComponent,
+  //  ListFactureComponent,
+
   ],
 
   imports: [CommonModule, AdminRoutingModule, FormsModule, ReactiveFormsModule],

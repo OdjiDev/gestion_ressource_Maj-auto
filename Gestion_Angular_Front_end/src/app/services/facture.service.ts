@@ -25,6 +25,7 @@ export class FactureService {
 
 
   addFacture(factureDto: FactureDto): Observable<FactureDto>{
+    factureDto.datecommande = factureDto.datecommande.split('T')[0];
     return this.httpClient.post<FactureDto>(`${this.baseURL}`, factureDto);
   }
 
