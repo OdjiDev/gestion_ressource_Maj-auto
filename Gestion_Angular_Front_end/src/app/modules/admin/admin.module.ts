@@ -20,19 +20,17 @@ import { ListProduitComponent } from './interfaces/page-produit/list-produit/lis
 import { CreateBureauComponent } from './interfaces/Bureau/create-bureau/create-bureau.component';
 import { ListBureauComponent } from './interfaces/Bureau/list-bureau/list-bureau.component';
 import { UpdateBureauComponent } from './interfaces/Bureau/update-bureau/update-bureau.component';
-import { CreateDepartementComponent } from './interfaces/departement/create-departement/create-departement.component';
-import { ListDepartementComponent } from './interfaces/departement/list-departement/list-departement.component';
-import { UpdateDepartementComponent } from './interfaces/departement/update-departement/update-departement.component';
+// import { CreateDepartementComponent } from './interfaces/departement/create-departement/create-departement.component';
+// import { ListDepartementComponent } from './interfaces/departement/list-departement/list-departement.component';
+// import { UpdateDepartementComponent } from './interfaces/departement/update-departement/update-departement.component';
 import { CreateDemandeComponent } from './interfaces/demande/create-demande/create-demande.component';
 import { ListDemandeComponent } from './interfaces/demande/list-demande/list-demande.component';
 import { UpdateDemandeComponent } from './interfaces/demande/update-demande/update-demande.component';
-import { ListFactureComponent } from './interfaces/facture/list-facture/list-facture.component';
 import { ListFournisseurComponent } from './interfaces/fournisseur/list-fournisseur/list-fournisseur.component';
 import { UpdateFournisseurComponent } from './interfaces/fournisseur/update-fournisseur/update-fournisseur.component';
 import { CreateFournisseurComponent } from './interfaces/fournisseur/create-fournisseur/create-fournisseur.component';
 import { DetailFournisseurComponent } from './interfaces/fournisseur/detail-fournisseur/detail-fournisseur.component';
 import { SearchFournisseurComponent } from './interfaces/fournisseur/search-fournisseur/search-fournisseur.component';
-import { CreateFactureComponent } from './interfaces/facture/create-facture/create-facture.component';
 import { CreateAvarieComponent } from './interfaces/avarie/create-avarie/create-avarie.component';
 import { UpdateAvarieComponent } from './interfaces/avarie/update-avarie/update-avarie.component';
 import { ListAvarieComponent } from './interfaces/avarie/list-avarie/list-avarie.component';
@@ -52,15 +50,20 @@ import { UpdatePersonelComponent } from './interfaces/personel/update-personel/u
 import { ListPersonelComponent } from './interfaces/personel/list-personel/list-personel.component';
 import { DetailPersonelComponent } from './interfaces/personel/detail-personel/detail-personel.component';
 import { HeaderfactureComponent } from './interfaces/facture/headerfacture/headerfacture.component';
- HEAD
-import { FieldErrorDisplayComponent } from './components/field-error-display/field-error-display.component';
-=======
+
+
 import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
 import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
 import { DetailAffectationComponent } from './interfaces/affectation/detail-affectation/detail-affectation.component';
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
 import { FieldErrorDisplayComponent } from 'src/app/field-error-display/field-error-display.component';
-import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
+import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
+import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
+import { CreateDepartementComponent } from './interfaces/Departement/create-departement/create-departement.component';
+import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
+
+
+
 
 
 @NgModule({
@@ -73,23 +76,21 @@ import { DetailDepartementComponent } from './interfaces/departement/detail-depa
      CreateBureauComponent,
      ListBureauComponent,
      UpdateBureauComponent,
-
-    CreateDepartementComponent,
-  ListDepartementComponent,
-UpdateDepartementComponent,
+  CreateDepartementComponent,
+ ListDepartementComponent,
+ UpdateDepartementComponent,
 CreateDemandeComponent,
 ListDemandeComponent,
 UpdateDemandeComponent,
 CreateProduitComponent,
-ListFactureComponent,
+
 ListFournisseurComponent,
 UpdateFournisseurComponent,
 CreateFournisseurComponent,
 DetailFournisseurComponent,
 SearchFournisseurComponent,
 
-CreateFactureComponent,
-ListFactureComponent,
+//ListFactureComponent,
 CreateAvarieComponent,
 UpdateAvarieComponent,
 ListAvarieComponent,
@@ -109,20 +110,21 @@ UpdatePersonelComponent,
 ListPersonelComponent,
 DetailPersonelComponent,
 HeaderfactureComponent,
- HEAD
+
 FieldErrorDisplayComponent,
-=======
+
 CreateAffectationComponent,
 ListAffectationComponent,
 DetailAffectationComponent,
 UpdateAffectationComponent,
 FieldErrorDisplayComponent,
 DetailDepartementComponent,
-<<<<<<< HEAD
-DetailBureauComponent,
 
-=======
->>>>>>> parent of b667cef (Modification des formulaire add vers le form group et ajout de filtre a quelque cas)
+
+
+
+
+
 ],
 
 

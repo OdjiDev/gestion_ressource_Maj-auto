@@ -3,7 +3,7 @@ import { FournisseurDto } from './fournisseur-dto';
 import { LigneFactureDto } from './lignefacture-dto';
 import { ProduitDto } from './produit-dto';
 export class FactureDto {
- HEAD
+
   id: number = 0;
   createdAt: string = '';
   numero: string = '';
@@ -11,17 +11,7 @@ export class FactureDto {
   total: number = 0;
   datecommande: string = '';
   fournisseurDto: FournisseurDto = new FournisseurDto();
-  lignefactureDto: LignefactureDto = new LignefactureDto();
+  lignefactureDto: LigneFactureDto = new LigneFactureDto();
   produitDto: ProduitDto = new ProduitDto();
-=======
-  id: number= 0;
- createdAt: string= " ";
- numero: string= " ";
- code:   string =  " ";
- total: number= 0;
-  datecommande: string= " ";
- fournisseurDto: FournisseurDto= new FournisseurDto();
- lignefactureDtos:LigneFactureDto= new LigneFactureDto();
-
 
 }

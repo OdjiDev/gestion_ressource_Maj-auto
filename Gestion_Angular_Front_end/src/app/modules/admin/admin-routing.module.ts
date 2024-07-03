@@ -1,4 +1,3 @@
-import { DetailDepartementComponent } from './interfaces/departement/detail-departement/detail-departement.component';
 
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
@@ -14,9 +13,6 @@ import { CreateBureauComponent } from './interfaces/Bureau/create-bureau/create-
 import { UpdateBureauComponent } from './interfaces/Bureau/update-bureau/update-bureau.component';
 import { UpdateDemandeComponent } from './interfaces/demande/update-demande/update-demande.component';
 import { ListDemandeComponent } from './interfaces/demande/list-demande/list-demande.component';
-import { CreateDemandeComponent } from './interfaces/demande/create-demande/create-demande.component';
-import { CreateFactureComponent } from './interfaces/facture/create-facture/create-facture.component';
-import { ListFactureComponent } from './interfaces/facture/list-facture/list-facture.component';
 import { UpdateFactureComponent } from './interfaces/facture/update-facture/update-facture.component';
 import { ListFournisseurComponent } from './interfaces/fournisseur/list-fournisseur/list-fournisseur.component';
 import { UpdateFournisseurComponent } from './interfaces/fournisseur/update-fournisseur/update-fournisseur.component';
@@ -37,6 +33,11 @@ import { CreatePersonelComponent } from './interfaces/personel/create-personel/c
 import { CreateAffectationComponent } from './interfaces/affectation/create-affectation/create-affectation.component';
 import { ListAffectationComponent } from './interfaces/affectation/list-affectation/list-affectation.component';
 import { UpdateAffectationComponent } from './interfaces/affectation/update-affectation/update-affectation.component';
+import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
+import { CreateDepartementComponent } from './interfaces/Departement/create-departement/create-departement.component';
+import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
+import { DetailDepartementComponent } from './interfaces/Departement/detail-departement/detail-departement.component';
+import { CreateDemandeComponent } from './interfaces/demande/create-demande/create-demande.component';
 
 
 const routes: Routes = [
@@ -66,8 +67,8 @@ const routes: Routes = [
        { path: 'updatebureau',component: UpdateBureauComponent},
       // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
- HEAD
-=======
+
+
       //routes de departement
       { path: 'adddepartement',component: CreateDepartementComponent },
       { path: 'listdepartement',component: ListDepartementComponent  },
@@ -82,8 +83,8 @@ const routes: Routes = [
       { path: 'updatedemande',component: UpdateDemandeComponent},
      // { path: 'searchdemande',component: CreateDemandeComponent  },
       //routes de facture
-      { path: 'addfacture',component: CreateFactureComponent },
-      { path: 'listfacture',component: ListFactureComponent  },
+      { path: 'addfacture',component: UpdateFactureComponent },
+      { path: 'listfacture',component: ListBureauComponent  },
       { path: 'updatefacture',component: UpdateFactureComponent},
      // { path: 'searchfacture',component: CreateFactureComponent  },
      //routes de fournisseur
