@@ -1,9 +1,5 @@
 
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CategorieDto } from './categorie-dto';
-import { MagasinDto } from './magasin-dto';
-import { LigneFactureDto } from './lignefacture-dto';
 
 export class ProduitDto {
 
@@ -19,6 +15,7 @@ export class ProduitDto {
 
   /** Description détaillée du produit */
   designation: string = "";
+  quantite: number= 0;
 
   prixAchat: number = 0;
 

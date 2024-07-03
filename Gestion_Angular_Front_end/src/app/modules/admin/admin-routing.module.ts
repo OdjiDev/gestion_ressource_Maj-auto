@@ -1,4 +1,3 @@
-
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -74,7 +73,10 @@ const routes: Routes = [
        {path:'detailsdepartement/:id',component:DetailDepartementComponent},
      // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7436a0253caf3d0ac9a608e92cad1da31f5f0547
     //routes de departement
       { path: 'adddemande',component: CreateDemandeComponent },
       { path: 'listdemande',component: ListDemandeComponent  },

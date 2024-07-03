@@ -22,6 +22,12 @@ public class Facture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+<<<<<<< HEAD
+=======
+    @Column(name = "numero", unique = true)
+    private String numero;
+
+>>>>>>> 7436a0253caf3d0ac9a608e92cad1da31f5f0547
     @Column(name = "code")
     private String code;
 

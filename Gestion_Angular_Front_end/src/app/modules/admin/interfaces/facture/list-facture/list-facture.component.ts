@@ -1,12 +1,14 @@
-// import { FournisseurDto } from 'src/app/classes/fournisseur-dto';
-// import { Component, OnInit } from '@angular/core';
-// import { Router } from '@angular/router';
-// import { FactureDto } from 'src/app/classes/facture-dto';
-// import { ProduitDto } from 'src/app/classes/produit-dto';
-// import { FactureService } from 'src/app/services/facture.service';
-// import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-// import { LigneFactureDto } from 'src/app/classes/lignefacture-dto';
-// import { FournisseurService } from 'src/app/services/fournisseur.service';
+import { FournisseurDto } from 'src/app/classes/fournisseur-dto';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FactureDto } from 'src/app/classes/facture-dto';
+import { ProduitDto } from 'src/app/classes/produit-dto';
+import { FactureService } from 'src/app/services/facture.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { LigneFactureDto } from 'src/app/classes/lignefacture-dto';
+import { FournisseurService } from 'src/app/services/fournisseur.service';
+import { LigneFactureService } from 'src/app/services/lignefacture.service';
+import { ProduitService } from 'src/app/services/produit.service';
 
 // import { ProduitService } from 'src/app/services/produit.service';
 // import { LigneFactureService } from 'src/app/services/lignefacture.service';
