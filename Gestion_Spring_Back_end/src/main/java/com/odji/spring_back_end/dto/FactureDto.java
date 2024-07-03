@@ -21,11 +21,7 @@ public class FactureDto {
 
     private Integer id;
 
-    private Integer numero;
-
     private String code;
-
-    private String total;
 
     private Instant datecommande;
 
