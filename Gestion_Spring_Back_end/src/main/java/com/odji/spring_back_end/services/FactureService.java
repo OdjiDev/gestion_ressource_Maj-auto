@@ -26,7 +26,7 @@ public class FactureService {
         FactureDto factureDto = new FactureDto();
         factureDto.setId(facture.getId());
         factureDto.setCode(facture.getCode());
-        factureDto.setDatecommande(facture.getDatecommande());
+
         factureDto.setFournisseurDto(fournisseurService.fournisseurToDto(facture.getFournisseur()));
 
         return factureDto;
@@ -39,7 +39,7 @@ public class FactureService {
         Facture facture = new Facture();
         facture.setId(factureDto.getId());
         facture.setCode(factureDto.getCode());
-        facture.setDatecommande(factureDto.getDatecommande());
+
         facture.setFournisseur(fournisseurService.dtoToFournisseur(factureDto.getFournisseurDto()));
 
 
