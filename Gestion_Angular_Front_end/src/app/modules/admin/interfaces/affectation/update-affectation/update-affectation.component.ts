@@ -32,7 +32,7 @@ export class UpdateAffectationComponent implements OnInit {
               ){
                 this.formAffectation= this.formBuilder.group({
                    id: [null, Validators.required],
-                  nom: [null, Validators.required],
+                  //nom: [null, Validators.required],
                   motif: [null, Validators.required],
                   date: [null, Validators.required],
                   // affectationDto: [null, Validators.required],

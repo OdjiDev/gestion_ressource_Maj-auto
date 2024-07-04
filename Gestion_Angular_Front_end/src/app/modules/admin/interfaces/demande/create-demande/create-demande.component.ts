@@ -46,7 +46,7 @@ demandeDto: DemandeDto = new DemandeDto();
     }
 
     goTodemandeList(){
-      this.router.navigate(['admin/listdemande']);
+      this.router.navigate(['admin/list-demande']);
     }
 
     onSubmit(){

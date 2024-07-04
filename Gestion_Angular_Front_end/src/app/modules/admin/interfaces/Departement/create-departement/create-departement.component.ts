@@ -26,7 +26,7 @@ departementDto: DepartementDto = new DepartementDto();
     }
 
     goTodepartementList(){
-      this.router.navigate(['admin/listdepartement']);
+      this.router.navigate(['admin/list-departement']);
     }
 
     onSubmit(){

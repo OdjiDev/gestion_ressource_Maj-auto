@@ -57,6 +57,7 @@ import { CreateDepartementComponent } from './interfaces/Departement/create-depa
 import { ListDepartementComponent } from './interfaces/Departement/list-departement/list-departement.component';
 import { UpdateDepartementComponent } from './interfaces/Departement/update-departement/update-departement.component';
 import { CreateFactureComponent } from './interfaces/facture/create-facture/create-facture.component';
+import { UpdateProduitComponent } from './interfaces/page-produit/update-produit/update-produit.component';
 
 @NgModule({
   declarations: [
@@ -70,11 +71,13 @@ import { CreateFactureComponent } from './interfaces/facture/create-facture/crea
     CategorieDetailsComponent,
     ListCategorieComponent,
     ListProduitComponent,
-
+  UpdateProduitComponent,
+  UpdateSocieteComponent,
+  
     CreateBureauComponent,
     ListBureauComponent,
     UpdateBureauComponent,
-
+    CreateProduitComponent,
     CreateDepartementComponent,
     ListDepartementComponent,
     UpdateDepartementComponent,

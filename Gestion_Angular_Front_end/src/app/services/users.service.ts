@@ -22,17 +22,17 @@ export class UsersService {
     return this.httpClient.get<UsersDto>(`${this.baseURL}/${id}`);
   }
 
-  addUsers(usersDto: UsersDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, usersDto);
+  addUsers(usersDto: UsersDto): Observable<UsersDto>{
+    return this.httpClient.post<UsersDto>(`${this.baseURL}`, usersDto);
   }
 
 
-  updateUsers(id: number, usersDto: UsersDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, UsersDto);
+  updateUsers(id: number, usersDto: UsersDto): Observable<UsersDto>{
+    return this.httpClient.put<UsersDto>(`${this.baseURL}/${id}`, UsersDto);
   }
 
-  deleteUsers(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteUsers(id: number): Observable<UsersDto>{
+    return this.httpClient.delete<UsersDto>(`${this.baseURL}/${id}`);
   }
 
 

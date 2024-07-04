@@ -17,7 +17,7 @@ import { UsersDto } from '../classes/users-dto';
 })
 export class LoginComponent implements OnInit {
 // usersDto: UsersDto= new UsersDto();
-// users:UsersDto[]=[];
+ users:Users[]=[];
 
 // // user:Users=new Users
 // // users:Users[]=[];
@@ -61,7 +61,7 @@ export class LoginComponent implements OnInit {
 // }
 
 
-users: Users= new Users();
+//users: Users= new Users();
 
   constructor(private loginuserService:LoginuserService,private router:Router) { }
 
@@ -73,13 +73,13 @@ usersLogin() {
 
   const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
-  // Send the request with the headers
-  this.loginuserService.loginUsers(this.users)
-    .subscribe(data => {
-      alert("Login successfully");
-      this.router.navigate(['/admin']);
-    }, error => {
-      alert("Sorry please enter correct username or password");
-    });
-}
-}
+//   // Send the request with the headers
+//  // this.loginuserService.loginUsers(this.users)
+//     .subscribe(data => {
+//       alert("Login successfully");
+//       this.router.navigate(['/admin']);
+//     }, error => {
+//       alert("Sorry please enter correct username or password");
+//     });
+
+ } }

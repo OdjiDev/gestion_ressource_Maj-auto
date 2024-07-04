@@ -50,16 +50,16 @@ const routes: Routes = [
 
        //{ path: 'createdep',component: CreateDepartementComponent  },
         //ROUTES DE CATEGORIE
-        { path: 'addcategorie',component: CreateCategorieComponent  },
-        { path: 'listcategorie',component: ListCategorieComponent  },
-        //{ path: 'updatecategorie',component: UpdateCatgorieComponent },
+        { path: 'add-categorie',component: CreateCategorieComponent  },
+        { path: 'list-categorie',component: ListCategorieComponent  },
+       // { path: 'update-categorie',component: UpdateCatgorieComponent },
        // { path: 'searchcategorie',component: CreateDepartementComponent  },
 
        //routes de produit
-       { path: 'addproduit',component: CreateProduitComponent  },
-       { path: 'listproduit',component: ListProduitComponent  },
-       { path: 'updateproduit',component: UpdateProduitComponent},
-      // { path: 'searchcategorie',component: CreateDepartementComponent  },
+       { path: 'add-produit',component: CreateProduitComponent  },
+       { path: 'list-produit',component: ListProduitComponent  },
+       { path: 'update-produit',component: UpdateProduitComponent},
+      // { path: 'search-categorie',component: CreateDepartementComponent  },
 
 
        //routes de bureau
@@ -69,16 +69,16 @@ const routes: Routes = [
        { path: 'detail-bureau/:id',component: DetailDepartementComponent  },
 
       //routes de departement
-      { path: 'adddepartement',component: CreateDepartementComponent },
-      { path: 'listdepartement',component: ListDepartementComponent  },
-      { path: 'updatedepartement/:id',component: UpdateDepartementComponent},
-       {path:'detailsdepartement',component:DetailDepartementComponent},
-     // { path: 'searchcategorie',component: CreateDepartementComponent  },
+      { path: 'add-departement',component: CreateDepartementComponent },
+      { path: 'list-departement',component: ListDepartementComponent  },
+      { path: 'update-departement/:id',component: UpdateDepartementComponent},
+       {path:'detail-departement',component:DetailDepartementComponent},
+     // { path: 'search-categorie',component: CreateDepartementComponent  },
 
     //routes de departement
-      { path: 'adddemande',component: CreateDemandeComponent },
-      { path: 'listdemande',component: ListDemandeComponent  },
-      { path: 'updatedemande',component: UpdateDemandeComponent},
+      { path: 'add-demande',component: CreateDemandeComponent },
+      { path: 'list-demande',component: ListDemandeComponent  },
+      { path: 'update-demande',component: UpdateDemandeComponent},
      // { path: 'searchdemande',component: CreateDemandeComponent  },
       //routes de facture
       { path: 'add-facture',component: CreateFactureComponent },
@@ -86,9 +86,9 @@ const routes: Routes = [
       { path: 'update-facture',component: UpdateFactureComponent},
      // { path: 'searchfacture',component: CreateFactureComponent  },
      //routes de fournisseur
-     { path: 'addfournisseur',component: CreateFournisseurComponent },
-     { path: 'listfournisseur',component: ListFournisseurComponent  },
-     { path: 'updatefournisseur',component: UpdateFournisseurComponent},
+     { path: 'add-fournisseur',component: CreateFournisseurComponent },
+     { path: 'list-fournisseur',component: ListFournisseurComponent  },
+     { path: 'update-fournisseur',component: UpdateFournisseurComponent},
     // { path: 'searchfournisseur',component: CreateFournisseurComponent  },
 
      //routes des avaries
@@ -107,10 +107,10 @@ const routes: Routes = [
    { path: 'updatecontrat',component: UpdateContratComponent},
   // { path: 'searchcontrat',component: CreateContratComponent  },
   //routes des personels
-  { path: 'addpersonel',component: CreatePersonelComponent },
-  { path: 'listpersonel',component: ListPersonelComponent  },
-  { path: 'updatepersonel',component: UpdatePersonelComponent},
- // { path: 'searchpersonel',component: CreatePersonelComponent  },
+  { path: 'add-personel',component: CreatePersonelComponent },
+  { path: 'list-personel',component: ListPersonelComponent  },
+  { path: 'update-personel',component: UpdatePersonelComponent},
+ // { path: 'search-personel',component: CreatePersonelComponent  },
 
 
   //routes des affectation

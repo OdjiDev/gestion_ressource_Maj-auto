@@ -23,16 +23,16 @@ export class SignalerService {
   }
 
 
-  addSignaler(signalerDto: SignalerDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, signalerDto);
+  addSignaler(signalerDto: SignalerDto): Observable<SignalerDto>{
+    return this.httpClient.post<SignalerDto>(`${this.baseURL}`, signalerDto);
   }
 
-  updateSignaler(id: number, signalerDto: SignalerDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, SignalerDto);
+  updateSignaler(id: number, signalerDto: SignalerDto): Observable<SignalerDto>{
+    return this.httpClient.put<SignalerDto>(`${this.baseURL}/${id}`, SignalerDto);
   }
 
-  deleteSignaler(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteSignaler(id: number): Observable<SignalerDto>{
+    return this.httpClient.delete<SignalerDto>(`${this.baseURL}/${id}`);
   }
 
 

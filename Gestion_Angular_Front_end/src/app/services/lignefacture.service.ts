@@ -30,11 +30,11 @@ export class LigneFactureService {
 
 
   updateLignefacture(id: number, lignefactureDto: LigneFactureDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, LigneFactureDto);
+    return this.httpClient.put<LigneFactureDto>(`${this.baseURL}/${id}`, LigneFactureDto);
   }
 
   deleteLignefacture(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}'/lignefactures/${id}`);
+    return this.httpClient.delete<LigneFactureDto>(`${this.baseURL}'/lignefactures/${id}`);
   }
 
 

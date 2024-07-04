@@ -21,17 +21,17 @@ getMagasins(): Observable<MagasinDto[]>{
     return this.httpClient.get<MagasinDto>(`${this.baseURL}/${id}`);
   }
 
-  addMagasin(magasinDto: MagasinDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, magasinDto);
+  addMagasin(magasinDto: MagasinDto): Observable<MagasinDto>{
+    return this.httpClient.post<MagasinDto>(`${this.baseURL}`, magasinDto);
   }
 
 
-  updateMagasin(id: number, magasinDto: MagasinDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, MagasinDto);
+  updateMagasin(id: number, magasinDto: MagasinDto): Observable<MagasinDto>{
+    return this.httpClient.put<MagasinDto>(`${this.baseURL}/${id}`, MagasinDto);
   }
 
-  deleteMagasin(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteMagasin(id: number): Observable<MagasinDto>{
+    return this.httpClient.delete<MagasinDto>(`${this.baseURL}/${id}`);
   }
 
 

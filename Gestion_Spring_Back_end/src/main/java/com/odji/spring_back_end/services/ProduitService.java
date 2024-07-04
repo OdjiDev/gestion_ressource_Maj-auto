@@ -45,7 +45,7 @@ import java.util.stream.Collectors;
             produitDto.setQuantite(produit.getQuantite());
             produitDto.setPrixAchat(produit.getPrixAchat());
             produitDto.setCategorieDto(categorieService.categorieToDto(produit.getCategorie()));
-            produitDto.setMagasinDto(magasinService.magasinToDto(produit.getMagasin()));
+            //produitDto.setMagasinDto(magasinService.magasinToDto(produit.getMagasin()));
 
             return produitDto;
         }
@@ -63,7 +63,7 @@ import java.util.stream.Collectors;
             produit.setQuantite(produitDto.getQuantite());
             produit.setPrixAchat(produitDto.getPrixAchat());
             produit.setCategorie(categorieService.dtoToCategorie(produitDto.getCategorieDto()));
-            produit.setMagasin(magasinService.dtoToMagasin(produitDto.getMagasinDto())); // Assuming magasinService exists
+            //produit.setMagasin(magasinService.dtoToMagasin(produitDto.getMagasinDto())); // Assuming magasinService exists
             // Similar logic for other properties (avarie, lignefacture, etc.)
             return produit;
         }

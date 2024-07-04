@@ -35,7 +35,7 @@ personelDto: PersonelDto = new PersonelDto();
     }
 
     goTopersonelList(){
-      this.router.navigate(['admin/listpersonel']);
+      this.router.navigate(['admin/list-personel']);
     }
 
     onSubmit(){

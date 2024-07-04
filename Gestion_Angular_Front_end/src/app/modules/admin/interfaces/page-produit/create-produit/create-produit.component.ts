@@ -37,7 +37,7 @@ export class CreateProduitComponent implements OnInit {
   produitDto: ProduitDto = new ProduitDto();
   categories: CategorieDto[] = [];
   magasins: MagasinDto[] = [];
-  
+
   getCategories() {
     this.categorieService.getCategories()
       .subscribe(data => {
@@ -65,7 +65,7 @@ saveProduit(){
 }
 
 goToproduitList(){
-  this.router.navigate(['admin/listproduit']);
+  this.router.navigate(['admin/list-produit']);
 }
 
 onSubmit(){

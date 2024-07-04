@@ -42,8 +42,14 @@ delete() {
     }
   );
 }
-deleteDepartement(departement: DepartementDto) {
-  this.departementDto = departement;
+// deleteDepartent(departement: DepartementDto) {
+//   this.departementDto = departement;
+// }
+deleteDepartement(id: number){
+  this.departementService.deleteDepartement(id).subscribe( data => {
+    console.log(data);
+    this.getAllDepartementDtos();
+  })
 }
 
 ngOnInit() {

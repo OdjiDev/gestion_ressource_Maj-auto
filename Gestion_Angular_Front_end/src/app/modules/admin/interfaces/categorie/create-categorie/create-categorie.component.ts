@@ -26,7 +26,7 @@ export class CreateCategorieComponent implements OnInit {
     }
 
     goTocategorieList(){
-      this.router.navigate(['admin/listcategorie']);
+      this.router.navigate(['admin/list-categorie']);
     }
 
     onSubmit(){

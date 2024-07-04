@@ -22,7 +22,7 @@ public class Magasin {
     @Column(name = "nom")
     private String nom;
 
-    @OneToMany(mappedBy = "magasin")
-    private List<Produit> produit;
+//    @OneToMany(mappedBy = "magasin")
+//    private List<Produit> produit;
 
 }

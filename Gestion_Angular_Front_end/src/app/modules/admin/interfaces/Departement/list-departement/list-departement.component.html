@@ -15,7 +15,7 @@
     <h4 class="text-center">Liste des departements</h4>
   </div>
   <div class="col-2">
-    <a routerLink="/admin/adddepartement" class="btn btn-primary">
+    <a routerLink="/admin/add-departement" class="btn btn-primary">
       <i class="fa fa-plus"></i>
       Ajouter
     </a>
@@ -73,11 +73,11 @@
         <!-- ... Affichez d'autres données de la departement ... -->
         <td>
           <!-- Bouton Dropdown avec actions -->
-          <a class="btn btn-secondary" routerLink="/admin/departement-modifier/{{departement.id}}">
+          <a class="btn btn-secondary" routerLink="/admin/update-departement/{{departement.id}}">
             <i class="fa fa-edit"></i>
             Modifier
           </a>
-          <a class="btn btn-danger" (click)="deleteDepartement(departement)" data-bs-toggle="modal"
+          <a class="btn btn-danger" (click)="deleteDepartement(departement.id)" data-bs-toggle="modal"
           data-bs-target="#deleteModal">
             <i class="fa fa-trash"></i>
             Supprimer

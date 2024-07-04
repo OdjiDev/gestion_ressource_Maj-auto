@@ -151,7 +151,7 @@ generatePDF() {
   const pdf = new jsPDF('p', 'pt', 'a4');
   pdf.html(this.pdfTable.nativeElement, {
     callback: (pdf) => {
-      pdf.save('Bureaus.pdf');
+      pdf.save('affectations.pdf');
     }
   });
 }

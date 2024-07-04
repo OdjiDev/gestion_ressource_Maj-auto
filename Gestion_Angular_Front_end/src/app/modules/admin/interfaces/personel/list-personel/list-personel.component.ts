@@ -99,8 +99,10 @@ export class ListPersonelComponent implements OnInit {
     try {
       if (this.searchText) {
         this.datas = await this.personelDtos.filter(personel => {
-          return  personel.nom.toLowerCase().includes(this.searchText.toLowerCase());
-          // || personel.prenom.toLowerCase().includes(this.searchText.toLowerCase());
+          return  personel.nom.toLowerCase().includes(this.searchText.toLowerCase())
+           || personel.prenom.toLowerCase().includes(this.searchText.toLowerCase())
+           || personel.dateDeNaissance.toLowerCase().includes(this.searchText.toLowerCase())
+           || personel.lieuDeNaissance.toLowerCase().includes(this.searchText.toLowerCase());
         });
       } else {
         this.datas = this.personelDtos;
@@ -149,7 +151,7 @@ export class ListPersonelComponent implements OnInit {
     const pdf = new jsPDF('p', 'pt', 'a4');
     pdf.html(this.pdfTable.nativeElement, {
       callback: (pdf) => {
-        pdf.save('Bureaus.pdf');
+        pdf.save('personels.pdf');
       }
     });
   }

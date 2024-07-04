@@ -5,4 +5,5 @@ export class FacturereparerDto {
   code: string= "";
   date: string= "";
   societeDto: SocieteDto= new SocieteDto();
+  datecommande: any;
 }

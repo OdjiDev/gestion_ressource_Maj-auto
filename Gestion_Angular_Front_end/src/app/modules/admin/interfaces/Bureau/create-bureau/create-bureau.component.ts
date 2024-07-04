@@ -31,7 +31,7 @@ bureauDto: BureauDto = new BureauDto();
     }
 
     goTobureauList(){
-      this.router.navigate(['admin/listbureau']);
+      this.router.navigate(['admin/list-bureau']);
     }
 
     onSubmit(){
