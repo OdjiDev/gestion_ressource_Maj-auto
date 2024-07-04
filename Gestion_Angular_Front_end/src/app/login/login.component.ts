@@ -61,25 +61,60 @@ export class LoginComponent implements OnInit {
 // }
 
 
-users: Users= new Users();
+// users: Users= new Users();
 
-  constructor(private loginuserService:LoginuserService,private router:Router) { }
+//   constructor(private loginuserService:LoginuserService,private router:Router) { }
 
+//   ngOnInit(): void {
+//   }
+
+// usersLogin() {
+//   console.log(this.users);
+
+//   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+//   // Send the request with the headers
+//   this.loginuserService.loginUsers(this.users)
+//     .subscribe(data => {
+//       alert("Login successfully");
+//       this.router.navigate(['/admin']);
+//     }, error => {
+//       alert("Sorry please enter correct username or password");
+//     });
+// }
+// }
+
+
+  formLogin: FormGroup=new FormGroup({});
+constructor(private formBuilder: FormBuilder,
+  private loginuserService:LoginuserService,
+  private router:Router) { }
   ngOnInit(): void {
-  }
+    this.formLogin=this.formBuilder.group({
 
-usersLogin() {
-  console.log(this.users);
 
-  const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    username:this.formBuilder.control(""),
+    password:this.formBuilder.control("")
+  })
 
-  // Send the request with the headers
-  this.loginuserService.loginUsers(this.users)
-    .subscribe(data => {
-      alert("Login successfully");
-      this.router.navigate(['/admin']);
-    }, error => {
-      alert("Sorry please enter correct username or password");
-    });
+}
+
+handLogin(){
+
+  let username=this.formLogin.value.username;
+let password=this.formLogin.value.password;
+this.loginuserService.login(username,password).subscribe({
+  next:(data)=>{
+    console.log(data);
+   // alert("Login successfully");
+   // this.router.navigate(['/admin']);
+  },
+  error:(error)=>{
+    console.log(error);
+    alert("Sorry please enter correct username or password");
+}
+
+})
 }
 }
+

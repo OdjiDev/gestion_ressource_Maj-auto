@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UsersDto } from '../classes/users-dto';
 import { Users } from '../classes/users';
@@ -52,17 +52,36 @@ export class LoginuserService {
 
 
 
+// private baseUrl = environment.baseURL+ "login";
+
+// constructor(private httpClient: HttpClient) {}
+
+// loginUsers(users: Users): Observable<object> {
+//   console.log(users);
+
+//   // Create headers with Content-Type set to application/json
+//   const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+//   // Send the POST request with the user data and headers
+//   return this.httpClient.post(`${this.baseUrl}`, users, { headers });
+
+
 private baseUrl = environment.baseURL+ "login";
 
-constructor(private httpClient: HttpClient) {}
-
-loginUsers(users: Users): Observable<object> {
-  console.log(users);
-
-  // Create headers with Content-Type set to application/json
-  const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
-  // Send the POST request with the user data and headers
-  return this.httpClient.post(`${this.baseUrl}`, users, { headers });
-}
-}
+   constructor(private http: HttpClient) {}
+   public login(username:string,password: string){
+    let options={
+      headers: new HttpHeaders().set("Content-Type","application/x-www-form-urlencoded")
+    }
+    let params=new HttpParams()
+    .set("username",username).set("password",password);
+    return this.http.post(`${this.baseUrl}`, params, options)
+    .pipe(
+      map(response => {
+        // Process successful login response (e.g., authentication token)
+        return response;
+      })
+    );
+    
+    }
+   }

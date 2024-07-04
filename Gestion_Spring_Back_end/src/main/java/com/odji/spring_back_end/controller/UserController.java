@@ -23,7 +23,7 @@ public class UserController {
     private UserService userService;
 
 
-    @PostMapping ("/login")
+   // @PostMapping ("/login")
     public ResponseEntity<?> loginUser(@RequestBody User usersData){
         System.out.println(usersData);
         User users=userRepository.findByUserId(usersData.getUserId());
