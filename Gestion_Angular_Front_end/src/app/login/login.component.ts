@@ -91,8 +91,6 @@ constructor(private formBuilder: FormBuilder,
   private router:Router) { }
   ngOnInit(): void {
     this.formLogin=this.formBuilder.group({
-
-
     username:this.formBuilder.control(""),
     password:this.formBuilder.control("")
   })

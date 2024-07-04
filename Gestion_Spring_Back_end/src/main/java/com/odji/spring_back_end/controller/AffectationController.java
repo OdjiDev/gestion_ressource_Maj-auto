@@ -35,7 +35,7 @@ public class AffectationController {
 
      //create affectation
     @PostMapping("/affectations")
-    @PreAuthorize("hasAuthority('SCOPE_USER')")
+
     public ResponseEntity<AffectationDto> createAffectation(@RequestBody AffectationDto affectationDto) {
         Affectation affectation = affectationService.dtoToAffectation(affectationDto);
         Affectation savedAffectation= affectationRepository.save(affectation);
@@ -79,7 +79,6 @@ public class AffectationController {
     
     // get all Affectation
     @GetMapping("/affectations/list")
-    @PreAuthorize("hasAuthority('SCOPE_USER')")
     public List<AffectationDto> getAllAffectation() {
         List<Affectation> affectations = affectationRepository.findAll(); // Assuming you have a JPA repository named 'affectationRepository'
         return affectationService.affectationsDtoList(affectationRepository.findAll()); // Convert products to DTOs
