@@ -1,25 +1,25 @@
 package com.odji.spring_back_end.dto;
 
-import com.odji.spring_back_end.model.Categorie;
-import com.odji.spring_back_end.model.Contrat;
-import com.odji.spring_back_end.model.Societe;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import lombok.*;
+import java.time.LocalDate;
 
-import java.time.Instant;
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ContratDto {
 
     private Integer id;
-
     private String code;
+    private LocalDate datedebut;
+    private LocalDate datedefin;
 
-    private Instant datedebut;
-
-    private Instant datedefin;
-
-    private SocieteDto societeDto;
+    // Relation sortante exposée (sans suffixe "Dto")
+    private SocieteDto societe;
 }

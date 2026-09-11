@@ -1,10 +1,10 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.FactureDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Facture;
 import com.odji.spring_back_end.repository.FactureRepository;
-import com.odji.spring_back_end.services.FactureService;
+import com.odji.spring_back_end.service.FactureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

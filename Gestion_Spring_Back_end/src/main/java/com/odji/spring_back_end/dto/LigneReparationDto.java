@@ -1,27 +1,26 @@
 package com.odji.spring_back_end.dto;
 
-import com.odji.spring_back_end.model.LigneReparation;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
-@Data
-@Setter
+import java.time.LocalDate;
+
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class LigneReparationDto {
 
     private Integer id;
-
-    private  ProduitDto produitDto;
-
-    private  ReparerDto reparerDto;
-
     private BigDecimal quantite;
+    private LocalDate date;
 
-    private Date date;
-
-
-
+    // Relations sortantes exposées (sans suffixe "Dto")
+    private ProduitDto produit;
+    private ReparerDto reparer;
 }

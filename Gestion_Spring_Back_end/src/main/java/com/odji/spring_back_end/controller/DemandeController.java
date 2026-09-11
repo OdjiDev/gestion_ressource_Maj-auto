@@ -1,11 +1,11 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.DemandeDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Demande;
 import com.odji.spring_back_end.repository.DemandeRepository;
 import com.odji.spring_back_end.repository.PersonelRepository;
-import com.odji.spring_back_end.services.DemandeService;
+import com.odji.spring_back_end.service.DemandeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

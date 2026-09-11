@@ -1,102 +1,141 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.ProduitDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Categorie;
-import com.odji.spring_back_end.model.Magasin;
-import com.odji.spring_back_end.model.Produit;
-import com.odji.spring_back_end.repository.CategorieRepository;
-import com.odji.spring_back_end.repository.MagasinRepository;
-import com.odji.spring_back_end.repository.ProduitRepository;
-import com.odji.spring_back_end.services.CategorieService;
-import com.odji.spring_back_end.services.MagasinService;
-import com.odji.spring_back_end.services.ProduitService;
+import com.odji.spring_back_end.service.ProduitService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.math.BigDecimal;
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin(origins="http://localhost:4200/")
+@Slf4j
 @RestController
+@RequestMapping("/api/produits")
 @RequiredArgsConstructor
-@RequestMapping("api")
-    public class ProduitController {
-            private final ProduitRepository produitRepository;
-            private  final ProduitService produitService;
-            private  final CategorieRepository categorieRepository;
+public class ProduitController {
 
+    private final ProduitService produitService;
 
+    // ==================== CRÉATION ====================
 
-    // build create produit REST API
-    @PostMapping("/produits")
-    public ProduitDto createProduit(@RequestBody ProduitDto produitDto) {
-       Produit produit= produitService.dtoToProduit(produitDto);
+    /**
+     * POST /api/produits
+     * 201 Created + Location header vers la ressource créée.
+     */
+    @PostMapping
+    public ResponseEntity<ProduitDto> create(
+            @Valid @RequestBody ProduitDto dto,
+            UriComponentsBuilder uriBuilder) {
 
-        Integer categorieId= produitDto.getCategorieDto().getId();
-        Optional<Categorie> existingCategorieOptional= categorieRepository.findById(categorieId);
+        ProduitDto created = produitService.create(dto);
 
-        //Verification de l'existance de la categorie
-        if(existingCategorieOptional.isPresent()){
-            // Si  la categorie est trouvé l'affecter  au produit
-            produit.setCategorie(existingCategorieOptional.get());
-        }
+        URI location = uriBuilder.path("/api/produits/{id}")
+                .buildAndExpand(created.getId())
+                .toUri();
 
-        // enrégistrement du produit dans la base de donnée
-        produitDto= produitService.produitToDto(produitRepository.save(produit));
-        return produitDto;
+        return ResponseEntity.created(location).body(created);
     }
 
+    // ==================== LECTURE ====================
 
-
-// build get all product
-
-    @GetMapping("/produits/list")
-            // Replace placeholders with your actual logic for data access using DTOs
-            public List<ProduitDto> getAllProduits() {
-                List<Produit> produits = produitRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-                return produitService.produitDtoList(produitRepository.findAll()); // Convert products to DTOs
-            }
-//           // build get product by id REST API
-        //get product by id
-    @GetMapping("/produits/{id}")
-    public ResponseEntity<ProduitDto> getDProduitById(@PathVariable  Integer id){
-        Produit produit = produitRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Produit not exist with id:" + id));
-        return ResponseEntity.ok(produitService.produitToDto(produit));
+    /**
+     * GET /api/produits?page=0&size=20&sort=nom,asc
+     * Liste paginée.
+     */
+    @GetMapping
+    public ResponseEntity<Page<ProduitDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom", direction = Sort.Direction.ASC)
+            Pageable pageable) {
+        return ResponseEntity.ok(produitService.findAll(pageable));
     }
 
-    // build update Produit REST API
-    @PutMapping("/produits/{id}")
-    public ResponseEntity<ProduitDto> updateProduit(@PathVariable Integer id,@RequestBody ProduitDto produitDetailsDto) {
-        Produit updateProduit = produitRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("produit not exist with id: " + id));
-        updateProduit = produitService.dtoToProduit(produitDetailsDto);
-        updateProduit.setId(id);
-
-        produitDetailsDto= produitService.produitToDto(produitRepository.save(updateProduit));
-
-        return ResponseEntity.ok(produitDetailsDto);
+    /**
+     * GET /api/produits/{id}
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<ProduitDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(produitService.findById(id));
     }
 
-
-
-    // build delete demande REST API
-    @DeleteMapping("{id}")
-    public ResponseEntity<HttpStatus> deleteProduit(@PathVariable Integer id){
-
-        Produit produit = produitRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Produit not exist with id: " + id));
-
-      produitRepository.delete(produit);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    /**
+     * GET /api/produits/code/{codeproduit}
+     */
+    @GetMapping("/code/{codeproduit}")
+    public ResponseEntity<ProduitDto> findByCodeproduit(@PathVariable String codeproduit) {
+        return ResponseEntity.ok(produitService.findByCodeproduit(codeproduit));
     }
 
+    /**
+     * GET /api/produits/search?nom=vis
+     */
+    @GetMapping("/search")
+    public ResponseEntity<List<ProduitDto>> search(@RequestParam String nom) {
+        return ResponseEntity.ok(produitService.searchByNom(nom));
+    }
 
+    /**
+     * GET /api/produits/categorie/{idCategorie}
+     */
+    @GetMapping("/categorie/{idCategorie}")
+    public ResponseEntity<List<ProduitDto>> findByCategorie(@PathVariable Integer idCategorie) {
+        return ResponseEntity.ok(produitService.findByCategorie(idCategorie));
+    }
 
+    /**
+     * GET /api/produits/magasin/{idMagasin}
+     */
+    @GetMapping("/magasin/{idMagasin}")
+    public ResponseEntity<List<ProduitDto>> findByMagasin(@PathVariable Integer idMagasin) {
+        return ResponseEntity.ok(produitService.findByMagasin(idMagasin));
+    }
+
+    /**
+     * GET /api/produits/alertes/rupture
+     */
+    @GetMapping("/alertes/rupture")
+    public ResponseEntity<List<ProduitDto>> findEnRupture() {
+        return ResponseEntity.ok(produitService.findProduitsEnRupture());
+    }
+
+    /**
+     * GET /api/produits/alertes/seuil?seuil=10
+     */
+    @GetMapping("/alertes/seuil")
+    public ResponseEntity<List<ProduitDto>> findSousSeuil(@RequestParam BigDecimal seuil) {
+        return ResponseEntity.ok(produitService.findProduitsSousSeuil(seuil));
+    }
+
+    // ==================== MISE À JOUR ====================
+
+    /**
+     * PUT /api/produits/{id}
+     */
+    @PutMapping("/{id}")
+    public ResponseEntity<ProduitDto> update(
+            @PathVariable Integer id,
+            @Valid @RequestBody ProduitDto dto) {
+        return ResponseEntity.ok(produitService.update(id, dto));
+    }
+
+    // ==================== SUPPRESSION ====================
+
+    /**
+     * DELETE /api/produits/{id}
+     * 204 No Content en cas de succès.
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        produitService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

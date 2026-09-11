@@ -1,45 +1,57 @@
 package com.odji.spring_back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-
-@Data
-@Builder
 @Entity
-@Table(name = "fournisseur")
-@AllArgsConstructor
+@Table(
+        name = "fournisseur",
+        indexes = {
+                @Index(name = "idx_fournisseur_nom", columnList = "nom"),
+                @Index(name = "idx_fournisseur_mail", columnList = "mail")
+        }
+)
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
-public class Fournisseur {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Fournisseur extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false, length = 150)
+    @ToString.Include
     private String nom;
 
-    @Column(name = "prenom")
-    private String prenom ;
+    @Column(name = "prenom", length = 150)
+    private String prenom;
 
-    //private addresse du client
-
-    @Column(name ="adresse" )
+    @Column(name = "adresse", length = 255)
     private String adresse;
 
-    @Column(name = "mail")
+    @Column(name = "mail", length = 150)
+    @ToString.Include
     private String mail;
 
-    @Column(name = "numtel")
+    @Column(name = "numtel", length = 30)
     private String numtel;
 
-    @OneToMany(mappedBy = "fournisseur")
-    private List<Facture> facture;
+    // ==================== Relations inverses ====================
 
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "fournisseur", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Facture> factures = new ArrayList<>();
 }

@@ -1,25 +1,24 @@
 package com.odji.spring_back_end.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Bureau;
-import lombok.*;
-
-import java.util.List;
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class BureauDto {
 
     private Integer id;
-
     private String nom;
 
-    @JsonIgnore
-    private List<DemandeDto> demandes;
+    // Relation sortante exposée (sans suffixe "Dto")
+    private DepartementDto departement;
 
-    private DepartementDto departementDto;
-
-
+    // ❌ Pas de "demandes" → relations inverses, endpoint dédié :
+    //    GET /api/bureaux/{id}/demandes
 }

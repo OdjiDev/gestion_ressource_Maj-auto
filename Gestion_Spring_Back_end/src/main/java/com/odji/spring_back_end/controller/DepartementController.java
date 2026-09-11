@@ -1,13 +1,11 @@
 package com.odji.spring_back_end.controller;
 
-import com.odji.spring_back_end.dto.CategorieDto;
 import com.odji.spring_back_end.dto.DepartementDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Categorie;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Departement;
 import com.odji.spring_back_end.repository.DepartementRepository;
 import com.odji.spring_back_end.repository.PersonelRepository;
-import com.odji.spring_back_end.services.DepartementService;
+import com.odji.spring_back_end.service.DepartementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,40 +1,64 @@
 package com.odji.spring_back_end.model;
 
-
-import com.odji.spring_back_end.dto.ProduitDto;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
 
-@Data
-@Builder
 @Entity
-@Table(name = "lignefacture")
-@AllArgsConstructor
+@Table(
+        name = "lignefacture",
+        indexes = {
+                @Index(name = "idx_lignefacture_produit", columnList = "idproduit"),
+                @Index(name = "idx_lignefacture_facture", columnList = "idfacture")
+        }
+)
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
-public class                                                                                                              LigneFacture {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class LigneFacture extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "idproduit")
-    private  Produit produit;
+    // ==================== Relations sortantes ====================
 
-    @ManyToOne
-    @JoinColumn(name = "idfacture")
-    private  Facture facture;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "idproduit",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_lignefacture_produit")
+    )
+    private Produit produit;
 
-    @Column(name = "quantite")
-    private BigDecimal quantite;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "idfacture",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_lignefacture_facture")
+    )
+    private Facture facture;
 
+    // ==================== Champs métier ====================
+
+    @Column(name = "quantite", precision = 15, scale = 3, nullable = false)
+    @Builder.Default
+    @ToString.Include
+    private BigDecimal quantite = BigDecimal.ZERO;
+
+    /**
+     * ⚠️ Date de la ligne de facture.
+     * Passé de String → LocalDate (voir explication).
+     */
     @Column(name = "date")
-    private String date;
-
-
+    @ToString.Include
+    private java.time.LocalDate date;
 }

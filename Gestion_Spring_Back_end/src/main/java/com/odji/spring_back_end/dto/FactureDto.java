@@ -1,37 +1,29 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.Instant;
-import java.util.Date;
-import java.util.List;
-@Data
-@Setter
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FactureDto {
 
     private Integer id;
-
-
     private String numero;
-
-
     private String code;
+    private LocalDate datecommande;
+    private BigDecimal total;
 
+    // Relation sortante exposée (sans suffixe "Dto")
+    private FournisseurDto fournisseur;
 
-    private Instant datecommande;
-
-    private String total;
-
-
-
-    private FournisseurDto fournisseurDto;
-
-    @JsonIgnore
-    private List<LigneFactureDto> lignefactures;
-
-
+    // ❌ Pas de "lignefactures" → endpoint dédié si besoin
 }

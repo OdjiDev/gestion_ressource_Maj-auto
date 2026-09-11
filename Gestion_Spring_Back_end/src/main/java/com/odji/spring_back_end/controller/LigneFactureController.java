@@ -2,7 +2,7 @@ package com.odji.spring_back_end.controller;
 
 
 import com.odji.spring_back_end.dto.LigneFactureDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Facture;
 import com.odji.spring_back_end.model.Produit;
 
@@ -10,10 +10,8 @@ import com.odji.spring_back_end.model.LigneFacture;
 import com.odji.spring_back_end.repository.ProduitRepository;
 import com.odji.spring_back_end.repository.FactureRepository;
 import com.odji.spring_back_end.repository.LigneFactureRepository;
-import com.odji.spring_back_end.repository.FactureRepository;
 
-import com.odji.spring_back_end.services.FactureService;
-import com.odji.spring_back_end.services.LigneFactureService;
+import com.odji.spring_back_end.service.LigneFactureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,28 +1,26 @@
 package com.odji.spring_back_end.dto;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.FactureReparer;
-import lombok.*;
 
-import java.time.Instant;
-import java.util.List;
-@Data
-@Setter
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FactureReparerDto {
 
     private Integer id;
-
     private String code;
+    private LocalDate date;
 
-    private Instant date;
+    // Relation sortante exposée (sans suffixe "Dto")
+    private SocieteDto societe;
 
-    private SocieteDto societeDto ;
-
-    @JsonIgnore
-    private List<LigneFactureReparerDto> lignefacturereparers;
-
-
-
+    // ❌ Pas de "lignesFactureReparer" → endpoint dédié si besoin
 }

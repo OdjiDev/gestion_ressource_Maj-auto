@@ -1,24 +1,22 @@
 package com.odji.spring_back_end.dto;
 
-import com.odji.spring_back_end.model.Demande;
-import com.odji.spring_back_end.model.LigneDemande;
-import jakarta.persistence.Column;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DemandeDto {
 
     private Integer id;
-
     private String motif;
 
-    private  LigneDemandeDto lignedemandeDto;
-
-    private  BureauDto bureauDto;
-
-
+    // Relations sortantes exposées (sans suffixe "Dto")
+    private LigneDemandeDto ligneDemande;
+    private BureauDto bureau;
 }

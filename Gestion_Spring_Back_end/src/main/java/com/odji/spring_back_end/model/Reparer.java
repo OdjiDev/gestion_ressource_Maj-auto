@@ -1,34 +1,55 @@
 package com.odji.spring_back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
+@Table(
+        name = "reparer",
+        indexes = {
+                @Index(name = "idx_reparer_date", columnList = "date")
+        }
+)
+@Getter
+@Setter
 @Builder
-@Table(name = "reparer")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Reparer extends AuditableEntity {
 
-public class Reparer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    private Date date;
+    /**
+     * ⚠️ CHANGEMENT CLÉ : Date → LocalDate
+     */
+    @Column(name = "date")
+    @ToString.Include
+    private LocalDate date;
 
-    private  String motif;
+    @Column(name = "motif", length = 500)
+    private String motif;
 
-    @OneToMany(mappedBy = "reparer")
-    private List<LigneReparation>ligneReparation ;
+    // ==================== Relations inverses ====================
 
-    @OneToMany(mappedBy = "reparer")
-    private List<LigneFactureReparer>ligneFactureReparer;
+    @JsonIgnore
+    @OneToMany(mappedBy = "reparer", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<LigneReparation> lignesReparation = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "reparer", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<LigneFactureReparer> lignesFactureReparer = new ArrayList<>();
 }

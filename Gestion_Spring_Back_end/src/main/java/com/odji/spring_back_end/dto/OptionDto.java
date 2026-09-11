@@ -1,22 +1,21 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.User;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-
-@Data
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class OptionDto {
 
     private Integer id;
-
     private String nom;
 
-//    @JsonIgnore
-//    private List<User> users;
+    // ❌ Pas de "personels" → relation inverse, endpoint dédié :
+    //    GET /api/options/{id}/personels
 }

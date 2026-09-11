@@ -1,34 +1,25 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Facture;
-import com.odji.spring_back_end.model.Fournisseur;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-@Data
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class FournisseurDto {
 
     private Integer id;
-
     private String nom;
-
-    private String prenom ;
-
-
+    private String prenom;
     private String adresse;
-
     private String mail;
-
     private String numtel;
 
-    @JsonIgnore
-    private List<FactureDto> factures;
-
+    // ❌ Pas de "factures" → relation inverse, endpoint dédié :
+    //    GET /api/fournisseurs/{id}/factures
 }

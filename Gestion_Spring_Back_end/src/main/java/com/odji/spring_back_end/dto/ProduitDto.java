@@ -1,46 +1,30 @@
 package com.odji.spring_back_end.dto;
 
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Produit;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.List;
-@Data
-@Setter
+
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProduitDto {
 
     private Integer id;
-
     private String codeproduit;
-
     private String nom;
-
     private String designation;
-
     private BigDecimal quantite;
 
-    private CategorieDto categorieDto;
+    // Relations sortantes exposées (utile côté front)
+    private CategorieDto categorie;
+    private MagasinDto magasin;
 
-    private MagasinDto magasinDto;
-
-    @JsonIgnore
-    private List<AvarieDto> avaries;
-
-    @JsonIgnore
-    private List<LigneFactureDto> lignefactures;
-
-    @JsonIgnore
-    private List<LigneFactureReparerDto> lignefacturereparers;
-    @JsonIgnore
-    private List<LigneReparationDto> lignereparations;
-    @JsonIgnore
-    private List<LigneDemandeDto> lignedemandes;
-
-
+    // ⚠️ On N'EXPOSE PAS les relations inverses dans le DTO de Produit.
+    //    Voir explication ci-dessous.
 }

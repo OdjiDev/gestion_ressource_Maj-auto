@@ -1,13 +1,17 @@
 package com.odji.spring_back_end.dto;
 
-import com.odji.spring_back_end.model.Avarie;
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
-@Setter
+import java.time.LocalDate;
+
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AvarieDto {
@@ -16,17 +20,9 @@ public class AvarieDto {
 
     private BigDecimal quantite;
 
-    private String date;
+    private LocalDate date;
 
     private String motif;
 
-    private ProduitDto produitDto;
+    private ProduitDto produit;
 }
-
-
-
-
-
-
-
-

@@ -1,10 +1,11 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.FournisseurDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
+
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Fournisseur;
 import com.odji.spring_back_end.repository.FournisseurRepository;
-import com.odji.spring_back_end.services.FournisseurService;
+import com.odji.spring_back_end.service.FournisseurService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,34 +1,54 @@
 package com.odji.spring_back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
-@Data
-@Builder
-@Entity
-@Table(name = "categorie")
-@AllArgsConstructor
-@NoArgsConstructor
-public class Categorie {
 
+@Entity
+@Table(
+        name = "categorie",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "uk_categorie_code", columnNames = "code")
+        },
+        indexes = {
+                @Index(name = "idx_categorie_nom", columnList = "categorie")
+        }
+)
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Categorie extends AuditableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "categorie")
-    private String nomcategorie;
+    /** ⚠️ Le nom Java est "nom" mais la colonne BDD est "categorie" (ancienne convention). */
+    @Column(name = "categorie", nullable = false, length = 150)
+    @ToString.Include
+    private String nom;
 
-    @Column(name = "code")
+    @Column(name = "code", nullable = false, length = 50)
+    @ToString.Include
     private String code;
 
-    @Column(name = "designation")
+    @Column(name = "designation", length = 500)
     private String designation;
 
-    @OneToMany(mappedBy = "categorie")
-    private List<Produit> produit;
+    // ==================== Relations inverses ====================
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "categorie", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Produit> produits = new ArrayList<>();
 }

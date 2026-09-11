@@ -1,28 +1,43 @@
 package com.odji.spring_back_end.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data@Builder
 @Entity
-@Table(name = "magasin")
-@AllArgsConstructor
+@Table(
+        name = "magasin",
+        indexes = {
+                @Index(name = "idx_magasin_nom", columnList = "nom")
+        }
+)
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Magasin extends AuditableEntity {
 
-public class Magasin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false, length = 150)
+    @ToString.Include
     private String nom;
 
-    @OneToMany(mappedBy = "magasin")
-    private List<Produit> produit;
+    // ==================== Relations inverses ====================
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "magasin", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Produit> produits = new ArrayList<>();
 }

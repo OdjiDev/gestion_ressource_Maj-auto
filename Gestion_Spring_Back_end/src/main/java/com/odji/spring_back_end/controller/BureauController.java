@@ -1,15 +1,11 @@
 package com.odji.spring_back_end.controller;
 
-import com.odji.spring_back_end.dto.AvarieDto;
 import com.odji.spring_back_end.dto.BureauDto;
-import com.odji.spring_back_end.dto.BureauDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Avarie;
-import com.odji.spring_back_end.model.Bureau;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Bureau;
 import com.odji.spring_back_end.repository.BureauRepository;
-import com.odji.spring_back_end.services.BureauService;
-import com.odji.spring_back_end.services.DemandeService;
+import com.odji.spring_back_end.service.BureauService;
+import com.odji.spring_back_end.service.DemandeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

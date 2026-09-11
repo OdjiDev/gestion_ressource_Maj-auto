@@ -1,28 +1,25 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.Bureau;
-import com.odji.spring_back_end.model.Departement;
-import jakarta.persistence.Column;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.List;
-@Data
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class DepartementDto {
+
     private Integer id;
-
     private String nom;
-
     private String code;
 
-    private  String createdAt;
+    // ❌ Pas de "bureauDto" → relation inverse, endpoint dédié :
+    //    GET /api/departements/{id}/bureaux
 
-    @JsonIgnore
-    private List<BureauDto> bureauDto;
-
-
+    // ❌ Pas de "createdAt" → ce champ est technique, pas métier.
+    //    Il est géré automatiquement par AuditableEntity côté entité.
 }

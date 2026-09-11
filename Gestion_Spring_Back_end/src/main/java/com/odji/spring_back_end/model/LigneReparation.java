@@ -1,38 +1,61 @@
 package com.odji.spring_back_end.model;
 
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
-
-@Data
 @Entity
+@Table(
+        name = "lignereparation",
+        indexes = {
+                @Index(name = "idx_lignereparation_produit", columnList = "idproduit"),
+                @Index(name = "idx_lignereparation_reparer", columnList = "idreparer")
+        }
+)
+@Getter
+@Setter
 @Builder
-@Table(name = "lignereparation")
-@AllArgsConstructor
 @NoArgsConstructor
-public class LigneReparation {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class LigneReparation extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
+    // ==================== Relations sortantes ====================
 
-    @ManyToOne
-    @JoinColumn(name = "idproduit")
-    private  Produit produit;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "idproduit",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_lignereparation_produit")
+    )
+    private Produit produit;
 
-    @ManyToOne
-    @JoinColumn(name = "idreparer")
-    private  Reparer reparer;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "idreparer",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_lignereparation_reparer")
+    )
+    private Reparer reparer;
 
-    @Column(name = "quantite")
-    private BigDecimal quantite;
+    // ==================== Champs métier ====================
+
+    @Column(name = "quantite", precision = 15, scale = 3, nullable = false)
+    @Builder.Default
+    @ToString.Include
+    private BigDecimal quantite = BigDecimal.ZERO;
 
     @Column(name = "date")
-    private Date date;
+    @ToString.Include
+    private LocalDate date;
 }

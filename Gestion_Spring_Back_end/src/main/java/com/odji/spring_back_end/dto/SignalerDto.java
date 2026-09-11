@@ -1,21 +1,22 @@
 package com.odji.spring_back_end.dto;
 
-import com.odji.spring_back_end.model.Personel;
-import com.odji.spring_back_end.model.Produit;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class SignalerDto {
-    private Integer id;
 
+    private Integer id;
     private String etat;
 
-    private Produit produit;
-
-    private Personel personel;
-
+    // Relations sortantes exposées en DTO (pas en entité !)
+    private ProduitDto produit;
+    private PersonelDto personel;
 }

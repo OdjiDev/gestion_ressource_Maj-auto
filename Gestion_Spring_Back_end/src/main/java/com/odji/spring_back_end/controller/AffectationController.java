@@ -1,13 +1,11 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.AffectationDto;
-import com.odji.spring_back_end.dto.AffectationDto;
-import com.odji.spring_back_end.exeption.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Affectation;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
 import com.odji.spring_back_end.model.Affectation;
 import com.odji.spring_back_end.repository.AffectationRepository;
 import com.odji.spring_back_end.repository.ProduitRepository;
-import com.odji.spring_back_end.services.AffectationService;
+import com.odji.spring_back_end.service.AffectationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

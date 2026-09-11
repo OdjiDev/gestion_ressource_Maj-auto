@@ -1,16 +1,17 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
-@Setter
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class AffectationDto {
@@ -19,12 +20,11 @@ public class AffectationDto {
 
     private BigDecimal quantite;
 
-    private String date;
+    private LocalDate date;
 
     private String motif;
-    @JsonIgnore
-    private ProduitDto produitDto;
-    @JsonIgnore
-    private PersonelDto personelDto;
 
+    // Relations sortantes exposées (sans le suffixe "Dto")
+    private ProduitDto produit;
+    private PersonelDto personel;
 }

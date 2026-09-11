@@ -1,30 +1,27 @@
 package com.odji.spring_back_end.dto;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.odji.spring_back_end.model.LigneDemande;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-@Setter
+import java.time.LocalDate;
+
 @Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class LigneDemandeDto {
 
     private Integer id;
-
-
     private BigDecimal quantite;
+    private LocalDate date;
 
+    // Relation sortante exposée (sans suffixe "Dto")
+    private ProduitDto produit;
 
-    private Date date;
-
-
-    private  ProduitDto produit;
-
-    @JsonIgnore
-    private List<DemandeDto> demandes;
-
+    // ❌ Pas de "demandes" → incohérence métier, voir plus bas
 }

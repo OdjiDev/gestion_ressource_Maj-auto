@@ -1,32 +1,19 @@
 package com.odji.spring_back_end.dto;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class PersonelDto {
 
     private Integer id;
-
     private String nom;
-
-    private String prenom;
-
-    private String dateDeNaissance;
-
-    private String lieuDeNaissance;
-
-    private String sexe;
-
-    private String numero;
-
-
-    private String email;
-
-    private String password;
-
-    private OptionDto role;
+    // ⚠️ adapte selon les vrais champs de Personel
 }

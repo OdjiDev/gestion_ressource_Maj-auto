@@ -1,36 +1,66 @@
 package com.odji.spring_back_end.model;
 
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
-@Data
 @Entity
+@Table(
+        name = "lignedemande",
+        indexes = {
+                @Index(name = "idx_lignedemande_produit", columnList = "idproduit"),
+                @Index(name = "idx_lignedemande_demande", columnList = "iddemande"),
+                @Index(name = "idx_lignedemande_date", columnList = "date")
+        }
+)
+@Getter
+@Setter
 @Builder
-@Table(name = "lignedemande")
-@AllArgsConstructor
 @NoArgsConstructor
-public class LigneDemande {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class LigneDemande extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "quantite")
-    private BigDecimal quantite;
+    // ==================== Champs métier ====================
+
+    @Column(name = "quantite", precision = 15, scale = 3, nullable = false)
+    @Builder.Default
+    @ToString.Include
+    private BigDecimal quantite = BigDecimal.ZERO;
 
     @Column(name = "date")
-    private Date date;
+    @ToString.Include
+    private LocalDate date;
 
-    @ManyToOne
-    @JoinColumn(name = "idproduit")
-    private  Produit produit;
+    // ==================== Relations sortantes ====================
 
-    @OneToMany(mappedBy = "lignedemande")
-    private List<Demande> demande;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "idproduit",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_lignedemande_produit")
+    )
+    private Produit produit;
+
+    /**
+     * ⚠️ CORRECTION MAJEURE : relation SORTANTE vers Demande (singulier)
+     * au lieu de la fausse relation inverse List<Demande>.
+     */
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "iddemande",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_lignedemande_demande")
+    )
+    private Demande demande;
 }

@@ -1,32 +1,52 @@
 package com.odji.spring_back_end.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
+@Table(
+        name = "demande",
+        indexes = {
+                @Index(name = "idx_demande_bureau", columnList = "idbureau")
+        }
+)
+@Getter
+@Setter
 @Builder
-@Table(name = "demande")
-@AllArgsConstructor
 @NoArgsConstructor
-public class Demande {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Demande extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "motif")
+    @Column(name = "motif", length = 500)
+    @ToString.Include
     private String motif;
 
-    @ManyToOne
-    @JoinColumn(name = "idlignedemande")
-    private  LigneDemande lignedemande;
+    // ==================== Relation sortante ====================
 
-    @ManyToOne
-    @JoinColumn(name = "idbureau")
-    private  Bureau bureau;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "idbureau",
+            foreignKey = @ForeignKey(name = "fk_demande_bureau")
+    )
+    private Bureau bureau;
 
+    // ==================== Relation inverse (le VRAI modèle) ====================
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "demande", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<LigneDemande> lignesDemande = new ArrayList<>();
 }

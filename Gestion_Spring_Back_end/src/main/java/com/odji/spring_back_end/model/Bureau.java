@@ -1,34 +1,53 @@
 package com.odji.spring_back_end.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @Entity
+@Table(
+        name = "bureau",
+        indexes = {
+                @Index(name = "idx_bureau_nom", columnList = "nom"),
+                @Index(name = "idx_bureau_departement", columnList = "iddepartement")
+        }
+)
+@Getter
+@Setter
 @Builder
-@Table(name = "bureau")
-@AllArgsConstructor
 @NoArgsConstructor
-public class Bureau {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Bureau extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "nom")
+    @Column(name = "nom", nullable = false, length = 150)
+    @ToString.Include
     private String nom;
 
-    @OneToMany(mappedBy = "bureau")
-    private List<Demande> demande;
+    // ==================== Relations sortantes ====================
 
-    @ManyToOne
-    @JoinColumn(name = "iddepartement")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "iddepartement",
+            foreignKey = @ForeignKey(name = "fk_bureau_departement")
+    )
     private Departement departement;
 
+    // ==================== Relations inverses ====================
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "bureau", fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<Demande> demandes = new ArrayList<>();
 }

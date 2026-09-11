@@ -1,35 +1,52 @@
 package com.odji.spring_back_end.model;
 
+import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
-@Data
-@Builder
+import java.time.LocalDate;
+
 @Entity
-@Table(name = "avarie")
-@AllArgsConstructor
+@Table(
+        name = "avarie",
+        indexes = {
+                @Index(name = "idx_avarie_produit", columnList = "idproduit"),
+                @Index(name = "idx_avarie_date", columnList = "date")
+        }
+)
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
-public class Avarie {
+@AllArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
+@ToString(onlyExplicitlyIncluded = true)
+public class Avarie extends AuditableEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
+    @ToString.Include
     private Integer id;
 
-    @Column(name = "quantite")
-    private BigDecimal quantite;
+    @Column(name = "quantite", precision = 15, scale = 3, nullable = false)
+    @Builder.Default
+    private BigDecimal quantite = BigDecimal.ZERO;
 
-    @Column(name = "date")
-    private String date;
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
 
-    @Column(name = "motif")
+    @Column(name = "motif", length = 500)
     private String motif;
 
-    @ManyToOne
-    @JoinColumn(name = "idproduit")
-    private Produit produit ;
+    // ==================== Relations sortantes ====================
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(
+            name = "idproduit",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_avarie_produit")
+    )
+    private Produit produit;
 }
