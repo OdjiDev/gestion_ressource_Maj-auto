@@ -18,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -32,8 +31,6 @@ public class LigneFactureReparerService {
     private final ReparerRepository reparerRepository;
     private final FactureReparerRepository factureReparerRepository;
     private final LigneFactureReparerMapper ligneFactureReparerMapper;
-
-    // ==================== LECTURE ====================
 
     public List<LigneFactureReparerDto> findAll() {
         return ligneFactureReparerMapper.toDtoList(
@@ -62,32 +59,23 @@ public class LigneFactureReparerService {
                 ligneFactureReparerRepository.findAllByProduitId(idProduit));
     }
 
-    // ==================== ÉCRITURE ====================
-
     @Transactional
     public LigneFactureReparerDto create(LigneFactureReparerDto dto) {
-        log.info("Création ligne facture réparer facture={}",
-                dto.getFactureReparer() != null ? dto.getFactureReparer().getId() : null);
-
+        log.info("Création ligne facture réparer");
         LigneFactureReparer entity = ligneFactureReparerMapper.toEntity(dto);
         entity.setId(null);
-
         attachRelations(entity, dto);
-
-        LigneFactureReparer saved = ligneFactureReparerRepository.save(entity);
-        return ligneFactureReparerMapper.toDto(saved);
+        return ligneFactureReparerMapper.toDto(
+                ligneFactureReparerRepository.save(entity));
     }
 
     @Transactional
     public LigneFactureReparerDto update(Integer id, LigneFactureReparerDto dto) {
-        log.info("Mise à jour ligne facture réparer id={}", id);
-
         LigneFactureReparer existing = ligneFactureReparerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("LigneFactureReparer", id));
 
         existing.setQuantite(dto.getQuantite());
         existing.setDate(dto.getDate());
-
         attachRelations(existing, dto);
 
         return ligneFactureReparerMapper.toDto(existing);
@@ -95,13 +83,10 @@ public class LigneFactureReparerService {
 
     @Transactional
     public void delete(Integer id) {
-        log.info("Suppression ligne facture réparer id={}", id);
         LigneFactureReparer entity = ligneFactureReparerRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("LigneFactureReparer", id));
         ligneFactureReparerRepository.delete(entity);
     }
-
-    // ==================== Interne ====================
 
     private void attachRelations(LigneFactureReparer entity, LigneFactureReparerDto dto) {
         if (dto.getProduit() != null && dto.getProduit().getId() != null) {
@@ -110,20 +95,17 @@ public class LigneFactureReparerService {
                             "Produit", dto.getProduit().getId()));
             entity.setProduit(produit);
         }
-
         if (dto.getReparer() != null && dto.getReparer().getId() != null) {
             Reparer reparer = reparerRepository.findById(dto.getReparer().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(
                             "Reparer", dto.getReparer().getId()));
             entity.setReparer(reparer);
         }
-
         if (dto.getFactureReparer() != null && dto.getFactureReparer().getId() != null) {
-            FactureReparer factureReparer = factureReparerRepository
-                    .findById(dto.getFactureReparer().getId())
+            FactureReparer fr = factureReparerRepository.findById(dto.getFactureReparer().getId())
                     .orElseThrow(() -> new ResourceNotFoundException(
                             "FactureReparer", dto.getFactureReparer().getId()));
-            entity.setFactureReparer(factureReparer);
+            entity.setFactureReparer(fr);
         }
     }
 }

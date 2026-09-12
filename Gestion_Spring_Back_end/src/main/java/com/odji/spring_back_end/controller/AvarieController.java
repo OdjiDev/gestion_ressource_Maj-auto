@@ -1,81 +1,60 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.AvarieDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Avarie;
-import com.odji.spring_back_end.repository.AvarieRepository;
-import com.odji.spring_back_end.repository.ProduitRepository;
 import com.odji.spring_back_end.service.AvarieService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/avaries")
 @RequiredArgsConstructor
 public class AvarieController {
 
     private final AvarieService avarieService;
 
-    private final AvarieRepository avarieRepository;
-    private final ProduitRepository produitRepository;
-
-
-    // create AVARIE
-    @PostMapping("/avaries")
-    public ResponseEntity<AvarieDto> createAvarie(@RequestBody AvarieDto avarieDto) {
-        Avarie avarie = avarieService.dtoToAvarie(avarieDto);
-        Avarie savedAvarie= avarieRepository.save(avarie);
-        return ResponseEntity.ok(avarieService.avarieToDto(savedAvarie));
-    }
-    // get all Avarie
-    @GetMapping("/avaries/list")
-    public List<AvarieDto> getAllAvarie() {
-        List<Avarie> avaries = avarieRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return avarieService.avariesDtoList(avarieRepository.findAll()); // Convert products to DTOs
+    @PostMapping
+    public ResponseEntity<AvarieDto> create(@Valid @RequestBody AvarieDto dto,
+                                            UriComponentsBuilder uriBuilder) {
+        AvarieDto created = avarieService.create(dto);
+        URI location = uriBuilder.path("/api/avaries/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-    //get avarie by id
-    @GetMapping("avaries/{id}")
-    public ResponseEntity<Avarie> getAvarieById(@PathVariable Integer id) {
-        Optional<Avarie> optionalAvarie = avarieRepository.findById(id);
-
-        if (optionalAvarie.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalAvarie.get());
-    }
-    // Update a category
-    @PutMapping("avaries/{id}")
-    public ResponseEntity<AvarieDto> updateAvarie(@PathVariable Integer id, @RequestBody AvarieDto avarieDetailsDto) {
-        avarieRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Avarie not found with id: " + id));
-        Avarie updateAvarie;
-
-        updateAvarie = avarieService.dtoToAvarie(avarieDetailsDto);
-        updateAvarie.setId(id);
-        avarieDetailsDto=avarieService.avarieToDto(avarieRepository.save(updateAvarie));
-        return ResponseEntity.ok( avarieDetailsDto);
+    @GetMapping
+    public ResponseEntity<Page<AvarieDto>> findAll(
+            @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(avarieService.findAll(pageable));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("avaries/{id}")
-    public ResponseEntity<HttpStatus> deleteAvarie(@PathVariable Integer id){
+    @GetMapping("/{id}")
+    public ResponseEntity<AvarieDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(avarieService.findById(id));
+    }
 
-        Avarie avarie = avarieRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("avarie  not exist with id: " + id));
+    @GetMapping("/produit/{idProduit}")
+    public ResponseEntity<List<AvarieDto>> findByProduit(@PathVariable Integer idProduit) {
+        return ResponseEntity.ok(avarieService.findByProduit(idProduit));
+    }
 
-        avarieRepository.delete(avarie);
+    @PutMapping("/{id}")
+    public ResponseEntity<AvarieDto> update(@PathVariable Integer id,
+                                            @Valid @RequestBody AvarieDto dto) {
+        return ResponseEntity.ok(avarieService.update(id, dto));
+    }
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        avarieService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
-
-

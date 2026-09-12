@@ -1,85 +1,54 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.OptionDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Option;
-import com.odji.spring_back_end.repository.OptionRepository;
 import com.odji.spring_back_end.service.OptionService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Optional;
+import java.net.URI;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
+@RequestMapping("/api/options")
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class OptionController {
 
-    private final OptionRepository optionRepository;
     private final OptionService optionService;
 
-    // get all option
-
-
-// build get all product
-
-    @GetMapping("/roles/list")
-    // Replace placeholders with your actual logic for data access using DTOs
-    public List<OptionDto> getAllOptions() {
-        List<Option> options = optionRepository.findAll(); // Assuming you have a JPA repository named 'optionRepository'
-        return optionService.optionDtoList(optionRepository.findAll()); // Convert products to DTOs
+    @PostMapping
+    public ResponseEntity<OptionDto> create(@Valid @RequestBody OptionDto dto,
+                                            UriComponentsBuilder uriBuilder) {
+        OptionDto created = optionService.create(dto);
+        URI location = uriBuilder.path("/api/options/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-
-    // create options
-    @PostMapping("roles")
-    public ResponseEntity<OptionDto> createOption(@RequestBody OptionDto optionDto) {
-        Option option = optionService.dtoToOption(optionDto);
-        Option savedOption = optionRepository.save(option);
-        return ResponseEntity.ok(optionService.OptionToDto(savedOption));
+    @GetMapping
+    public ResponseEntity<Page<OptionDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(optionService.findAll(pageable));
     }
 
-    //get option by id
-    @GetMapping("roles/{id}")
-    public ResponseEntity<Option> getOptionById(@PathVariable Integer id) {
-        Optional<Option> optionalOption = optionRepository.findById(id);
-
-        if (optionalOption.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalOption.get());
+    @GetMapping("/{id}")
+    public ResponseEntity<OptionDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(optionService.findById(id));
     }
 
-    //
-    // Update a category
-    @PutMapping("roles/{id}")
-    public ResponseEntity<OptionDto> updateOption(@PathVariable Integer id, @RequestBody OptionDto optionDetailsDto) {
-        optionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Option not found with id: " + id));
-        Option updateOption;
-
-        updateOption = optionService.dtoToOption(optionDetailsDto);
-        updateOption.setId(id);
-        optionDetailsDto = optionService.OptionToDto(optionRepository.save(updateOption));
-        ResponseEntity<OptionDto> ok = ResponseEntity.ok(optionDetailsDto);
-        return ok;
+    @PutMapping("/{id}")
+    public ResponseEntity<OptionDto> update(@PathVariable Integer id,
+                                            @Valid @RequestBody OptionDto dto) {
+        return ResponseEntity.ok(optionService.update(id, dto));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("roles/{id}")
-    public ResponseEntity<HttpStatus> deleteOption(@PathVariable Integer id) {
-
-        Option option = optionRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("option  not exist with id: " + id));
-
-        optionRepository.delete(option);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        optionService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

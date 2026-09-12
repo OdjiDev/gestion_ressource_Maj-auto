@@ -1,79 +1,76 @@
 package com.odji.spring_back_end.controller;
+
 import com.odji.spring_back_end.dto.CategorieDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Categorie;
-import com.odji.spring_back_end.repository.CategorieRepository;
 import com.odji.spring_back_end.service.CategorieService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200/")
-    @RestController
-    @RequiredArgsConstructor
-    @ RequestMapping("/api")
-    public class CategorieController {
+@RestController
+@RequestMapping("/api/categories")
+@RequiredArgsConstructor
+public class CategorieController {
 
-    private final CategorieRepository categorieRepository;
     private final CategorieService categorieService;
 
-    // get all categorie
-    @GetMapping("/categories/list")
-    public List<CategorieDto> getAllCategories() {
-        List<Categorie> categories = categorieRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return categorieService.categoriesDtoList(categorieRepository.findAll()); // Convert products to DTOs
+    // ==================== CRÉATION ====================
+
+    @PostMapping
+    public ResponseEntity<CategorieDto> create(
+            @Valid @RequestBody CategorieDto dto,
+            UriComponentsBuilder uriBuilder) {
+        CategorieDto created = categorieService.create(dto);
+        URI location = uriBuilder.path("/api/categories/{id}")
+                .buildAndExpand(created.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-    // create categories
-    @PostMapping("categories")
-    public ResponseEntity<CategorieDto> createCategorie(@RequestBody CategorieDto categorieDto) {
-        Categorie categorie = categorieService.dtoToCategorie(categorieDto);
-        Categorie savedCategorie = categorieRepository.save(categorie);
-        return ResponseEntity.ok(categorieService.categorieToDto(savedCategorie));
+    // ==================== LECTURE ====================
+
+    @GetMapping
+    public ResponseEntity<Page<CategorieDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(categorieService.findAll(pageable));
     }
 
-    //get categorie by id
-    @GetMapping("categories/{id}")
-    public ResponseEntity<Categorie> getCategorieById(@PathVariable Integer id) {
-        Optional<Categorie> optionalCategorie = categorieRepository.findById(id);
-
-        if (optionalCategorie.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalCategorie.get());
+    @GetMapping("/{id}")
+    public ResponseEntity<CategorieDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(categorieService.findById(id));
     }
 
-    //
-    // Update a category
-    @PutMapping("categories/{id}")
-    public ResponseEntity<CategorieDto> updateCategorie(@PathVariable Integer id, @RequestBody CategorieDto categorieDetailsDto) {
-        categorieRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Categorie not found with id: " + id));
-        Categorie updateCategorie;
-
-        updateCategorie = categorieService.dtoToCategorie(categorieDetailsDto);
-        updateCategorie.setId(id);
-        categorieDetailsDto = categorieService.categorieToDto(categorieRepository.save(updateCategorie));
-        return ResponseEntity.ok(categorieDetailsDto);
+    @GetMapping("/code/{code}")
+    public ResponseEntity<CategorieDto> findByCode(@PathVariable String code) {
+        return ResponseEntity.ok(categorieService.findByCode(code));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("categories/{id}")
-    public ResponseEntity<HttpStatus> deleteCategorie(@PathVariable Integer id) {
-
-        Categorie categorie = categorieRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("categorie  not exist with id: " + id));
-
-        categorieRepository.delete(categorie);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @GetMapping("/search")
+    public ResponseEntity<List<CategorieDto>> search(@RequestParam String nom) {
+        return ResponseEntity.ok(categorieService.searchByNom(nom));
     }
 
+    // ==================== MISE À JOUR ====================
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CategorieDto> update(
+            @PathVariable Integer id,
+            @Valid @RequestBody CategorieDto dto) {
+        return ResponseEntity.ok(categorieService.update(id, dto));
+    }
+
+    // ==================== SUPPRESSION ====================
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        categorieService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
-
-

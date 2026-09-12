@@ -1,78 +1,60 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.FournisseurDto;
-
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Fournisseur;
-import com.odji.spring_back_end.repository.FournisseurRepository;
 import com.odji.spring_back_end.service.FournisseurService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
+@RequestMapping("/api/fournisseurs")
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class FournisseurController {
 
-    private  final FournisseurService fournisseurService;
-    private  final FournisseurRepository fournisseurRepository;
-    // get all fournisseur
-    @GetMapping("/fournisseurs/list")
-    public List<FournisseurDto> getAllFournisseurs() {
-        List<Fournisseur> fournisseurs = fournisseurRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return fournisseurService.fournisseurDtoList(fournisseurRepository.findAll()); // Convert products to DTOs
+    private final FournisseurService fournisseurService;
+
+    @PostMapping
+    public ResponseEntity<FournisseurDto> create(@Valid @RequestBody FournisseurDto dto,
+                                                 UriComponentsBuilder uriBuilder) {
+        FournisseurDto created = fournisseurService.create(dto);
+        URI location = uriBuilder.path("/api/fournisseurs/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-    // create fournisseurs
-    @PostMapping("fournisseurs")
-    public ResponseEntity<FournisseurDto> createFournisseur(@RequestBody FournisseurDto fournisseurDto) {
-        Fournisseur fournisseur = fournisseurService.dtoToFournisseur(fournisseurDto);
-        Fournisseur savedFournisseur = fournisseurRepository.save(fournisseur);
-        return ResponseEntity.ok(fournisseurService.fournisseurToDto(savedFournisseur));
+    @GetMapping
+    public ResponseEntity<Page<FournisseurDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(fournisseurService.findAll(pageable));
     }
 
-    //get fournisseur by id
-    @GetMapping("fournisseurs/{id}")
-    public ResponseEntity<Fournisseur> getFournisseurById(@PathVariable Integer id) {
-        Optional<Fournisseur> optionalFournisseur = fournisseurRepository.findById(id);
-
-        if (optionalFournisseur.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalFournisseur.get());
-    }
-    // Update a category
-    @PutMapping("fournisseurs/{id}")
-    public ResponseEntity<FournisseurDto> updateFournisseur(@PathVariable Integer id, @RequestBody FournisseurDto fournisseurDetailsDto) {
-        fournisseurRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Fournisseur not found with id: " + id));
-        Fournisseur updateFournisseur;
-
-        updateFournisseur = fournisseurService.dtoToFournisseur(fournisseurDetailsDto);
-        updateFournisseur.setId(id);
-        fournisseurDetailsDto=fournisseurService.fournisseurToDto(fournisseurRepository.save(updateFournisseur));
-        return ResponseEntity.ok( fournisseurDetailsDto);
+    @GetMapping("/{id}")
+    public ResponseEntity<FournisseurDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(fournisseurService.findById(id));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("fournisseurs/{id}")
-    public ResponseEntity<HttpStatus> deleteFournisseur(@PathVariable Integer id){
-
-        Fournisseur fournisseur = fournisseurRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("fournisseur  not exist with id: " + id));
-
-        fournisseurRepository.delete(fournisseur);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @GetMapping("/search")
+    public ResponseEntity<List<FournisseurDto>> search(@RequestParam String nom) {
+        return ResponseEntity.ok(fournisseurService.searchByNom(nom));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<FournisseurDto> update(@PathVariable Integer id,
+                                                 @Valid @RequestBody FournisseurDto dto) {
+        return ResponseEntity.ok(fournisseurService.update(id, dto));
+    }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        fournisseurService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

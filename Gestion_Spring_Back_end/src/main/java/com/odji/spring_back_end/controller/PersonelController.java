@@ -1,77 +1,56 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.PersonelDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Personel;
-import com.odji.spring_back_end.repository.PersonelRepository;
 import com.odji.spring_back_end.service.PersonelService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Optional;
+import java.net.URI;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
+@RequestMapping("/api/personels")
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class PersonelController {
 
-
     private final PersonelService personelService;
-    private final PersonelRepository personelRepository;
 
-    // get all personel
-    @GetMapping("/personels/list")
-    public List<PersonelDto> getAllPersonels() {
-        List<Personel> personels = personelRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return personelService.personelDtoList(personelRepository.findAll()); // Convert products to DTOs
+    @PostMapping
+    public ResponseEntity<PersonelDto> create(@Valid @RequestBody PersonelDto dto,
+                                              UriComponentsBuilder uriBuilder) {
+        PersonelDto created = personelService.create(dto);
+        URI location = uriBuilder.path("/api/personels/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
+    }
+/*
+    @GetMapping
+    public ResponseEntity<Page<PersonelDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(personelService.findAll(pageable));
     }
 
-        // create personels
-        @PostMapping("personels")
-        public ResponseEntity<PersonelDto> createPersonel(@RequestBody PersonelDto personelDto) {
-            Personel personel = personelService.dtoToPersonel(personelDto);
-            Personel savedPersonel = personelRepository.save(personel);
-            return ResponseEntity.ok(personelService.personelToDto(savedPersonel));
-        }
-        //get personel by id
-        @GetMapping("personels/{id}")
-        public ResponseEntity<Personel> getPersonelById(@PathVariable Integer id) {
-            Optional<Personel> optionalPersonel = personelRepository.findById(id);
+    @GetMapping("/{id}")
+    public ResponseEntity<PersonelDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(personelService.findById(id));
+    }
 
-            if (optionalPersonel.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
+    @PutMapping("/{id}")
+    public ResponseEntity<PersonelDto> update(@PathVariable Integer id,
+                                              @Valid @RequestBody PersonelDto dto) {
+        return ResponseEntity.ok(personelService.update(id, dto));
+    }
 
-            return ResponseEntity.ok(optionalPersonel.get());
-        }
-        //
-        // Update a category
-        @PutMapping("personels/{id}")
-        public ResponseEntity<PersonelDto> updatePersonel(@PathVariable Integer id, @RequestBody PersonelDto personelDetailsDto) {
-            personelRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Personel not found with id: " + id));
-            Personel updatePersonel;
-
-            updatePersonel = personelService.dtoToPersonel(personelDetailsDto);
-            updatePersonel.setId(id);
-            personelDetailsDto=personelService.personelToDto(personelRepository.save(updatePersonel));
-            return ResponseEntity.ok( personelDetailsDto);
-        }
-
-        // build delete inscription REST API
-        @DeleteMapping("personels/{id}")
-        public ResponseEntity<HttpStatus> deletePersonel(@PathVariable Integer id){
-
-            Personel personel = personelRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("personel  not exist with id: " + id));
-
-            personelRepository.delete(personel);
-
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        personelService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+    *
+ */
 }

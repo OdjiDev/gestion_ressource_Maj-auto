@@ -1,79 +1,65 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.BureauDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Bureau;
-import com.odji.spring_back_end.repository.BureauRepository;
 import com.odji.spring_back_end.service.BureauService;
-import com.odji.spring_back_end.service.DemandeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin("http://localhost:4200/")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/bureaux")
 @RequiredArgsConstructor
 public class BureauController {
-    // create bureau
-    private  final BureauService bureauService;
-    private final DemandeService demandeService;
-    private  final BureauRepository bureauRepository;
 
-    //Create Bureau
-    @PostMapping("bureaus")
-    public ResponseEntity<BureauDto> createBureau(@RequestBody BureauDto bureauDto) {
-        Bureau bureau = bureauService.dtoToBureau(bureauDto);
-       Bureau savedBureau= bureauRepository.save(bureau);
-        return ResponseEntity.ok(bureauService.BureauToDto(savedBureau));
-    }
-    // get all bureau
-    @GetMapping("/bureaus/list")
-    public List<BureauDto> getAllBureau() {
-        List<Bureau> bureaus = bureauRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return bureauService.bureausDtoList(bureauRepository.findAll()); // Convert products to DTOs
+    private final BureauService bureauService;
+
+    @PostMapping
+    public ResponseEntity<BureauDto> create(@Valid @RequestBody BureauDto dto,
+                                            UriComponentsBuilder uriBuilder) {
+        BureauDto created = bureauService.create(dto);
+        URI location = uriBuilder.path("/api/bureaux/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-
-    //get bureau by id
-    @GetMapping("bureaus/{id}")
-    public ResponseEntity<Bureau> getBureauById(@PathVariable Integer id) {
-        Optional<Bureau> optionalBureau = bureauRepository.findById(id);
-
-        if (optionalBureau.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalBureau.get());
-    }
-    // Update a category
-    @PutMapping("bureaus/{id}")
-    public ResponseEntity<BureauDto> updateBureau(@PathVariable Integer id, @RequestBody BureauDto bureauDetailsDto) {
-        bureauRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Bureau not found with id: " + id));
-        Bureau updateBureau;
-
-        updateBureau = bureauService.dtoToBureau(bureauDetailsDto);
-        updateBureau.setId(id);
-        bureauDetailsDto=bureauService.BureauToDto(bureauRepository.save(updateBureau));
-        return ResponseEntity.ok( bureauDetailsDto);
+    @GetMapping
+    public ResponseEntity<Page<BureauDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(bureauService.findAll(pageable));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("bureaus/{id}")
-    public ResponseEntity<HttpStatus> deleteBureau(@PathVariable Integer id){
-
-        Bureau bureau = bureauRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("bureau  not exist with id: " + id));
-
-        bureauRepository.delete(bureau);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @GetMapping("/{id}")
+    public ResponseEntity<BureauDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(bureauService.findById(id));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<BureauDto>> search(@RequestParam String nom) {
+        return ResponseEntity.ok(bureauService.searchByNom(nom));
+    }
+
+    @GetMapping("/departement/{idDepartement}")
+    public ResponseEntity<List<BureauDto>> findByDepartement(@PathVariable Integer idDepartement) {
+        return ResponseEntity.ok(bureauService.findByDepartement(idDepartement));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<BureauDto> update(@PathVariable Integer id,
+                                            @Valid @RequestBody BureauDto dto) {
+        return ResponseEntity.ok(bureauService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        bureauService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

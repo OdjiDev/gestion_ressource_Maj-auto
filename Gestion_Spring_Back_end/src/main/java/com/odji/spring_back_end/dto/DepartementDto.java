@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @Builder
@@ -16,6 +18,7 @@ public class DepartementDto {
     private Integer id;
     private String nom;
     private String code;
+    private String CreatedAt;
 
     // ❌ Pas de "bureauDto" → relation inverse, endpoint dédié :
     //    GET /api/departements/{id}/bureaux

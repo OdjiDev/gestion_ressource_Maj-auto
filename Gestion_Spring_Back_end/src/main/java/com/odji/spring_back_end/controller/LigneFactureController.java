@@ -1,118 +1,65 @@
 package com.odji.spring_back_end.controller;
 
-
 import com.odji.spring_back_end.dto.LigneFactureDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Facture;
-import com.odji.spring_back_end.model.Produit;
-
-import com.odji.spring_back_end.model.LigneFacture;
-import com.odji.spring_back_end.repository.ProduitRepository;
-import com.odji.spring_back_end.repository.FactureRepository;
-import com.odji.spring_back_end.repository.LigneFactureRepository;
-
 import com.odji.spring_back_end.service.LigneFactureService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin(origins="http://localhost:4200/")
 @RestController
+@RequestMapping("/api/lignes-facture")
 @RequiredArgsConstructor
-@RequestMapping("api")
 public class LigneFactureController {
- 
 
-        private final LigneFactureRepository lignefactureRepository;
-        @Autowired
-        private  final LigneFactureService lignefactureService;
-        private final FactureRepository factureRepository;
-        private  final ProduitRepository produitRepository;
+    private final LigneFactureService ligneFactureService;
 
-
-
-        // build create lignefacture REST API
-        @PostMapping("/lignefactures")
-        public LigneFactureDto createLigneFacture(@RequestBody LigneFactureDto lignefactureDto) {
-            LigneFacture lignefacture= lignefactureService.dtoToLignefacture(lignefactureDto);
-             Integer factureId= lignefactureDto.getFactureDto().getId();
-             Optional<Facture> existingFactureOptional= factureRepository.findById(factureId);
-
-            //Verification de l'existance du facture
-        if(existingFactureOptional.isPresent()){
-            // Si facture est trouvé l'affecter  au lignefacture
-           lignefacture.setFacture(existingFactureOptional.get());
-        }
-
-            Integer produitId= lignefactureDto.getProduitDto().getId();
-            Optional<Produit> existingProduitOptional= produitRepository.findById(produitId);
-
-            //Verification de l'existance de la produit
-            if(existingProduitOptional.isPresent()){
-                // Si  la produit est trouvé l'affecter  au lignefacture
-                lignefacture.setProduit(existingProduitOptional.get());
-            }
-
-            // enrégistrement du lignefacture dans la base de donnée
-            lignefactureDto= lignefactureService.ligneFactureToDto(lignefactureRepository.save(lignefacture));
-            return lignefactureDto;
-        }
-
-
-
-// build get all product
-
-        @GetMapping("/lignefactures/list")
-        // Replace placeholders with your actual logic for data access using DTOs
-        public List<LigneFactureDto> getAllLigneFactures() {
-            List<LigneFacture> lignefactures = lignefactureRepository.findAll(); // Assuming you have a JPA repository named 'lignefactureRepository'
-            return lignefactureService.LigneFactureDtoList(lignefactureRepository.findAll()); // Convert products to DTOs
-        }
-        //           // build get product by id REST API
-        //get product by id
-        @GetMapping("/lignefactures/{id}")
-        public ResponseEntity<LigneFactureDto> getDLigneFactureById(@PathVariable  Integer id){
-            LigneFacture lignefacture = lignefactureRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("LigneFacture not exist with id:" + id));
-            return ResponseEntity.ok(lignefactureService.ligneFactureToDto(lignefacture));
-        }
-
-        // build update LigneFacture REST API
-        @PutMapping("/lignefactures/{id}")
-        public ResponseEntity<LigneFactureDto> updateLigneFacture(@PathVariable Integer id,@RequestBody LigneFactureDto lignefactureDetailsDto) {
-            LigneFacture updateLigneFacture = lignefactureRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("lignefacture not exist with id: " + id));
-            updateLigneFacture = lignefactureService.dtoToLignefacture(lignefactureDetailsDto);
-            updateLigneFacture.setId(id);
-            lignefactureDetailsDto.setId(id);
-
-            lignefactureDetailsDto= lignefactureService.ligneFactureToDto(lignefactureRepository.save(updateLigneFacture));
-
-            return ResponseEntity.ok(lignefactureDetailsDto);
-        }
-
-
-
-        // build delete demande REST API
-        @DeleteMapping("/lignefactures/{id}")
-        public ResponseEntity<HttpStatus> deleteLigneFacture(@PathVariable Integer id){
-
-            LigneFacture lignefacture = lignefactureRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("LigneFacture not exist with id: " + id));
-
-            lignefactureRepository.delete(lignefacture);
-
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        }
-
-
-
+    @PostMapping
+    public ResponseEntity<LigneFactureDto> create(@Valid @RequestBody LigneFactureDto dto,
+                                                  UriComponentsBuilder uriBuilder) {
+        LigneFactureDto created = ligneFactureService.create(dto);
+        URI location = uriBuilder.path("/api/lignes-facture/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
+    @GetMapping
+    public ResponseEntity<Page<LigneFactureDto>> findAll(
+            @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(ligneFactureService.findAll(pageable));
+    }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<LigneFactureDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(ligneFactureService.findById(id));
+    }
+
+    @GetMapping("/facture/{idFacture}")
+    public ResponseEntity<List<LigneFactureDto>> findByFacture(@PathVariable Integer idFacture) {
+        return ResponseEntity.ok(ligneFactureService.findByFacture(idFacture));
+    }
+
+    @GetMapping("/produit/{idProduit}")
+    public ResponseEntity<List<LigneFactureDto>> findByProduit(@PathVariable Integer idProduit) {
+        return ResponseEntity.ok(ligneFactureService.findByProduit(idProduit));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<LigneFactureDto> update(@PathVariable Integer id,
+                                                  @Valid @RequestBody LigneFactureDto dto) {
+        return ResponseEntity.ok(ligneFactureService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        ligneFactureService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+}

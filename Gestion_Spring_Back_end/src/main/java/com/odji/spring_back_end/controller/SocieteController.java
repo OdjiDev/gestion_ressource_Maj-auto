@@ -1,77 +1,54 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.SocieteDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Societe;
-import com.odji.spring_back_end.repository.SocieteRepository;
 import com.odji.spring_back_end.service.SocieteService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Optional;
-@CrossOrigin(origins = "http://localhost:4200/")
+import java.net.URI;
+
 @RestController
+@RequestMapping("/api/societes")
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class SocieteController {
 
-    private  final SocieteService societeService;
-    private final SocieteRepository societeRepository;
-    
+    private final SocieteService societeService;
 
-
-    // get all societe
-    @GetMapping("/societes/list")
-    public List<SocieteDto> getAllSocietes() {
-        List<Societe> societes = societeRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return societeService.societeDtoList(societeRepository.findAll()); // Convert products to DTOs
+    @PostMapping
+    public ResponseEntity<SocieteDto> create(@Valid @RequestBody SocieteDto dto,
+                                             UriComponentsBuilder uriBuilder) {
+        SocieteDto created = societeService.create(dto);
+        URI location = uriBuilder.path("/api/societes/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-    // create societes
-    @PostMapping("societes")
-    public ResponseEntity<SocieteDto> createSociete(@RequestBody SocieteDto societeDto) {
-        Societe societe = societeService.dtoToSociete(societeDto);
-        Societe savedSociete = societeRepository.save(societe);
-        return ResponseEntity.ok(societeService.societeToDto(savedSociete));
+    @GetMapping
+    public ResponseEntity<Page<SocieteDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(societeService.findAll(pageable));
     }
 
-    //get societe by id
-    @GetMapping("societes/{id}")
-    public ResponseEntity<Societe> getSocieteById(@PathVariable Integer id) {
-        Optional<Societe> optionalSociete = societeRepository.findById(id);
-
-        if (optionalSociete.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalSociete.get());
-    }
-    // Update a category
-    @PutMapping("societes/{id}")
-    public ResponseEntity<SocieteDto> updateSociete(@PathVariable Integer id, @RequestBody SocieteDto societeDetailsDto) {
-        societeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Societe not found with id: " + id));
-        Societe updateSociete;
-
-        updateSociete = societeService.dtoToSociete(societeDetailsDto);
-        updateSociete.setId(id);
-        societeDetailsDto=societeService.societeToDto(societeRepository.save(updateSociete));
-        return ResponseEntity.ok( societeDetailsDto);
+    @GetMapping("/{id}")
+    public ResponseEntity<SocieteDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(societeService.findById(id));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("societes/{id}")
-    public ResponseEntity<HttpStatus> deleteSociete(@PathVariable Integer id){
+    @PutMapping("/{id}")
+    public ResponseEntity<SocieteDto> update(@PathVariable Integer id,
+                                             @Valid @RequestBody SocieteDto dto) {
+        return ResponseEntity.ok(societeService.update(id, dto));
+    }
 
-        Societe societe = societeRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("societe  not exist with id: " + id));
-
-        societeRepository.delete(societe);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        societeService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

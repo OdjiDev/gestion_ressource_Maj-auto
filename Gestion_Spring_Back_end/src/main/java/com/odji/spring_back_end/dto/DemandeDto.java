@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -18,5 +21,8 @@ public class DemandeDto {
 
     // Relations sortantes exposées (sans suffixe "Dto")
     private LigneDemandeDto ligneDemande;
+    @Builder.Default
+    private List<LigneDemandeDto> lignesDemande = new ArrayList<>();
+
     private BureauDto bureau;
 }

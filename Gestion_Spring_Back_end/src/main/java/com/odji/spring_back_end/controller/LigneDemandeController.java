@@ -1,77 +1,68 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.LigneDemandeDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.LigneDemande;
-import com.odji.spring_back_end.repository.LigneDemandeRepository;
 import com.odji.spring_back_end.service.LigneDemandeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
-@CrossOrigin(origins = "http://localhost:4200/")
+
 @RestController
+@RequestMapping("/api/lignes-demande")
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class LigneDemandeController {
 
-   
+    private final LigneDemandeService ligneDemandeService;
 
-        private final LigneDemandeRepository ligneDemandeRepository;
-        private final LigneDemandeService ligneDemandeService;
-
-        // get all ligneDemande
-        @GetMapping("/ligneDemandes/list")
-        public List<LigneDemandeDto> getAllLigneDemandes() {
-            List<LigneDemande> ligneDemandes = ligneDemandeRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-            return ligneDemandeService.LigneDemandeDtoList(ligneDemandeRepository.findAll()); // Convert products to DTOs
-        }
-        // create ligneDemandes
-        @PostMapping("ligneDemandes")
-        public ResponseEntity<LigneDemandeDto> createLigneDemande(@RequestBody LigneDemandeDto ligneDemandeDto) {
-            LigneDemande ligneDemande = ligneDemandeService.dtoToLigneDemande(ligneDemandeDto);
-            LigneDemande savedLigneDemande = ligneDemandeRepository.save(ligneDemande);
-            return ResponseEntity.ok(ligneDemandeService.LigneDemandeToDto(savedLigneDemande));
-        }
-        //get ligneDemande by id
-        @GetMapping("ligneDemandes/{id}")
-        public ResponseEntity<LigneDemande> getLigneDemandeById(@PathVariable Integer id) {
-            Optional<LigneDemande> optionalLigneDemande = ligneDemandeRepository.findById(id);
-
-            if (optionalLigneDemande.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            return ResponseEntity.ok(optionalLigneDemande.get());
-        }
-        //
-        // Update a category
-        @PutMapping("ligneDemandes/{id}")
-        public ResponseEntity<LigneDemandeDto> updateLigneDemande(@PathVariable Integer id, @RequestBody LigneDemandeDto ligneDemandeDetailsDto) {
-            ligneDemandeRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("LigneDemande not found with id: " + id));
-            LigneDemande updateLigneDemande;
-
-            updateLigneDemande = ligneDemandeService.dtoToLigneDemande(ligneDemandeDetailsDto);
-            updateLigneDemande.setId(id);
-            ligneDemandeDetailsDto=ligneDemandeService.LigneDemandeToDto(ligneDemandeRepository.save(updateLigneDemande));
-            return ResponseEntity.ok( ligneDemandeDetailsDto);
-        }
-
-        // build delete inscription REST API
-        @DeleteMapping("ligneDemandes/{id}")
-        public ResponseEntity<HttpStatus> deleteLigneDemande(@PathVariable Integer id){
-
-            LigneDemande ligneDemande = ligneDemandeRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("ligneDemande  not exist with id: " + id));
-
-            ligneDemandeRepository.delete(ligneDemande);
-
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        }
-
+    @PostMapping
+    public ResponseEntity<LigneDemandeDto> create(
+            @Valid @RequestBody LigneDemandeDto dto,
+            UriComponentsBuilder uriBuilder) {
+        LigneDemandeDto created = ligneDemandeService.create(dto);
+        URI location = uriBuilder.path("/api/lignes-demande/{id}")
+                .buildAndExpand(created.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(created);
     }
+
+    @GetMapping
+    public ResponseEntity<Page<LigneDemandeDto>> findAll(
+            @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(ligneDemandeService.findAll(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<LigneDemandeDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(ligneDemandeService.findById(id));
+    }
+
+    @GetMapping("/demande/{idDemande}")
+    public ResponseEntity<List<LigneDemandeDto>> findByDemande(@PathVariable Integer idDemande) {
+        return ResponseEntity.ok(ligneDemandeService.findByDemande(idDemande));
+    }
+
+    @GetMapping("/produit/{idProduit}")
+    public ResponseEntity<List<LigneDemandeDto>> findByProduit(@PathVariable Integer idProduit) {
+        return ResponseEntity.ok(ligneDemandeService.findByProduit(idProduit));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<LigneDemandeDto> update(
+            @PathVariable Integer id,
+            @Valid @RequestBody LigneDemandeDto dto) {
+        return ResponseEntity.ok(ligneDemandeService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        ligneDemandeService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+}

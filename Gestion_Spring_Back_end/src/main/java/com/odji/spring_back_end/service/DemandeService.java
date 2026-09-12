@@ -32,11 +32,12 @@ public class DemandeService {
         return demandeMapper.toDtoList(demandeRepository.findAll());
     }
 
+    /*
     public Page<DemandeDto> findAll(Pageable pageable) {
         return demandeRepository.findAllWithRelations(pageable)
                 .map(demandeMapper::toDto);
     }
-
+*/
     public DemandeDto findById(Integer id) {
         Demande entity = demandeRepository.findByIdWithRelations(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Demande", id));
@@ -46,6 +47,11 @@ public class DemandeService {
     public List<DemandeDto> findByBureau(Integer idBureau) {
         return demandeMapper.toDtoList(
                 demandeRepository.findAllByBureauId(idBureau));
+    }
+
+    public List<DemandeDto> searchByMotif(String motif) {
+        return demandeMapper.toDtoList(
+                demandeRepository.findAllByMotifContainingIgnoreCase(motif));
     }
 
     // ==================== ÉCRITURE ====================
@@ -79,8 +85,10 @@ public class DemandeService {
     @Transactional
     public void delete(Integer id) {
         log.info("Suppression demande id={}", id);
+
         Demande entity = demandeRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Demande", id));
+
         demandeRepository.delete(entity);
     }
 

@@ -1,78 +1,54 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.DepartementDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Departement;
-import com.odji.spring_back_end.repository.DepartementRepository;
-import com.odji.spring_back_end.repository.PersonelRepository;
 import com.odji.spring_back_end.service.DepartementService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Optional;
+import java.net.URI;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
+@RequestMapping("/api/departements")
 @RequiredArgsConstructor
-@ RequestMapping("/api")
 public class DepartementController {
-    private  final DepartementService departementService;
-    private final PersonelRepository personelRepository;
-    private  final DepartementRepository departementRepository;
 
+    private final DepartementService departementService;
 
-    // get all departement
-    @GetMapping("/departements/list")
-    public List<DepartementDto> getAllDepartements() {
-        List<Departement> departements = departementRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return departementService.departementDtoList(departementRepository.findAll()); // Convert products to DTOs
+    @PostMapping
+    public ResponseEntity<DepartementDto> create(@Valid @RequestBody DepartementDto dto,
+                                                 UriComponentsBuilder uriBuilder) {
+        DepartementDto created = departementService.create(dto);
+        URI location = uriBuilder.path("/api/departements/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-    // create departements
-    @PostMapping("departements")
-    public ResponseEntity<DepartementDto> createDepartement(@RequestBody DepartementDto departementDto) {
-        Departement departement = departementService.dtoToDepartement(departementDto);
-        Departement savedDepartement = departementRepository.save(departement);
-        return ResponseEntity.ok(departementService.departementToDto(savedDepartement));
+    @GetMapping
+    public ResponseEntity<Page<DepartementDto>> findAll(
+            @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
+        return ResponseEntity.ok(departementService.findAll(pageable));
     }
 
-    //get departement by id
-    @GetMapping("departements/{id}")
-    public ResponseEntity<Departement> getDepartementById(@PathVariable Integer id) {
-        Optional<Departement> optionalDepartement = departementRepository.findById(id);
-
-        if (optionalDepartement.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalDepartement.get());
-    }
-    // Update a category
-    @PutMapping("departements/{id}")
-    public ResponseEntity<DepartementDto> updateDepartement(@PathVariable Integer id, @RequestBody DepartementDto departementDetailsDto) {
-        departementRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Departement not found with id: " + id));
-        Departement updateDepartement;
-
-        updateDepartement = departementService.dtoToDepartement(departementDetailsDto);
-        updateDepartement.setId(id);
-        departementDetailsDto=departementService.departementToDto(departementRepository.save(updateDepartement));
-        return ResponseEntity.ok( departementDetailsDto);
+    @GetMapping("/{id}")
+    public ResponseEntity<DepartementDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(departementService.findById(id));
     }
 
-    // build delete inscription REST API
-    @DeleteMapping("departements/{id}")
-    public ResponseEntity<HttpStatus> deleteDepartement(@PathVariable Integer id){
+    @PutMapping("/{id}")
+    public ResponseEntity<DepartementDto> update(@PathVariable Integer id,
+                                                 @Valid @RequestBody DepartementDto dto) {
+        return ResponseEntity.ok(departementService.update(id, dto));
+    }
 
-        Departement departement = departementRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("departement  not exist with id: " + id));
-
-        departementRepository.delete(departement);
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        departementService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

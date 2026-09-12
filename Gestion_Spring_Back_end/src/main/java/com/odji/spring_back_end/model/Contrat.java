@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -26,10 +27,10 @@ public class Contrat {
 
 
     @Column(name = "datedebut")
-    private Instant datedebut;
+    private LocalDate datedebut;
 
     @Column(name = "datedefin")
-    private Instant datedefin;
+    private LocalDate datedefin;
 
     @ManyToOne
     @JoinColumn(name = "idsociete")

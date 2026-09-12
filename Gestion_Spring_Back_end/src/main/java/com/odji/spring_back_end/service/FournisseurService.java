@@ -1,58 +1,77 @@
 package com.odji.spring_back_end.service;
 
 import com.odji.spring_back_end.dto.FournisseurDto;
+import com.odji.spring_back_end.exception.BusinessException;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
+import com.odji.spring_back_end.mapper.FournisseurMapper;
 import com.odji.spring_back_end.model.Fournisseur;
+import com.odji.spring_back_end.repository.FactureRepository;
+import com.odji.spring_back_end.repository.FournisseurRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class FournisseurService {
 
-    public List<FournisseurDto> fournisseurDtoList(List<Fournisseur> fournisseur) {
-        return fournisseur.stream()
-                .map(this::fournisseurToDto) //utilise la methode de conversion individuel
-                .collect(Collectors.toList());
+    private final FournisseurRepository fournisseurRepository;
+    private final FactureRepository factureRepository;
+    private final FournisseurMapper fournisseurMapper;
+
+    public List<FournisseurDto> findAll() {
+        return fournisseurMapper.toDtoList(fournisseurRepository.findAll());
     }
 
-
-    public FournisseurDto fournisseurToDto(Fournisseur fournisseur) {if (fournisseur == null) {
-            return null;
-        }
-
-        FournisseurDto fournisseurDto = new FournisseurDto();
-        fournisseurDto.setId(fournisseur.getId());
-        fournisseurDto.setNom(fournisseur.getNom());
-        fournisseurDto.setPrenom(fournisseur.getPrenom());
-        fournisseurDto.setAdresse(fournisseur.getAdresse());
-        fournisseurDto.setNumtel(fournisseur.getNumtel());
-        fournisseurDto.setMail(fournisseur.getMail());
-
-
-        return fournisseurDto;
+    public Page<FournisseurDto> findAll(Pageable pageable) {
+        return fournisseurRepository.findAll(pageable).map(fournisseurMapper::toDto);
     }
 
-    public Fournisseur dtoToFournisseur(FournisseurDto fournisseurDto) {
-        if (fournisseurDto == null) {
-            return null;
+    public FournisseurDto findById(Integer id) {
+        Fournisseur entity = fournisseurRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Fournisseur", id));
+        return fournisseurMapper.toDto(entity);
+    }
+
+    public List<FournisseurDto> searchByNom(String nom) {
+        return fournisseurMapper.toDtoList(
+                fournisseurRepository.findAllByNomContainingIgnoreCase(nom));
+    }
+
+    @Transactional
+    public FournisseurDto create(FournisseurDto dto) {
+        Fournisseur entity = fournisseurMapper.toEntity(dto);
+        entity.setId(null);
+        return fournisseurMapper.toDto(fournisseurRepository.save(entity));
+    }
+
+    @Transactional
+    public FournisseurDto update(Integer id, FournisseurDto dto) {
+        Fournisseur existing = fournisseurRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Fournisseur", id));
+        existing.setNom(dto.getNom());
+        existing.setPrenom(dto.getPrenom());
+        existing.setAdresse(dto.getAdresse());
+        existing.setMail(dto.getMail());
+        existing.setNumtel(dto.getNumtel());
+        return fournisseurMapper.toDto(existing);
+    }
+
+    @Transactional
+    public void delete(Integer id) {
+        Fournisseur entity = fournisseurRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Fournisseur", id));
+        long nbFactures = factureRepository.countByFournisseurId(id);
+        if (nbFactures > 0) {
+            throw new BusinessException("Impossible de supprimer : " + nbFactures + " facture(s)");
         }
-
-        Fournisseur fournisseur = new Fournisseur();
-        fournisseur.setId(fournisseurDto.getId());
-        fournisseur.setNom(fournisseurDto.getNom());
-        fournisseur.setPrenom(fournisseurDto.getPrenom());
-        fournisseur.setAdresse(fournisseurDto.getAdresse());
-        fournisseur.setMail(fournisseurDto.getMail());
-        fournisseur.setNumtel(fournisseurDto.getNumtel());
-
-
-        return fournisseur;
+        fournisseurRepository.delete(entity);
     }
 }
-
-
-
-

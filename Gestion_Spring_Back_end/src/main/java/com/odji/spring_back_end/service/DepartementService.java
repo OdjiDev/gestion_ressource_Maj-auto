@@ -1,50 +1,114 @@
 package com.odji.spring_back_end.service;
 
 import com.odji.spring_back_end.dto.DepartementDto;
+import com.odji.spring_back_end.exception.BusinessException;
+import com.odji.spring_back_end.exception.DuplicateResourceException;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
+import com.odji.spring_back_end.mapper.DepartementMapper;
 import com.odji.spring_back_end.model.Departement;
+import com.odji.spring_back_end.repository.BureauRepository;
+import com.odji.spring_back_end.repository.DepartementRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class DepartementService {
 
+    private final DepartementRepository departementRepository;
+    private final BureauRepository bureauRepository;
+    private final DepartementMapper departementMapper;
 
-    public List<DepartementDto> departementDtoList(List<Departement> departements){
-        return departements.stream()
-                .map(this::departementToDto) //utilise la methode de conversion individuel
-                .collect(Collectors.toList());
+    // ==================== LECTURE ====================
 
+    public List<DepartementDto> findAll() {
+        return departementMapper.toDtoList(departementRepository.findAll());
     }
-    public DepartementDto departementToDto(Departement departement) {
-        if (departement == null) {
-            return null;
+
+    public Page<DepartementDto> findAll(Pageable pageable) {
+        return departementRepository.findAll(pageable)
+                .map(departementMapper::toDto);
+    }
+
+    public DepartementDto findById(Integer id) {
+        Departement entity = departementRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Departement", id));
+        return departementMapper.toDto(entity);
+    }
+
+    public DepartementDto findByCode(String code) {
+        Departement entity = departementRepository.findByCode(code)
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Departement avec code " + code));
+        return departementMapper.toDto(entity);
+    }
+
+    public List<DepartementDto> searchByNom(String nom) {
+        return departementMapper.toDtoList(
+                departementRepository.findAllByNomContainingIgnoreCase(nom));
+    }
+
+    // ==================== ÉCRITURE ====================
+
+    @Transactional
+    public DepartementDto create(DepartementDto dto) {
+        log.info("Création département code={}", dto.getCode());
+
+        if (dto.getCode() != null && departementRepository.existsByCode(dto.getCode())) {
+            throw new DuplicateResourceException(
+                    "Un département avec le code " + dto.getCode() + " existe déjà");
         }
 
-        DepartementDto departementDto = new DepartementDto();
-        departementDto.setId(departement.getId());
-        departementDto.setCode(departement.getCode());
-        departementDto.setCreatedAt(departement.getCreatedAt());
-        departementDto.setNom(departement.getNom());
-        return departementDto;
+        Departement entity = departementMapper.toEntity(dto);
+        entity.setId(null);
+
+        Departement saved = departementRepository.save(entity);
+        return departementMapper.toDto(saved);
     }
 
+    @Transactional
+    public DepartementDto update(Integer id, DepartementDto dto) {
+        log.info("Mise à jour département id={}", id);
 
-    public Departement dtoToDepartement (DepartementDto departementDto) {
-        if (departementDto== null) {
-            return null;
+        Departement existing = departementRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Departement", id));
+
+        // Vérif unicité du code si changé
+        if (dto.getCode() != null
+                && !dto.getCode().equals(existing.getCode())
+                && departementRepository.existsByCode(dto.getCode())) {
+            throw new DuplicateResourceException(
+                    "Un département avec le code " + dto.getCode() + " existe déjà");
         }
 
-        Departement departement= new Departement();
-        departement.setId(departementDto.getId());
-        departement.setCode(departementDto.getCode());
-        departement.setCreatedAt(departementDto.getCreatedAt());
-        departement.setNom(departementDto.getNom());
-        return departement;
+        existing.setNom(dto.getNom());
+        existing.setCode(dto.getCode());
+
+        return departementMapper.toDto(existing);
     }
 
+    @Transactional
+    public void delete(Integer id) {
+        log.info("Suppression département id={}", id);
 
+        Departement entity = departementRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Departement", id));
+
+        // Vérif métier : pas de bureaux associés
+        long nbBureaux = bureauRepository.countByDepartementId(id);
+        if (nbBureaux > 0) {
+            throw new BusinessException(
+                    "Impossible de supprimer : " + nbBureaux + " bureau(x) associé(s)");
+        }
+
+        departementRepository.delete(entity);
+    }
 }

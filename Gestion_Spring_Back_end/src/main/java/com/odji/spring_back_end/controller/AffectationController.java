@@ -1,86 +1,65 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.AffectationDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Affectation;
-import com.odji.spring_back_end.repository.AffectationRepository;
-import com.odji.spring_back_end.repository.ProduitRepository;
 import com.odji.spring_back_end.service.AffectationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
-import java.util.Optional;
 
-@CrossOrigin("*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/affectations")
 @RequiredArgsConstructor
 public class AffectationController {
 
     private final AffectationService affectationService;
 
-    private final AffectationRepository affectationRepository;
-    private final ProduitRepository produitRepository;
-
-
-    // create AVARIE
-    @PostMapping("/affectations")
-    public ResponseEntity<AffectationDto> createAffectation(@RequestBody AffectationDto affectationDto) {
-        Affectation affectation = affectationService.dtoToAffectation(affectationDto);
-        Affectation savedAffectation= affectationRepository.save(affectation);
-        return ResponseEntity.ok(affectationService.affectationToDto(savedAffectation));
-    }
-    // get all Affectation
-    @GetMapping("/affectations/list")
-    public List<AffectationDto> getAllAffectation() {
-        List<Affectation> affectations = affectationRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-        return affectationService.affectationsDtoList(affectationRepository.findAll()); // Convert products to DTOs
+    @PostMapping
+    public ResponseEntity<AffectationDto> create(@Valid @RequestBody AffectationDto dto,
+                                                 UriComponentsBuilder uriBuilder) {
+        AffectationDto created = affectationService.create(dto);
+        URI location = uriBuilder.path("/api/affectations/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
 
-  
-
-    //get affectation by id
-    @GetMapping("affectations/{id}")
-    public ResponseEntity<Affectation> getAffectationById(@PathVariable Integer id) {
-        Optional<Affectation> optionalAffectation = affectationRepository.findById(id);
-
-        if (optionalAffectation.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(optionalAffectation.get());
+    @GetMapping
+    public ResponseEntity<Page<AffectationDto>> findAll(
+            @PageableDefault(size = 20) Pageable pageable) {
+        return ResponseEntity.ok(affectationService.findAll(pageable));
     }
-    // Update a category
-    @PutMapping("affectations/update/{id}")
-    public ResponseEntity<AffectationDto> updateAffectation(@PathVariable Integer id,@RequestBody AffectationDto affectationDetailsDto) {
-        Affectation updateAffectation = affectationRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Affectation not exist with id: " + id));
-        updateAffectation = affectationService.dtoToAffectation(affectationDetailsDto);
-        updateAffectation.setId(id);
 
-        affectationDetailsDto= affectationService.affectationToDto(affectationRepository.save(updateAffectation));
-
-        return ResponseEntity.ok(affectationDetailsDto);
+    @GetMapping("/{id}")
+    public ResponseEntity<AffectationDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(affectationService.findById(id));
     }
-    
 
-    // build delete inscription REST API
-    @DeleteMapping("affectations/{id}")
-    public ResponseEntity<HttpStatus> deleteAffectation(@PathVariable Integer id){
+    @GetMapping("/produit/{idProduit}")
+    public ResponseEntity<List<AffectationDto>> findByProduit(@PathVariable Integer idProduit) {
+        return ResponseEntity.ok(affectationService.findByProduit(idProduit));
+    }
 
-        Affectation affectation = affectationRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("affectation  not exist with id: " + id));
+    @GetMapping("/personel/{idPersonel}")
+    public ResponseEntity<List<AffectationDto>> findByPersonel(@PathVariable Integer idPersonel) {
+        return ResponseEntity.ok(affectationService.findByPersonel(idPersonel));
+    }
 
-        affectationRepository.delete(affectation);
+    @PutMapping("/{id}")
+    public ResponseEntity<AffectationDto> update(@PathVariable Integer id,
+                                                 @Valid @RequestBody AffectationDto dto) {
+        return ResponseEntity.ok(affectationService.update(id, dto));
+    }
 
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        affectationService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
-
-
-
-

@@ -26,17 +26,21 @@ public interface PersonelRepository extends JpaRepository<Personel, Integer> {
 
     // ==================== Recherche par bureau ====================
 
-    List<Personel> findAllByBureauId(Integer idBureau);
+ //   List<Personel> findAllByBureauId(Integer idBureau);
 
-    Page<Personel> findAllByBureauId(Integer idBureau, Pageable pageable);
+    //Page<Personel> findAllByBureauId(Integer idBureau, Pageable pageable);
 
     // ==================== Recherche par département ====================
 
-    List<Personel> findAllByDepartementId(Integer idDepartement);
+  //  List<Personel> findAllByDepartementId(Integer idDepartement);
 
     // ==================== Statistiques ====================
 
     long countByBureauId(Integer idBureau);
 
-    long countByDepartementId(Integer idDepartement);
+
+
+    long countByRoleId(Integer id);
+
+    Optional<Object> findByEmail(String email);
 }

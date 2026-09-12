@@ -1,80 +1,54 @@
 package com.odji.spring_back_end.controller;
 
 import com.odji.spring_back_end.dto.ContratDto;
-import com.odji.spring_back_end.exception.ResourceNotFoundException;
-import com.odji.spring_back_end.model.Contrat;
-import com.odji.spring_back_end.repository.ContratRepository;
 import com.odji.spring_back_end.service.ContratService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import java.util.List;
-import java.util.Optional;
+import java.net.URI;
 
-@CrossOrigin(origins = "http://localhost:4200/")
 @RestController
+@RequestMapping("/api/contrats")
 @RequiredArgsConstructor
-@RequestMapping("/api")
 public class ContratController {
 
-  
-        private final ContratRepository contratRepository;
-        private final ContratService contratService;
+    private final ContratService contratService;
 
-        // get all contrat
-        @GetMapping("/contrats/list")
-        public List<ContratDto> getAllContrats() {
-            List<Contrat> contrats = contratRepository.findAll(); // Assuming you have a JPA repository named 'produitRepository'
-            return contratService.contratDtoList(contratRepository.findAll()); // Convert products to DTOs
-        }
-
-        // create contrats
-        @PostMapping("contrats")
-        public ResponseEntity<ContratDto> createContrat(@RequestBody ContratDto contratDto) {
-            Contrat contrat = contratService.dtoToContrat(contratDto);
-            Contrat savedContrat = contratRepository.save(contrat);
-            return ResponseEntity.ok(contratService.contratToDto(savedContrat));
-        }
-
-        //get contrat by id
-        @GetMapping("contrats/{id}")
-        public ResponseEntity<Contrat> getContratById(@PathVariable Integer id) {
-            Optional<Contrat> optionalContrat = contratRepository.findById(id);
-
-            if (optionalContrat.isEmpty()) {
-                return ResponseEntity.notFound().build();
-            }
-
-            return ResponseEntity.ok(optionalContrat.get());
-        }
-
-        //
-        // Update a category
-        @PutMapping("contrats/{id}")
-        public ResponseEntity<ContratDto> updateContrat(@PathVariable Integer id, @RequestBody ContratDto contratDetailsDto) {
-            contratRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("Contrat not found with id: " + id));
-            Contrat updateContrat;
-
-            updateContrat = contratService.dtoToContrat(contratDetailsDto);
-            updateContrat.setId(id);
-            contratDetailsDto = contratService.contratToDto(contratRepository.save(updateContrat));
-            return ResponseEntity.ok(contratDetailsDto);
-        }
-
-        // build delete inscription REST API
-        @DeleteMapping("contrats/{id}")
-        public ResponseEntity<HttpStatus> deleteContrat(@PathVariable Integer id) {
-
-            Contrat contrat = contratRepository.findById(id)
-                    .orElseThrow(() -> new ResourceNotFoundException("contrat  not exist with id: " + id));
-
-            contratRepository.delete(contrat);
-
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-        }
-
+    @PostMapping
+    public ResponseEntity<ContratDto> create(@Valid @RequestBody ContratDto dto,
+                                             UriComponentsBuilder uriBuilder) {
+        ContratDto created = contratService.create(dto);
+        URI location = uriBuilder.path("/api/contrats/{id}")
+                .buildAndExpand(created.getId()).toUri();
+        return ResponseEntity.created(location).body(created);
     }
+
+    @GetMapping
+    public ResponseEntity<Page<ContratDto>> findAll(
+            @PageableDefault(size = 20, sort = "code") Pageable pageable) {
+        return ResponseEntity.ok(contratService.findAll(pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ContratDto> findById(@PathVariable Integer id) {
+        return ResponseEntity.ok(contratService.findById(id));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContratDto> update(@PathVariable Integer id,
+                                             @Valid @RequestBody ContratDto dto) {
+        return ResponseEntity.ok(contratService.update(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        contratService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+}

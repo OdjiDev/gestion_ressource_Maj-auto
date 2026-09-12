@@ -60,7 +60,7 @@ public class FactureReparer extends AuditableEntity {
     // ==================== Relations inverses ====================
 
     @JsonIgnore
-    @OneToMany(mappedBy = "facturereparer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "factureReparer", fetch = FetchType.LAZY)
     @Builder.Default
     private List<LigneFactureReparer> lignesFactureReparer = new ArrayList<>();
 }

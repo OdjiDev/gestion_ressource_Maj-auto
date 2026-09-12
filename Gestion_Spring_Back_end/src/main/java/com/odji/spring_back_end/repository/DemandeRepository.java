@@ -1,3 +1,5 @@
+package com.odji.spring_back_end.repository;
+
 import com.odji.spring_back_end.model.Demande;
 import org.hibernate.query.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface DemandeRepository extends JpaRepository<Demande, Integer> {
     List<Demande> findAllByBureauId(Integer idBureau);
-    Page<Demande> findAllByBureauId(Integer idBureau, Pageable pageable);
+   // Page<Demande> findAllByBureauId(Integer idBureau, Pageable pageable);
 
     @Query("""
         SELECT d FROM Demande d
@@ -29,4 +31,6 @@ public interface DemandeRepository extends JpaRepository<Demande, Integer> {
     //Page<Demande> findAllWithRelations(Pageable pageable);
 
     long countByBureauId(Integer idBureau);
+
+    List<Demande> findAllByMotifContainingIgnoreCase(String motif);
 }

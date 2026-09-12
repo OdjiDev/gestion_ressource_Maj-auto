@@ -85,4 +85,6 @@ public interface ProduitRepository extends JpaRepository<Produit, Integer> {
     List<Produit> findProduitsSousSeuil(@Param("seuil") java.math.BigDecimal seuil);
 
     long countByCategorieId(Integer idCategorie);
+
+    long countByMagasinId(Integer id);
 }
