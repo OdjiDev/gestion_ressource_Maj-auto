@@ -43,10 +43,6 @@ public class User extends AuditableEntity implements UserDetails {
     @ToString.Exclude
     private String password;
 
-    /**
-     * Rôle applicatif : ADMIN, GESTIONNAIRE, USER.
-     * Stocké en String pour simplifier.
-     */
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role", nullable = false, length = 50)
     private Role userRole;
@@ -55,10 +51,6 @@ public class User extends AuditableEntity implements UserDetails {
     @Builder.Default
     private Boolean enabled = true;
 
-    /**
-     * Relation 1-1 optionnelle vers Personel.
-     * Un User peut être lié à un employé (données RH).
-     */
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(
             name = "idpersonel",
