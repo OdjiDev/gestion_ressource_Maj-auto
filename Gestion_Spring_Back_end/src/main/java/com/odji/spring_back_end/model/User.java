@@ -3,15 +3,21 @@ package com.odji.spring_back_end.model;
 import com.odji.spring_back_end.model.audit.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(
         name = "users",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uk_users_userid", columnNames = "user_id")
+                @UniqueConstraint(name = "uk_users_email", columnNames = "email")
         },
         indexes = {
-                @Index(name = "idx_users_userid", columnList = "user_id")
+                @Index(name = "idx_users_email", columnList = "email")
         }
 )
 @Getter
@@ -21,7 +27,7 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @ToString(onlyExplicitlyIncluded = true)
-public class User extends AuditableEntity {
+public class User extends AuditableEntity implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,23 +35,55 @@ public class User extends AuditableEntity {
     @ToString.Include
     private Integer id;
 
-    @Column(name = "user_id", nullable = false, unique = true, length = 150)
+    @Column(name = "email", nullable = false, unique = true, length = 150)
     @ToString.Include
-    private String userId;
+    private String email;
 
     @Column(name = "password", nullable = false, length = 100)
     @ToString.Exclude
     private String password;
 
     /**
-     * ⚠️ À migrer vers un enum ou une relation.
-     * String = dangereux (typos, valeurs libres).
+     * Rôle applicatif : ADMIN, GESTIONNAIRE, USER.
+     * Stocké en String pour simplifier.
      */
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_role", nullable = false, length = 50)
-    private String userRole;
+    private Role userRole;
 
-    // OU mieux : relation vers Option
-    // @ManyToOne(fetch = FetchType.LAZY)
-    // @JoinColumn(name = "idrole")
-    // private Option role;
+    @Column(name = "enabled", nullable = false)
+    @Builder.Default
+    private Boolean enabled = true;
+
+    /**
+     * Relation 1-1 optionnelle vers Personel.
+     * Un User peut être lié à un employé (données RH).
+     */
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(
+            name = "idpersonel",
+            unique = true,
+            foreignKey = @ForeignKey(name = "fk_users_personel")
+    )
+    private Personel personel;
+
+    // ==================== UserDetails ====================
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        if (userRole == null) {
+            return List.of();
+        }
+        return List.of(new SimpleGrantedAuthority("ROLE_" + userRole.name()));
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override public boolean isAccountNonExpired() { return true; }
+    @Override public boolean isAccountNonLocked() { return true; }
+    @Override public boolean isCredentialsNonExpired() { return true; }
+    @Override public boolean isEnabled() { return Boolean.TRUE.equals(enabled); }
 }
