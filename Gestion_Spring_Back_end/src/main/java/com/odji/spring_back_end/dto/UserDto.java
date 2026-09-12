@@ -20,4 +20,5 @@ public class UserDto {
     // Si besoin en entrée (register), utilise un DTO dédié RegisterRequest
 
     private String userRole;
+    private String email;
 }

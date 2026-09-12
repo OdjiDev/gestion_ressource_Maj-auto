@@ -7,6 +7,7 @@ com\odji\spring_back_end\model\Personel.class
 com\odji\spring_back_end\model\User$UserBuilder.class
 com\odji\spring_back_end\dto\ReparerDto$ReparerDtoBuilder.class
 com\odji\spring_back_end\service\LigneFactureService.class
+com\odji\spring_back_end\security\JwtAuthenticationFilter.class
 com\odji\spring_back_end\service\ProduitService.class
 com\odji\spring_back_end\mapper\BureauMapper.class
 com\odji\spring_back_end\model\Produit.class
@@ -16,6 +17,7 @@ com\odji\spring_back_end\dto\DepartementDto$DepartementDtoBuilder.class
 com\odji\spring_back_end\dto\MagasinDto$MagasinDtoBuilder.class
 com\odji\spring_back_end\controller\ContratController.class
 com\odji\spring_back_end\dto\FournisseurDto.class
+com\odji\spring_back_end\security\JwtService.class
 com\odji\spring_back_end\model\LigneFacture.class
 com\odji\spring_back_end\service\CommandService$PingController.class
 com\odji\spring_back_end\model\LigneReparation$LigneReparationBuilder.class
@@ -51,6 +53,7 @@ com\odji\spring_back_end\service\LigneFactureReparerService.class
 com\odji\spring_back_end\git\GitCommandResult$GitCommandResultBuilder.class
 com\odji\spring_back_end\mapper\PersonelMapper.class
 com\odji\spring_back_end\model\FactureReparer$FactureReparerBuilder.class
+com\odji\spring_back_end\dto\auth\RegisterRequest.class
 com\odji\spring_back_end\model\LigneDemande$LigneDemandeBuilder.class
 com\odji\spring_back_end\exception\ApiError.class
 com\odji\spring_back_end\controller\PersonelController.class
@@ -62,6 +65,7 @@ com\odji\spring_back_end\repository\ProduitRepository.class
 com\odji\spring_back_end\mapper\FactureMapper.class
 com\odji\spring_back_end\dto\LigneFactureDto$LigneFactureDtoBuilder.class
 com\odji\spring_back_end\model\Reparer$ReparerBuilder.class
+com\odji\spring_back_end\dto\auth\LoginRequest.class
 com\odji\spring_back_end\model\Magasin.class
 com\odji\spring_back_end\dto\FactureReparerDto$FactureReparerDtoBuilder.class
 com\odji\spring_back_end\dto\AffectationDto.class
@@ -82,12 +86,14 @@ com\odji\spring_back_end\dto\MagasinDto.class
 com\odji\spring_back_end\model\Affectation.class
 com\odji\spring_back_end\model\Bureau$BureauBuilder.class
 com\odji\spring_back_end\dto\ProduitDto$ProduitDtoBuilder.class
+com\odji\spring_back_end\WebConfig.class
 com\odji\spring_back_end\dto\OptionDto$OptionDtoBuilder.class
 com\odji\spring_back_end\controller\ReparerController.class
 com\odji\spring_back_end\dto\BureauDto.class
 com\odji\spring_back_end\controller\BureauController.class
 com\odji\spring_back_end\dto\BureauDto$BureauDtoBuilder.class
 com\odji\spring_back_end\repository\FournisseurRepository.class
+com\odji\spring_back_end\dto\auth\AuthResponse$AuthResponseBuilder.class
 com\odji\spring_back_end\repository\PersonelRepository.class
 com\odji\spring_back_end\dto\LigneFactureReparerDto$LigneFactureReparerDtoBuilder.class
 com\odji\spring_back_end\model\Magasin$MagasinBuilder.class
@@ -136,11 +142,13 @@ com\odji\spring_back_end\model\Societe.class
 com\odji\spring_back_end\mapper\ContratMapper.class
 com\odji\spring_back_end\mapper\LigneFactureReparerMapper.class
 com\odji\spring_back_end\model\Signaler.class
+com\odji\spring_back_end\controller\AuthController.class
 com\odji\spring_back_end\service\DemandeService.class
 com\odji\spring_back_end\mapper\LigneReparationMapper.class
 com\odji\spring_back_end\model\Departement$DepartementBuilder.class
 com\odji\spring_back_end\model\Produit$ProduitBuilder.class
 com\odji\spring_back_end\model\LigneFactureReparer$LigneFactureReparerBuilder.class
+com\odji\spring_back_end\dto\auth\AuthResponse.class
 com\odji\spring_back_end\model\Avarie$AvarieBuilder.class
 com\odji\spring_back_end\model\Departement.class
 com\odji\spring_back_end\dto\PersonelDto.class
@@ -148,6 +156,7 @@ com\odji\spring_back_end\mapper\LigneFactureMapper.class
 com\odji\spring_back_end\dto\SignalerDto.class
 com\odji\spring_back_end\exception\ApiError$ApiErrorBuilder.class
 com\odji\spring_back_end\controller\DepartementController.class
+com\odji\spring_back_end\dto\auth\RegisterRequest$RegisterRequestBuilder.class
 com\odji\spring_back_end\service\FournisseurService.class
 com\odji\spring_back_end\controller\AffectationController.class
 com\odji\spring_back_end\mapper\FactureReparerMapper.class
@@ -160,12 +169,14 @@ com\odji\spring_back_end\service\DepartementService.class
 com\odji\spring_back_end\model\Societe$SocieteBuilder.class
 com\odji\spring_back_end\repository\FactureReparerRepository.class
 com\odji\spring_back_end\controller\LigneFactureReparerController.class
+com\odji\spring_back_end\dto\auth\LoginRequest$LoginRequestBuilder.class
 com\odji\spring_back_end\dto\LigneReparationDto$LigneReparationDtoBuilder.class
 com\odji\spring_back_end\dto\UserDto$UserDtoBuilder.class
 com\odji\spring_back_end\mapper\ReparerMapper.class
 com\odji\spring_back_end\model\Option.class
 com\odji\spring_back_end\dto\FactureDto$FactureDtoBuilder.class
 com\odji\spring_back_end\model\Demande.class
+com\odji\spring_back_end\model\Role.class
 com\odji\spring_back_end\dto\ContratDto.class
 com\odji\spring_back_end\model\audit\AuditableEntity.class
 com\odji\spring_back_end\model\Personel$PersonelBuilder.class
@@ -182,6 +193,8 @@ com\odji\spring_back_end\dto\FactureReparerDto.class
 com\odji\spring_back_end\mapper\ProduitMapper.class
 com\odji\spring_back_end\repository\SocieteRepository.class
 com\odji\spring_back_end\exception\ResourceNotFoundException.class
+com\odji\spring_back_end\security\CustomUserDetailsService.class
+com\odji\spring_back_end\config\PasswordMigration.class
 com\odji\spring_back_end\model\Contrat$ContratBuilder.class
 com\odji\spring_back_end\model\Fournisseur.class
 com\odji\spring_back_end\repository\MagasinRepository.class
@@ -189,3 +202,4 @@ com\odji\spring_back_end\dto\SocieteDto.class
 com\odji\spring_back_end\repository\CategorieRepository.class
 com\odji\spring_back_end\controller\OptionController.class
 com\odji\spring_back_end\dto\ReparerDto.class
+com\odji\spring_back_end\security\SecurityConfig.class

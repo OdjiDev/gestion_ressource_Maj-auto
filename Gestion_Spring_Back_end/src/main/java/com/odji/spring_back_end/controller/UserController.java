@@ -1,81 +1,122 @@
 package com.odji.spring_back_end.controller;
 
+import com.odji.spring_back_end.dto.UserDto;
 import com.odji.spring_back_end.model.User;
 import com.odji.spring_back_end.repository.UserRepository;
-import com.odji.spring_back_end.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.odji.spring_back_end.exception.ResourceNotFoundException;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
-@RequestMapping("api")
-@CrossOrigin(origins="http://localhost:4200/")
+@RequestMapping("/api/admin/users")
+@RequiredArgsConstructor
+@PreAuthorize("hasRole('ADMIN')")   // ⚠️ Toute la classe réservée aux ADMIN
 public class UserController {
 
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserService userService;
+    private final UserRepository userRepository;
 
+    // ==================== LECTURE ====================
 
-    @PostMapping ("/login")
-    public ResponseEntity<?> loginUser(@RequestBody User usersData){
-        System.out.println(usersData);
-        User users=userRepository.findByUserId(usersData.getUserId());
-        if(users.getPassword().equals(usersData.getPassword()))
-            return ResponseEntity.ok(users);
-        return (ResponseEntity<?>)ResponseEntity.internalServerError();
+    /**
+     * GET /api/admin/users?page=0&size=20
+     * Liste paginée des utilisateurs (ADMIN only).
+     */
+    @GetMapping
+    public ResponseEntity<Page<UserDto>> findAll(
+            @PageableDefault(size = 20, sort = "email") Pageable pageable) {
+        Page<UserDto> page = userRepository.findAll(pageable).map(this::toDto);
+        return ResponseEntity.ok(page);
     }
-    // create USERS
-//    @PostMapping("users")
-//    public ResponseEntity<UsersDto> createUsers(@RequestBody UsersDto usersDto) {
-//        Users users = usersService.dtoToUsers(usersDto);
-//        Users savedUsers = usersRepository.save(users);
-//        return ResponseEntity.ok(usersService.usersToDto(savedUsers));
-//    }
 
+    /**
+     * GET /api/admin/users/{id}
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable Integer id) {
+        User user = userRepository.findByIdWithRelations(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        return ResponseEntity.ok(toDto(user));
+    }
+
+    /**
+     * GET /api/admin/users/email/{email}
+     */
+    @GetMapping("/email/{email}")
+    public ResponseEntity<UserDto> findByEmail(@PathVariable String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("User avec email " + email));
+        return ResponseEntity.ok(toDto(user));
+    }
+
+    // ==================== MODIFICATION ====================
+
+    /**
+     * PUT /api/admin/users/{id}/enable
+     * Active ou désactive un compte.
+     */
+    @PutMapping("/{id}/enable")
+    public ResponseEntity<UserDto> enable(@PathVariable Integer id,
+                                          @RequestParam boolean enabled) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        user.setEnabled(enabled);
+        userRepository.save(user);
+        log.info("User {} {} activé/désactivé", id, user.getEmail());
+        return ResponseEntity.ok(toDto(user));
+    }
+
+    /**
+     * PUT /api/admin/users/{id}/role
+     * Change le rôle d'un utilisateur.
+     */
+    @PutMapping("/{id}/role")
+    public ResponseEntity<UserDto> changeRole(@PathVariable Integer id,
+                                              @RequestParam String role) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        try {
+            user.setUserRole(com.odji.spring_back_end.model.Role.valueOf(role.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            throw new com.odji.spring_back_end.exception.BusinessException(
+                    "Rôle invalide : " + role);
+        }
+        userRepository.save(user);
+        log.info("User {} rôle changé en {}", id, role);
+        return ResponseEntity.ok(toDto(user));
+    }
+
+    // ==================== SUPPRESSION ====================
+
+    /**
+     * DELETE /api/admin/users/{id}
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", id));
+        userRepository.delete(user);
+        log.info("User {} supprimé", id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // ==================== Mapper manuel ====================
+
+    private UserDto toDto(User user) {
+        return UserDto.builder()
+                .id(user.getId())
+                .email(user.getEmail())
+                .userRole(user.getUserRole() != null ? user.getUserRole().name() : null)
+               // .enabled(user.getEnabled())
+               // .personelId(user.getPersonel() != null ? user.getPersonel().getId() : null)
+              //  .createdAt(user.getCreatedAt())
+                .build();
+    }
 }
-    // create USERS
-//    @PostMapping("userss")
-//    public ResponseEntity<UsersDto> createUsers(@RequestBody UsersDto usersDto) {
-//        Users users = userService.dtoToUsers(usersDto);
-//        Users savedUsers = userRepository.save(users);
-//        return ResponseEntity.ok(userservice.usersToDto(savedUsers));
-//    }
-
-
-
-
-    //private UsersService
-//////
-//    @PostMapping("/login")
-//    public ResponseEntity<?> loginUser(@RequestBody User usersData) {
-//        System.out.println(usersData);
-//        User user = userRepository.findByUserId(usersData.getUserId());
-//        if (user.getPassword().equals(usersData.getPassword())) {
-//            return ResponseEntity.ok(user);
-//            //
-////    }
-//        }
-//        return (ResponseEntity<?>) ResponseEntity.internalServerError();
-//    }
-//}
-//    @PostMapping("/login")
-//    public ResponseEntity<?> loginUser(@RequestBody UserDto userDto) {
-//        try {
-//            User user = userRepository.findByUserId(userDto.getUserId());
-//            if (user != null && (userDto.getPassword().equals(user.getPassword()))){
-//             return ResponseEntity.ok(userDto);
-//
-//            } else {
-//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-//            }
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error logging in");
-//        }
-//    }
-//
-
-
-
-

@@ -29,6 +29,7 @@ Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\repository\ProduitRepository.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\GitUpdateChecker.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\Reparer.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\security\SecurityConfig.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\repository\SignalerRepository.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\FournisseurDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\CommandService.java
@@ -42,6 +43,7 @@ Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\FactureReparerMapper.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\UserDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\repository\LigneReparationRepository.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\auth\RegisterRequest.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\Bureau.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\audit\AuditableEntity.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\SocieteService.java
@@ -52,6 +54,7 @@ Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\LigneReparationDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\AvarieDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\PersonelService.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\AuthController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\MagasinDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\exception\GlobalExceptionHandler.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\DemandeMapper.java
@@ -60,12 +63,16 @@ Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\AvarieMapper.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\SocieteController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\MagasinMapper.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\config\PasswordMigration.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\GitStatusController.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\security\CustomUserDetailsService.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\security\JwtAuthenticationFilter.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\employeeController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\repository\SocieteRepository.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\FactureController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\LigneReparationController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\ReparerMapper.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\auth\LoginRequest.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\BureauService.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\CommandController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\repository\AffectationRepository.java
@@ -92,12 +99,14 @@ Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\WebConfig.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\CategorieController.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\Categorie.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\Role.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\FactureReparer.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\DemandeService.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\SignalerService.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\ProduitMapper.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\ProduitService.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\controller\UserController.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\security\JwtService.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\service\MagasinService.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\LigneFactureReparerDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\ContratDto.java
@@ -108,6 +117,7 @@ Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\SignalerDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\OptionDto.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\LigneFacture.java
+Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\dto\auth\AuthResponse.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\mapper\LigneReparationMapper.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\model\Magasin.java
 Z:\logiciel_MAJ\2027\gestion_ressource_Maj-auto\Gestion_Spring_Back_end\src\main\java\com\odji\spring_back_end\repository\UserRepository.java
