@@ -182,3 +182,114 @@ app:
     
     # Notifications
     notify-email: admin@universite.com
+
+    Planification des mises à jour
+Le système utilise Spring Scheduler pour exécuter les mises à jour pendant les heures creuses :
+
+java
+@Configuration
+@EnableScheduling
+public class UpdateSchedulerConfig {
+    
+    @Scheduled(cron = "0 0 2 * * ?") // Tous les jours à 2h du matin
+    public void installUpdates() {
+        updateService.installAvailableUpdates();
+    }
+}
+🛠️ Utilisation
+API REST - Endpoints principaux
+Méthode	Endpoint	Description
+GET	/api/ressources	Liste des ressources
+POST	/api/ressources	Créer une ressource
+PUT	/api/ressources/{id}	Modifier une ressource
+DELETE	/api/ressources/{id}	Supprimer une ressource
+GET	/api/updates/check	Vérifier les MAJ
+POST	/api/updates/install	Installer les MAJ
+GET	/api/updates/history	Historique des MAJ
+Exemple d'appel API
+bash
+# Vérifier les mises à jour disponibles
+curl -X GET http://localhost:8080/api/updates/check \
+  -H "Authorization: Bearer VOTRE_TOKEN"
+
+# Installer les mises à jour
+curl -X POST http://localhost:8080/api/updates/install \
+  -H "Authorization: Bearer VOTRE_TOKEN"
+📸 Captures d'écran
+Dashboard	Gestion des ressources
+https://docs/screenshots/dashboard.png	https://docs/screenshots/ressources.png
+Système de mise à jour	Journal des MAJ
+https://docs/screenshots/updates.png	https://docs/screenshots/logs.png
+🧪 Tests
+Backend
+bash
+cd backend
+./mvnw test                    # Tous les tests
+./mvnw test -Dtest=UserServiceTest  # Un test spécifique
+./mvnw verify                  # Tests + intégration
+Frontend
+bash
+cd frontend
+ng test                        # Tests unitaires
+ng test --code-coverage        # Avec couverture
+ng e2e                         # Tests end-to-end
+🔒 Sécurité
+Authentification JWT
+
+Spring Security 6
+
+Chiffrement des données sensibles
+
+Validation stricte des entrées
+
+Protection CSRF/XSS/SQL Injection
+
+Vérification de signature des paquets de mise à jour
+
+🤝 Contribution
+Les contributions sont les bienvenues !
+
+Fork le projet
+
+Créer une branche (git checkout -b feature/amelioration)
+
+Commit (git commit -m 'Ajout d'une fonctionnalité')
+
+Push (git push origin feature/amelioration)
+
+Ouvrir une Pull Request
+
+Voir CONTRIBUTING.md pour plus de détails.
+
+📋 Roadmap
+☑ Gestion des ressources de base
+☑ Système de mise à jour automatique
+☑ Backend Spring Boot 4.1.0
+☑ Frontend Angular 19
+□ Application mobile (Flutter)
+□ Intégration avec les systèmes existants (Scolarité, RH)
+□ Intelligence artificielle pour l'optimisation des emplois du temps
+🐛 Signaler un bug
+Utilisez les Issues GitHub.
+
+📄 Licence
+Ce projet est sous licence MIT. Voir LICENSE pour plus d'informations.
+
+👨‍💻 Auteur
+Votre Nom
+
+GitHub : @odjidev
+
+Email : Ouzairoudjire67@gmail.com
+
+🙏 Remerciements
+Spring Boot - Framework Java
+
+Angular - Framework frontend
+
+PostgreSQL - Base de données
+
+Tous les contributeurs du projet
+
+⭐ Si ce projet vous aide, n'hésitez pas à laisser une étoile ! ⭐
+
