@@ -134,7 +134,7 @@ Cette application permet aux établissements universitaires de gérer efficaceme
 
 
 # Cloner le projet
-git clone https://github.com/votre-username/gestion-ressources-universitaires.git
+git clone https://https://github.com/OdjiDev/gestion_ressource_Maj-auto
 cd gestion-ressources-universitaires/backend
 
 # Configurer la base de données
