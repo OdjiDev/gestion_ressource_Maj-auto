@@ -1,0 +1,48 @@
+<div  class="">
+<div class="row mt-0">
+  <div class="col-md-10">
+    <h2>Liste des demandes</h2>
+  </div>
+    <div class="col-md-2">
+      <button class="btn btn-md btn-outline-primary" (click)="onCreateDemande()">
+        <i class="fa fa-plus"></i> Ajouter
+      </button>
+    </div>
+  </div>
+  <hr class="fw-bold mt-0">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Motif</th>
+          <th>Nom du Bureau</th>
+          <th>Nom du personel</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let demandeDto of demandeDtos">
+          <td>{{ demandeDto.motif }}</td>
+          <td>{{ demandeDto.bureauDto.nom }}</td>
+          <td>{{ demandeDto.personelDto.nom }}</td>
+          <td>
+            <button class="btn btn-sm m-1 btn-info" (click)="demandeDetails(demandeDto.id)">
+              <i class="fa fa-clipboard"></i>
+            </button>
+            <button class="btn btn-sm m-1 btn-warning" (click)="updateDemande(demandeDto.id)">
+              <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-sm m-1 btn-danger" (click)="deleteDemande(demandeDto.id)">
+              <i class="fa fa-trash"></i>
+            </button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+

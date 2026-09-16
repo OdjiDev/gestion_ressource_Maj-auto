@@ -1,0 +1,52 @@
+<div class="">
+  <div class="row mt-0">
+    <div class="col-md-10">
+  <h2> Liste des Avaries </h2>
+</div>
+<div class="col-md-2">
+  <button class="btn btn-md btn-outline-primary" (click)="onCreateAvarie()">
+    <i class="fa fa-plus"></i> Ajouter
+  </button>
+</div>
+<hr class="fw-bold mt-0">
+<table class = "table table-bordered table-striped">
+
+    <thead>
+        <tr>
+            <th> Id </th>
+            <th> id produit</th>
+            <th> Motif </th>
+            <th> Quantite</th>
+            <th> Date </th>
+            <th> Actions </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr *ngFor = "let avarieDto of avarieDtos" >
+            <td> {{ avarieDto.id}} </td>
+            <td> {{ avarieDto.produitDto.id}} </td>
+            <td> {{ avarieDto.motif }} </td>
+            <td> {{ avarieDto.quantite }} </td>
+            <td> {{ avarieDto.date}} </td>
+            <td>
+              <div class="text-center">
+                <button class="btn btn-sm m-1 btn-info" (click)="deleteAvarie(avarieDto.id)">
+                  <i class="fa fa-clipboard"></i>
+                </button>
+
+            <button class="btn btn-sm m-1 btn-warning" (click)="updateAvarie(avarieDto.id)">
+              <i class="fa fa-edit"></i>
+            </button>
+
+            <button class="btn btn-sm m-1 btn-danger" (click)="avarieDetails(avarieDto.id)                                                                                         ">
+            <i class="fa fa-trash"></i>
+          </button>
+              </div>
+
+        </td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</div>

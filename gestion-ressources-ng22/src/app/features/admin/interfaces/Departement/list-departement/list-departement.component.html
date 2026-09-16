@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-header text-center">
+    <h2>Liste des departements</h2>
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-md btn-primary" (click)="onCreateDepartement()">
+        <i class="fa fa-plus"></i>Ajouter
+      </button>
+    </div>
+  </div>
+  <hr class="fw-bold mt-0">
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Nom</th>
+          <th>Date de creation</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let departementDto of departementDtos">
+          <td>{{ departementDto.code }}</td>
+         <td>{{ departementDto.nom }}</td>
+         <td>{{ departementDto.createdAt}}</td>
+
+         <td class="text-center">
+          <button class="btn btn-sm m-1 btn-info" (click)="departementDetails(departementDto.id)">
+            <i class="fa fa-clipboard"></i>
+          </button>
+          <button class="btn btn-sm m-1 btn-warning" (click)="updateDepartement(departementDto.id)">
+            <i class="fa fa-edit"></i>
+          </button>
+
+          <button class="btn btn-sm m-1 btn-danger" (click)="deleteDepartement(departementDto.id)">
+            <i class="fa fa-trash"></i>
+          </button>
+
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
