@@ -1,38 +1,50 @@
-import { Component, OnInit } from '@angular/core';
-import { CategorieDto } from '..\..\..\..\@app/core/models/categorie-dto'; // Assuming your DTO path
-import { CategorieService } from '..\..\..\..\@app/core/services/categorie.service';
-import { Router } from '@angular/router';
-import {  NgForm }from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { CategorieService } from '@core/services/categorie.service';
+import { CategorieDto } from '@core/models/categorie-dto';
+
 @Component({
-  standalone: true,
   selector: 'app-create-categorie',
+  // standalone: true est implicite en Angular 22 (défaut)
+  imports: [FormsModule, RouterModule],
   templateUrl: './create-categorie.component.html',
   styleUrls: ['./create-categorie.component.css']
 })
-export class CreateCategorieComponent implements OnInit {
+export class CreateCategorieComponent {
 
-    categorieDto: CategorieDto = new CategorieDto();
-    constructor(private categorieService:CategorieService,
-      private router: Router) { }
+  private readonly categorieService = inject(CategorieService);
+  private readonly router = inject(Router);
 
-    ngOnInit(): void {
+  categorieDto: CategorieDto = {
+    nomcategorie: '',
+    code: '',
+    designation: '',
+    id: 0
+  };
+
+  readonly loading = signal(false);
+  readonly error = signal<string | null>(null);
+
+  onSubmit(): void {
+    if (!this.categorieDto.nomcategorie || !this.categorieDto.code) {
+      this.error.set('Nom et Code sont obligatoires');
+      return;
     }
 
-    saveCategorie(){
-      this.categorieService.addCategorie(this.categorieDto).subscribe( data =>{
-        console.log(data);
-        this.goTocategorieList();
+    this.loading.set(true);
+    this.error.set(null);
+
+    this.categorieService.addCategorie(this.categorieDto).subscribe({
+      next: () => {
+        this.loading.set(false);
+        this.router.navigate(['/admin/categories']);
       },
-      error => console.log(error));
-    }
-
-    goTocategorieList(){
-      this.router.navigate(['admin/listcategorie']);
-    }
-
-    onSubmit(){
-      console.log(this.categorieDto);
-      this.saveCategorie();
-    }
+      error: (err: any) => {
+        this.loading.set(false);
+        this.error.set('Erreur lors de la création');
+        console.error(err);
+      }
+    });
   }
-
+}

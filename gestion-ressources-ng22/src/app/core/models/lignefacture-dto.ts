@@ -4,7 +4,7 @@ import { ProduitDto } from './produit-dto';
 export class LigneFactureDto {
   id: number = 0;
   quantite: number = 0;
-  //date: string= "";
+  date: string= "";
   total: number = 0;
 
   produitDto: ProduitDto = new ProduitDto();

@@ -1,10 +1,12 @@
 
-import { CategorieService } from '..\..\..\..\@app/core/services/categorie.service';
-import { CategorieDto } from '..\..\..\..\@app/core/models/categorie-dto';
+import { CategorieService } from '@app/core/services/categorie.service';
+import { CategorieDto } from '@app/core/models/categorie-dto';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Router, RouterModule } from '@angular/router';
 @Component({
   standalone: true,
+  imports: [CommonModule, RouterModule],
   selector: 'app-list-categorie',
   templateUrl: './list-categorie.component.html',
   styleUrls: ['./list-categorie.component.css']

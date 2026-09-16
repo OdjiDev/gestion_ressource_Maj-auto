@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SocieteDto } from '..\@app/core/models/societe-dto';
+import { SocieteDto } from '@app/core/models/societe-dto';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';

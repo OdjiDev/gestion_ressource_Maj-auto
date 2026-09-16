@@ -50,7 +50,7 @@ export class RegisterComponent {
         this.loading.set(false);
         this.error.set(err.status === 409
           ? 'Cet email est déjà utilisé'
-          : 'Erreur lors de l\'inscription');
+          : 'Erreur lors de l  inscription');
       }
     });
   }

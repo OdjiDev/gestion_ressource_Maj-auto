@@ -3,5 +3,5 @@ export class CategorieDto {
   code: string="";
   nomcategorie: string="";
   designation: string="";
-  // Add other properties as needed
+ // Add other   properties as needed
 }

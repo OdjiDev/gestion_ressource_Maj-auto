@@ -1,5 +1,5 @@
-import { PersonelDto } from '..\./personel-dto';
-import { ProduitDto } from '..\./produit-dto';
+import { PersonelDto } from '.././personel-dto';
+import { ProduitDto } from '.././produit-dto';
 export class SignalerDto {
 
   id: number=0

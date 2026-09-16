@@ -36,7 +36,7 @@ export class LoginComponent {
     }).subscribe({
       next: () => {
         this.loading.set(false);
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin/categories']);
       },
       error: (err) => {
         this.loading.set(false);

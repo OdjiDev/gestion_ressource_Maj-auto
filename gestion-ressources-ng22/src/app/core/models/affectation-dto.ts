@@ -1,4 +1,4 @@
-import { PersonelDto } from '..\./personel-dto';
+import { PersonelDto } from '.././personel-dto';
 import { ProduitDto } from "./produit-dto";
 
 export class AffectationDto {

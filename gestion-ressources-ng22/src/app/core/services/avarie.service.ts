@@ -1,4 +1,4 @@
-import { AvarieDto } from '..\../models/avarie-dto';
+import { AvarieDto } from '../../models/avarie-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
