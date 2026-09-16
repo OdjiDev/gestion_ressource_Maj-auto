@@ -1,10 +1,12 @@
-import { CategorieService } from '../../../../../services/categorie.service';
-import { CategorieDto } from '../../../../../classes/categorie-dto';
+import { CategorieService } from '..\..\..\..\../core/services/categorie.service';
+import { CategorieDto } from '..\..\..\..\../core/models/categorie-dto';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 @Component({
   standalone: true,
+  imports: [RouterModule],
   selector: 'app-categorie-details',
   templateUrl: './categorie-details.component.html',
   styleUrls: ['./categorie-details.component.css']

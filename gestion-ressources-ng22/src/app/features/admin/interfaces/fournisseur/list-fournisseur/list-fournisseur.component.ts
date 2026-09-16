@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {FournisseurDto } from 'src/app/classes/fournisseur-dto';
-import {FournisseurService } from 'src/app/services/fournisseur.service';
+import {FournisseurDto } from '..\..\..\..\../core/models/fournisseur-dto';
+import {FournisseurService } from '..\..\..\..\../core/services/fournisseur.service';
 
 @Component({
   standalone: true,

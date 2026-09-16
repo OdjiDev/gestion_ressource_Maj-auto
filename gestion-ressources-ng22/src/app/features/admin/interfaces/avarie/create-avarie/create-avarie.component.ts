@@ -3,9 +3,9 @@ import { AvarieDto } from './../../../../../classes/avarie-dto';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProduitDto } from 'src/app/classes/produit-dto';
-import { AvarieService } from 'src/app/services/avarie.service';
-import { ProduitService } from 'src/app/services/produit.service';
+import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
+import { AvarieService } from '..\..\..\..\../core/services/avarie.service';
+import { ProduitService } from '..\..\..\..\../core/services/produit.service';
 @Component({
   standalone: true,
   selector: 'app-create-avarie',

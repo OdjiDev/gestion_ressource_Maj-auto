@@ -1,5 +1,5 @@
 
-import { AffectationDto } from '../classes/affectation-dto';
+import { AffectationDto } from '..\../core/models/affectation-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

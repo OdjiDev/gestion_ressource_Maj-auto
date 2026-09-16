@@ -1,11 +1,11 @@
-import { BureauService } from 'src/app/services/bureau.service';
-import { BureauDto } from 'src/app/classes/bureau-dto';
+import { BureauService } from '..\..\..\..\../core/services/bureau.service';
+import { BureauDto } from '..\..\..\..\../core/models/bureau-dto';
 import { Component, OnInit } from '@angular/core';
-import { DemandeDto } from 'src/app/classes/demande-dto';
-import { DemandeService } from 'src/app/services/demande.service';
+import { DemandeDto } from '..\..\..\..\../core/models/demande-dto';
+import { DemandeService } from '..\..\..\..\../core/services/demande.service';
 import { Router } from '@angular/router';
-import { PersonelService } from 'src/app/services/personel.service';
-import { PersonelDto } from 'src/app/classes/personel-dto';
+import { PersonelService } from '..\..\..\..\../core/services/personel.service';
+import { PersonelDto } from '..\..\..\..\../core/models/personel-dto';
 
 @Component({
   standalone: true,

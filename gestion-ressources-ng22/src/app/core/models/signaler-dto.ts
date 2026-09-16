@@ -1,5 +1,5 @@
-import { PersonelDto } from 'src/app/classes/personel-dto';
-import { ProduitDto } from 'src/app/classes/produit-dto';
+import { PersonelDto } from '..\../core/models/personel-dto';
+import { ProduitDto } from '..\../core/models/produit-dto';
 export class SignalerDto {
 
   id: number=0

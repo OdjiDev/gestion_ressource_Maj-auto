@@ -1,4 +1,4 @@
-import { CategorieDto } from '../classes/categorie-dto';
+import { CategorieDto } from '..\../core/models/categorie-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

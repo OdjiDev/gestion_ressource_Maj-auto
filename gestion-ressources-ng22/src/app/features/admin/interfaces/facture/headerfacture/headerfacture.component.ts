@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FactureDto } from 'src/app/classes/facture-dto';
-import { FactureService } from 'src/app/services/facture.service';
+import { FactureDto } from '..\..\..\..\../core/models/facture-dto';
+import { FactureService } from '..\..\..\..\../core/services/facture.service';
 
 @Component({
   standalone: true,

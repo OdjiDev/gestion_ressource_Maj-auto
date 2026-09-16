@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ContratDto } from 'src/app/classes/contrat-dto';
-import { ContratService } from 'src/app/services/contrat.service';
+import { ContratDto } from '..\..\..\..\../core/models/contrat-dto';
+import { ContratService } from '..\..\..\..\../core/services/contrat.service';
 
 @Component({
   standalone: true,

@@ -1,11 +1,11 @@
-import { PersonelService } from 'src/app/services/personel.service';
-import { PersonelDto } from 'src/app/classes/personel-dto';
+import { PersonelService } from '..\..\..\..\../core/services/personel.service';
+import { PersonelDto } from '..\..\..\..\../core/models/personel-dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AffectationDto } from 'src/app/classes/affectation-dto';
-import { ProduitDto } from 'src/app/classes/produit-dto';
-import { AffectationService } from 'src/app/services/affectation.service';
-import { ProduitService } from 'src/app/services/produit.service';
+import { AffectationDto } from '..\..\..\..\../core/models/affectation-dto';
+import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
+import { AffectationService } from '..\..\..\..\../core/services/affectation.service';
+import { ProduitService } from '..\..\..\..\../core/services/produit.service';
 
 @Component({
   standalone: true,

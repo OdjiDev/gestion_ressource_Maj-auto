@@ -1,5 +1,5 @@
 
-import { MagasinDto } from '../classes/magasin-dto';
+import { MagasinDto } from '..\../core/models/magasin-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

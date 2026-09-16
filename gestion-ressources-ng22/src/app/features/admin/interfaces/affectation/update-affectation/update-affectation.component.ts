@@ -1,15 +1,17 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonelService } from 'src/app/services/personel.service';
-import { ProduitService } from 'src/app/services/produit.service';
+import { PersonelService } from '..\..\..\..\../core/services/personel.service';
+import { ProduitService } from '..\..\..\..\../core/services/produit.service';
 import { Component, OnInit } from '@angular/core';
-import { AffectationDto } from 'src/app/classes/affectation-dto';
-import { PersonelDto } from 'src/app/classes/personel-dto';
-import { ProduitDto } from 'src/app/classes/produit-dto';
-import { AffectationService } from 'src/app/services/affectation.service';
+import { RouterModule } from '@angular/router';
+import { AffectationDto } from '..\..\..\..\../core/models/affectation-dto';
+import { PersonelDto } from '..\..\..\..\../core/models/personel-dto';
+import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
+import { AffectationService } from '..\..\..\..\../core/services/affectation.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   standalone: true,
+  imports: [RouterModule],
   selector: 'app-update-affectation',
   templateUrl: './update-affectation.component.html',
   styleUrls: ['./update-affectation.component.css']

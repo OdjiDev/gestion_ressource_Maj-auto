@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { DepartementDto } from 'src/app/classes/departement-dto';
-import { DepartementService } from 'src/app/services/departement.service';
+import { DepartementDto } from '..\..\..\..\../core/models/departement-dto';
+import { DepartementService } from '..\..\..\..\../core/services/departement.service';
 
 @Component({
   standalone: true,
+  imports: [RouterModule],
   selector: 'app-detail-departement',
   templateUrl: './detail-departement.component.html',
   styleUrls: ['./detail-departement.component.css']

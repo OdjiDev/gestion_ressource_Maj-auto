@@ -2,8 +2,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router'; // Import Router
-import { ProduitDto } from 'src/app/classes/produit-dto';
-import { ProduitService } from 'src/app/services/produit.service';
+import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
+import { ProduitService } from '..\..\..\..\../core/services/produit.service';
 @Component({
   standalone: true,
   selector: 'app-list-produit',

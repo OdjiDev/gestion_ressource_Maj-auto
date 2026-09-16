@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { FournisseurDto } from '../classes/fournisseur-dto';
+import { FournisseurDto } from '..\../core/models/fournisseur-dto';
 
 @Injectable({
   providedIn: 'root'

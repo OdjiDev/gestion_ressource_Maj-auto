@@ -1,13 +1,16 @@
-import { BureauService } from 'src/app/services/bureau.service';
-import { BureauDto } from 'src/app/classes/bureau-dto';
+import { BureauService } from '..\..\..\..\../core/services/bureau.service';
+import { BureauDto } from '..\..\..\..\../core/models/bureau-dto';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DepartementDto } from 'src/app/classes/departement-dto';
-import { DepartementService } from 'src/app/services/departement.service';
+import { DepartementDto } from '..\..\..\..\../core/models/departement-dto';
+import { DepartementService } from '..\..\..\..\../core/services/departement.service';
 
 @Component({
   standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, RouterModule],
   selector: 'app-update-departement',
   templateUrl: './update-departement.component.html',
   styleUrls: ['./update-departement.component.css']

@@ -1,10 +1,10 @@
 
-import { MagasinService } from '../../../../../services/magasin.service';
-import { CategorieService } from '../../../../../services/categorie.service';
-import { ProduitService } from '../../../../../services/produit.service';
-import { ProduitDto } from '../../../../../classes/produit-dto';
-import { CategorieDto } from '../../../../../classes/categorie-dto';
-import { MagasinDto } from '../../../../../classes/magasin-dto';
+import { MagasinService } from '..\..\..\..\../core/services/magasin.service';
+import { CategorieService } from '..\..\..\..\../core/services/categorie.service';
+import { ProduitService } from '..\..\..\..\../core/services/produit.service';
+import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
+import { CategorieDto } from '..\..\..\..\../core/models/categorie-dto';
+import { MagasinDto } from '..\..\..\..\../core/models/magasin-dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   selector: 'app-create-produit',
   templateUrl: './create-produit.component.html',
   styleUrls: ['./create-produit.component.css'],
-  //imports: [FormsModule] // Import FormsModule for two-way data binding
+  //imports: [FormsModule, FormsModule, ReactiveFormsModule] // Import FormsModule for two-way data binding
 })
 export class CreateProduitComponent implements OnInit {
 
