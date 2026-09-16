@@ -1,85 +1,49 @@
-
-import { HttpHeaders } from '@angular/common/http';
-
-
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-import { Users } from '../classes/users';
-import { LoginuserService } from '../services/loginuser.service';
-import { Router } from '@angular/router';
-import { UsersDto } from '../classes/users-dto';
+import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
+
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-
+  styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-// usersDto: UsersDto= new UsersDto();
-// users:UsersDto[]=[];
+export class LoginComponent {
 
-// // user:Users=new Users
-// // users:Users[]=[];
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-//   constructor(private loginuserService:LoginuserService,private router:Router) { }
+  email = signal('');
+  password = signal('');
+  error = signal<string | null>(null);
+  loading = signal(false);
 
-//   ngOnInit(): void {
-//     this.getLoginconsole();
-//   }
+  onSubmit(): void {
+    if (!this.email() || !this.password()) {
+      this.error.set('Email et mot de passe obligatoires');
+      return;
+    }
 
-//   getLoginconsole() {
-//     this.loginuserService.getUserss()
-//       .subscribe(data => {
-//         this.users = data;
-//         console.log("Toutes les produits: ", this.users);
-//       });
-//     }
+    this.loading.set(true);
+    this.error.set(null);
 
-// usersLogin() {
-//   console.log(this.usersDto);
-//   console.log(this.usersDto.roleDto);
-
-//   const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
-//   // Send the request with the headers
-//   this.loginuserService.loginUsers(this.usersDto)
-//     .subscribe(data => {
-//       alert("Login successfully");
-
-//  if(this.usersDto.roleDto="personel"){
-//   this.router.navigate(['/personel']);
-//  }
-//  else if(this.usersDto.roleDto="Admin"){
-//   this.router.navigate(['/admin']);
-//  }
-//       this.router.navigate(['']);
-//     }, error => {
-//       alert("Sorry please enter correct username or password");
-//     });
-// }
-// }
-
-
-users: Users= new Users();
-
-  constructor(private loginuserService:LoginuserService,private router:Router) { }
-
-  ngOnInit(): void {
-  }
-
-usersLogin() {
-  console.log(this.users);
-
-  const headers = new HttpHeaders().set('Content-Type', 'application/json');
-
-  // Send the request with the headers
-  this.loginuserService.loginUsers(this.users)
-    .subscribe(data => {
-      alert("Login successfully");
-      this.router.navigate(['']);
-    }, error => {
-      alert("Sorry please enter correct username or password");
+    this.authService.login({
+      email: this.email(),
+      password: this.password()
+    }).subscribe({
+      next: () => {
+        this.loading.set(false);
+        this.router.navigate(['/admin/dashboard']);
+      },
+      error: (err) => {
+        this.loading.set(false);
+        this.error.set(err.status === 401
+          ? 'Email ou mot de passe incorrect'
+          : 'Erreur de connexion');
+      }
     });
-}
+  }
 }
