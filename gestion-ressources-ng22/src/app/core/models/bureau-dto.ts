@@ -1,5 +1,5 @@
-import { DepartementDto } from '..\@app/core/models/departement-dto';
-import { PersonelDto } from '..\@app/core/models/personel-dto';
+import { DepartementDto } from '..\./departement-dto';
+import { PersonelDto } from '..\./personel-dto';
 
 export class BureauDto {
 

@@ -1,4 +1,4 @@
-import { RoleService } from './@app/services/role.service';
+import { RoleService } from '@app/services/role.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PersonelDto } from '..\..\..\..\@app/core/models/personel-dto';

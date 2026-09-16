@@ -1,5 +1,5 @@
 
-import { SocieteDto } from './@app/classes/societe-dto';
+import { SocieteDto } from '@app/classes/societe-dto';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';

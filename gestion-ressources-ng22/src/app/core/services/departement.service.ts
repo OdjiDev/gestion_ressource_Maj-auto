@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { DepartementDto } from '..\@app/core/models/departement-dto';
+import { DepartementDto } from '..\../models/departement-dto';
 
 @Injectable({
   providedIn: 'root'

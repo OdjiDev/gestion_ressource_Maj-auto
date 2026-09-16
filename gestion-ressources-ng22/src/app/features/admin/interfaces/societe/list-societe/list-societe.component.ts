@@ -1,4 +1,4 @@
-import { SocieteDto } from './@app/classes/societe-dto';
+import { SocieteDto } from '@app/classes/societe-dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SocieteService } from '..\..\..\..\@app/core/services/societe.service';

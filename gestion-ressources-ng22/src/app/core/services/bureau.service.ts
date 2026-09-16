@@ -1,5 +1,5 @@
 
-import { BureauDto } from '..\@app/core/models/bureau-dto';
+import { BureauDto } from '..\../models/bureau-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

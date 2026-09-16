@@ -1,6 +1,6 @@
 
 
-import { FactureDto } from '..\@app/core/models/facture-dto';
+import { FactureDto } from '..\../models/facture-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

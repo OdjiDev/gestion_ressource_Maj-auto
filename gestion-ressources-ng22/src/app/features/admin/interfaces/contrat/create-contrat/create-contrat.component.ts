@@ -1,4 +1,4 @@
-import { ContratDto } from './@app/classes/contrat-dto';
+import { ContratDto } from '@app/classes/contrat-dto';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';

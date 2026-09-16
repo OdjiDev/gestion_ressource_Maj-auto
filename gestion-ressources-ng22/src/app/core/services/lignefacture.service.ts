@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { LigneFactureDto } from '..\@app/core/models/lignefacture-dto';
+import { LigneFactureDto } from '..\../models/lignefacture-dto';
 
 
 

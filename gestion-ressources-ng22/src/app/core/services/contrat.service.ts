@@ -1,4 +1,4 @@
-import { ContratDto } from '..\@app/core/models/contrat-dto';
+import { ContratDto } from '..\../models/contrat-dto';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

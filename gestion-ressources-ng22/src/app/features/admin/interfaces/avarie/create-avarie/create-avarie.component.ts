@@ -1,5 +1,5 @@
 
-import { AvarieDto } from './@app/classes/avarie-dto';
+import { AvarieDto } from '@app/classes/avarie-dto';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
