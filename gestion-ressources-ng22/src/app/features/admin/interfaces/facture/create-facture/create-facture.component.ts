@@ -15,6 +15,7 @@ import { LigneFactureService } from 'src/app/services/lignefacture.service';
 import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({
+  standalone: true,
   selector: 'app-create-facture',
   templateUrl: './create-facture.component.html',
   styleUrls: ['./create-facture.component.css'],

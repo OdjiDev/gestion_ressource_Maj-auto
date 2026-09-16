@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-create-ordre-mouvement',
   templateUrl: './create-ordre-mouvement.component.html',
   styleUrls: ['./create-ordre-mouvement.component.css']

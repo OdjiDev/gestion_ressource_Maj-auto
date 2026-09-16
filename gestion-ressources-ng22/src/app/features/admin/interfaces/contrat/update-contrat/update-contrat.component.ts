@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-update-contrat',
   templateUrl: './update-contrat.component.html',
   styleUrls: ['./update-contrat.component.css']

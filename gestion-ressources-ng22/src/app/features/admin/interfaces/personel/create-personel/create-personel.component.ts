@@ -5,6 +5,7 @@ import { PersonelDto } from 'src/app/classes/personel-dto';
 import { RoleDto } from 'src/app/classes/role-dto';
 import { PersonelService } from 'src/app/services/personel.service';
 @Component({
+  standalone: true,
   selector: 'app-create-personel',
   templateUrl: './create-personel.component.html',
   styleUrls: ['./create-personel.component.css']

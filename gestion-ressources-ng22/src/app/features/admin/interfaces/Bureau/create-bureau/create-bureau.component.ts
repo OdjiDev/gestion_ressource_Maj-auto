@@ -6,6 +6,7 @@ import { BureauService } from 'src/app/services/bureau.service';
 import { DepartementDto } from 'src/app/classes/departement-dto';
 import { DepartementService } from 'src/app/services/departement.service';
 @Component({
+  standalone: true,
   selector: 'app-create-bureau',
   templateUrl: './create-bureau.component.html',
   styleUrls: ['./create-bureau.component.css']

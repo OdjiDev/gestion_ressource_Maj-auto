@@ -8,6 +8,7 @@ import { AffectationService } from 'src/app/services/affectation.service';
 import { ProduitService } from 'src/app/services/produit.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-affectation',
   templateUrl: './list-affectation.component.html',
   styleUrls: ['./list-affectation.component.css']

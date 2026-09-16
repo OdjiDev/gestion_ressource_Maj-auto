@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-personel-dashboard',
   templateUrl: './personel-dashboard.component.html',
   styleUrls: ['./personel-dashboard.component.css']

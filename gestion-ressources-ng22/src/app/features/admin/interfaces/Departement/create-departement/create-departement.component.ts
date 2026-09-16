@@ -4,6 +4,7 @@ import { DepartementDto } from 'src/app/classes/departement-dto';
 import { DepartementService } from 'src/app/services/departement.service';
 
 @Component({
+  standalone: true,
   selector: 'app-create-departement',
   templateUrl: './create-departement.component.html',
   styleUrls: ['./create-departement.component.css']

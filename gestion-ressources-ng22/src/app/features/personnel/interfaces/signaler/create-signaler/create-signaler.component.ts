@@ -8,6 +8,7 @@ import { ProduitService } from 'src/app/services/produit.service';
 import { SignalerService } from 'src/app/services/signaler-dto.service';
 
 @Component({
+  standalone: true,
   selector: 'app-create-signaler',
   templateUrl: './create-signaler.component.html',
   styleUrls: ['./create-signaler.component.css']

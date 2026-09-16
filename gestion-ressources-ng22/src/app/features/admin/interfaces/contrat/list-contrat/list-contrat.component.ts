@@ -4,6 +4,7 @@ import { ContratDto } from 'src/app/classes/contrat-dto';
 import { ContratService } from 'src/app/services/contrat.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-contrat',
   templateUrl: './list-contrat.component.html',
   styleUrls: ['./list-contrat.component.css']

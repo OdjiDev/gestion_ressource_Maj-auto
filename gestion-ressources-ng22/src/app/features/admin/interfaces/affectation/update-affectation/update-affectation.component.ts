@@ -9,6 +9,7 @@ import { AffectationService } from 'src/app/services/affectation.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
+  standalone: true,
   selector: 'app-update-affectation',
   templateUrl: './update-affectation.component.html',
   styleUrls: ['./update-affectation.component.css']

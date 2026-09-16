@@ -3,6 +3,7 @@ import { Users } from '../../../classes/users';
 import { Router } from '@angular/router';
 import { LoginuserService } from '../../../services/loginuser.service';
 @Component({
+  standalone: true,
   selector: 'app-create-users',
   templateUrl: './create-users.component.html',
   styleUrls: ['./create-users.component.css']

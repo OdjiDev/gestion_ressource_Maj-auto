@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 @Component({
+  standalone: true,
   selector: 'app-categorie-details',
   templateUrl: './categorie-details.component.html',
   styleUrls: ['./categorie-details.component.css']

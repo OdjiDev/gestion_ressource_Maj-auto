@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-search-fournisseur',
   templateUrl: './search-fournisseur.component.html',
   styleUrls: ['./search-fournisseur.component.css']

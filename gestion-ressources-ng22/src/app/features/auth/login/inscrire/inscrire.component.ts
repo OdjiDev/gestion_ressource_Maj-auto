@@ -6,6 +6,7 @@ import { RoleService } from 'src/app/services/role.service';
 import { UsersService } from 'src/app/services/users.service';
 
 @Component({
+  standalone: true,
   selector: 'app-inscrire',
   templateUrl: './inscrire.component.html',
   styleUrls: ['./inscrire.component.css']

@@ -7,6 +7,7 @@ import { DepartementDto } from 'src/app/classes/departement-dto';
 import { DepartementService } from 'src/app/services/departement.service';
 
 @Component({
+  standalone: true,
   selector: 'app-update-departement',
   templateUrl: './update-departement.component.html',
   styleUrls: ['./update-departement.component.css']

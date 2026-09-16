@@ -4,6 +4,7 @@ import { DemandeDto } from 'src/app/classes/demande-dto';
 import { DemandeService } from 'src/app/services/demande.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-demande',
   templateUrl: './list-demande.component.html',
   styleUrls: ['./list-demande.component.css']

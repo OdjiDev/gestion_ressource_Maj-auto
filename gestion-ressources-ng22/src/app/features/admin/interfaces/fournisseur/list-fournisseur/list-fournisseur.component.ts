@@ -5,6 +5,7 @@ import {FournisseurDto } from 'src/app/classes/fournisseur-dto';
 import {FournisseurService } from 'src/app/services/fournisseur.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-fournisseur',
   templateUrl: './list-fournisseur.component.html',
   styleUrls: ['./list-fournisseur.component.css']

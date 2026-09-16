@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-comptable-dashboard',
   templateUrl: './comptable-dashboard.component.html',
   styleUrls: ['./comptable-dashboard.component.css']

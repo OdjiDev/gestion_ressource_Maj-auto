@@ -7,6 +7,7 @@ import { Users } from '../../classes/users';
 
 
 @Component({
+  standalone: true,
   selector: 'app-page-login',
   templateUrl: './page-login.component.html',
   styleUrls: ['./page-login.component.css']

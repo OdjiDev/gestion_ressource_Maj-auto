@@ -8,6 +8,7 @@ import { PersonelService } from 'src/app/services/personel.service';
 import { PersonelDto } from 'src/app/classes/personel-dto';
 
 @Component({
+  standalone: true,
   selector: 'app-create-demande',
   templateUrl: './create-demande.component.html',
   styleUrls: ['./create-demande.component.css']

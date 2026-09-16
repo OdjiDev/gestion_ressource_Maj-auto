@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SocieteService } from 'src/app/services/societe.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-societe',
   templateUrl: './list-societe.component.html',
   styleUrls: ['./list-societe.component.css']

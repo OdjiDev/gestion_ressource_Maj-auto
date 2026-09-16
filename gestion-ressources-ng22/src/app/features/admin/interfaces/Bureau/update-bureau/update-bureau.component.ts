@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-update-bureau',
   templateUrl: './update-bureau.component.html',
   styleUrls: ['./update-bureau.component.css']

@@ -8,6 +8,7 @@ import { ProduitService } from 'src/app/services/produit.service';
 import { AffectationService } from 'src/app/services/affectation.service';
 
 @Component({
+  standalone: true,
   selector: 'app-create-affectation',
   templateUrl: './create-affectation.component.html',
   styleUrls: ['./create-affectation.component.css']

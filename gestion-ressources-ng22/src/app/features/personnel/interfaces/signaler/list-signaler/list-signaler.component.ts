@@ -4,6 +4,7 @@ import { SignalerDto } from 'src/app/classes/signaler-dto';
 import { SignalerService } from 'src/app/services/signaler-dto.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-signaler',
   templateUrl: './list-signaler.component.html',
   styleUrls: ['./list-signaler.component.css']

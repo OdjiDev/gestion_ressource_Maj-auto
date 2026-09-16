@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { SocieteService } from 'src/app/services/societe.service';
 
 @Component({
+  standalone: true,
   selector: 'app-create-societe',
   templateUrl: './create-societe.component.html',
   styleUrls: ['./create-societe.component.css']

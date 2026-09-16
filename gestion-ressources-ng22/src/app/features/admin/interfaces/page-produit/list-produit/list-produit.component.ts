@@ -5,6 +5,7 @@ import { Router } from '@angular/router'; // Import Router
 import { ProduitDto } from 'src/app/classes/produit-dto';
 import { ProduitService } from 'src/app/services/produit.service';
 @Component({
+  standalone: true,
   selector: 'app-list-produit',
   templateUrl: './list-produit.component.html',
   styleUrls: ['./list-produit.component.css']

@@ -4,6 +4,7 @@ import { CategorieService } from '../../../../../services/categorie.service';
 import { Router } from '@angular/router';
 import {  NgForm }from '@angular/forms';
 @Component({
+  standalone: true,
   selector: 'app-create-categorie',
   templateUrl: './create-categorie.component.html',
   styleUrls: ['./create-categorie.component.css']

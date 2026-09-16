@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FournisseurDto } from 'src/app/classes/fournisseur-dto';
 import { FournisseurService } from 'src/app/services/fournisseur.service';
 @Component({
+  standalone: true,
   selector: 'app-create-fournisseur',
   templateUrl: './create-fournisseur.component.html',
   styleUrls: ['./create-fournisseur.component.css']

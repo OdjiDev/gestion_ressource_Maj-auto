@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-detail-fournisseur',
   templateUrl: './detail-fournisseur.component.html',
   styleUrls: ['./detail-fournisseur.component.css']

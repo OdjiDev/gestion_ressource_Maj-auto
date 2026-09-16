@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

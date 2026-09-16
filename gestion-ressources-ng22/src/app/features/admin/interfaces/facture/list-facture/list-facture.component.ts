@@ -14,6 +14,7 @@ import { ProduitService } from 'src/app/services/produit.service';
 // import { LigneFactureService } from 'src/app/services/lignefacture.service';
 
 // @Component({
+  standalone: true,
 //   selector: 'app-list-facture',
 //   templateUrl: './list-facture.component.html',
 //   styleUrls: ['./list-facture.component.css']

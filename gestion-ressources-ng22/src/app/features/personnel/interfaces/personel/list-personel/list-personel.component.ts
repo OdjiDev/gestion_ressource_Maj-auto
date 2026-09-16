@@ -6,6 +6,7 @@ import { RoleDto } from 'src/app/classes/role-dto';
 import {PersonelService } from 'src/app/services/personel.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-personel',
   templateUrl: './list-personel.component.html',
   styleUrls: ['./list-personel.component.css']

@@ -4,6 +4,7 @@ import { FactureDto } from 'src/app/classes/facture-dto';
 import { FactureService } from 'src/app/services/facture.service';
 
 @Component({
+  standalone: true,
   selector: 'app-headerfacture',
   templateUrl: './headerfacture.component.html',
   styleUrls: ['./headerfacture.component.css']

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-list-proces-verbal-reception',
   templateUrl: './list-proces-verbal-reception.component.html',
   styleUrls: ['./list-proces-verbal-reception.component.css']

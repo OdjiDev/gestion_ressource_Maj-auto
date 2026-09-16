@@ -4,6 +4,7 @@ import { BureauDto } from 'src/app/classes/bureau-dto';
 import { BureauService } from 'src/app/services/bureau.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-bureau',
   templateUrl: './list-bureau.component.html',
   styleUrls: ['./list-bureau.component.css']

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  standalone: true,
   selector: 'app-search-avarie',
   templateUrl: './search-avarie.component.html',
   styleUrls: ['./search-avarie.component.css']

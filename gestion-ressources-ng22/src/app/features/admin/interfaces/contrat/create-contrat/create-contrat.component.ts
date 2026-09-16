@@ -6,6 +6,7 @@ import { ContratService } from 'src/app/services/contrat.service';
 import { DepartementDto } from 'src/app/classes/departement-dto';
 import { DepartementService } from 'src/app/services/departement.service';
 @Component({
+  standalone: true,
   selector: 'app-create-contrat',
   templateUrl: './create-contrat.component.html',
   styleUrls: ['./create-contrat.component.css']

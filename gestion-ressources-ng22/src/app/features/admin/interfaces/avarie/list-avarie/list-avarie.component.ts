@@ -7,6 +7,7 @@ import { ProduitDto } from 'src/app/classes/produit-dto';
 import { AvarieService } from 'src/app/services/avarie.service';
 
 @Component({
+  standalone: true,
   selector: 'app-list-avarie',
   templateUrl: './list-avarie.component.html',
   styleUrls: ['./list-avarie.component.css']
