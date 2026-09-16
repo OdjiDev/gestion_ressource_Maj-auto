@@ -1,9 +1,9 @@
-import { RoleDto } from '..\..\../core/models/role-dto';
-import { UsersDto } from '..\..\../core/models/users-dto';
+import { RoleDto } from '..\..\@app/core/models/role-dto';
+import { UsersDto } from '..\..\@app/core/models/users-dto';
 import { Component, OnInit } from '@angular/core';
-import { LoginuserService } from '..\..\../core/services/loginuser.service';
+import { LoginuserService } from '..\..\@app/core/services/loginuser.service';
 import { Router } from '@angular/router';
-import { Users } from '..\..\../core/models/users';
+import { Users } from '..\..\@app/core/models/users';
 
 
 @Component({

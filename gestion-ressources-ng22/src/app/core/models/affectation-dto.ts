@@ -1,4 +1,4 @@
-import { PersonelDto } from '..\../core/models/personel-dto';
+import { PersonelDto } from '..\@app/core/models/personel-dto';
 import { ProduitDto } from "./produit-dto";
 
 export class AffectationDto {

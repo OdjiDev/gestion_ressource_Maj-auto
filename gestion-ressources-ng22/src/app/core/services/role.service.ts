@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { RoleDto } from '..\../core/models/role-dto';
+import { environment } from '@env/environment';
+import { RoleDto } from '..\@app/core/models/role-dto';
 
 @Injectable({
   providedIn: 'root'

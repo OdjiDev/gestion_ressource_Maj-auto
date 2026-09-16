@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { DemandeDto } from '..\../core/models/demande-dto';
+import { environment } from '@env/environment';
+import { DemandeDto } from '..\@app/core/models/demande-dto';
 
 
 

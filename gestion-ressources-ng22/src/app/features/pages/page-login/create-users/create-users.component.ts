@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from '..\..\..\../core/models/users';
+import { Users } from '..\..\..\@app/core/models/users';
 import { Router } from '@angular/router';
-import { LoginuserService } from '..\..\..\../core/services/loginuser.service';
+import { LoginuserService } from '..\..\..\@app/core/services/loginuser.service';
 @Component({
   standalone: true,
   selector: 'app-create-users',

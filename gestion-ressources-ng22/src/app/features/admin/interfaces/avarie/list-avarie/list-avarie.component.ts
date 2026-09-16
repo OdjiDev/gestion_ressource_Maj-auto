@@ -1,10 +1,10 @@
-import { ProduitService } from '..\..\..\..\../core/services/produit.service';
+import { ProduitService } from '..\..\..\..\@app/core/services/produit.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AvarieDto } from '..\..\..\..\../core/models/avarie-dto';
-import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
-import { AvarieService } from '..\..\..\..\../core/services/avarie.service';
+import { AvarieDto } from '..\..\..\..\@app/core/models/avarie-dto';
+import { ProduitDto } from '..\..\..\..\@app/core/models/produit-dto';
+import { AvarieService } from '..\..\..\..\@app/core/services/avarie.service';
 
 @Component({
   standalone: true,

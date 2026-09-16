@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { FournisseurDto } from '..\../core/models/fournisseur-dto';
+import { environment } from '@env/environment';
+import { FournisseurDto } from '..\@app/core/models/fournisseur-dto';
 
 @Injectable({
   providedIn: 'root'

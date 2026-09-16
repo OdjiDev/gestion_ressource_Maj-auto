@@ -1,6 +1,6 @@
 
-import { CategorieService } from '..\..\..\..\../core/services/categorie.service';
-import { CategorieDto } from '..\..\..\..\../core/models/categorie-dto';
+import { CategorieService } from '..\..\..\..\@app/core/services/categorie.service';
+import { CategorieDto } from '..\..\..\..\@app/core/models/categorie-dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 @Component({

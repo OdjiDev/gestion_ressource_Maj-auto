@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CategorieDto } from '..\..\..\..\../core/models/categorie-dto'; // Assuming your DTO path
-import { CategorieService } from '..\..\..\..\../core/services/categorie.service';
+import { CategorieDto } from '..\..\..\..\@app/core/models/categorie-dto'; // Assuming your DTO path
+import { CategorieService } from '..\..\..\..\@app/core/services/categorie.service';
 import { Router } from '@angular/router';
 import {  NgForm }from '@angular/forms';
 @Component({

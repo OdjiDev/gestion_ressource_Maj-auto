@@ -1,10 +1,10 @@
 
-import { MagasinService } from '..\..\..\..\../core/services/magasin.service';
-import { CategorieService } from '..\..\..\..\../core/services/categorie.service';
-import { ProduitService } from '..\..\..\..\../core/services/produit.service';
-import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
-import { CategorieDto } from '..\..\..\..\../core/models/categorie-dto';
-import { MagasinDto } from '..\..\..\..\../core/models/magasin-dto';
+import { MagasinService } from '..\..\..\..\@app/core/services/magasin.service';
+import { CategorieService } from '..\..\..\..\@app/core/services/categorie.service';
+import { ProduitService } from '..\..\..\..\@app/core/services/produit.service';
+import { ProduitDto } from '..\..\..\..\@app/core/models/produit-dto';
+import { CategorieDto } from '..\..\..\..\@app/core/models/categorie-dto';
+import { MagasinDto } from '..\..\..\..\@app/core/models/magasin-dto';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';

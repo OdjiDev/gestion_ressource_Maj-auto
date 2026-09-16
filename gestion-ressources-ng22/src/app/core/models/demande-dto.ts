@@ -1,5 +1,5 @@
-import { PersonelDto } from '..\../core/models/personel-dto';
-import { BureauDto } from '..\../core/models/bureau-dto';
+import { PersonelDto } from '..\@app/core/models/personel-dto';
+import { BureauDto } from '..\@app/core/models/bureau-dto';
 
 export class DemandeDto {
   id: number= 0

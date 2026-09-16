@@ -6,14 +6,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { FactureDto } from '..\..\..\..\../core/models/facture-dto';
-import { FournisseurDto } from '..\..\..\..\../core/models/fournisseur-dto';
-import { LigneFactureDto } from '..\..\..\..\../core/models/lignefacture-dto';
-import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
-import { FactureService } from '..\..\..\..\../core/services/facture.service';
-import { FournisseurService } from '..\..\..\..\../core/services/fournisseur.service';
-import { LigneFactureService } from '..\..\..\..\../core/services/lignefacture.service';
-import { ProduitService } from '..\..\..\..\../core/services/produit.service';
+import { FactureDto } from '..\..\..\..\@app/core/models/facture-dto';
+import { FournisseurDto } from '..\..\..\..\@app/core/models/fournisseur-dto';
+import { LigneFactureDto } from '..\..\..\..\@app/core/models/lignefacture-dto';
+import { ProduitDto } from '..\..\..\..\@app/core/models/produit-dto';
+import { FactureService } from '..\..\..\..\@app/core/services/facture.service';
+import { FournisseurService } from '..\..\..\..\@app/core/services/fournisseur.service';
+import { LigneFactureService } from '..\..\..\..\@app/core/services/lignefacture.service';
+import { ProduitService } from '..\..\..\..\@app/core/services/produit.service';
 
 @Component({
   standalone: true,

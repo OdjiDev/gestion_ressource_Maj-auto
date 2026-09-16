@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DemandeDto } from '..\..\..\..\../core/models/demande-dto';
-import { DemandeService } from '..\..\..\..\../core/services/demande.service';
+import { DemandeDto } from '..\..\..\..\@app/core/models/demande-dto';
+import { DemandeService } from '..\..\..\..\@app/core/services/demande.service';
 
 @Component({
   standalone: true,

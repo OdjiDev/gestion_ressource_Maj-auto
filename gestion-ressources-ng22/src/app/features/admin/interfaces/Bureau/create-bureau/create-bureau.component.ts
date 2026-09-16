@@ -1,10 +1,10 @@
-import { BureauDto } from './../../../../../classes/bureau-dto';
+import { BureauDto } from './@app/classes/bureau-dto';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BureauService } from '..\..\..\..\../core/services/bureau.service';
-import { DepartementDto } from '..\..\..\..\../core/models/departement-dto';
-import { DepartementService } from '..\..\..\..\../core/services/departement.service';
+import { BureauService } from '..\..\..\..\@app/core/services/bureau.service';
+import { DepartementDto } from '..\..\..\..\@app/core/models/departement-dto';
+import { DepartementService } from '..\..\..\..\@app/core/services/departement.service';
 @Component({
   standalone: true,
   selector: 'app-create-bureau',

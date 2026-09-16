@@ -1,10 +1,10 @@
-import { ContratDto } from './../../../../../classes/contrat-dto';
+import { ContratDto } from './@app/classes/contrat-dto';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ContratService } from '..\..\..\..\../core/services/contrat.service';
-import { DepartementDto } from '..\..\..\..\../core/models/departement-dto';
-import { DepartementService } from '..\..\..\..\../core/services/departement.service';
+import { ContratService } from '..\..\..\..\@app/core/services/contrat.service';
+import { DepartementDto } from '..\..\..\..\@app/core/models/departement-dto';
+import { DepartementService } from '..\..\..\..\@app/core/services/departement.service';
 @Component({
   standalone: true,
   selector: 'app-create-contrat',

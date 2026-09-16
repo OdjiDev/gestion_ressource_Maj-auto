@@ -1,9 +1,9 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {PersonelDto } from '..\..\..\..\../core/models/personel-dto';
-import { RoleDto } from '..\..\..\..\../core/models/role-dto';
-import {PersonelService } from '..\..\..\..\../core/services/personel.service';
+import {PersonelDto } from '..\..\..\..\@app/core/models/personel-dto';
+import { RoleDto } from '..\..\..\..\@app/core/models/role-dto';
+import {PersonelService } from '..\..\..\..\@app/core/services/personel.service';
 
 @Component({
   standalone: true,

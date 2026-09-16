@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { BureauDto } from '..\..\..\..\../core/models/bureau-dto';
-import { BureauService } from '..\..\..\..\../core/services/bureau.service';
+import { BureauDto } from '..\..\..\..\@app/core/models/bureau-dto';
+import { BureauService } from '..\..\..\..\@app/core/services/bureau.service';
 
 @Component({
   standalone: true,

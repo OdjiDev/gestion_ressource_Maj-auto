@@ -1,11 +1,11 @@
-import { PersonelService } from './../../../../../services/personel.service';
+import { PersonelService } from './@app/services/personel.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PersonelDto } from '..\..\..\..\../core/models/personel-dto';
-import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
-import { SignalerDto } from '..\..\..\..\../core/models/signaler-dto';
-import { ProduitService } from '..\..\..\..\../core/services/produit.service';
-import { SignalerService } from '..\..\..\..\../core/services/signaler-dto.service';
+import { PersonelDto } from '..\..\..\..\@app/core/models/personel-dto';
+import { ProduitDto } from '..\..\..\..\@app/core/models/produit-dto';
+import { SignalerDto } from '..\..\..\..\@app/core/models/signaler-dto';
+import { ProduitService } from '..\..\..\..\@app/core/services/produit.service';
+import { SignalerService } from '..\..\..\..\@app/core/services/signaler-dto.service';
 
 @Component({
   standalone: true,

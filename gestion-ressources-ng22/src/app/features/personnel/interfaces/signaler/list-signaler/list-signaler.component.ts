@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SignalerDto } from '..\..\..\..\../core/models/signaler-dto';
-import { SignalerService } from '..\..\..\..\../core/services/signaler-dto.service';
+import { SignalerDto } from '..\..\..\..\@app/core/models/signaler-dto';
+import { SignalerService } from '..\..\..\..\@app/core/services/signaler-dto.service';
 
 @Component({
   standalone: true,

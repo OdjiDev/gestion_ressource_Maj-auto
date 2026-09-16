@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { DepartementDto } from '..\..\..\..\../core/models/departement-dto';
-import { DepartementService } from '..\..\..\..\../core/services/departement.service';
+import { DepartementDto } from '..\..\..\..\@app/core/models/departement-dto';
+import { DepartementService } from '..\..\..\..\@app/core/services/departement.service';
 
 @Component({
   standalone: true,

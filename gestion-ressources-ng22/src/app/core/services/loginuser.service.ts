@@ -1,9 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { UsersDto } from '..\../core/models/users-dto';
-import { Users } from '..\../core/models/users';
+import { environment } from '@env/environment';
+import { UsersDto } from '..\@app/core/models/users-dto';
+import { Users } from '..\@app/core/models/users';
 
 @Injectable({
   providedIn: 'root'

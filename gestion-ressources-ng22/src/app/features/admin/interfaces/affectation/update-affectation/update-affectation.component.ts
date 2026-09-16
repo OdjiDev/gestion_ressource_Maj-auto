@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { PersonelService } from '..\..\..\..\../core/services/personel.service';
-import { ProduitService } from '..\..\..\..\../core/services/produit.service';
+import { PersonelService } from '..\..\..\..\@app/core/services/personel.service';
+import { ProduitService } from '..\..\..\..\@app/core/services/produit.service';
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { AffectationDto } from '..\..\..\..\../core/models/affectation-dto';
-import { PersonelDto } from '..\..\..\..\../core/models/personel-dto';
-import { ProduitDto } from '..\..\..\..\../core/models/produit-dto';
-import { AffectationService } from '..\..\..\..\../core/services/affectation.service';
+import { AffectationDto } from '..\..\..\..\@app/core/models/affectation-dto';
+import { PersonelDto } from '..\..\..\..\@app/core/models/personel-dto';
+import { ProduitDto } from '..\..\..\..\@app/core/models/produit-dto';
+import { AffectationService } from '..\..\..\..\@app/core/services/affectation.service';
 import { HttpHeaders } from '@angular/common/http';
 
 @Component({
@@ -67,7 +67,7 @@ export class UpdateAffectationComponent implements OnInit {
 // }
 
 // goToAffectationList(){
-//   this.router.navigate(['../listaffectation']);
+//   this.router.navigate(['@app/listaffectation']);
 // }
 // }
 }
