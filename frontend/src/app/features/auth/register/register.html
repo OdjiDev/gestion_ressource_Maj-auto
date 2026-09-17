@@ -1,0 +1,68 @@
+<div class="register-container d-flex align-items-center justify-content-center vh-100 bg-light">
+  <div class="card shadow" style="width: 450px;">
+    <div class="card-body p-4">
+      <h2 class="text-center mb-4">Inscription</h2>
+
+      @if (error()) {
+        <div class="alert alert-danger">{{ error() }}</div>
+      }
+
+      <form (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Nom *</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngModel]="nom()"
+            (ngModelChange)="nom.set($event)"
+            name="nom"
+            required />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Prénom</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngModel]="prenom()"
+            (ngModelChange)="prenom.set($event)"
+            name="prenom" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email *</label>
+          <input
+            type="email"
+            class="form-control"
+            [ngModel]="email()"
+            (ngModelChange)="email.set($event)"
+            name="email"
+            required />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Mot de passe * (min 8 caractères)</label>
+          <input
+            type="password"
+            class="form-control"
+            [ngModel]="password()"
+            (ngModelChange)="password.set($event)"
+            name="password"
+            required
+            minlength="8" />
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary w-100"
+          [disabled]="loading()">
+          {{ loading() ? 'Inscription...' : 'S\'inscrire' }}
+        </button>
+
+        <p class="text-center mt-3 mb-0">
+          Déjà un compte ? <a routerLink="/login">Se connecter</a>
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
