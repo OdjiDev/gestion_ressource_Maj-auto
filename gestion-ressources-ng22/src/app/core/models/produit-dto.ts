@@ -1,5 +1,5 @@
 
-import { CategorieDto } from './categorie-dto';
+import { CategorieDto } from '../../features/categories/categorie.model';
 import { LigneFactureDto } from './lignefacture-dto';
 
 export class ProduitDto {
