@@ -69,8 +69,13 @@ export class AuthService {
 
   private storeSession(res: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, res.token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify({ email: res.email }));
-    this.isLoggedIn.set(true);
+    localStorage.setItem(this.USER_KEY, JSON.stringify({
+      email: res.email,
+      role: res.role || 'USER'
+    }));
+
+    this.isLoggedIn  .set(true);
+
   }
 //ajout de la gestion des roles
   getRole(): string | null {

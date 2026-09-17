@@ -1,35 +1,54 @@
+$sidebar-width: 270px;
+$sidebar-collapsed-width: 78px;
+$header-height: 64px;
+
+.app-layout {
+  min-height: 100vh;
+  background-color: #f4f6f9;
+}
+
 .main-container {
-  display: flex;
-  min-height: calc(100vh - 120px); // 100vh - header - footer
+  margin-top: $header-height;
+  min-height: calc(100vh - #{$header-height});
 }
 
-.app-sidebar {
-  width: 250px;
-  flex-shrink: 0;
+.app-content {
+  margin-left: $sidebar-width;
+  padding: 1.5rem;
+  transition: margin-left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+  min-height: calc(100vh - #{$header-height});
 }
 
-.content {
-  flex: 1;
-  padding: 1rem;
-  overflow-y: auto;
+// Quand la sidebar est réduite
+body:has(.app-sidebar.collapsed) .app-content,
+.app-layout:has(.app-sidebar.collapsed) .app-content {
+  margin-left: $sidebar-collapsed-width;
 }
 
-.nav-link {
-  color: #333;
+// Mobile
+@media (max-width: 991px) {
+  .app-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+}
+
+// Scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
   border-radius: 4px;
-  padding: 0.5rem 0.75rem;
 
   &:hover {
-    background-color: #e9ecef;
-  }
-
-  &.active {
-    background-color: #0d6efd;
-    color: white;
-  }
-
-  i {
-    width: 20px;
-    margin-right: 0.5rem;
+    background: #a8a8a8;
   }
 }

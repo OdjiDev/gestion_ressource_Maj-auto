@@ -1,7 +1,8 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { AuthService } from '@core/guards/auth.service';
+import { LayoutService } from  '@app/layout/main-layout/layout.service';
 
 @Component({
   selector: 'app-header',
@@ -12,12 +13,19 @@ import { AuthService } from '@core/guards/auth.service';
 export class Header {
 
   private readonly authService = inject(AuthService);
-  private readonly router = inject(Router);
+  readonly layout = inject(LayoutService);
 
-  email = computed(() => this.authService.getEmail() || 'Utilisateur');
-  role = computed(() => this.authService.getRole() || 'USER');
+  readonly email = computed(() => this.authService.getEmail() || 'Utilisateur');
+  readonly role = computed(() => this.authService.getRole() || 'USER');
+  readonly initiale = computed(() => this.email().charAt(0).toUpperCase());
 
-  logout(): void {
-    this.authService.logout();
+  toggleSidebar(): void {
+    // Sur mobile : ouvre la sidebar
+    // Sur desktop : réduit/agrandit
+    if (window.innerWidth < 992) {
+      this.layout.toggleMobileSidebar();
+    } else {
+      this.layout.toggleCollapse();
+    }
   }
 }

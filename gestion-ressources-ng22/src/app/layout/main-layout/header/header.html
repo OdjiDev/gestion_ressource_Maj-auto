@@ -1,21 +1,25 @@
 <header class="app-header">
-  <div class="d-flex justify-content-between align-items-center px-3 py-2 bg-dark text-white">
-    <!-- Logo -->
-    <div class="logo">
-      <h4 class="mb-0">
-        <i class="fa fa-boxes"></i> Gestion Ressources
-      </h4>
+  <div class="header-content">
+
+    <!-- Bouton toggle sidebar -->
+    <button class="btn-toggle" (click)="toggleSidebar()">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Logo / Titre -->
+    <div class="header-title">
+      <span>Tableau de bord</span>
     </div>
 
     <!-- User menu -->
-    <div class="user-menu d-flex align-items-center gap-3">
-      <div class="text-end">
-        <div class="fw-bold">{{ email() }}</div>
-        <small class="text-muted">{{ role() }}</small>
+    <div class="user-menu">
+      <div class="user-info">
+        <div class="user-name">{{ email() }}</div>
+        <div class="user-role">{{ role() }}</div>
       </div>
-      <button class="btn btn-sm btn-outline-light" (click)="logout()">
-        <i class="fa fa-sign-out-alt"></i> Déconnexion
-      </button>
+
+      <div class="user-avatar">{{ initiale() }}</div>
     </div>
+
   </div>
 </header>

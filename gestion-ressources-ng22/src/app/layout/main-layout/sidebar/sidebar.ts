@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@core/guards/auth.service';
+import { LayoutService } from   '@app/layout/main-layout/layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,24 +12,32 @@ import { AuthService } from '@core/guards/auth.service';
 })
 export class Sidebar {
 
-  private readonly authService = inject(AuthService);
+  readonly authService = inject(AuthService);
+  readonly layout = inject(LayoutService);
 
-  isAdmin(): boolean {
-    return this.authService.getRole() === 'ADMIN';
+  readonly email = computed(() => this.authService.getEmail() || 'Utilisateur');
+  readonly role = computed(() => this.authService.getRole() || 'USER');
+  readonly initiale = computed(() => this.email().charAt(0).toUpperCase());
+
+  readonly isAdmin = computed(() => this.authService.getRole() === 'ADMIN');
+  readonly isGestionnaire = computed(() => {
+    const r = this.authService.getRole();
+    return r === 'ADMIN' || r === 'GESTIONNAIRE';
+  });
+  readonly isComptable = computed(() => {
+    const r = this.authService.getRole();
+    return r === 'ADMIN' || r === 'COMPTABLE';
+  });
+  readonly isPersonnel = computed(() => {
+    const r = this.authService.getRole();
+    return r === 'ADMIN' || r === 'PERSONNEL';
+  });
+
+  onCloseMobile(): void {
+    this.layout.closeMobileSidebar();
   }
 
-  isGestionnaire(): boolean {
-    const role = this.authService.getRole();
-    return role === 'ADMIN' || role === 'GESTIONNAIRE';
-  }
-
-  isComptable(): boolean {
-    const role = this.authService.getRole();
-    return role === 'ADMIN' || role === 'COMPTABLE';
-  }
-
-  isPersonnel(): boolean {
-    const role = this.authService.getRole();
-    return role === 'ADMIN' || role === 'PERSONNEL';
+  logout(): void {
+    this.authService.logout();
   }
 }
