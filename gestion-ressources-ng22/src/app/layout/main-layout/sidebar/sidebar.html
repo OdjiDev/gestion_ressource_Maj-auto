@@ -1,0 +1,59 @@
+<aside class="app-sidebar bg-light border-end">
+  <nav class="nav flex-column p-3">
+
+    <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+      <i class="fa fa-tachometer-alt"></i> Tableau de bord
+    </a>
+
+    @if (isGestionnaire()) {
+      <hr />
+      <small class="text-muted">Gestion</small>
+
+      <a class="nav-link" routerLink="/produits" routerLinkActive="active">
+        <i class="fa fa-box"></i> Produits
+      </a>
+      <a class="nav-link" routerLink="/categories" routerLinkActive="active">
+        <i class="fa fa-tags"></i> Catégories
+      </a>
+      <a class="nav-link" routerLink="/magasins" routerLinkActive="active">
+        <i class="fa fa-warehouse"></i> Magasins
+      </a>
+      <a class="nav-link" routerLink="/fournisseurs" routerLinkActive="active">
+        <i class="fa fa-truck"></i> Fournisseurs
+      </a>
+      <a class="nav-link" routerLink="/factures" routerLinkActive="active">
+        <i class="fa fa-file-invoice"></i> Factures
+      </a>
+    }
+
+    @if (isComptable()) {
+      <hr />
+      <small class="text-muted">Comptabilité</small>
+
+      <a class="nav-link" routerLink="/comptabilite" routerLinkActive="active">
+        <i class="fa fa-calculator"></i> Comptabilité
+      </a>
+    }
+
+    @if (isPersonnel()) {
+      <hr />
+      <small class="text-muted">Personnel</small>
+
+      <a class="nav-link" routerLink="/personels" routerLinkActive="active">
+        <i class="fa fa-users"></i> Personnels
+      </a>
+    }
+
+    @if (isAdmin()) {
+      <hr />
+      <small class="text-muted">Administration</small>
+
+      <a class="nav-link" routerLink="/admin/users" routerLinkActive="active">
+        <i class="fa fa-user-cog"></i> Utilisateurs
+      </a>
+      <a class="nav-link" routerLink="/admin/settings" routerLinkActive="active">
+        <i class="fa fa-cog"></i> Paramètres
+      </a>
+    }
+  </nav>
+</aside>

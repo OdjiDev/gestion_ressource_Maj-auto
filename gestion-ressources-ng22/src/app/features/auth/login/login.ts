@@ -5,52 +5,44 @@ import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '@app/core/guards/auth.service';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-login',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule, RouterModule],
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  templateUrl: './login.html',
+  styleUrls: ['./login.css']
 })
-export class RegisterComponent {
+export class Login {
 
   private authService = inject(AuthService);
   private router = inject(Router);
 
   email = signal('');
   password = signal('');
-  nom = signal('');
-  prenom = signal('');
   error = signal<string | null>(null);
   loading = signal(false);
 
   onSubmit(): void {
-    if (!this.email() || !this.password() || !this.nom()) {
-      this.error.set('Email, mot de passe et nom obligatoires');
-      return;
-    }
-
-    if (this.password().length < 8) {
-      this.error.set('Le mot de passe doit contenir au moins 8 caractères');
+    if (!this.email() || !this.password()) {
+      this.error.set('Email et mot de passe obligatoires');
       return;
     }
 
     this.loading.set(true);
     this.error.set(null);
 
-    this.authService.register({
+    this.authService.login({
       email: this.email(),
-      password: this.password(),
-      role: 'USER'
+      password: this.password()
     }).subscribe({
       next: () => {
         this.loading.set(false);
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/dashboard']);
       },
       error: (err) => {
         this.loading.set(false);
-        this.error.set(err.status === 409
-          ? 'Cet email est déjà utilisé'
-          : 'Erreur lors de l  inscription');
+        this.error.set(err.status === 401
+          ? 'Email ou mot de passe incorrect'
+          : 'Erreur de connexion');
       }
     });
   }
