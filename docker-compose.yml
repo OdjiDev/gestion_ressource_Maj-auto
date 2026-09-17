@@ -1,0 +1,56 @@
+services:
+  # 1. Base de données MySQL
+  db:
+    image: mysql:8.0
+    container_name: stock_db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - stock_mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p$$MYSQL_ROOT_PASSWORD || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+    networks:
+      - stocknet
+
+  # 2. Backend Spring Boot
+  backend:
+    build: ./backend
+    container_name: stock_backend
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - stocknet
+
+  # 3. Frontend Angular
+  frontend:
+    build: ./frontend
+    container_name: stock_frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    networks:
+      - stocknet
+      - webnet              # ← joignable par le proxy
+
+volumes:
+  stock_mysql_data:
+
+networks:
+  stocknet:
+    driver: bridge
+  webnet:
+    external: true
