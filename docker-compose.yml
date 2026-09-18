@@ -1,5 +1,8 @@
 services:
+
+  # ============================================================
   # 1. Base de données MySQL
+  # ============================================================
   db:
     image: mysql:8.0
     container_name: stock_db
@@ -9,6 +12,8 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      TZ: Africa/Abidjan
     volumes:
       - stock_mysql_data:/var/lib/mysql
     healthcheck:
@@ -19,32 +24,75 @@ services:
       start_period: 30s
     networks:
       - stocknet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
+  # ============================================================
   # 2. Backend Spring Boot
+  # ============================================================
   backend:
     build: ./backend
     container_name: stock_backend
     restart: unless-stopped
     environment:
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      # === Spring ===
+      TZ: Africa/Abidjan
+
+      # === Base de données ===
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+      # === JWT (⚠️ CRITIQUE) ===
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_MS: ${JWT_EXPIRATION_MS:-86400000}
+
+      # === CORS ===
+      APP_CORS_ALLOWED_ORIGINS: ${APP_CORS_ALLOWED_ORIGINS}
+
+      # === JVM ===
+      JAVA_OPTS: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:+UseG1GC"
     depends_on:
       db:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     networks:
       - stocknet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
-  # 3. Frontend Angular
+  # ============================================================
+  # 3. Frontend Angular + Nginx
+  # ============================================================
   frontend:
     build: ./frontend
     container_name: stock_frontend
     restart: unless-stopped
+    environment:
+      TZ: Africa/Abidjan
     depends_on:
       - backend
+    deploy:
+      resources:
+        limits:
+          memory: 256M
     networks:
       - stocknet
-      - webnet              # ← joignable par le proxy
+      - webnet
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
 volumes:
   stock_mysql_data:

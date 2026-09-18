@@ -33,6 +33,13 @@ export class Sidebar {
     return r === 'ADMIN' || r === 'PERSONNEL';
   });
 
+
+  //En attendant la VENTE a effacer apres la phase demo
+  readonly isUser = computed(() => {
+    const r = this.authService.getRole();
+    return r === ' ADMIN' || r === 'USER';
+  });
+
   onCloseMobile(): void {
     this.layout.closeMobileSidebar();
   }

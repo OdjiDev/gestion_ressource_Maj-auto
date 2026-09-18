@@ -44,14 +44,14 @@ export const routes: Routes = [
       // ==================== MÉTIER : ADMIN + GESTIONNAIRE ====================
       {
         path: 'produits',
-        canActivate: [gestionnaireGuard],
+        // canActivate: [gestionnaireGuard], //Commante pour la demos
         loadChildren: () =>
           import('./features/produits/produit.routes')
             .then(m => m.PRODUIT_ROUTES)
       },
       {
         path: 'categories',
-        canActivate: [gestionnaireGuard],
+        // canActivate: [gestionnaireGuard],  //Commante pour la demos
         loadChildren: () =>
           import('./features/categories/categorie.routes')
             .then(m => m.CATEGORIE_ROUTES)

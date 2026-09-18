@@ -37,9 +37,9 @@
         <span>Tableau de bord</span>
       }
     </a>
-
+ <!-- ====================  — USER ==================== En phase demo-->
     <!-- ==================== GESTION ==================== -->
-    @if (isGestionnaire()) {
+    @if (isGestionnaire()||isUser()) {
       <div class="nav-group" [class.open]="layout.isGroupOpen('gestion')">
 
         <div class="nav-group-header" (click)="layout.toggleGroup('gestion')">
