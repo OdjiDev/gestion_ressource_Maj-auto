@@ -20,6 +20,7 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.5.5.Final/mapstruct-1.5.5.Final.jar" />
         </processorPath>
         <module name="Gestion_Spring_Back_end" />
+        <module name="backend" />
       </profile>
     </annotationProcessing>
   </component>
@@ -27,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Gestion_Spring_Back_end" options="-parameters" />
       <module name="Spring_Back_end" options="-parameters" />
+      <module name="backend" options="-parameters" />
     </option>
   </component>
 </project>
