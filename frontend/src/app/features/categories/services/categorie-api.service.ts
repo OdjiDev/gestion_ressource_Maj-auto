@@ -1,5 +1,5 @@
 import { environment } from '@env/environment';
-import { CategorieDto } from '@app/features/categories/categorie.model';
+import { CategorieDto } from '../models/categorie.model';
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';

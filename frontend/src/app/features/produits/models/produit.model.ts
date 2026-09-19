@@ -6,6 +6,7 @@ export interface Produit {
   nom: string;
   designation?: string;
   quantite: number;
+  prixAchat?: number;
   categorieId?: number;
   magasinId?: number;
   categorieNom?: string;
@@ -14,7 +15,7 @@ export interface Produit {
   updatedAt?: string;
 }
 
-// ==================== SUMMARY (pour les listes) ====================
+// ==================== SUMMARY ====================
 
 export interface ProduitSummary {
   id: number;
@@ -24,7 +25,7 @@ export interface ProduitSummary {
   categorieNom?: string;
 }
 
-// ==================== FILTER (recherche) ====================
+// ==================== FILTER ====================
 
 export interface ProduitFilter {
   nom?: string;

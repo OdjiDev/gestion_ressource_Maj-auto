@@ -1,10 +1,9 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { CategorieDto } from '@app/features/categories/categorie.model';
-import { LigneFactureDto } from '@app/core/models/lignefacture-dto';
-import { ProduitDto } from '@core/models/produit-dto';
-import { ProduitService } from '@core/services/produit.service';
+import { Categorie } from '@features/categories';
+import { Produit } from '@features/produits';
+import { ProduitService } from '@features/produits';
 @Component({
   imports: [FormsModule, RouterModule],
   selector: 'app-produit-create',
@@ -26,15 +25,13 @@ export class ProduitCreate {
   readonly error = signal<string | null>(null);
 
   // ==================== FORMULAIRE ====================
-  produit: ProduitDto = {
+  produit: Produit = {
     codeproduit: '',
     nom: '',
     designation: '',
     quantite: 0,
     id: 0,
     prixAchat: 0,
-    categorieDto: new CategorieDto,
-    ligneFactureDto: new LigneFactureDto
   };
 
   // ==================== SOUMISSION ====================
@@ -55,7 +52,7 @@ export class ProduitCreate {
     this.error.set(null);
 
     this.produitService.addProduit(this.produit).subscribe({
-      next: (created: ProduitDto) => {
+      next: (created: Produit) => {
         this.loading.set(false);
         console.log('Produit créé:', created);
         this.router.navigate(['/produits']);

@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '@core/guards/auth.guard';
+import { authGuard } from '@core/auth/auth.guard';
 import { adminGuard } from '@core/guards/admin.guard';
 import { gestionnaireGuard } from '@core//guards/gestionnaire.guard';
 import { comptableGuard } from '@core//guards/comptable.guard';

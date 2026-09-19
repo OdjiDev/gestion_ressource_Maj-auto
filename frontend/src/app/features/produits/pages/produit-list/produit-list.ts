@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { ProduitDto } from '@core/models/produit-dto';
-import { ProduitService } from '@core/services/produit.service';
+import { Produit } from '@features/produits';
+import { ProduitService } from '@features/produits';
 
 @Component({
   selector: 'app-produit-list',
@@ -16,7 +16,7 @@ export class ProduitList implements OnInit {
   private readonly router = inject(Router);
 
   // ==================== STATE ====================
-  readonly produits = signal<ProduitDto[]>([]);
+  readonly produits = signal<Produit[]>([]);
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
 
@@ -33,7 +33,7 @@ export class ProduitList implements OnInit {
     this.error.set(null);
 
     this.produitService.getProduits().subscribe({
-      next: (data: ProduitDto[]) => {
+      next: (data: Produit[]) => {
         this.produits.set(data);
         this.loading.set(false);
         console.log('Produits chargés:', data);
@@ -56,7 +56,7 @@ export class ProduitList implements OnInit {
     this.router.navigate(['/produits/update', id]);
   }
 
-  onDetails(produit: ProduitDto): void {
+  onDetails(produit: Produit): void {
     this.router.navigate(['/produits/detail', produit.id]);
   }
 

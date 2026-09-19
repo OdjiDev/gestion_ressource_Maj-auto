@@ -1,8 +1,8 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { CategorieService } from '@core/services/categorie.service';
-import { CategorieDto } from '@features/categories/categorie.model';
+import { CategorieService } from '@features/categories';
+import { CategorieDto } from '@features/categories';
 
 @Component({
   selector: 'app-categorie-list',

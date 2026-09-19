@@ -5,3 +5,6 @@ export class CategorieDto {
   designation: string="";
  // Add other   properties as needed
 }
+
+// Alias pour compatibilité
+export type Categorie = CategorieDto;
