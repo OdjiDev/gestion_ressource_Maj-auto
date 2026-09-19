@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AuthService } from '@core/auth';
-import { DashboardService } from '../dashboard.service';
-import { DashboardStats, AlertProduit, RecentFacture } from '../dashboard.model';
+import { DashboardService } from '../../services/dashboard.service';
+import { DashboardStats, AlertProduit, RecentFacture } from '../../models/dashboard.model';
 
 @Component({
   selector: 'app-dashboard',

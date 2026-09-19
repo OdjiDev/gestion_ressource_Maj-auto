@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '@env/environment';
-import { DashboardStats, AlertProduit, RecentFacture } from './dashboard.model';
+import { DashboardStats, AlertProduit, RecentFacture } from '../models/dashboard.model';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {

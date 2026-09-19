@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@core/auth/auth.guard';
-import { adminGuard } from '@core/guards/admin.guard';
-import { gestionnaireGuard } from '@core//guards/gestionnaire.guard';
-import { comptableGuard } from '@core//guards/comptable.guard';
-// import { personnelGuard } from '@core/guards/personnel.guard';
+import { adminGuard } from '@core/auth/admin.guard';
+import { gestionnaireGuard } from '@core/auth/gestionnaire.guard';
+import { comptableGuard } from '@core/auth/comptable.guard';
+// import { personnelGuard } from '@core/auth/personnel.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
