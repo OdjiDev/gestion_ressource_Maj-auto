@@ -1,4 +1,4 @@
-package com.odji.spring_back_end.exception;
+package com.odji.spring_back_end.common.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

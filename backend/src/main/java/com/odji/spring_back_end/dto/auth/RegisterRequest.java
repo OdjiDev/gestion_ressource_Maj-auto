@@ -1,6 +1,6 @@
-package com.odji.spring_back_end.dto.auth;
+package com.odji.spring_back_end.auth.dto;
 
-import com.odji.spring_back_end.model.Role;
+import com.odji.spring_back_end.user.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

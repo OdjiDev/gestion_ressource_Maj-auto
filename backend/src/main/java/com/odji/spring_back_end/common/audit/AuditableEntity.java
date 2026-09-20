@@ -1,4 +1,4 @@
-package com.odji.spring_back_end.model.audit;
+package com.odji.spring_back_end.common.audit;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

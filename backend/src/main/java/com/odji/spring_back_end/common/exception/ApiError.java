@@ -1,4 +1,4 @@
-package com.odji.spring_back_end.exception;
+package com.odji.spring_back_end.common.exception;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.odji.spring_back_end.dto.auth;
+package com.odji.spring_back_end.auth.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
