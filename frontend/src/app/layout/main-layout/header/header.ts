@@ -2,7 +2,7 @@ import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@core/auth';
-import { LayoutService } from '@app/layout/main-layout/layout.service';
+import { LayoutService } from '@core/services';
 
 @Component({
   selector: 'app-header',
