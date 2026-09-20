@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.odji.spring_back_end.affectation.dto.BureauDto;
 
 @Getter
 @Setter

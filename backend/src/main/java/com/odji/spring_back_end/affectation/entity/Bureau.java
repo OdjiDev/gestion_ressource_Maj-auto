@@ -2,6 +2,7 @@ package com.odji.spring_back_end.affectation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.odji.spring_back_end.common.audit.AuditableEntity;
+import com.odji.spring_back_end.demande.entity.Demande;
 import jakarta.persistence.*;
 import lombok.*;
 

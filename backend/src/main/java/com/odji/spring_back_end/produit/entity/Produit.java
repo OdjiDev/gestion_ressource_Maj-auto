@@ -1,14 +1,20 @@
-
 package com.odji.spring_back_end.produit.entity;
 
-        import com.fasterxml.jackson.annotation.JsonIgnore;
-        import com.odji.spring_back_end.common.audit.AuditableEntity;
-        import jakarta.persistence.*;
-        import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.odji.spring_back_end.affectation.entity.Magasin;
+import com.odji.spring_back_end.avarie.entity.Avarie;
+import com.odji.spring_back_end.avarie.entity.LigneReparation;
+import com.odji.spring_back_end.categorie.entity.Categorie;
+import com.odji.spring_back_end.common.audit.AuditableEntity;
+import com.odji.spring_back_end.demande.entity.LigneDemande;
+import com.odji.spring_back_end.facture.entity.LigneFacture;
+import com.odji.spring_back_end.facture.entity.LigneFactureReparer;
+import jakarta.persistence.*;
+import lombok.*;
 
-        import java.math.BigDecimal;
-        import java.util.ArrayList;
-        import java.util.List;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(
@@ -52,23 +58,13 @@ public class Produit extends AuditableEntity {
     @Builder.Default
     private BigDecimal quantite = BigDecimal.ZERO;
 
-    // ==================== Relations sortantes (EAGER interdit, LAZY par défaut) ====================
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "idcategorie",
-            foreignKey = @ForeignKey(name = "fk_produit_categorie")
-    )
+    @JoinColumn(name = "idcategorie", foreignKey = @ForeignKey(name = "fk_produit_categorie"))
     private Categorie categorie;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(
-            name = "idmagasin",
-            foreignKey = @ForeignKey(name = "fk_produit_magasin")
-    )
+    @JoinColumn(name = "idmagasin", foreignKey = @ForeignKey(name = "fk_produit_magasin"))
     private Magasin magasin;
-
-    // ==================== Relations inverses (lecture seule, pas de cascade) ====================
 
     @JsonIgnore
     @OneToMany(mappedBy = "produit", fetch = FetchType.LAZY)
@@ -94,8 +90,6 @@ public class Produit extends AuditableEntity {
     @OneToMany(mappedBy = "produit", fetch = FetchType.LAZY)
     @Builder.Default
     private List<LigneDemande> lignesDemande = new ArrayList<>();
-
-    // ==================== Versioning optimiste (anti-conflit en prod) ====================
 
     @Version
     @Column(name = "version", nullable = false)

@@ -7,6 +7,7 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import com.odji.spring_back_end.produit.entity.Produit;
 
 @Entity
 @Table(

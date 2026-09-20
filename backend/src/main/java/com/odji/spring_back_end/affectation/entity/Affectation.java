@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import com.odji.spring_back_end.produit.entity.Produit;
+import com.odji.spring_back_end.user.entity.Personel;
 
 @Entity
 @Table(

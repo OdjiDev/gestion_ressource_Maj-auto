@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import com.odji.spring_back_end.affectation.dto.MagasinDto;
+import com.odji.spring_back_end.categorie.dto.CategorieDto;
 
 @Getter
 @Setter

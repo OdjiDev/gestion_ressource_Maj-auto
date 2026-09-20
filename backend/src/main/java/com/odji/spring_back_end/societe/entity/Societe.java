@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import com.odji.spring_back_end.facture.entity.FactureReparer;
 
 @Data
 @Entity

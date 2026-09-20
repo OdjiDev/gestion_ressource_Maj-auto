@@ -3,6 +3,8 @@ package com.odji.spring_back_end.signalement.entity;
 import com.odji.spring_back_end.common.audit.AuditableEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import com.odji.spring_back_end.produit.entity.Produit;
+import com.odji.spring_back_end.user.entity.Personel;
 
 @Entity
 @Table(

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import com.odji.spring_back_end.produit.entity.Produit;
 
 @Entity
 @Table(

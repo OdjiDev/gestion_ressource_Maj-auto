@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import com.odji.spring_back_end.option.entity.Option;
 
 @Entity
 @Table(

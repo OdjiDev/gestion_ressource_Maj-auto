@@ -9,6 +9,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import com.odji.spring_back_end.fournisseur.entity.Fournisseur;
 
 @Entity
 @Table(

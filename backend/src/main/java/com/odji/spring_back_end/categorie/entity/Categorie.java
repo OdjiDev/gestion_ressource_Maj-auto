@@ -1,5 +1,7 @@
 package com.odji.spring_back_end.categorie.entity;
 
+import com.odji.spring_back_end.produit.entity.Produit;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.odji.spring_back_end.common.audit.AuditableEntity;
 import jakarta.persistence.*;

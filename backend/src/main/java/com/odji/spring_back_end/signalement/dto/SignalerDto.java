@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import com.odji.spring_back_end.produit.dto.ProduitDto;
+import com.odji.spring_back_end.user.dto.PersonelDto;
 
 @Getter
 @Setter

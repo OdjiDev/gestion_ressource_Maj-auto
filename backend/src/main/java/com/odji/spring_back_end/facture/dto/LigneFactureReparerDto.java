@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import com.odji.spring_back_end.avarie.dto.ReparerDto;
+import com.odji.spring_back_end.produit.dto.ProduitDto;
 
 @Getter
 @Setter
