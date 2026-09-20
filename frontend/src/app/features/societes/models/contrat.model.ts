@@ -2,11 +2,11 @@ import { ProduitDto } from './produit-dto';
 import { SocieteDto } from './societe-dto';
 
 export class ContratDto {
-  id: number = 0;
-  code: string = '';
-  nom: string = '';
-  datedebut: string = '';
-  datedefin: string = '';
-  motif: string = '';
+  id = 0;
+  code = '';
+  nom = '';
+  datedebut = '';
+  datedefin = '';
+  motif = '';
   societeDto: SocieteDto = new SocieteDto();
 }

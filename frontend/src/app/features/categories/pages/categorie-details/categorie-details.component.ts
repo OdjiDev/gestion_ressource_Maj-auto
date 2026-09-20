@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./categorie-details.component.css']
 })
 export class CategorieDetailsComponent implements OnInit {
-  id: number = 1;
+  id = 1;
 
   categorieDto: CategorieDto = new CategorieDto();
 

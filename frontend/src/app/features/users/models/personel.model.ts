@@ -1,10 +1,10 @@
 import { RoleDto } from '@features/auth/models/role.model';
 
 export class PersonelDto {
-  id: number = 0;
-  username: string = '';
-  numero: string = '';
-  email: string = '';
-  password: string = '';
+  id = 0;
+  username = '';
+  numero = '';
+  email = '';
+  password = '';
   roleDto: RoleDto | null = null;
 }

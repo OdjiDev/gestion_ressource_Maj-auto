@@ -25,11 +25,11 @@ export class FournisseurService {
     return this.httpClient.post<FournisseurDto>(`${this.baseURL}`, fournisseur);
   }
 
-  updateFournisseur(id: number, fournisseurDto: FournisseurDto): Observable<Object> {
+  updateFournisseur(id: number, fournisseurDto: FournisseurDto): Observable<object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, fournisseurDto);
   }
 
-  deleteFournisseur(id: number): Observable<Object> {
+  deleteFournisseur(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 }

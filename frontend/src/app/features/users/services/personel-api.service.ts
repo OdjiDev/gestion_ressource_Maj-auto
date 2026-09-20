@@ -19,15 +19,15 @@ export class PersonelService {
     return this.httpClient.get<PersonelDto>(`${this.baseURL}/${id}`);
   }
 
-  addPersonel(personelDto: PersonelDto): Observable<Object> {
+  addPersonel(personelDto: PersonelDto): Observable<object> {
     return this.httpClient.post(`${this.baseURL}`, personelDto);
   }
 
-  updatePersonel(id: number, personelDto: PersonelDto): Observable<Object> {
+  updatePersonel(id: number, personelDto: PersonelDto): Observable<object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, PersonelDto);
   }
 
-  deletePersonel(id: number): Observable<Object> {
+  deletePersonel(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 }

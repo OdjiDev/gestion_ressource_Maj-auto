@@ -1,5 +1,5 @@
 export class MagasinDto {
-  id: number = 0;
-  nom: string = '';
+  id = 0;
+  nom = '';
 }
 export type Magasin = MagasinDto;

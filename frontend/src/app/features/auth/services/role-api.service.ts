@@ -21,15 +21,15 @@ export class RoleService {
     return this.httpClient.get<RoleDto>(`${this.baseURL}/${id}`);
   }
 
-  addRole(roleDto: RoleDto): Observable<Object> {
+  addRole(roleDto: RoleDto): Observable<object> {
     return this.httpClient.post(`${this.baseURL}`, roleDto);
   }
 
-  updateRole(id: number, roleDto: RoleDto): Observable<Object> {
+  updateRole(id: number, roleDto: RoleDto): Observable<object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, RoleDto);
   }
 
-  deleteRole(id: number): Observable<Object> {
+  deleteRole(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 }

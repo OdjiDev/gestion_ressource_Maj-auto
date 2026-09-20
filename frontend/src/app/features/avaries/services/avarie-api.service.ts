@@ -28,7 +28,7 @@ export class AvarieService {
     return this.httpClient.put<AvarieDto>(`${this.baseURL}/${id}`, AvarieDto);
   }
 
-  deleteAvarie(id: number): Observable<Object> {
+  deleteAvarie(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 }

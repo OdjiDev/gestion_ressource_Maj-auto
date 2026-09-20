@@ -1,10 +1,10 @@
 import { ProduitDto } from './produit-dto';
 
 export class AvarieDto {
-  id: number = 0;
-  quantite: string = '';
-  nom: string = '';
-  date: string = '';
-  motif: string = '';
+  id = 0;
+  quantite = '';
+  nom = '';
+  date = '';
+  motif = '';
   produitDto: ProduitDto = new ProduitDto();
 }

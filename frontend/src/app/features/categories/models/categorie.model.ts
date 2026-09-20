@@ -1,8 +1,8 @@
 export class CategorieDto {
   id!: number;
-  code: string = '';
-  nomcategorie: string = '';
-  designation: string = '';
+  code = '';
+  nomcategorie = '';
+  designation = '';
   // Add other   properties as needed
 }
 

@@ -19,15 +19,15 @@ export class SocieteService {
     return this.httpClient.get<SocieteDto>(`${this.baseURL}/${id}`);
   }
 
-  addSociete(societeDto: SocieteDto): Observable<Object> {
+  addSociete(societeDto: SocieteDto): Observable<object> {
     return this.httpClient.post(`${this.baseURL}`, societeDto);
   }
 
-  updateSociete(id: number, societeDto: SocieteDto): Observable<Object> {
+  updateSociete(id: number, societeDto: SocieteDto): Observable<object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, SocieteDto);
   }
 
-  deleteSociete(id: number): Observable<Object> {
+  deleteSociete(id: number): Observable<object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
 }
