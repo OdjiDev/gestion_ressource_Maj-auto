@@ -1,8 +1,5 @@
 export class MagasinDto {
-
-
-    /** Identifiant unique du magasin */
-    id: number=0;
-    /** Nom du magasin */
-    nom: string="";
+  id: number = 0;
+  nom: string = '';
 }
+export type Magasin = MagasinDto;

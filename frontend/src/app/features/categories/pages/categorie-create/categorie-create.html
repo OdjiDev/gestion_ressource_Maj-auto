@@ -1,65 +1,12 @@
-<div class="container mt-4">
-  <div class="card col-md-6 offset-md-3">
-    <div class="card-header bg-info text-white d-flex justify-content-between align-items-center">
-      <h4 class="mb-0">Nouvelle catégorie</h4>
-      <button class="btn btn-sm btn-light" (click)="onCancel()">
-        <i class="fa fa-arrow-left"></i> Retour
-      </button>
-    </div>
-
-    <div class="card-body">
-      @if (error()) {
-        <div class="alert alert-danger">{{ error() }}</div>
-      }
-
-      <form (ngSubmit)="onSubmit()">
-        <div class="mb-3">
-          <label class="form-label">Nom *</label>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="categorie.nomcategorie"
-            name="nomcategorie"
-            placeholder="Ex: Électronique"
-            required />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Code *</label>
-          <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="categorie.code"
-            name="code"
-            placeholder="Ex: ELEC"
-            required />
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Désignation</label>
-          <textarea
-            class="form-control"
-            [(ngModel)]="categorie.designation"
-            name="designation"
-            rows="3"
-            placeholder="Description..."></textarea>
-        </div>
-
-        <div class="d-flex justify-content-end gap-2">
-          <button type="button" class="btn btn-secondary"
-                  (click)="onCancel()"
-                  [disabled]="loading()">
-            Annuler
-          </button>
-          <button type="submit" class="btn btn-success"
-                  [disabled]="loading()">
-            @if (loading()) {
-              <span class="spinner-border spinner-border-sm me-2"></span>
-            }
-            {{ loading() ? 'Enregistrement...' : 'Sauvegarder' }}
-          </button>
-        </div>
-      </form>
-    </div>
-  </div>
+<div class="categorie-create">
+  <app-page-header title="Nouvelle catégorie" subtitle="Ajouter une catégorie au catalogue" />
+  @if (error()) {
+    <div class="alert-error">{{ error() }}</div>
+  }
+  <app-crud-form
+    [config]="formConfig"
+    [submitting]="loading()"
+    (save)="onSave($event)"
+    (cancel)="onCancel()"
+  />
 </div>

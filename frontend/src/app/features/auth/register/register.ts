@@ -12,7 +12,6 @@ import { AuthService } from '@core/auth';
   styleUrls: ['./register.css']
 })
 export class Register {
-
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -37,21 +36,23 @@ export class Register {
     this.loading.set(true);
     this.error.set(null);
 
-    this.authService.register({
-      email: this.email(),
-      password: this.password(),
-      role: 'USER'
-    }).subscribe({
-      next: () => {
-        this.loading.set(false);
-        this.router.navigate(['dashboard']);
-      },
-      error: (err) => {
-        this.loading.set(false);
-        this.error.set(err.status === 409
-          ? 'Cet email est déjà utilisé'
-          : 'Erreur lors de l  inscription');
-      }
-    });
+    this.authService
+      .register({
+        email: this.email(),
+        password: this.password(),
+        role: 'USER'
+      })
+      .subscribe({
+        next: () => {
+          this.loading.set(false);
+          this.router.navigate(['dashboard']);
+        },
+        error: err => {
+          this.loading.set(false);
+          this.error.set(
+            err.status === 409 ? 'Cet email est déjà utilisé' : 'Erreur lors de l  inscription'
+          );
+        }
+      });
   }
 }

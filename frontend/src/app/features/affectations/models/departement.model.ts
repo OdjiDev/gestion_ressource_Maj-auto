@@ -1,11 +1,7 @@
-import { BureauDto } from "./bureau-dto";
+import { BureauDto } from './bureau.model';
 
 export class DepartementDto {
-  id: number= 0;
-    code: string= "";
-    nom: string= "";
-    createdAt: string="";
-
-   
-
+  id: number = 0;
+  nom: string = '';
+  bureauxDto: BureauDto[] = [];
 }

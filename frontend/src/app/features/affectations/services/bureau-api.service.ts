@@ -1,41 +1,26 @@
-
-import { BureauDto } from '../../models/bureau-dto';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
+import { BureauDto } from '../models/bureau.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class BureauService {
-
- private baseURL= environment.baseURL+ "bureaus";
-
-  constructor(private httpClient: HttpClient) { }
-
-  getBureaus(): Observable<BureauDto[]>{
-    return this.httpClient.get<BureauDto[]>(`${this.baseURL}/list`);
+  private readonly httpClient = inject(HttpClient);
+  private readonly baseURL = `${environment.baseURL}/bureaux`;
+  getBureaux(): Observable<BureauDto[]> {
+    return this.httpClient.get<BureauDto[]>(this.baseURL);
   }
-
-  getBureauById(id: number): Observable<BureauDto>{
+  getBureauById(id: number): Observable<BureauDto> {
     return this.httpClient.get<BureauDto>(`${this.baseURL}/${id}`);
   }
-
-
-  addBureau(bureauDto: BureauDto): Observable<BureauDto>{
-    return this.httpClient.post<BureauDto>(`${this.baseURL}`, bureauDto);
+  addBureau(dto: BureauDto): Observable<BureauDto> {
+    return this.httpClient.post<BureauDto>(this.baseURL, dto);
   }
-
-  updateBureau(id: number, bureauDto: BureauDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, BureauDto);
+  updateBureau(id: number, dto: BureauDto): Observable<BureauDto> {
+    return this.httpClient.put<BureauDto>(`${this.baseURL}/${id}`, dto);
   }
-
-  deleteBureau(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteBureau(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseURL}/${id}`);
   }
-
-
-
-
 }

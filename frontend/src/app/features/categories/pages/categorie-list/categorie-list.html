@@ -34,12 +34,10 @@
             <td>{{ cat.code }}</td>
             <td>{{ cat.designation || '—' }}</td>
             <td>
-              <button class="btn btn-sm btn-warning me-1"
-                      (click)="onEdit(cat.id!)">
+              <button class="btn btn-sm btn-warning me-1" (click)="onEdit(cat.id!)">
                 <i class="fa fa-edit"></i>
               </button>
-              <button class="btn btn-sm btn-danger"
-                      (click)="onDelete(cat.id!)">
+              <button class="btn btn-sm btn-danger" (click)="onDelete(cat.id!)">
                 <i class="fa fa-trash"></i>
               </button>
             </td>
@@ -48,9 +46,7 @@
       </tbody>
     </table>
 
-    <div class="text-muted">
-      Total : {{ categories().length }} catégorie(s)
-    </div>
+    <div class="text-muted">Total : {{ categories().length }} catégorie(s)</div>
   }
 
   @if (!loading() && categories().length === 0) {

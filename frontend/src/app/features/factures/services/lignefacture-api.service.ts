@@ -5,37 +5,31 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { LigneFactureDto } from '..\../models/lignefacture-dto';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class LigneFactureService {
+  private baseURL = environment.baseURL + 'lignefactures';
 
- private baseURL= environment.baseURL+ "lignefactures";
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getLignefactures(): Observable<LigneFactureDto[]>{
+  getLignefactures(): Observable<LigneFactureDto[]> {
     return this.httpClient.get<LigneFactureDto[]>(`${this.baseURL}/list`);
   }
 
-  getLignefactureById(id: number): Observable<LigneFactureDto>{
+  getLignefactureById(id: number): Observable<LigneFactureDto> {
     return this.httpClient.get<LigneFactureDto>(`${this.baseURL}/${id}`);
   }
 
-  addLignefacture(lignefactureDto: LigneFactureDto): Observable<LigneFactureDto>{
+  addLignefacture(lignefactureDto: LigneFactureDto): Observable<LigneFactureDto> {
     return this.httpClient.post<LigneFactureDto>(`${this.baseURL}`, lignefactureDto);
   }
 
-
-  updateLignefacture(id: number, lignefactureDto: LigneFactureDto): Observable<Object>{
+  updateLignefacture(id: number, lignefactureDto: LigneFactureDto): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, LigneFactureDto);
   }
 
-  deleteLignefacture(id: number): Observable<Object>{
+  deleteLignefacture(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}'/lignefactures/${id}`);
   }
-
-
 }

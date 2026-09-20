@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class CategorieService {
-
   private readonly httpClient = inject(HttpClient);
   private readonly baseURL = `${environment.baseURL}/categories`;
 

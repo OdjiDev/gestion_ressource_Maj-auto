@@ -1,4 +1,3 @@
-
 import { Produit } from '../models/produit.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -9,30 +8,27 @@ import { environment } from '@env/environment';
   providedIn: 'root'
 })
 export class ProduitService {
+  private baseURL = environment.baseURL + 'produits';
 
- private baseURL= environment.baseURL+ "produits";
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getProduits(): Observable<Produit[]>{
+  getProduits(): Observable<Produit[]> {
     return this.httpClient.get<Produit[]>(`${this.baseURL}/list`);
   }
 
-  getProduitById(id: number): Observable<Produit>{
+  getProduitById(id: number): Observable<Produit> {
     return this.httpClient.get<Produit>(`${this.baseURL}/${id}`);
   }
 
-  addProduit(produitDto: Produit): Observable<Produit>{
+  addProduit(produitDto: Produit): Observable<Produit> {
     return this.httpClient.post<Produit>(`${this.baseURL}`, produitDto);
   }
 
-  updateProduit(id: number, produitDto: Produit): Observable<Produit>{
+  updateProduit(id: number, produitDto: Produit): Observable<Produit> {
     return this.httpClient.put<Produit>(`${this.baseURL}/${id}`, produitDto);
   }
 
-  deleteProduit(id: number): Observable<Produit>{
+  deleteProduit(id: number): Observable<Produit> {
     return this.httpClient.delete<Produit>(`${this.baseURL}/${id}`);
   }
-
-
 }

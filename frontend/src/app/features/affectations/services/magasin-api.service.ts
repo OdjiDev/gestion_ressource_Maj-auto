@@ -1,38 +1,27 @@
-
-import { MagasinDto } from '@app/core/models/magasin-dto';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
-@Injectable({
-  providedIn: 'root'
-})
+import { MagasinDto } from '../models/magasin.model';
+
+@Injectable({ providedIn: 'root' })
 export class MagasinService {
+  private readonly httpClient = inject(HttpClient);
+  private readonly baseURL = `${environment.baseURL}/magasins`;
 
- private baseURL= environment.baseURL+ "magasins";
-
-  constructor(private httpClient: HttpClient) { }
-
-getMagasins(): Observable<MagasinDto[]>{
-    return this.httpClient.get<MagasinDto[]>(`${this.baseURL}/list`);
+  getMagasins(): Observable<MagasinDto[]> {
+    return this.httpClient.get<MagasinDto[]>(this.baseURL);
   }
-
-  getMagasinById(id: number): Observable<MagasinDto>{
+  getMagasinById(id: number): Observable<MagasinDto> {
     return this.httpClient.get<MagasinDto>(`${this.baseURL}/${id}`);
   }
-
-  addMagasin(magasinDto: MagasinDto): Observable<Object>{
-    return this.httpClient.post(`${this.baseURL}`, magasinDto);
+  addMagasin(dto: MagasinDto): Observable<MagasinDto> {
+    return this.httpClient.post<MagasinDto>(this.baseURL, dto);
   }
-
-
-  updateMagasin(id: number, magasinDto: MagasinDto): Observable<Object>{
-    return this.httpClient.put(`${this.baseURL}/${id}`, MagasinDto);
+  updateMagasin(id: number, dto: MagasinDto): Observable<MagasinDto> {
+    return this.httpClient.put<MagasinDto>(`${this.baseURL}/${id}`, dto);
   }
-
-  deleteMagasin(id: number): Observable<Object>{
-    return this.httpClient.delete(`${this.baseURL}/${id}`);
+  deleteMagasin(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.baseURL}/${id}`);
   }
-
-
 }

@@ -13,7 +13,6 @@ import { DashboardStats, AlertProduit, RecentFacture } from '../../models/dashbo
   styleUrl: './dashboard.scss'
 })
 export class Dashboard implements OnInit {
-
   private readonly authService = inject(AuthService);
   private readonly dashboardService = inject(DashboardService);
 
@@ -60,7 +59,7 @@ export class Dashboard implements OnInit {
         this.factures.set(factures);
         this.loading.set(false);
       },
-      error: (err) => {
+      error: err => {
         this.error.set('Erreur lors du chargement du tableau de bord');
         this.loading.set(false);
         console.error(err);

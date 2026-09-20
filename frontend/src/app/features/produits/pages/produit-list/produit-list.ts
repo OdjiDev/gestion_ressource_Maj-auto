@@ -1,17 +1,22 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { Produit } from '@features/produits';
-import { ProduitService } from '@features/produits';
+import { Router } from '@angular/router';
+import { Produit, ProduitService } from '@features/produits';
+import {
+  ColumnDef,
+  DataTableComponent,
+  PageHeaderComponent,
+  ConfirmDialogComponent
+} from '@shared/components';
 
 @Component({
   selector: 'app-produit-list',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, DataTableComponent, PageHeaderComponent, ConfirmDialogComponent],
   templateUrl: './produit-list.html',
   styleUrl: './produit-list.scss'
 })
 export class ProduitList implements OnInit {
-
   private readonly produitService = inject(ProduitService);
   private readonly router = inject(Router);
 
@@ -20,25 +25,36 @@ export class ProduitList implements OnInit {
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
 
-  // ==================== LIFECYCLE ====================
+  // Confirm dialog state
+  readonly showConfirm = signal(false);
+  readonly produitToDelete = signal<Produit | null>(null);
 
+  // ==================== CONFIG TABLE ====================
+  readonly columns: ColumnDef<Produit>[] = [
+    { key: 'id', label: 'ID', width: '60px', align: 'center' },
+    { key: 'codeproduit', label: 'Code', sortable: true },
+    { key: 'nom', label: 'Nom', sortable: true },
+    { key: 'designation', label: 'Désignation' },
+    { key: 'quantite', label: 'Quantité', align: 'right', sortable: true },
+    { key: 'categorieNom', label: 'Catégorie', type: 'badge' }
+  ];
+
+  // ==================== LIFECYCLE ====================
   ngOnInit(): void {
-    this.getProduits();
+    this.loadProduits();
   }
 
   // ==================== LECTURE ====================
-
-  getProduits(): void {
+  loadProduits(): void {
     this.loading.set(true);
     this.error.set(null);
 
     this.produitService.getProduits().subscribe({
-      next: (data: Produit[]) => {
+      next: data => {
         this.produits.set(data);
         this.loading.set(false);
-        console.log('Produits chargés:', data);
       },
-      error: (err) => {
+      error: err => {
         this.error.set('Erreur lors du chargement');
         this.loading.set(false);
         console.error(err);
@@ -47,34 +63,42 @@ export class ProduitList implements OnInit {
   }
 
   // ==================== ACTIONS ====================
-
-  onCreateProduit(): void {
+  onCreate(): void {
     this.router.navigate(['/produits/create']);
   }
 
-  onEdit(id: number): void {
-    this.router.navigate(['/produits/update', id]);
+  onEdit(produit: Produit): void {
+    this.router.navigate(['/produits/update', produit.id]);
   }
 
   onDetails(produit: Produit): void {
     this.router.navigate(['/produits/detail', produit.id]);
   }
 
-  onDelete(id: number): void {
-    if (!confirm('Supprimer ce produit ?')) {
-      return;
-    }
+  onDelete(produit: Produit): void {
+    this.produitToDelete.set(produit);
+    this.showConfirm.set(true);
+  }
 
-    this.produitService.deleteProduit(id).subscribe({
+  confirmDelete(): void {
+    const produit = this.produitToDelete();
+    if (!produit?.id) return;
+
+    this.produitService.deleteProduit(produit.id).subscribe({
       next: () => {
-        // Retire le produit de la liste sans recharger
-        this.produits.update(list => list.filter(p => p.id !== id));
-        console.log('Produit supprimé:', id);
+        this.produits.update(list => list.filter(p => p.id !== produit.id));
+        this.closeConfirm();
       },
-      error: (err) => {
+      error: err => {
         this.error.set('Erreur lors de la suppression');
+        this.closeConfirm();
         console.error(err);
       }
     });
+  }
+
+  closeConfirm(): void {
+    this.showConfirm.set(false);
+    this.produitToDelete.set(null);
   }
 }

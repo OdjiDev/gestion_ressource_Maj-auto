@@ -7,7 +7,7 @@ export const PersonnelGuard: CanActivateFn = () => {
   const router = inject(Router);
   const role = authService.getRole();
 
-  if (role === 'PERSONNEL' ) {
+  if (role === 'PERSONNEL') {
     return true;
   }
 

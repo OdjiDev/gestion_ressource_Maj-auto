@@ -2,7 +2,6 @@ import { Injectable, signal } from '@angular/core';
 
 @Injectable({ providedIn: 'root' })
 export class LayoutService {
-
   /** Sidebar ouverte sur mobile ? */
   readonly mobileSidebarOpen = signal(false);
 
@@ -26,9 +25,7 @@ export class LayoutService {
 
   toggleGroup(group: string): void {
     this.openGroups.update(groups =>
-      groups.includes(group)
-        ? groups.filter(g => g !== group)
-        : [...groups, group]
+      groups.includes(group) ? groups.filter(g => g !== group) : [...groups, group]
     );
   }
 

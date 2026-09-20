@@ -1,55 +1,36 @@
-<div class="">
-  <div class="row mt-0">
-    <div class="col-md-10">
-      <h2>Liste des Produits</h2>
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-md btn-outline-primary" (click)="onCreateProduit()">
-        <i class="fa fa-plus"></i> Ajouter
-      </button>
-    </div>
-  <hr class="fw-bold mt-0">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Code Produit</th>
-        <th>Nom</th>
-        <th>Désignation</th>
-        <th>Quantité</th>
-        <th>categorie</th>
-        <th class="text-center">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let produitDto of produits">
-        <td>{{ produitDto.id }}</td>
-        <td>{{ produitDto.codeproduit }}</td>
-        <td>{{ produitDto.nom }}</td>
-        <td>{{ produitDto.designation }}</td>
-        <!-- <td>{{ produitDto.lignefactureDto.quantite }}</td> -->
-        <td>{{ produitDto.categorieDto.nomcategorie }}</td>
-        <!-- <td>{{ produitDto.factureDto.quantite }}</td> -->
-        <td>{{ produitDto.categorieDto.code }}</td>
+<div class="produit-list">
+  <app-page-header
+    title="Liste des Produits"
+    subtitle="Gestion du catalogue produits"
+    actionLabel="Ajouter"
+    actionIcon="+"
+    (action)="onCreate()"
+  />
 
+  @if (error()) {
+    <div class="alert-error">{{ error() }}</div>
+  }
 
-        <td class="text-center">
-          <button class="btn btn-sm m-1 btn-info" (click)="onDetails(produitDto)">
-            <i class="fa fa-clipboard"></i>
-          </button>
-          <button class="btn btn-sm m-1 btn-warning" (click)="onEdit(produitDto.id)">
-            <i class="fa fa-edit"></i>
-          </button>
+  <app-data-table
+    [columns]="columns"
+    [data]="produits()"
+    [loading]="loading()"
+    emptyTitle="Aucun produit"
+    emptyMessage="Commencez par ajouter votre premier produit."
+    emptyActionLabel="Ajouter un produit"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (emptyAction)="onCreate()"
+  />
 
-          <button class="btn btn-sm m-1 btn-danger" (click)="onDelete(produitDto.id)">
-            <i class="fa fa-trash"></i>
-          </button>
-
-
-        </td>
-      </tr>
-    </tbody>
-  </table>
-
-
-
+  <app-confirm-dialog
+    [visible]="showConfirm()"
+    title="Supprimer le produit"
+    [message]="'Voulez-vous vraiment supprimer « ' + (produitToDelete()?.nom || '') + ' » ?'"
+    confirmText="Supprimer"
+    cancelText="Annuler"
+    color="danger"
+    (confirmed)="confirmDelete()"
+    (cancelled)="closeConfirm()"
+  />
+</div>

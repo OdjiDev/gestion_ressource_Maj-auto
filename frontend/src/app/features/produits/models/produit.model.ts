@@ -8,8 +8,9 @@ export interface Produit {
   quantite: number;
   prixAchat?: number;
   categorieId?: number;
-  magasinId?: number;
   categorieNom?: string;
+  magasinId?: number;
+
   magasinNom?: string;
   createdAt?: string;
   updatedAt?: string;
@@ -30,5 +31,6 @@ export interface ProduitSummary {
 export interface ProduitFilter {
   nom?: string;
   categorieId?: number;
+  categorieNom?: string;
   magasinId?: number;
 }

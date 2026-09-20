@@ -7,31 +7,27 @@ import { environment } from '@env/environment';
   providedIn: 'root'
 })
 export class PersonelService {
+  private baseURL = environment.baseURL + 'personels';
 
- private baseURL= environment.baseURL+ "personels";
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getPersonels(): Observable<PersonelDto[]>{
+  getPersonels(): Observable<PersonelDto[]> {
     return this.httpClient.get<PersonelDto[]>(`${this.baseURL}/list`);
   }
 
-  getPersonelById(id: number): Observable<PersonelDto>{
+  getPersonelById(id: number): Observable<PersonelDto> {
     return this.httpClient.get<PersonelDto>(`${this.baseURL}/${id}`);
   }
 
-  addPersonel(personelDto: PersonelDto): Observable<Object>{
+  addPersonel(personelDto: PersonelDto): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}`, personelDto);
   }
 
-
-  updatePersonel(id: number, personelDto: PersonelDto): Observable<Object>{
+  updatePersonel(id: number, personelDto: PersonelDto): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, PersonelDto);
   }
 
-  deletePersonel(id: number): Observable<Object>{
+  deletePersonel(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
-
-
 }

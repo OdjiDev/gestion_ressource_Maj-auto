@@ -7,7 +7,6 @@ import { DashboardStats, AlertProduit, RecentFacture } from '../models/dashboard
 
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
-
   private readonly http = inject(HttpClient);
   private readonly baseUrl = environment.baseURL || environment.baseURL;
 
@@ -17,24 +16,30 @@ export class DashboardService {
    */
   getStats(): Observable<DashboardStats> {
     return forkJoin({
-      produits: this.http.get<any>(`${this.baseUrl}/produits?size=1`)
+      produits: this.http
+        .get<any>(`${this.baseUrl}/produits?size=1`)
         .pipe(catchError(() => of({ totalElements: 0 }))),
-      categories: this.http.get<any>(`${this.baseUrl}/categories?size=1`)
+      categories: this.http
+        .get<any>(`${this.baseUrl}/categories?size=1`)
         .pipe(catchError(() => of({ totalElements: 0 }))),
-      fournisseurs: this.http.get<any>(`${this.baseUrl}/fournisseurs?size=1`)
+      fournisseurs: this.http
+        .get<any>(`${this.baseUrl}/fournisseurs?size=1`)
         .pipe(catchError(() => of({ totalElements: 0 }))),
-      factures: this.http.get<any>(`${this.baseUrl}/factures?size=1`)
+      factures: this.http
+        .get<any>(`${this.baseUrl}/factures?size=1`)
         .pipe(catchError(() => of({ totalElements: 0 }))),
-      personels: this.http.get<any>(`${this.baseUrl}/personels?size=1`)
+      personels: this.http
+        .get<any>(`${this.baseUrl}/personels?size=1`)
         .pipe(catchError(() => of({ totalElements: 0 }))),
-      ruptures: this.http.get<any[]>(`${this.baseUrl}/produits/alertes/rupture`)
+      ruptures: this.http
+        .get<any[]>(`${this.baseUrl}/produits/alertes/rupture`)
         .pipe(catchError(() => of([])))
-    }).pipe(
-      catchError(() => of(this.emptyStats()))
-    ).pipe(
-      // Transforme en DashboardStats
-      catchError(() => of(this.emptyStats()))
-    ) as any;
+    })
+      .pipe(catchError(() => of(this.emptyStats())))
+      .pipe(
+        // Transforme en DashboardStats
+        catchError(() => of(this.emptyStats()))
+      ) as any;
   }
 
   /**
@@ -42,17 +47,20 @@ export class DashboardService {
    * Si le backend expose /api/dashboard/stats, utilise ça.
    */
   getStatsSimple(): Observable<DashboardStats> {
-    return this.http.get<DashboardStats>(`${this.baseUrl}/dashboard/stats`)
+    return this.http
+      .get<DashboardStats>(`${this.baseUrl}/dashboard/stats`)
       .pipe(catchError(() => of(this.emptyStats())));
   }
 
   getProduitsEnRupture(): Observable<AlertProduit[]> {
-    return this.http.get<AlertProduit[]>(`${this.baseUrl}/produits/alertes/rupture`)
+    return this.http
+      .get<AlertProduit[]>(`${this.baseUrl}/produits/alertes/rupture`)
       .pipe(catchError(() => of([])));
   }
 
   getDernieresFactures(): Observable<RecentFacture[]> {
-    return this.http.get<RecentFacture[]>(`${this.baseUrl}/factures?size=5&sort=datecommande,desc`)
+    return this.http
+      .get<RecentFacture[]>(`${this.baseUrl}/factures?size=5&sort=datecommande,desc`)
       .pipe(catchError(() => of([])));
   }
 

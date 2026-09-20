@@ -6,4 +6,3 @@ export class ProduitStore {
   readonly produits = signal<Produit[]>([]);
   readonly loading = signal(false);
 }
-

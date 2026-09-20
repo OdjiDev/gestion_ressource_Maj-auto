@@ -25,7 +25,6 @@ export interface AuthResponse {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-
   private readonly API = `${environment.baseURL}/auth`;
   private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'auth_user';
@@ -36,15 +35,15 @@ export class AuthService {
   isLoggedIn = signal<boolean>(this.hasToken());
 
   login(req: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API}/login`, req).pipe(
-      tap(res => this.storeSession(res))
-    );
+    return this.http
+      .post<AuthResponse>(`${this.API}/login`, req)
+      .pipe(tap(res => this.storeSession(res)));
   }
 
   register(req: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API}/register`, req).pipe(
-      tap(res => this.storeSession(res))
-    );
+    return this.http
+      .post<AuthResponse>(`${this.API}/register`, req)
+      .pipe(tap(res => this.storeSession(res)));
   }
 
   logout(): void {
@@ -67,18 +66,19 @@ export class AuthService {
     return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
-
   private storeSession(res: AuthResponse): void {
     localStorage.setItem(this.TOKEN_KEY, res.token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify({
-      email: res.email,
-      role: res.role || 'USER'
-    }));
+    localStorage.setItem(
+      this.USER_KEY,
+      JSON.stringify({
+        email: res.email,
+        role: res.role || 'USER'
+      })
+    );
 
-    this.isLoggedIn  .set(true);
-
+    this.isLoggedIn.set(true);
   }
-//ajout de la gestion des roles
+  //ajout de la gestion des roles
   getRole(): string | null {
     const user = localStorage.getItem(this.USER_KEY);
     return user ? JSON.parse(user).role : null;
@@ -87,5 +87,23 @@ export class AuthService {
   hasRole(roles: string[]): boolean {
     const role = this.getRole();
     return role !== null && roles.includes(role);
+  }
+
+  /**
+   * Rafraîchit le token d'authentification.
+   *  Nécessite un endpoint POST /auth/refresh côté backend.
+   */
+  refresh(): Observable<AuthResponse> {
+    const refreshToken = localStorage.getItem('auth_refresh_token');
+    return this.http
+      .post<AuthResponse>(`${this.API}/refresh`, { refreshToken })
+      .pipe(tap(res => this.storeSession(res)));
+  }
+
+  /**
+   * Stocke le refresh token séparément.
+   */
+  private storeRefreshToken(token: string): void {
+    localStorage.setItem('auth_refresh_token', token);
   }
 }

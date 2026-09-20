@@ -2,7 +2,7 @@ import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@core/auth';
-import { LayoutService } from   '@app/layout/main-layout/layout.service';
+import { LayoutService } from '@app/layout/main-layout/layout.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +11,6 @@ import { LayoutService } from   '@app/layout/main-layout/layout.service';
   styleUrl: './sidebar.scss'
 })
 export class Sidebar {
-
   readonly authService = inject(AuthService);
   readonly layout = inject(LayoutService);
 
@@ -32,7 +31,6 @@ export class Sidebar {
     const r = this.authService.getRole();
     return r === 'ADMIN' || r === 'PERSONNEL';
   });
-
 
   //En attendant la VENTE a effacer apres la phase demo
   readonly isUser = computed(() => {

@@ -12,7 +12,6 @@ import { AuthService } from '@core/auth';
   styleUrls: ['./login.css']
 })
 export class Login {
-
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -30,20 +29,22 @@ export class Login {
     this.loading.set(true);
     this.error.set(null);
 
-    this.authService.login({
-      email: this.email(),
-      password: this.password()
-    }).subscribe({
-      next: () => {
-        this.loading.set(false);
-        this.router.navigate(['/dashboard']);
-      },
-      error: (err) => {
-        this.loading.set(false);
-        this.error.set(err.status === 401
-          ? 'Email ou mot de passe incorrect'
-          : 'Erreur de connexion');
-      }
-    });
+    this.authService
+      .login({
+        email: this.email(),
+        password: this.password()
+      })
+      .subscribe({
+        next: () => {
+          this.loading.set(false);
+          this.router.navigate(['/dashboard']);
+        },
+        error: err => {
+          this.loading.set(false);
+          this.error.set(
+            err.status === 401 ? 'Email ou mot de passe incorrect' : 'Erreur de connexion'
+          );
+        }
+      });
   }
 }

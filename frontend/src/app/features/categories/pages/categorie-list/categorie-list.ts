@@ -11,7 +11,6 @@ import { CategorieDto } from '@features/categories';
   styleUrl: './categorie-list.scss'
 })
 export class CategorieList implements OnInit {
-
   private readonly categorieService = inject(CategorieService);
   private readonly router = inject(Router);
 
@@ -33,7 +32,7 @@ export class CategorieList implements OnInit {
         this.loading.set(false);
         console.log('Catégories chargées:', data);
       },
-      error: (err) => {
+      error: err => {
         this.error.set('Erreur lors du chargement');
         this.loading.set(false);
         console.error(err);
@@ -59,7 +58,7 @@ export class CategorieList implements OnInit {
         this.categories.update(list => list.filter(c => c.id !== id));
         console.log('Catégorie supprimée:', id);
       },
-      error: (err) => {
+      error: err => {
         this.error.set('Erreur lors de la suppression');
         console.error(err);
       }

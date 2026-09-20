@@ -7,31 +7,27 @@ import { environment } from '@env/environment';
   providedIn: 'root'
 })
 export class SocieteService {
+  private baseURL = environment.baseURL + 'societes';
 
- private baseURL= environment.baseURL+ "societes";
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getSocietes(): Observable<SocieteDto[]>{
+  getSocietes(): Observable<SocieteDto[]> {
     return this.httpClient.get<SocieteDto[]>(`${this.baseURL}/list`);
   }
 
-  getSocieteById(id: number): Observable<SocieteDto>{
+  getSocieteById(id: number): Observable<SocieteDto> {
     return this.httpClient.get<SocieteDto>(`${this.baseURL}/${id}`);
   }
 
-  addSociete(societeDto: SocieteDto): Observable<Object>{
+  addSociete(societeDto: SocieteDto): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}`, societeDto);
   }
 
-
-  updateSociete(id: number, societeDto: SocieteDto): Observable<Object>{
+  updateSociete(id: number, societeDto: SocieteDto): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, SocieteDto);
   }
 
-  deleteSociete(id: number): Observable<Object>{
+  deleteSociete(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
-
-
 }

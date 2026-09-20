@@ -9,31 +9,27 @@ import { UsersDto } from '@app/core/models/users-dto';
   providedIn: 'root'
 })
 export class UsersService {
+  private baseURL = environment.baseURL + 'userss';
 
- private baseURL= environment.baseURL+ "userss";
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getUserss(): Observable<UsersDto[]>{
+  getUserss(): Observable<UsersDto[]> {
     return this.httpClient.get<UsersDto[]>(`${this.baseURL}/list`);
   }
 
-  getUsersById(id: number): Observable<UsersDto>{
+  getUsersById(id: number): Observable<UsersDto> {
     return this.httpClient.get<UsersDto>(`${this.baseURL}/${id}`);
   }
 
-  addUsers(usersDto: UsersDto): Observable<Object>{
+  addUsers(usersDto: UsersDto): Observable<Object> {
     return this.httpClient.post(`${this.baseURL}`, usersDto);
   }
 
-
-  updateUsers(id: number, usersDto: UsersDto): Observable<Object>{
+  updateUsers(id: number, usersDto: UsersDto): Observable<Object> {
     return this.httpClient.put(`${this.baseURL}/${id}`, UsersDto);
   }
 
-  deleteUsers(id: number): Observable<Object>{
+  deleteUsers(id: number): Observable<Object> {
     return this.httpClient.delete(`${this.baseURL}/${id}`);
   }
-
-
 }

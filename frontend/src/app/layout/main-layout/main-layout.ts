@@ -10,4 +10,4 @@ import { Footer } from './footer/footer';
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.scss'
 })
-export class MainLayout { }
+export class MainLayout {}

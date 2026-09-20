@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AvarieService {
   private baseURL = environment.baseURL + 'avaries';

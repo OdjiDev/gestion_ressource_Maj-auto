@@ -1,11 +1,9 @@
-import { DepartementDto } from '.././departement-dto';
-import { PersonelDto } from '.././personel-dto';
+import { DepartementDto } from './departement.model';
+import { PersonelDto } from '@features/users/models/personel.model';
 
 export class BureauDto {
-
-  id: number=0
-  nom: string= "";
-  departementDto:DepartementDto= new DepartementDto();
-  /personelsDto: PersonelDto[]=[];
-
+  id: number = 0;
+  nom: string = '';
+  departementDto: DepartementDto | null = null;
+  personelsDto: PersonelDto[] = [];
 }
