@@ -1,7 +1,7 @@
 export * from './auth.service';
 export * from './auth.store';
 export * from './jwt.interceptor';
-// export * from './refresh.interceptor';
+export * from './refresh.interceptor';
 export * from './error.interceptor';
 export * from './auth.guard';
 export * from './admin.guard';

@@ -6,9 +6,11 @@ Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spri
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\affectation\dto\MagasinDto.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\produit\mapper\ProduitMapper.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\user\dto\UserDto.java
+Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\auth\repository\RefreshTokenRepository.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\security\JwtAuthenticationFilter.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\SpringBackEndApplication.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\avarie\repository\ReparerRepository.java
+Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\auth\dto\TokenRefreshRequest.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\avarie\dto\AvarieDto.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\security\JwtService.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\demande\entity\LigneDemande.java
@@ -53,6 +55,7 @@ Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spri
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\demande\entity\Demande.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\affectation\dto\DepartementDto.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\dashboard\controller\DashboardController.java
+Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\auth\service\RefreshTokenService.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\facture\controller\FactureController.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\user\entity\User.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\affectation\service\AffectationService.java
@@ -101,6 +104,7 @@ Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spri
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\user\entity\Personel.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\affectation\controller\BureauController.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\affectation\dto\BureauDto.java
+Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\auth\entity\RefreshToken.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\facture\service\FactureReparerService.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\categorie\entity\Categorie.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\git\service\UpdateService.java
@@ -152,6 +156,7 @@ Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spri
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\user\repository\PersonelRepository.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\facture\entity\LigneFacture.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\avarie\service\AvarieService.java
+Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\common\mapper\MapStructConfig.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\categorie\dto\CategorieDto.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\societe\mapper\SocieteMapper.java
 Z:\logiciel_MAJ\2027\gestion_stock_ressource\backend\src\main\java\com\odji\spring_back_end\signalement\repository\SignalerRepository.java

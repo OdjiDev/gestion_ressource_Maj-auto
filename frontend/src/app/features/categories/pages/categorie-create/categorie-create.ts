@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { CategorieService } from '@features/categories';
+import { CategorieStore } from '@features/categories';
 import { CrudFormComponent, CrudFormConfig, PageHeaderComponent } from '@shared/components';
 
 @Component({
@@ -11,10 +11,10 @@ import { CrudFormComponent, CrudFormConfig, PageHeaderComponent } from '@shared/
   styleUrl: './categorie-create.scss'
 })
 export class CategorieCreate {
-  private readonly categorieService = inject(CategorieService);
+
+  readonly store = inject(CategorieStore);
   private readonly router = inject(Router);
 
-  readonly loading = signal(false);
   readonly error = signal<string | null>(null);
 
   readonly formConfig: CrudFormConfig = {
@@ -22,36 +22,16 @@ export class CategorieCreate {
     cancelLabel: 'Annuler',
     fields: [
       { name: 'code', label: 'Code', type: 'text', placeholder: 'Ex: CAT-001', required: true },
-      {
-        name: 'nomcategorie',
-        label: 'Nom de la catégorie',
-        type: 'text',
-        placeholder: 'Ex: Outillage',
-        required: true
-      },
-      {
-        name: 'designation',
-        label: 'Description',
-        type: 'textarea',
-        placeholder: 'Description...',
-        colSpan: 2
-      }
+      { name: 'nom', label: 'Nom', type: 'text', placeholder: 'Ex: Outillage', required: true },
+      { name: 'designation', label: 'Description', type: 'textarea', placeholder: 'Description...', colSpan: 2 }
     ]
   };
 
   onSave(data: any): void {
-    this.loading.set(true);
     this.error.set(null);
-    this.categorieService.addCategorie(data).subscribe({
-      next: () => {
-        this.loading.set(false);
-        this.router.navigate(['/categories']);
-      },
-      error: err => {
-        console.error(err);
-        this.error.set('Erreur lors de la création');
-        this.loading.set(false);
-      }
+    this.store.create(data).subscribe({
+      next: () => this.router.navigate(['/categories']),
+      error: () => this.error.set('Erreur lors de la création')
     });
   }
 

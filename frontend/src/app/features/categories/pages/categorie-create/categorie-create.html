@@ -1,12 +1,5 @@
 <div class="categorie-create">
   <app-page-header title="Nouvelle catégorie" subtitle="Ajouter une catégorie au catalogue" />
-  @if (error()) {
-    <div class="alert-error">{{ error() }}</div>
-  }
-  <app-crud-form
-    [config]="formConfig"
-    [submitting]="loading()"
-    (save)="onSave($event)"
-    (cancel)="onCancel()"
-  />
+  @if (error()) { <div class="alert-error">{{ error() }}</div> }
+  <app-crud-form [config]="formConfig" [submitting]="store.loading()" (save)="onSave($event)" (cancel)="onCancel()" />
 </div>

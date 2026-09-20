@@ -127,6 +127,57 @@
           </div>
         }
       </div>
+
+
+
+
+      <!-- Groupe Trésorerie -->
+<div class="nav-group" [class.open]="layout.isGroupOpen('tresorerie')">
+  <div class="nav-group-header" (click)="layout.toggleGroup('tresorerie')">
+    @if (!layout.sidebarCollapsed()) {
+      <i class="fa fa-coins"></i>
+      <span>Trésorerie</span>
+      <i class="fa"
+         [class.fa-chevron-down]="layout.isGroupOpen('tresorerie')"
+         [class.fa-chevron-right]="!layout.isGroupOpen('tresorerie')"></i>
+    }
+  </div>
+
+  @if (layout.isGroupOpen('tresorerie') || layout.sidebarCollapsed()) {
+    <a routerLink="/tresorerie/comptes" routerLinkActive="active" class="nav-item">
+      <i class="fa fa-wallet"></i>
+      @if (!layout.sidebarCollapsed()) { <span>Comptes</span> }
+    </a>
+    <a routerLink="/tresorerie/mouvements" routerLinkActive="active" class="nav-item">
+      <i class="fa fa-exchange-alt"></i>
+      @if (!layout.sidebarCollapsed()) { <span>Mouvements</span> }
+    </a>
+  }
+</div>
+
+<!-- ==================== TRÉSORERIE (DEMO) ==================== -->
+<div class="nav-group" [class.open]="layout.isGroupOpen('tresorerie')">
+  <div class="nav-group-header" (click)="layout.toggleGroup('tresorerie')">
+    @if (!layout.sidebarCollapsed()) {
+      <i class="fa fa-coins"></i>
+      <span>Trésorerie</span>
+      <i class="fa"
+         [class.fa-chevron-down]="layout.isGroupOpen('tresorerie')"
+         [class.fa-chevron-right]="!layout.isGroupOpen('tresorerie')"></i>
+    }
+  </div>
+
+  @if (layout.isGroupOpen('tresorerie') || layout.sidebarCollapsed()) {
+    <a routerLink="/tresorerie/comptes" routerLinkActive="active" class="nav-item">
+      <i class="fa fa-wallet"></i>
+      @if (!layout.sidebarCollapsed()) { <span>Comptes</span> }
+    </a>
+    <a routerLink="/tresorerie/mouvements" routerLinkActive="active" class="nav-item">
+      <i class="fa fa-exchange-alt"></i>
+      @if (!layout.sidebarCollapsed()) { <span>Mouvements</span> }
+    </a>
+  }
+</div>
     }
 
     <!-- ==================== COMPTABILITÉ ==================== -->
@@ -167,7 +218,7 @@
     <!-- ==================== PERSONNEL ==================== -->
     @if (isPersonnel()) {
       <div class="nav-group" [class.open]="layout.isGroupOpen('personnel')">
-        <div class="nav-group-header" (click)="layout.toggleGroup('personnel')">
+          <div class="nav-group-header" (click)="layout.toggleGroup('personnel')">
           @if (!layout.sidebarCollapsed()) {
             <span class="group-title">Personnel</span>
             <i
@@ -267,4 +318,30 @@
       }
     </button>
   </div>
+
+<!-- Groupe Trésorerie -->
+<div class="nav-group" [class.open]="layout.isGroupOpen('tresorerie')">
+  <div class="nav-group-header" (click)="layout.toggleGroup('tresorerie')">
+    @if (!layout.sidebarCollapsed()) {
+      <i class="fa fa-coins"></i>
+      <span>Trésorerie</span>
+      <i class="fa"
+         [class.fa-chevron-down]="layout.isGroupOpen('tresorerie')"
+         [class.fa-chevron-right]="!layout.isGroupOpen('tresorerie')"></i>
+    }
+  </div>
+
+  @if (layout.isGroupOpen('tresorerie') || layout.sidebarCollapsed()) {
+    <a routerLink="/tresorerie/comptes" routerLinkActive="active" class="nav-item">
+      <i class="fa fa-wallet"></i>
+      @if (!layout.sidebarCollapsed()) { <span>Comptes</span> }
+    </a>
+    <a routerLink="/tresorerie/mouvements" routerLinkActive="active" class="nav-item">
+      <i class="fa fa-exchange-alt"></i>
+      @if (!layout.sidebarCollapsed()) { <span>Mouvements</span> }
+    </a>
+  }
+</div>
+
+
 </aside>

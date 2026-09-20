@@ -8,12 +8,12 @@ import { environment } from '@env/environment';
   providedIn: 'root'
 })
 export class ProduitService {
-  private baseURL = environment.baseURL + 'produits';
+ private readonly baseURL = `${environment.baseURL}/produits`;
 
   constructor(private httpClient: HttpClient) {}
 
   getProduits(): Observable<Produit[]> {
-    return this.httpClient.get<Produit[]>(`${this.baseURL}/list`);
+    return this.httpClient.get<Produit[]>(`${this.baseURL}/all`);
   }
 
   getProduitById(id: number): Observable<Produit> {

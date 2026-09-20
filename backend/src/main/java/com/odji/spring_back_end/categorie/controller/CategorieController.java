@@ -41,7 +41,10 @@ public class CategorieController {
             @PageableDefault(size = 20, sort = "nom") Pageable pageable) {
         return ResponseEntity.ok(categorieService.findAll(pageable));
     }
-
+    @GetMapping("/all")
+    public ResponseEntity<List<CategorieDto>> findAllList() {
+        return ResponseEntity.ok(categorieService.findAll());
+    }
     @GetMapping("/{id}")
     public ResponseEntity<CategorieDto> findById(@PathVariable Integer id) {
         return ResponseEntity.ok(categorieService.findById(id));

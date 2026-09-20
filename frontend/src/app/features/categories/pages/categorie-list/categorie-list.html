@@ -1,6 +1,6 @@
 <div class="categorie-list">
-  <app-page-header title="Liste des catégories" subtitle="Gestion du catalogue de catégories" actionLabel="Nouvelle catégorie" actionIcon="+" (action)="onCreate()" />
-  @if (error()) { <div class="alert-error">{{ error() }}</div> }
-  <app-data-table [columns]="columns" [data]="categories()" [loading]="loading()" emptyTitle="Aucune catégorie" emptyMessage="Commencez par ajouter votre première catégorie." emptyActionLabel="Créer une catégorie" (edit)="onEdit($event)" (delete)="onDelete($event)" (emptyAction)="onCreate()" />
-  <app-confirm-dialog [visible]="showConfirm()" title="Supprimer la catégorie" [message]="'Voulez-vous vraiment supprimer « ' + (categorieToDelete()?.nomcategorie || '') + ' » ?'" confirmText="Supprimer" cancelText="Annuler" color="danger" (confirmed)="confirmDelete()" (cancelled)="closeConfirm()" />
+  <app-page-header title="Liste des catégories" subtitle="Gestion du catalogue" actionLabel="Nouvelle catégorie" actionIcon="+" (action)="onCreate()" />
+  @if (store.error()) { <div class="alert-error">{{ store.error() }}</div> }
+  <app-data-table [columns]="columns" [data]="store.categories()" [loading]="store.loading()" emptyTitle="Aucune catégorie" emptyMessage="Commencez par ajouter votre première catégorie." emptyActionLabel="Créer une catégorie" (edit)="onEdit($event)" (delete)="onDelete($event)" (emptyAction)="onCreate()" />
+  <app-confirm-dialog [visible]="showConfirm()" title="Supprimer la catégorie" [message]="'Voulez-vous vraiment supprimer « ' + (categorieToDelete()?.nom || '') + ' » ?'" confirmText="Supprimer" cancelText="Annuler" color="danger" (confirmed)="confirmDelete()" (cancelled)="closeConfirm()" />
 </div>

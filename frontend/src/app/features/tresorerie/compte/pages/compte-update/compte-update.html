@@ -1,0 +1,8 @@
+<div class="compte-update">
+  <app-page-header title="Modifier le compte" subtitle="Mettre à jour les informations" />
+  @if (error()) { <div class="alert-error">{{ error() }}</div> }
+  @if (store.loading() && !initialData()) { <div class="loading">Chargement...</div> }
+  @if (initialData(); as data) {
+    <app-crud-form [config]="formConfig" [initialData]="data" [submitting]="store.loading()" (save)="onSave($event)" (cancel)="onCancel()" />
+  }
+</div>

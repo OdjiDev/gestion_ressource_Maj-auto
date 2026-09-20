@@ -58,6 +58,10 @@ public class ProduitController {
             Pageable pageable) {
         return ResponseEntity.ok(produitService.findAll(pageable));
     }
+    @GetMapping("/all")
+    public ResponseEntity<List<ProduitDto>> findAllList() {
+        return ResponseEntity.ok(produitService.findAll());
+    }
 
     /**
      * GET /api/produits/{id}

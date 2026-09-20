@@ -63,6 +63,7 @@ com\odji\spring_back_end\avarie\controller\AvarieController.class
 com\odji\spring_back_end\avarie\entity\Reparer$ReparerBuilder.class
 com\odji\spring_back_end\signalement\dto\SignalerDto.class
 com\odji\spring_back_end\user\entity\User.class
+com\odji\spring_back_end\auth\service\RefreshTokenService.class
 com\odji\spring_back_end\signalement\mapper\SignalerMapper.class
 com\odji\spring_back_end\societe\entity\Contrat.class
 com\odji\spring_back_end\avarie\dto\AvarieDto$AvarieDtoBuilder.class
@@ -94,18 +95,21 @@ com\odji\spring_back_end\facture\dto\FactureReparerDto$FactureReparerDtoBuilder.
 com\odji\spring_back_end\categorie\service\CategorieService.class
 com\odji\spring_back_end\societe\dto\SocieteDto.class
 com\odji\spring_back_end\avarie\entity\Avarie$AvarieBuilder.class
+com\odji\spring_back_end\auth\dto\TokenRefreshRequest$TokenRefreshRequestBuilder.class
 com\odji\spring_back_end\produit\mapper\ProduitMapper.class
 com\odji\spring_back_end\facture\repository\LigneFactureRepository.class
 com\odji\spring_back_end\societe\service\SocieteService.class
 com\odji\spring_back_end\avarie\entity\LigneReparation$LigneReparationBuilder.class
 com\odji\spring_back_end\facture\repository\LigneFactureReparerRepository.class
 com\odji\spring_back_end\auth\dto\RegisterRequest$RegisterRequestBuilder.class
+com\odji\spring_back_end\auth\repository\RefreshTokenRepository.class
 com\odji\spring_back_end\fournisseur\dto\FournisseurDto.class
 com\odji\spring_back_end\demande\dto\LigneDemandeDto$LigneDemandeDtoBuilder.class
 com\odji\spring_back_end\auth\dto\LoginRequest.class
 com\odji\spring_back_end\produit\controller\ProduitController.class
 com\odji\spring_back_end\facture\service\FactureReparerService.class
 com\odji\spring_back_end\facture\controller\LigneFactureReparerController.class
+com\odji\spring_back_end\auth\entity\RefreshToken$RefreshTokenBuilder.class
 com\odji\spring_back_end\affectation\service\MagasinService.class
 com\odji\spring_back_end\option\controller\OptionController.class
 com\odji\spring_back_end\produit\entity\Produit$ProduitBuilder.class
@@ -140,6 +144,7 @@ com\odji\spring_back_end\git\service\CommandService.class
 com\odji\spring_back_end\demande\mapper\DemandeMapper.class
 com\odji\spring_back_end\facture\repository\FactureReparerRepository.class
 com\odji\spring_back_end\user\mapper\PersonelMapper.class
+com\odji\spring_back_end\auth\dto\TokenRefreshRequest.class
 com\odji\spring_back_end\avarie\service\AvarieService.class
 com\odji\spring_back_end\user\controller\employeeController.class
 com\odji\spring_back_end\fournisseur\dto\FournisseurDto$FournisseurDtoBuilder.class
@@ -164,6 +169,7 @@ com\odji\spring_back_end\config\SecurityConfig.class
 com\odji\spring_back_end\societe\controller\ContratController.class
 com\odji\spring_back_end\user\service\UserService.class
 com\odji\spring_back_end\facture\dto\FactureDto.class
+com\odji\spring_back_end\common\mapper\MapStructConfig.class
 com\odji\spring_back_end\affectation\mapper\MagasinMapper.class
 com\odji\spring_back_end\signalement\repository\SignalerRepository.class
 com\odji\spring_back_end\dashboard\controller\DashboardController.class
@@ -203,6 +209,7 @@ com\odji\spring_back_end\signalement\controller\SignalerController.class
 com\odji\spring_back_end\affectation\dto\DepartementDto.class
 com\odji\spring_back_end\categorie\entity\Categorie$CategorieBuilder.class
 com\odji\spring_back_end\facture\entity\FactureReparer.class
+com\odji\spring_back_end\auth\entity\RefreshToken.class
 com\odji\spring_back_end\demande\controller\LigneDemandeController.class
 com\odji\spring_back_end\signalement\service\SignalerService.class
 com\odji\spring_back_end\affectation\entity\Departement.class

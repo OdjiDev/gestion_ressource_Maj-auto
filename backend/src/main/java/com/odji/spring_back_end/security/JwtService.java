@@ -13,16 +13,12 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-
     @Value("${app.jwt.secret}")
     private String secret;
-
     @Value("${app.jwt.expiration-ms}")
     private long expirationMs;
 
-    private SecretKey getKey() {
-        return Keys.hmacShaKeyFor(secret.getBytes());
-    }
+    private SecretKey getKey() { return Keys.hmacShaKeyFor(secret.getBytes()); }
 
     public String generateToken(UserDetails userDetails) {
         return Jwts.builder()
@@ -33,25 +29,18 @@ public class JwtService {
                 .compact();
     }
 
-    public String extractUsername(String token) {
-        return extractClaim(token, Claims::getSubject);
-    }
+    public String extractUsername(String token) { return extractClaim(token, Claims::getSubject); }
+    public Date extractExpiration(String token) { return extractClaim(token, Claims::getExpiration); }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        String username = extractUsername(token);
-        return username.equals(userDetails.getUsername()) && !isExpired(token);
+        return extractUsername(token).equals(userDetails.getUsername()) && !isExpired(token);
     }
 
     private boolean isExpired(String token) {
-        return extractClaim(token, Claims::getExpiration).before(new Date());
+        return extractExpiration(token).before(new Date());
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> resolver) {
-        Claims claims = Jwts.parser()
-                .verifyWith(getKey())
-                .build()
-                .parseSignedClaims(token)
-                .getPayload();
-        return resolver.apply(claims);
+        return resolver.apply(Jwts.parser().verifyWith(getKey()).build().parseSignedClaims(token).getPayload());
     }
 }
