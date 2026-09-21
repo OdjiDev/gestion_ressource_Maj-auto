@@ -1,0 +1,38 @@
+<div class="mouvement-list">
+  <app-page-header
+    title="Mouvements de trésorerie"
+    subtitle="Entrées et sorties d'argent"
+    actionLabel="Nouveau mouvement"
+    actionIcon="+"
+    (action)="onCreate()" />
+
+  <app-solde-card
+    [solde]="store.solde()"
+    [totalEntrees]="store.totalEntrees()"
+    [totalSorties]="store.totalSorties()" />
+
+  @if (store.error()) {
+    <div class="alert-error">{{ store.error() }}</div>
+  }
+
+  <app-data-table
+    [columns]="columns"
+    [data]="store.mouvements()"
+    [loading]="store.loading()"
+    emptyTitle="Aucun mouvement"
+    emptyMessage="Commencez par enregistrer votre premier mouvement."
+    emptyActionLabel="Nouveau mouvement"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (emptyAction)="onCreate()" />
+
+  <app-confirm-dialog
+    [visible]="showConfirm()"
+    title="Supprimer le mouvement"
+    message="Voulez-vous vraiment supprimer ce mouvement ?"
+    confirmText="Supprimer"
+    cancelText="Annuler"
+    color="danger"
+    (confirmed)="confirmDelete()"
+    (cancelled)="closeConfirm()" />
+</div>

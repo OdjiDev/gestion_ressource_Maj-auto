@@ -1,0 +1,8 @@
+<div class="mouvement-create">
+  <app-page-header title="Nouveau mouvement" subtitle="Enregistrer une entrée ou sortie d'argent" />
+  @if (error()) { <div class="alert-error">{{ error() }}</div> }
+  @if (!formConfig()) { <div class="loading">Chargement...</div> }
+  @if (formConfig(); as config) {
+    <app-crud-form [config]="config" [submitting]="store.loading()" (save)="onSave($event)" (cancel)="onCancel()" />
+  }
+</div>
