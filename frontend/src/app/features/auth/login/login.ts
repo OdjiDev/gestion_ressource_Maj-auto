@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthService } from '@app/core/guards/auth.service';
+import { AuthService } from '@core/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,6 @@ import { AuthService } from '@app/core/guards/auth.service';
   styleUrls: ['./login.css']
 })
 export class Login {
-
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -30,20 +29,22 @@ export class Login {
     this.loading.set(true);
     this.error.set(null);
 
-    this.authService.login({
-      email: this.email(),
-      password: this.password()
-    }).subscribe({
-      next: () => {
-        this.loading.set(false);
-        this.router.navigate(['/dashboard']);
-      },
-      error: (err) => {
-        this.loading.set(false);
-        this.error.set(err.status === 401
-          ? 'Email ou mot de passe incorrect'
-          : 'Erreur de connexion');
-      }
-    });
+    this.authService
+      .login({
+        email: this.email(),
+        password: this.password()
+      })
+      .subscribe({
+        next: () => {
+          this.loading.set(false);
+          this.router.navigate(['/dashboard']);
+        },
+        error: err => {
+          this.loading.set(false);
+          this.error.set(
+            err.status === 401 ? 'Email ou mot de passe incorrect' : 'Erreur de connexion'
+          );
+        }
+      });
   }
 }

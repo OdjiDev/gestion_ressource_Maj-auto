@@ -1,7 +1,7 @@
 package com.odji.spring_back_end.config;
 
-import com.odji.spring_back_end.model.User;
-import com.odji.spring_back_end.repository.UserRepository;
+import com.odji.spring_back_end.user.entity.User;
+import com.odji.spring_back_end.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;

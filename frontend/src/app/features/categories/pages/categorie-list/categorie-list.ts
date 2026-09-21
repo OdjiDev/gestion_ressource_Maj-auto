@@ -1,68 +1,52 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { CategorieService } from '@core/services/categorie.service';
-import { CategorieDto } from '@features/categories/categorie.model';
+import { Router } from '@angular/router';
+import { CategorieDto, CategorieStore } from '@features/categories';
+import {
+  ColumnDef,
+  DataTableComponent,
+  PageHeaderComponent,
+  ConfirmDialogComponent
+} from '@shared/components';
 
 @Component({
   selector: 'app-categorie-list',
-  imports: [CommonModule, RouterModule],
+  standalone: true,
+  imports: [CommonModule, DataTableComponent, PageHeaderComponent, ConfirmDialogComponent],
   templateUrl: './categorie-list.html',
   styleUrl: './categorie-list.scss'
 })
 export class CategorieList implements OnInit {
 
-  private readonly categorieService = inject(CategorieService);
   private readonly router = inject(Router);
+  readonly store = inject(CategorieStore);
 
-  readonly categories = signal<CategorieDto[]>([]);
-  readonly loading = signal(false);
-  readonly error = signal<string | null>(null);
+  readonly showConfirm = signal(false);
+  readonly categorieToDelete = signal<CategorieDto | null>(null);
+
+  readonly columns: ColumnDef<CategorieDto>[] = [
+    { key: 'id', label: 'ID', width: '60px', align: 'center' },
+    { key: 'code', label: 'Code', sortable: true },
+    { key: 'nom', label: 'Nom', sortable: true },
+    { key: 'designation', label: 'Désignation' }
+  ];
 
   ngOnInit(): void {
-    this.getCategories();
+    this.store.loadAll();
   }
 
-  getCategories(): void {
-    this.loading.set(true);
-    this.error.set(null);
+  onCreate(): void { this.router.navigate(['/categories/create']); }
+  onEdit(cat: CategorieDto): void { this.router.navigate(['/categories/update', cat.id]); }
+  onDelete(cat: CategorieDto): void { this.categorieToDelete.set(cat); this.showConfirm.set(true); }
 
-    this.categorieService.getCategories().subscribe({
-      next: (data: CategorieDto[]) => {
-        this.categories.set(data);
-        this.loading.set(false);
-        console.log('Catégories chargées:', data);
-      },
-      error: (err) => {
-        this.error.set('Erreur lors du chargement');
-        this.loading.set(false);
-        console.error(err);
-      }
+  confirmDelete(): void {
+    const cat = this.categorieToDelete();
+    if (!cat?.id) return;
+    this.store.delete(cat.id).subscribe({
+      next: () => this.closeConfirm(),
+      error: () => this.closeConfirm()
     });
   }
 
-  onCreateCategorie(): void {
-    this.router.navigate(['/categories/create']);
-  }
-
-  onEdit(id: number): void {
-    this.router.navigate(['/categories/update', id]);
-  }
-
-  onDelete(id: number): void {
-    if (!confirm('Supprimer cette catégorie ?')) {
-      return;
-    }
-
-    this.categorieService.deleteCategorie(id).subscribe({
-      next: () => {
-        this.categories.update(list => list.filter(c => c.id !== id));
-        console.log('Catégorie supprimée:', id);
-      },
-      error: (err) => {
-        this.error.set('Erreur lors de la suppression');
-        console.error(err);
-      }
-    });
-  }
+  closeConfirm(): void { this.showConfirm.set(false); this.categorieToDelete.set(null); }
 }

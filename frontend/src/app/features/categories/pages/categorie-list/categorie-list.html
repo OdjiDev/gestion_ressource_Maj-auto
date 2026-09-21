@@ -1,64 +1,6 @@
-<p>categorie-list works!</p>
-<div class="container mt-4">
-  <div class="d-flex justify-content-between mb-3">
-    <h2>Liste des catégories</h2>
-    <button class="btn btn-primary" (click)="onCreateCategorie()">
-      <i class="fa fa-plus"></i> Nouvelle catégorie
-    </button>
-  </div>
-
-  @if (loading()) {
-    <div class="alert alert-info">Chargement...</div>
-  }
-
-  @if (error()) {
-    <div class="alert alert-danger">{{ error() }}</div>
-  }
-
-  @if (!loading() && categories().length > 0) {
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nom</th>
-          <th>Code</th>
-          <th>Désignation</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (cat of categories(); track cat.id) {
-          <tr>
-            <td>{{ cat.id }}</td>
-            <td>{{ cat.nomcategorie }}</td>
-            <td>{{ cat.code }}</td>
-            <td>{{ cat.designation || '—' }}</td>
-            <td>
-              <button class="btn btn-sm btn-warning me-1"
-                      (click)="onEdit(cat.id!)">
-                <i class="fa fa-edit"></i>
-              </button>
-              <button class="btn btn-sm btn-danger"
-                      (click)="onDelete(cat.id!)">
-                <i class="fa fa-trash"></i>
-              </button>
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-
-    <div class="text-muted">
-      Total : {{ categories().length }} catégorie(s)
-    </div>
-  }
-
-  @if (!loading() && categories().length === 0) {
-    <div class="alert alert-warning">
-      Aucune catégorie trouvée.
-      <button class="btn btn-sm btn-primary ms-2" (click)="onCreateCategorie()">
-        Créer la première
-      </button>
-    </div>
-  }
+<div class="categorie-list">
+  <app-page-header title="Liste des catégories" subtitle="Gestion du catalogue" actionLabel="Nouvelle catégorie" actionIcon="+" (action)="onCreate()" />
+  @if (store.error()) { <div class="alert-error">{{ store.error() }}</div> }
+  <app-data-table [columns]="columns" [data]="store.categories()" [loading]="store.loading()" emptyTitle="Aucune catégorie" emptyMessage="Commencez par ajouter votre première catégorie." emptyActionLabel="Créer une catégorie" (edit)="onEdit($event)" (delete)="onDelete($event)" (emptyAction)="onCreate()" />
+  <app-confirm-dialog [visible]="showConfirm()" title="Supprimer la catégorie" [message]="'Voulez-vous vraiment supprimer « ' + (categorieToDelete()?.nom || '') + ' » ?'" confirmText="Supprimer" cancelText="Annuler" color="danger" (confirmed)="confirmDelete()" (cancelled)="closeConfirm()" />
 </div>

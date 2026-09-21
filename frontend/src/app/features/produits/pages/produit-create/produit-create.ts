@@ -1,76 +1,63 @@
-import { Component, inject, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
-import { CategorieDto } from '@app/features/categories/categorie.model';
-import { LigneFactureDto } from '@app/core/models/lignefacture-dto';
-import { ProduitDto } from '@core/models/produit-dto';
-import { ProduitService } from '@core/services/produit.service';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { Router } from '@angular/router';
+import { CategorieService } from '@features/categories';
+import { MagasinService } from '@features/affectations';
+import { ProduitStore } from '@features/produits';
+import { CrudFormComponent, CrudFormConfig, PageHeaderComponent } from '@shared/components';
+
 @Component({
-  imports: [FormsModule, RouterModule],
   selector: 'app-produit-create',
-  styleUrl: './produit-create.scss',
+  standalone: true,
+  imports: [CrudFormComponent, PageHeaderComponent],
   templateUrl: './produit-create.html',
+  styleUrl: './produit-create.scss'
 })
-export class ProduitCreate {
-
-
-
-
-
-
-  private readonly produitService = inject(ProduitService);
+export class ProduitCreate implements OnInit {
+  readonly store = inject(ProduitStore);
+  private readonly categorieService = inject(CategorieService);
+  private readonly magasinService = inject(MagasinService);
   private readonly router = inject(Router);
 
-  // ==================== STATE ====================
-  readonly loading = signal(false);
   readonly error = signal<string | null>(null);
+  readonly formConfig = signal<CrudFormConfig | null>(null);
 
-  // ==================== FORMULAIRE ====================
-  produit: ProduitDto = {
-    codeproduit: '',
-    nom: '',
-    designation: '',
-    quantite: 0,
-    id: 0,
-    prixAchat: 0,
-    categorieDto: new CategorieDto,
-    ligneFactureDto: new LigneFactureDto
-  };
+  ngOnInit(): void { this.loadFormData(); }
 
-  // ==================== SOUMISSION ====================
-
-  onSubmit(): void {
-    // Validation
-    if (!this.produit.codeproduit || !this.produit.nom) {
-      this.error.set('Code produit et Nom sont obligatoires');
-      return;
-    }
-
-    if (this.produit.quantite < 0) {
-      this.error.set('La quantité ne peut pas être négative');
-      return;
-    }
-
-    this.loading.set(true);
-    this.error.set(null);
-
-    this.produitService.addProduit(this.produit).subscribe({
-      next: (created: ProduitDto) => {
-        this.loading.set(false);
-        console.log('Produit créé:', created);
-        this.router.navigate(['/produits']);
+  private loadFormData(): void {
+    this.categorieService.getAllCategories().subscribe({
+      next: (categories) => {
+        this.magasinService.getMagasins().subscribe({
+          next: (magasins) => { this.formConfig.set(this.buildConfig(categories, magasins)); },
+          error: (err) => { console.error(err); this.error.set('Erreur chargement magasins'); }
+        });
       },
-      error: (err) => {
-        this.loading.set(false);
-        this.error.set('Erreur lors de la création');
-        console.error(err);
-      }
+      error: (err) => { console.error(err); this.error.set('Erreur chargement catégories'); }
     });
   }
 
-  // ==================== ANNULATION ====================
-
-  onCancel(): void {
-    this.router.navigate(['/produits']);
+  private buildConfig(categories: any[], magasins: any[]): CrudFormConfig {
+    return {
+      submitLabel: 'Enregistrer',
+      cancelLabel: 'Annuler',
+      fields: [
+        { name: 'codeproduit', label: 'Code produit', type: 'text', required: true },
+        { name: 'nom', label: 'Nom', type: 'text', required: true },
+        { name: 'designation', label: 'Désignation', type: 'textarea', colSpan: 2 },
+        { name: 'categorieId', label: 'Catégorie', type: 'select', required: true, options: (categories ?? []).map(c => ({ value: c.id, label: c.nom })) },
+        { name: 'magasinId', label: 'Magasin', type: 'select', options: (magasins ?? []).map(m => ({ value: m.id, label: m.nom })) },
+        { name: 'quantite', label: 'Quantité', type: 'number', defaultValue: 0 },
+        { name: 'prixAchat', label: "Prix d'achat", type: 'number', defaultValue: 0 }
+      ]
+    };
   }
+
+  onSave(data: any): void {
+    this.error.set(null);
+    this.store.create(data).subscribe({
+      next: () => this.router.navigate(['/produits']),
+      error: () => this.error.set('Erreur lors de la création')
+    });
+  }
+
+  onCancel(): void { this.router.navigate(['/produits']); }
 }

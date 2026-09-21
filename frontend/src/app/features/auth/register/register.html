@@ -1,5 +1,5 @@
 <div class="register-container d-flex align-items-center justify-content-center vh-100 bg-light">
-  <div class="card shadow" style="width: 450px;">
+  <div class="card shadow" style="width: 450px">
     <div class="card-body p-4">
       <h2 class="text-center mb-4">Inscription</h2>
 
@@ -16,7 +16,8 @@
             [ngModel]="nom()"
             (ngModelChange)="nom.set($event)"
             name="nom"
-            required />
+            required
+          />
         </div>
 
         <div class="mb-3">
@@ -26,7 +27,8 @@
             class="form-control"
             [ngModel]="prenom()"
             (ngModelChange)="prenom.set($event)"
-            name="prenom" />
+            name="prenom"
+          />
         </div>
 
         <div class="mb-3">
@@ -37,7 +39,8 @@
             [ngModel]="email()"
             (ngModelChange)="email.set($event)"
             name="email"
-            required />
+            required
+          />
         </div>
 
         <div class="mb-3">
@@ -49,14 +52,12 @@
             (ngModelChange)="password.set($event)"
             name="password"
             required
-            minlength="8" />
+            minlength="8"
+          />
         </div>
 
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          [disabled]="loading()">
-          {{ loading() ? 'Inscription...' : 'S\'inscrire' }}
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loading()">
+          {{ loading() ? 'Inscription...' : "S'inscrire" }}
         </button>
 
         <p class="text-center mt-3 mb-0">

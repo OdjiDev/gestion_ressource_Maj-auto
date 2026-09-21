@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/click-events-have-key-events -->
 <!-- Overlay mobile -->
 @if (layout.mobileSidebarOpen()) {
   <div class="sidebar-overlay" (click)="onCloseMobile()"></div>
@@ -6,8 +7,8 @@
 <aside
   class="app-sidebar"
   [class.mobile-open]="layout.mobileSidebarOpen()"
-  [class.collapsed]="layout.sidebarCollapsed()">
-
+  [class.collapsed]="layout.sidebarCollapsed()"
+>
   <!-- ==================== EN-TÊTE ==================== -->
   <div class="sidebar-header">
     <div class="logo">
@@ -29,19 +30,16 @@
   <!-- ==================== NAVIGATION ==================== -->
   <nav class="sidebar-nav">
 
-    <!-- Tableau de bord -->
+    <!-- ==================== TABLEAU DE BORD ==================== -->
     <a class="nav-item" routerLink="/dashboard" routerLinkActive="active"
        (click)="onCloseMobile()" title="Tableau de bord">
       <i class="fa fa-tachometer-alt"></i>
-      @if (!layout.sidebarCollapsed()) {
-        <span>Tableau de bord</span>
-      }
+      @if (!layout.sidebarCollapsed()) { <span>Tableau de bord</span> }
     </a>
- <!-- ====================  — USER ==================== En phase demo-->
-    <!-- ==================== GESTION ==================== -->
-    @if (isGestionnaire()||isUser()) {
-      <div class="nav-group" [class.open]="layout.isGroupOpen('gestion')">
 
+    <!-- ==================== GESTION ==================== -->
+    @if (isGestionnaire() || isUser()) {
+      <div class="nav-group" [class.open]="layout.isGroupOpen('gestion')">
         <div class="nav-group-header" (click)="layout.toggleGroup('gestion')">
           @if (!layout.sidebarCollapsed()) {
             <span class="group-title">Gestion</span>
@@ -89,10 +87,39 @@
       </div>
     }
 
+    <!-- ==================== TRÉSORERIE (visible pour tous - DEMO) ==================== -->
+    <div class="nav-group" [class.open]="layout.isGroupOpen('tresorerie')">
+      <div class="nav-group-header" (click)="layout.toggleGroup('tresorerie')">
+        @if (!layout.sidebarCollapsed()) {
+          <span class="group-title">Trésorerie</span>
+          <i class="fa"
+             [class.fa-chevron-down]="layout.isGroupOpen('tresorerie')"
+             [class.fa-chevron-right]="!layout.isGroupOpen('tresorerie')"></i>
+        } @else {
+          <i class="fa fa-coins"></i>
+        }
+      </div>
+
+      @if (layout.isGroupOpen('tresorerie') || layout.sidebarCollapsed()) {
+        <div class="nav-group-items">
+          <a class="nav-item" routerLink="/tresorerie/comptes" routerLinkActive="active"
+             (click)="onCloseMobile()" title="Comptes">
+            <i class="fa fa-wallet"></i>
+            @if (!layout.sidebarCollapsed()) { <span>Comptes</span> }
+          </a>
+
+          <a class="nav-item" routerLink="/tresorerie/mouvements" routerLinkActive="active"
+             (click)="onCloseMobile()" title="Mouvements">
+            <i class="fa fa-exchange-alt"></i>
+            @if (!layout.sidebarCollapsed()) { <span>Mouvements</span> }
+          </a>
+        </div>
+      }
+    </div>
+
     <!-- ==================== COMPTABILITÉ ==================== -->
     @if (isComptable()) {
       <div class="nav-group" [class.open]="layout.isGroupOpen('compta')">
-
         <div class="nav-group-header" (click)="layout.toggleGroup('compta')">
           @if (!layout.sidebarCollapsed()) {
             <span class="group-title">Comptabilité</span>
@@ -103,7 +130,6 @@
             <i class="fa fa-calculator"></i>
           }
         </div>
-
         @if (layout.isGroupOpen('compta') || layout.sidebarCollapsed()) {
           <div class="nav-group-items">
             <a class="nav-item" routerLink="/comptabilite" routerLinkActive="active"
@@ -119,7 +145,6 @@
     <!-- ==================== PERSONNEL ==================== -->
     @if (isPersonnel()) {
       <div class="nav-group" [class.open]="layout.isGroupOpen('personnel')">
-
         <div class="nav-group-header" (click)="layout.toggleGroup('personnel')">
           @if (!layout.sidebarCollapsed()) {
             <span class="group-title">Personnel</span>
@@ -130,7 +155,6 @@
             <i class="fa fa-users"></i>
           }
         </div>
-
         @if (layout.isGroupOpen('personnel') || layout.sidebarCollapsed()) {
           <div class="nav-group-items">
             <a class="nav-item" routerLink="/personels" routerLinkActive="active"
@@ -146,7 +170,6 @@
     <!-- ==================== ADMINISTRATION ==================== -->
     @if (isAdmin()) {
       <div class="nav-group" [class.open]="layout.isGroupOpen('admin')">
-
         <div class="nav-group-header" (click)="layout.toggleGroup('admin')">
           @if (!layout.sidebarCollapsed()) {
             <span class="group-title">Administration</span>
@@ -157,7 +180,6 @@
             <i class="fa fa-cog"></i>
           }
         </div>
-
         @if (layout.isGroupOpen('admin') || layout.sidebarCollapsed()) {
           <div class="nav-group-items">
             <a class="nav-item" routerLink="/admin/users" routerLinkActive="active"
@@ -165,7 +187,6 @@
               <i class="fa fa-user-cog"></i>
               @if (!layout.sidebarCollapsed()) { <span>Utilisateurs</span> }
             </a>
-
             <a class="nav-item" routerLink="/admin/settings" routerLinkActive="active"
                (click)="onCloseMobile()" title="Paramètres">
               <i class="fa fa-cog"></i>
@@ -178,7 +199,7 @@
 
   </nav>
 
-  <!-- ==================== PIED — USER ==================== -->
+  <!-- ==================== PIED ==================== -->
   <div class="sidebar-footer">
     @if (!layout.sidebarCollapsed()) {
       <div class="user-card">

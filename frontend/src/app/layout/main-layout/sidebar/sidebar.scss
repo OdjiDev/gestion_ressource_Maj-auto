@@ -27,7 +27,9 @@ $transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1030;
   display: flex;
   flex-direction: column;
-  transition: width $transition, transform $transition;
+  transition:
+    width $transition,
+    transform $transition;
   box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
 
   // ========== MODE RÉDUIT ==========
@@ -83,8 +85,12 @@ $transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 // ==================== EN-TÊTE ====================

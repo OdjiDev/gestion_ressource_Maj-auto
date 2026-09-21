@@ -12,20 +12,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./categorie-details.component.css']
 })
 export class CategorieDetailsComponent implements OnInit {
+  id = 1;
 
-  id: number=1;
+  categorieDto: CategorieDto = new CategorieDto();
 
-  categorieDto: CategorieDto = new CategorieDto;
-
-  constructor(private route: ActivatedRoute, private categorieService: CategorieService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private categorieService: CategorieService
+  ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
 
     this.categorieDto = new CategorieDto();
-    this.categorieService.getCategorieById(this.id).subscribe( data => {
+    this.categorieService.getCategorieById(this.id).subscribe(data => {
       this.categorieDto = data;
     });
   }
-
 }

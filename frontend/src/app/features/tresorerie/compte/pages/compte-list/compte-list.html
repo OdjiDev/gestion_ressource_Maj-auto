@@ -1,0 +1,6 @@
+<div class="compte-list">
+  <app-page-header title="Comptes de trésorerie" subtitle="Caisses, banques et mobile money" actionLabel="Nouveau compte" actionIcon="+" (action)="onCreate()" />
+  @if (store.error()) { <div class="alert-error">{{ store.error() }}</div> }
+  <app-data-table [columns]="columns" [data]="store.comptes()" [loading]="store.loading()" emptyTitle="Aucun compte" emptyMessage="Commencez par créer votre premier compte." emptyActionLabel="Créer un compte" (edit)="onEdit($event)" (delete)="onDelete($event)" (emptyAction)="onCreate()" />
+  <app-confirm-dialog [visible]="showConfirm()" title="Supprimer le compte" [message]="'Voulez-vous vraiment supprimer « ' + (compteToDelete()?.nom || '') + ' » ?'" confirmText="Supprimer" cancelText="Annuler" color="danger" (confirmed)="confirmDelete()" (cancelled)="closeConfirm()" />
+</div>

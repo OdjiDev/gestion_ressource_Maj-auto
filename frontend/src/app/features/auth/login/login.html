@@ -1,5 +1,5 @@
 <div class="login-container d-flex align-items-center justify-content-center vh-100 bg-light">
-  <div class="card shadow" style="width: 400px;">
+  <div class="card shadow" style="width: 400px">
     <div class="card-body p-4">
       <h2 class="text-center mb-4">Connexion</h2>
 
@@ -16,7 +16,8 @@
             [ngModel]="email()"
             (ngModelChange)="email.set($event)"
             name="email"
-            required />
+            required
+          />
         </div>
 
         <div class="mb-3">
@@ -27,13 +28,11 @@
             [ngModel]="password()"
             (ngModelChange)="password.set($event)"
             name="password"
-            required />
+            required
+          />
         </div>
 
-        <button
-          type="submit"
-          class="btn btn-primary w-100"
-          [disabled]="loading()">
+        <button type="submit" class="btn btn-primary w-100" [disabled]="loading()">
           {{ loading() ? 'Connexion...' : 'Se connecter' }}
         </button>
 

@@ -1,6 +1,6 @@
 package com.odji.spring_back_end.security;
 
-import com.odji.spring_back_end.repository.UserRepository;
+import com.odji.spring_back_end.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
